@@ -9,6 +9,34 @@ body{
   background-size: cover;
 
 }
+.font-white{
+  color: white;
+}
+
+.reg-data{
+  padding: 5px;
+}
+
+.reg-row-data{
+  background-color: rgba(71, 79, 122,0.4);
+  border-radius: 10%
+
+}
+
+.emphasize-text{
+  font-family: "Bree Serif";
+  font-size: 1.5rem;
+}
+
+.home-form-table{
+  padding: 40px;
+}
+
+.home-form-fields{
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
 
 .website-titlebar{
   text-align: center;

@@ -265,11 +265,6 @@ body {
   background-color: #ADBC9F;
   margin-bottom: 20px;
 }
-
-.close-btns{
-  transform: scale(0.8);
-}
-
 .toggle-sidebar-custom1{
   background-color: #12372A;
   transition: background-color 0.2s ease-in-out;
@@ -281,6 +276,9 @@ body {
 }
 .fa-bars{
   color: #FBFADA;
+}
+.close-btns{
+  transform: scale(0.8);
 }
 @keyframes slightly-big{
   from{

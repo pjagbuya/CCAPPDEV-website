@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+
+
+  <link rel="stylesheet" href="reserve-user-styles.css">
+
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Montserrat:wght@400;700;900&family=Pacifico&family=Ubuntu+Condensed&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+
+
+  <!--Bootstrap help Section -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  <title>Search Results</title>
+</head>
+
+
+
+
+
+
+
+
+
+<body>
+
+  <!--Navigation Bar-->
+
+  <nav class="index-navbar navbar navbar-expand-lg bg-body-tertiary fixed-top" onclick="closeModal()">
+
+    <button id="toggleSidebar" class="btn  btn-outline-secondary toggle-sidebar-custom1 toggle-sidebar-btn">
+      <i class="fa-solid fa-bars fa-3x"></i>
+    </button>
+
+    <i class="custom-color1 animo-icon fa-solid fa-calendar-days fa-4x"></i>
+
+    <div class="animo-text">
+      <a href="index.html" class="no-decor" target="_self">
+        <span class="navbar-text header-custom2">
+          <div class="custom-color2">
+            AnimoLab
+          </div>
+        </span>
+      </a>
+    </div>
+
+
+    <!--Search Bar-->
+    <div class="search-section container-fluid search_bar d-flex justify-content-center">
+      <form class="d-flex" role="search">
+        <input class="search-bar-input form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+        <div class="mx-2 dropdown">
+          <button class="btn btn-outline-light dropdown-toggle" type="button" id="browseDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Browse
+          </button>
+          <div class="dropdown-menu dropdown-browse-section" aria-labelledby="browseDropdown">
+            <button class="dropdown-item" type="submit">Browse Labs</button>
+            <button class="dropdown-item" type="submit">Browse Users</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="profile-section">
+
+      <!--Hardcoded name1-->
+      <div class="profile-section-text">
+        Paul Josef P. Agbuya
+      </div>
+      <div class="pic-and-mail">
+        <img class="profile-section-pic" src="https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" alt="default-pic">
+        <div class="mail-icon-section">
+          <i class="fa-solid fa-bell fa-3x"></i>
+          <i class="circle-icon fa-solid fa-circle"></i>
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+
+
+  </nav>
+  <div class="hidden-sidebar">
+    <div class="sidebar-section-container">
+      <input class="checkbox-section" type="checkbox" name="isRememberStatus" value=""> Remember Me
+    </div>
+    <div class="sidebar-section-container">
+      <i class="icon-section fa-solid fa-user"></i> Profile
+    </div>
+    <div class="sidebar-section-container">
+      <i class="icon-section fa-solid fa-users"></i> Browse Users
+
+    </div>
+    <div class="sidebar-section-container">
+      <i class="icon-section fa-solid fa-laptop"></i> Browse Labs
+    </div>
+    <div class="sidebar-section-container">
+      <i class="icon-section fa-solid fa-flag"></i> Report a Problem
+    </div>
+    <div class="sidebar-section-container">
+      <i class="icon-section fa-solid fa-right-from-bracket"></i> Logout
+    </div>
+
+  </div>
+
+
+  <section class="lab-slots-browse-section-2">
+    <h2>Select a Date: </h2>
+    <div id="weekdaysChoices" class="reservation-next-days">
+
+      <div class="day-container" id="daysContainer">
+
+      </div>
+
+    </div>
+
+
+    <div id="selectSeatsSection" class="selected-seat-section flex-column">
+      <button class="selected-seat-button" type="button" name="button" onclick="openModal()">Select a Seat</button>
+      <p class="selected-seat-text-section">Selected seat: <strong> <span id="seatNum" class="selected-seat-text">N/A</span> </strong></p>
+      <p class="is-anonymous-section">set Anonymous? &nbsp;<input type="checkbox" name="isAnon" value=""> </p>
+    </div>
+
+    <div id="timeTableSection" class="time-table-section">
+      <!-- Morning Time Slot Table -->
+      <table id="morningTable" class="time-table">
+        <thead>
+          <tr>
+            <th class="time-slot-column">Time Slot</th>
+            <th class="reserve-check-column">Reserve</th>
+            <th class="seat-booked-column">Seat No.</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+
+      <!-- Afternoon Time Slot Table -->
+      <table id="afternoonTable" class="time-table">
+        <thead>
+          <tr>
+            <th class="time-slot-column">Time Slot</th>
+            <th class="reserve-check-column">Reserve</th>
+            <th class="seat-booked-column">Seat No.</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+
+    </div>
+
+    <footer>
+      <button class="custom-button-2">Confirm Reservations</button> <button class="custom-button-1">Cancel</button> <button class="arrow-button right-arrow">Reset</button>
+    </footer>
+  </section>
+
+  <div id="modalSeats" class="seat-modal">
+    <button type="button" class="btn btn-danger close-btns" onclick="closeModal()">X</button>
+
+    <section id="room-container" class="room-container">
+      <div class="d-flex align-items-center">
+        <div class="whiteboard-section">
+          <p><strong>Whiteboard/ PPT</strong></p>
+        </div>
+
+
+        <div class="container">
+          <!-- Top Half -->
+          <div class="row">
+            <div class="box no-margin-top">
+              <div class="seat-box no-margin-top">
+                1
+              </div>
+              <div class="seat-box">
+                2
+              </div>
+              <div class="seat-box">
+                3
+              </div>
+              <div class="seat-box">
+                4
+              </div>
+
+
+            </div>
+            <div class="box">
+              <div class="seat-box no-margin-top">
+                9
+              </div>
+              <div class="seat-box">
+                10
+              </div>
+              <div class="seat-box">
+                11
+              </div>
+              <div class="seat-box">
+                12
+              </div>
+
+            </div>
+            <div class="box">
+              <div class="seat-box no-margin-top">
+                17
+              </div>
+              <div class="seat-box">
+                18
+              </div>
+              <div class="seat-box">
+                19
+              </div>
+              <div class="seat-box">
+                20
+              </div>
+
+            </div>
+            <div class="box">
+              <div class="seat-box no-margin-top">
+                25
+              </div>
+              <div class="seat-box">
+                26
+              </div>
+              <div class="seat-box">
+                27
+              </div>
+              <div class="seat-box">
+                28
+              </div>
+
+            </div>
+            <div class="box">
+              <div class="seat-box no-margin-top">
+                33
+              </div>
+              <div class="seat-box">
+                34
+              </div>
+              <div class="seat-box">
+                35
+              </div>
+              <div class="seat-box">
+                36
+              </div>
+
+            </div>
+          </div>
+          <!-- Bottom Half -->
+          <div class="row">
+            <div class="box">
+              <div class="seat-box no-margin-top">
+                5
+              </div>
+              <div class="seat-box ">
+                6
+              </div>
+              <div class="seat-box">
+                7
+              </div>
+              <div class="seat-box">
+                8
+              </div>
+
+            </div>
+            <div class="box">
+              <div class="seat-box no-margin-top">
+                13
+              </div>
+              <div class="seat-box">
+                14
+              </div>
+              <div class="seat-box">
+                15
+              </div>
+              <div class="seat-box">
+                16
+              </div>
+
+            </div>
+            <div class="box">
+              <div class="seat-box no-margin-top">
+                21
+              </div>
+              <div class="seat-box">
+                22
+              </div>
+              <div class="seat-box">
+                23
+              </div>
+              <div class="seat-box">
+                24
+              </div>
+
+            </div>
+            <div class="box">
+              <div class="seat-box no-margin-top">
+                29
+              </div>
+              <div class="seat-box">
+                30
+              </div>
+              <div class="seat-box">
+                31
+              </div>
+              <div class="seat-box">
+                32
+              </div>
+
+            </div>
+            <div class="box">
+              <div class="seat-box no-margin-top">
+                37
+              </div>
+              <div class="seat-box">
+                38
+              </div>
+              <div class="seat-box">
+                39
+              </div>
+              <div class="seat-box">
+                40
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+    </section>
+  </div>
+
+
+  <div id="overlay" class="overlay" onclick="closeModal()"></div>
+
+
+
+
+
+
+
+  <!--Script section -->
+  <script src="https://kit.fontawesome.com/d9289310f5.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+<script>
+  $(document).ready(function () {
+    $("#toggleSidebar").on("click", function () {
+      $(".hidden-sidebar").toggleClass("show");
+    });
+  });
+
+  function showSelectSeat() {
+
+    document.getElementById('selectSeatsSection').style.display = 'flex';
+
+  }
+  function showTimeTable() {
+
+    document.getElementById('timeTableSection').style.display = 'flex';
+  }
+
+  function copySelected(seatBox) {
+    var sourceText = seatBox.innerText;
+    document.querySelector('.selected-seat-text').innerText = sourceText;
+  }
+
+  function copySelectedToCheck(checkboxElement, tableCell) {
+
+    var sourceText = document.querySelector('.selected-seat-text').innerText
+    if (checkboxElement.checked && sourceText != 'N/A') {
+      document.querySelector(tableCell).innerText = sourceText;
+    } else {
+      document.querySelector('.${tableCell}').innerText = 'X';
+    }
+
+
+  }
+
+
+  function openModal() {
+    document.getElementById('modalSeats').style.display = 'flex';
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('room-container').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('modalSeats').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('room-container').style.display = 'none';
+  }
+
+
+
+
+  document.addEventListener("DOMContentLoaded", function() {
+
+    // Get all seat-box elements
+    var seatBoxes = document.querySelectorAll('.seat-box');
+
+    // Add function to send seat number selected
+    seatBoxes.forEach(function(seatBox) {
+      seatBox.addEventListener('click', function() {
+        copySelected(seatBox);
+        closeModal();
+        showTimeTable();
+      });
+    });
+
+    function generateTimeSlotTable(tableId, timeName, startTime, endTime) {
+      const table = document.getElementById(tableId).querySelector('tbody');
+      var data_count = 0;
+      var row;
+
+      for (let minutes = startTime * 60; minutes < endTime * 60; minutes += 30) {
+        const hourStart = Math.floor(minutes / 60);
+        const minuteStart = minutes % 60;
+        const hourEnd = Math.floor((minutes + 30) / 60);
+        const minuteEnd = (minutes + 30) % 60;
+
+
+        const timeSlot = `${hourStart}:${minuteStart === 0 ? '00' : minuteStart} - ${hourEnd}:${minuteEnd === 0 ? '00' : minuteEnd}`;
+
+        // Hardcoded time slot block
+        if (data_count == 6 && timeName == "morning") {
+          row = `<tr>
+                            <td class="time-slot-data ${timeName}-time-slot-${data_count}">${timeSlot}</td>
+                            <td class="checkbox-data ${timeName}-checkbox-slot-${data_count}" >X</td>
+                            <td class="seat-num-data ${timeName}-seat-slot-${data_count}">X</td>
+
+                         </tr>`;
+        } else {
+          row = `<tr>
+                            <td class="time-slot-data ${timeName}-time-slot-${data_count}">${timeSlot}</td>
+                            <td class="checkbox-data ${timeName}-checkbox-slot-${data_count}" ><input onclick='copySelectedToCheck(this, ".${timeName}-seat-slot-${data_count}")' type="checkbox"></td>
+                            <td class="seat-num-data ${timeName}-seat-slot-${data_count}">X</td>
+                         </tr>`;
+        }
+
+        data_count += 1;
+
+
+        table.innerHTML += row;
+      }
+    }
+
+    generateTimeSlotTable("morningTable", "morning", 7, 12);
+
+
+    generateTimeSlotTable("afternoonTable", "afternoon", 12, 17);
+  });
+
+
+
+  //7 Day week generator
+  const currentDate = new Date();
+
+  const daysContainer = document.getElementById("daysContainer");
+  let selectedDayDiv = null;
+  for (let i = 0; i < 8; i++) {
+    const day = new Date();
+
+
+
+
+    day.setDate(currentDate.getDate() + i);
+
+    const options = {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric'
+    };
+    const formattedDate = day.toLocaleDateString('en-US', options);
+
+    const dayDiv = document.createElement("div");
+    dayDiv.className = "day";
+
+
+    const formattedDateElement = document.createElement("div");
+    formattedDateElement.className = "format-date";
+    formattedDateElement.textContent = formattedDate;
+
+    dayDiv.appendChild(formattedDateElement);
+
+
+    dayDiv.addEventListener("click", () => {
+
+      if (selectedDayDiv) {
+        selectedDayDiv.style.backgroundColor = "white";
+      }
+      showSelectSeat();
+
+
+      dayDiv.style.backgroundColor = "#ADBC9F";
+
+      selectedDayDiv = dayDiv;
+    });
+
+    daysContainer.appendChild(dayDiv);
+  }
+</script>
+
+</html>

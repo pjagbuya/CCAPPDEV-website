@@ -1,19 +1,18 @@
-.report-form-section{
+.register-form-section{
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
 
-.report-body{
+.register-body{
   width: 60%;
-  border: 15px ridge #236850;
-  padding: 15px;
 }
 
 label.form-proper{
   font-weight: 500;
   padding-bottom: 10px;
+  padding-top: 20px;
 }
 
 input.form-proper, textarea.form-proper{
@@ -33,6 +32,11 @@ select.form-proper{
   height: 45px;
   padding: 10px;
   font-weight: 500;
+}
+
+input.form-proper[type=text], input.form-proper[type=password] {
+  width: 60%;
+  height: 45px;
 }
 
 input.form-proper[type=submit] {

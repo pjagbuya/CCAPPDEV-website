@@ -26,11 +26,11 @@
     align-items: center;
     flex-direction: row;
     background-color: #FBFADA;
-    margin: 10px 10px;
-    width: 55%;
+    width: 52%;
     height: 100px;
     border-bottom: 2px solid #436850;
-    padding: 15px;
+    padding: 20px;
+    
 }
 
 .profiles > img {
@@ -40,6 +40,7 @@
     border: 2px solid #436850;
     width: 70px;
 }
+
 
 .profile-name{
     font-family: 'Montserrat', sans-serif;

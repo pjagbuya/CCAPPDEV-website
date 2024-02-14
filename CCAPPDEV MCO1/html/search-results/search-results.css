@@ -86,4 +86,22 @@
 
 .view-button:hover{
     background-color:#12372A;
+    cursor: pointer;
 } 
+
+.arrow-button {
+    background-color: #436850;
+    color: white;
+}
+.arrow-button:hover{
+    background-color:#12372A;
+    cursor: pointer;
+} 
+
+.footer{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin: 10px 10px;
+    width: 300px;
+}

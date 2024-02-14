@@ -1,27 +1,39 @@
 
 
-
+a:link {
+  color: black;
+  text-decoration: none;
+}
+a:visited {
+  color: black;
+  text-decoration: none;
+}
+a:active {
+  color: black;
+  text-decoration: underline;
+}
 .no-decor{
     text-decoration:none
+
   }
   .custom-default-font1{
     font-family: "Montserrat";
     font-size: 1rem;
   }
-  
+
   .custom-color1
   {
     color: #FBFADA;
   }
   .index-navbar{
     background-color: #12372A;
-  
+
   }
   .custom-color2
   {
     color: #ADBC9F;
   }
-  
+
   .header-custom2
   {
     font-size: 2.5rem;
@@ -35,7 +47,7 @@
   .animo-icon{
     margin-left: 10px
   }
-  
+
   .pic-and-mail{
     position: relative;
   }
@@ -53,26 +65,26 @@
     left: 25px;
     z-index: 3;
   }
-  
+
   .mail-icon-section:hover{
     color: #CDFADB;
     cursor: pointer;
     transform: scale(1.2);
   }
-  
+
   .custom-color3{
     color: #CDFADB;
   }
-  
-  
+
+
   body{
     padding-top: 180px;
   }
   .search-bar-input{
-  
+
     width: 400px !important;
     height: 40px !important;
-  
+
   }
   .profile-section{
     display: flex;
@@ -81,7 +93,7 @@
     align-items: center;
     justify-content: center;
     vertical-align: middle;
-  
+
   }
   .profile-section-pic{
     width: 100px;
@@ -100,27 +112,27 @@
     font-size: 1.25rem;
     margin-right: 10px;
   }
-  
-  
+
+
   .animo-text:hover
   {
-  
+
     animation: slightly-big 1s ease-in-out infinite alternate;
-  
+
   }
-  
+
   body {
     font-family: 'Arial', sans-serif;
     display: flex;
   }
-  
+
   .toggle-sidebar-btn {
-  
+
     top: 10px;
     left: 10px;
     z-index: 6;
   }
-  
+
   .hidden-sidebar {
     display: block;
     position: fixed;
@@ -133,9 +145,9 @@
     transition: left 0.2s ease-in-out;
     z-index: 5;
   }
-  
+
   .hidden-sidebar.show {
-  
+
     left: 0px;
   }
   .icon-section{
@@ -149,20 +161,20 @@
   .sidebar-section-container{
     display: flex;
     align-items: center;
-  
+
     padding: 20px;
     font-size: 18px;
     font-family: "Montserrat";
   }
-  
+
   .sidebar-section-container:hover{
     cursor: pointer;
-  
+
     background-color: #436850;
     color: white;
-  
+
   }
-  
+
   .date-details{
     background-color: #ADBC9F;
     margin-bottom: 20px;
@@ -170,9 +182,9 @@
   .toggle-sidebar-custom1{
     background-color: #12372A;
     transition: background-color 0.2s ease-in-out;
-  
+
   }
-  
+
   .toggle-sidebar-custom1:hover{
     background-color: white;
   }
@@ -188,6 +200,6 @@
     }
     to{
       transform: scale(1.2);
-  
+
     }
   }

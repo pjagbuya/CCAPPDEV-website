@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+
+    <link rel="stylesheet" href="showcase-styles.css">
+    <link rel="stylesheet" href="../../css/navbar-styles.css">
+    <link rel="stylesheet" href="../report-form/report-styles.css">
+
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Montserrat:wght@400;700;900&family=Pacifico&family=Ubuntu+Condensed&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+
+
+    <!--Bootstrap help Section -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Search Results</title>
+  </head>
+
+
+
+
+
+
+
+
+
+  <body>
+
+    <!--Navigation Bar-->
+
+    <nav class="index-navbar navbar navbar-expand-lg bg-body-tertiary fixed-top">
+
+      <button id="toggleSidebar" class="btn  btn-outline-secondary toggle-sidebar-custom1 toggle-sidebar-btn">
+        <i class="fa-solid fa-bars fa-3x"></i>
+      </button>
+
+      <i class="custom-color1 animo-icon fa-solid fa-calendar-days fa-4x"></i>
+
+      <div class="animo-text">
+        <a href="index.html" class ="no-decor" target="_self">
+        <span class="navbar-text header-custom2">
+          <div class="custom-color2">
+            AnimoLab
+          </div>
+        </span>
+        </a>
+      </div>
+
+
+      <!--Search Bar-->
+      <div class="search-section container-fluid search_bar d-flex justify-content-center">
+        <form class="d-flex" role="search">
+          <input class="search-bar-input form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+          <div class="mx-2 dropdown">
+            <button class="btn btn-outline-light dropdown-toggle" type="button" id="browseDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Browse
+            </button>
+            <div class="dropdown-menu dropdown-browse-section" aria-labelledby="browseDropdown">
+              <button class="dropdown-item" type="submit">Browse Labs</button>
+              <button class="dropdown-item" type="submit">Browse Users</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="profile-section">
+
+        <!--Hardcoded name1-->
+        <div class="profile-section-text">
+          Paul Josef P. Agbuya
+        </div>
+        <div class="pic-and-mail">
+          <img class="profile-section-pic" src="https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" alt="default-pic">
+          <div class="mail-icon-section">
+            <i class="fa-solid fa-bell fa-3x"></i>
+            <i class="circle-icon fa-solid fa-circle"></i>
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+
+    </nav>
+    <div class="hidden-sidebar">
+      <div class="sidebar-section-container">
+        <input class="checkbox-section" type="checkbox" name="isRememberStatus" value=""> Remember Me
+      </div>
+      <div class="sidebar-section-container">
+        <i class="icon-section fa-solid fa-user"></i> Profile
+      </div>
+      <div class="sidebar-section-container">
+        <i class="icon-section fa-solid fa-users"></i> Browse Users
+
+      </div>
+      <div class="sidebar-section-container">
+        <i class="icon-section fa-solid fa-laptop"></i> Browse Labs
+      </div>
+      <div class="sidebar-section-container">
+        <i class="icon-section fa-solid fa-flag"></i> Report a Problem
+      </div>
+      <div class="sidebar-section-container">
+        <i class="icon-section fa-solid fa-right-from-bracket"></i> Logout
+      </div>
+
+    </div>
+
+    
+    <div class="video-showcase-section">
+      <div class="showcase-body">
+        <section class= "main-advertise-section">
+
+          <div id="carouselExample" class="carousel-contianer carousel slide">
+            <div class="carousel-main carousel-inner d-flex justify-content-center">
+
+              <div class="carousel-item active">
+                <div class="carousel-item-video">
+                  <video oncontextmenu="return false;" autoplay loop muted class="vid-slot">
+                    <source src="../../css/videos/VID_20240202_161007.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="carousel-item-text">
+                  <b>State-of-the-Art Facilities:</b> Step into Gokongwei Hall's computer lab, where cutting-edge technology meets innovative learning. 
+                  Equipped with the latest computers, high-speed internet, and interactive displays, our lab provides students with an 
+                  unparalleled environment for digital exploration and creativity.
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <div class="carousel-item-video">
+                  <video oncontextmenu="return false;" autoplay loop muted class="vid-slot">
+                    <source src="../../css/videos/VID_20240202_160820.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="carousel-item-text">
+                  <b>Collaborative Workspace:</b> Our computer lab is more than just rows of computers; it's a collaborative workspace where students come together to brainstorm ideas, 
+                  solve problems, and create innovative solutions. Whether working on group projects or individual assignments, 
+                  students have access to the tools and resources they need to succeed.
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <div class="carousel-item-video">
+                  <video oncontextmenu="return false;" autoplay loop muted class="vid-slot">
+                    <source src="../../css/videos/VID_20240202_160801.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="carousel-item-text">
+                  video 3
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <div class="carousel-item-video">
+                  <video oncontextmenu="return false;" autoplay loop muted class="vid-slot">
+                    <source src="../../css/videos/VID_20240202_161038.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="carousel-item-text">
+                  video 4
+                </div>
+              </div>
+    
+              <div class="carousel-item">
+                <div class="carousel-item-video">
+                  <img class="vid-slot" src="https://miro.medium.com/v2/resize:fit:698/1*0jjdu52m0MO4SjLWiCVOlg.jpeg" alt="">
+                </div>
+                <div class="carousel-item-text">
+                  mikudayo
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+
+
+
+
+
+
+    <!--Script section -->
+    <script src="https://kit.fontawesome.com/d9289310f5.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+  <script>
+
+  $(document).ready(function () {
+  $("#toggleSidebar").on("click", function () {
+    $(".hidden-sidebar").toggleClass("show");
+  });
+  });
+  
+  </script>
+<script src="https://kit.fontawesome.com/d9289310f5.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</html>

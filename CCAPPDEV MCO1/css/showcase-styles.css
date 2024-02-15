@@ -1,0 +1,74 @@
+body{
+  background: url("../css/pics/home-bg-pic.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.header{
+  display: flex;
+  background-color: white;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  background-color: #436850;
+  opacity: 0.8;
+  height: 400px;
+}
+
+.title{
+  color: #FBFADA;
+  font-size: 84px;
+  opacity: 1;
+  font-weight: 500;
+}
+
+
+.video-showcase-section{
+  width: 100%;
+}
+
+.carousel-contianer{
+
+  height: 600px;
+  vertical-align: center;
+
+
+}
+.carousel-main{
+  align-items: center;
+  justify-content: center;
+  background-color:#12372A;
+
+}
+.carousel-item{
+  padding: 40px;
+  align-items: center;
+  justify-content: right;
+}
+
+.carousel-item-text{
+  color: black;
+  padding: 15px;
+  background-color: white;
+  position: relative;
+  right: 320px;
+  width: 650px;
+  border: 1px solid black;
+  border-radius: 15px;
+  font-family: "Montserrat";
+}
+
+.vid-slot{
+  position: relative;
+  right: 320px;
+  width: 650px;
+  height: 450px;
+}
+
+
+.spacer{
+  height: 175px;
+}
+

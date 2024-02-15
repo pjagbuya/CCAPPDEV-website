@@ -1,0 +1,48 @@
+.reserve-edit{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #436850;
+    width: 100%;
+    height: calc(100vh - 56px); 
+    margin-top: -65px; 
+    margin-bottom: 0;
+}
+
+.inner-box {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 10px ridge #436850;
+    margin: 10px 10px;
+    padding: 100px;
+    background-color: #FBFADA;
+    width: 100%;
+
+}
+
+table {
+    border: 2px solid black;
+    width: 70%;
+    text-align: center;
+    margin-left: 200px;
+}
+
+.view-button{
+    border-radius: 40px;
+    background-color:#436850;
+    border: none;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    width: 50px;
+}
+
+.view-button:hover{
+    background-color:#12372A;
+    cursor: pointer;
+} 
+
+.header {
+    background-color: #436850;
+    color:  #FBFADA;
+}

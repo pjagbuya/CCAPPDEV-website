@@ -21,6 +21,14 @@
 
 }
 
+.inner-box > h1 {
+    color: #436850;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: -10px;
+}
+
 table {
     border: 2px solid black;
     width: 70%;

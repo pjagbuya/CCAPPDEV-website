@@ -1,0 +1,57 @@
+body{
+  background: url("../../css/pics/home-bg-pic.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.video-showcase-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.showcase-body{
+  width: 100%;
+}
+
+.carousel-contianer{
+
+  height: 600px;
+  vertical-align: center;
+
+
+}
+.carousel-main{
+  align-items: center;
+  justify-content: center;
+  background-color:#12372A;
+
+}
+.carousel-item{
+  padding: 40px;
+  align-items: center;
+  justify-content: right;
+}
+
+.carousel-item-text{
+  color: black;
+  padding: 15px;
+  background-color: white;
+  position: relative;
+  right: 320px;
+  width: 650px;
+  border: 1px solid black;
+  border-radius: 15px;
+  font-family: "Montserrat";
+}
+
+.vid-slot{
+  position: relative;
+  right: 320px;
+  width: 650px;
+  height: 450px;
+}
+
+

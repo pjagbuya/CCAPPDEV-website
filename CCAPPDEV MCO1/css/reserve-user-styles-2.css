@@ -82,7 +82,7 @@ body{
 .profile-section{
   display: flex;
   padding-right: 20px;
-  width: 39%;
+  width: 41%;
   align-items: center;
   justify-content: center;
   vertical-align: middle;
@@ -244,6 +244,7 @@ body {
 .reservation-id-div{
   font-family: "Montserrat";
   display: flex;
+  flex-direction: column;
   align-items: center;
   margin: 20px;
 }
@@ -274,6 +275,43 @@ footer{
 }
 
 
+
+
+.custom-button-2{
+  font-family: "Montserrat";
+  font-size: 1.5rem;
+  padding: 10px;
+  background-color:#436850;
+  border: 5px solid black;
+  border-radius: 20px;
+  color: #FBFADA;
+  margin: 30px;
+  transition: transform 0.2s ease-in-out;
+
+
+}
+
+.custom-button-2:hover{
+  transform: scale(1.1);
+  border: 7px ridge #FBFADA;
+}
+
+.custom-button-1{
+
+  background-color: #ADBC9F;
+  font-size: 2rem;
+  padding: 10px;
+  font-family: "Montserrat";
+  font-weight: bold;
+  border-radius: 25px;
+  margin: 5px 10px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.custom-button-1:hover{
+  transform: scale(1.1);
+  border: 7px ridge #ADBC9F;
+}
 
 @keyframes slightly-big{
   from{

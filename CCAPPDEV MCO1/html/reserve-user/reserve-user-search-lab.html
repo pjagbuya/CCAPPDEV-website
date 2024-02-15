@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+
+    <link rel="stylesheet" href="../../css/reserve-user-styles.css">
+    <link rel="stylesheet" href="../../css/chatbox-styles.css">
+    <link rel="stylesheet" href="../../css/navbar-styles.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Montserrat:wght@400;700;900&family=Pacifico&family=Ubuntu+Condensed&family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+
+
+    <!--Bootstrap help Section -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>Search Results</title>
+  </head>
+
+
+
+
+
+
+
+
+
+  <body>
+
+    <!--Navigation Bar-->
+
+    <nav class="index-navbar navbar navbar-expand-lg bg-body-tertiary fixed-top">
+
+      <button id="toggleSidebar" class="btn  btn-outline-secondary toggle-sidebar-custom1 toggle-sidebar-btn">
+        <i class="fa-solid fa-bars fa-3x"></i>
+      </button>
+
+      <i class="custom-color1 animo-icon fa-solid fa-calendar-days fa-4x"></i>
+
+      <div class="animo-text">
+        <a href="index.html" class ="no-decor" target="_self">
+        <span class="navbar-text header-custom2">
+          <div class="custom-color2">
+            AnimoLab
+          </div>
+        </span>
+        </a>
+      </div>
+
+
+      <!--Search Bar-->
+      <div class="search-section container-fluid search_bar d-flex justify-content-center">
+        <form class="d-flex" role="search">
+          <input class="search-bar-input form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+          <div class="mx-2 dropdown">
+            <button class="btn btn-outline-light dropdown-toggle" type="button" id="browseDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Browse
+            </button>
+            <div class="dropdown-menu dropdown-browse-section" aria-labelledby="browseDropdown">
+              <button class="dropdown-item" type="submit">Browse Labs</button>
+              <button class="dropdown-item" type="submit">Browse Users</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="profile-section">
+
+        <!--Hardcoded name1-->
+        <div class="profile-section-text">
+          Paul Josef P. Agbuya
+        </div>
+        <div class="pic-and-mail">
+          <img class="profile-section-pic" src="https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" alt="default-pic">
+          <div class="mail-icon-section">
+            <i class="fa-solid fa-bell fa-3x"></i>
+            <i class="circle-icon fa-solid fa-circle"></i>
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+
+
+    </nav>
+    <div class="hidden-sidebar">
+      <div class="sidebar-section-container">
+        <input class="checkbox-section" type="checkbox" name="isRememberStatus" value=""> Remember Me
+      </div>
+      <div class="sidebar-section-container">
+        <i class="icon-section fa-solid fa-user"></i> Profile
+      </div>
+      <div class="sidebar-section-container">
+        <i class="icon-section fa-solid fa-users"></i> Browse Users
+
+      </div>
+      <div class="sidebar-section-container">
+        <i class="icon-section fa-solid fa-laptop"></i> Browse Labs
+      </div>
+      <div class="sidebar-section-container">
+        <i class="icon-section fa-solid fa-flag"></i> Report a Problem
+      </div>
+      <div class="sidebar-section-container">
+        <i class="icon-section fa-solid fa-right-from-bracket"></i> Logout
+      </div>
+
+    </div>
+
+
+    <section class="lab-slots-browse-section">
+
+      <div class="filter-section">
+
+        <div class="d-flex filter-part-1">
+          <div class="d-flex filter-part-1 align-items-center">
+
+            <h2 class="label-custom-1">Search Name: </h2>
+            <div class="d-flex align-items-center mx-3">
+              <input type="text" name="" value="">
+            </div>
+
+          </div>
+          <div class="d-flex flex-column filter-part-1">
+            <h2 class="label-custom-1">Date: </h2>
+
+
+
+            <select class="form-control-input-date" id="inputRoom">
+
+            </select>
+
+            <h2 class="label-custom-1">Room Type: </h2>
+            <select class="form-control-input-room" id="inputRoom">
+              <option value="room1">Any</option>
+              <option value="room1">GK2</option>
+              <option value="room2">GK3</option>
+              <option value="room3">GK4</option>
+            </select>
+
+
+          </div>
+
+
+
+          <div class="d-flex flex-column filter-part-1">
+            <h2 class="label-custom-1" name="dropdownFrom">From: </h2>
+            <select class="form-control-1" id="fromTime"></select>
+            <h2 class="label-custom-1" name="dropdownTo">To: </h2>
+            <select class="form-control-2" id="toTime"></select>
+          </div>
+          <div class="d-flex flex-column filter-part-2">
+            <button class="custom-button-6 mx-5" type="button" name="button">Filter</button>
+          </div>
+
+
+
+        </div>
+
+
+
+
+      </div>
+      <div class="lab-choices-section">
+
+          <div class="lab-choice-section">
+            <img class="lab-choice-img" src="../../css/pics/computerlab.jpg" alt="computer-lab">
+            <div class="lab-choice-details">
+              <h3>GK302A</h3>
+              <p class="status-text avail-text"><u>AVAILABLE</u></p>
+
+
+              <p>
+                <span>Total Seats: </span>
+                <span><strong>23</strong></span>
+              </p>
+
+
+
+
+              <a class="d-flex lab-choice-btn custom-default-font2" href="reserve-user-lab-view.html">
+                <div class="btn btn-success">
+                  View
+                </div>
+              </a>
+
+
+            </div>
+          </div>
+          <div class="lab-choice-section">
+            <img class="lab-choice-img" src="../../css/pics/computerlab.jpg" alt="computer-lab">
+            <div class="lab-choice-details">
+              <h3>GK302B</h3>
+              <p class="status-text avail-text"><u>AVAILABLE</u></p>
+
+
+              <p>
+                <span>Total Seats: </span>
+                <span><strong>23</strong></span>
+              </p>
+
+              <a class="d-flex lab-choice-btn custom-default-font2" href="reserve-user-lab-view.html">
+                <div class="btn btn-success">
+                  View
+                </div>
+              </a>
+
+
+            </div>
+          </div>
+          <div class="lab-choice-section">
+            <img class="lab-choice-img" src="../../css/pics/computerlab.jpg" alt="computer-lab">
+            <div class="lab-choice-details">
+              <h3>GK306A</h3>
+              <p class="status-text avail-text"><u>AVAILABLE</u></p>
+
+
+              <p>
+                <span>Total Seats: </span>
+                <span><strong>23</strong></span>
+              </p>
+
+              <a class="d-flex lab-choice-btn custom-default-font2" href="reserve-user-lab-view.html">
+                <div class="btn btn-success">
+                  View
+                </div>
+              </a>
+
+
+            </div>
+          </div>
+
+          <div class="lab-choice-section">
+            <img class="lab-choice-img" src="../../css/pics/computerlab.jpg" alt="computer-lab">
+            <div class="lab-choice-details">
+              <h3>GK404</h3>
+              <p class="status-text avail-text"><u>AVAILABLE</u></p>
+
+
+              <p>
+                <span>Total Seats: </span>
+                <span><strong>23</strong></span>
+              </p>
+
+              <a class="d-flex lab-choice-btn custom-default-font2" href="reserve-user-lab-view.html">
+                <div class="btn btn-success">
+                  View
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="lab-choice-section">
+            <img class="lab-choice-img" src="../../css/pics/computerlab.jpg" alt="computer-lab">
+            <div class="lab-choice-details">
+              <h3>GK405</h3>
+              <p class="status-text full-text"><u>FULL</u></p>
+
+                <span>Total Seats: </span>
+                <span><strong>23</strong></span>
+              </p>
+
+              <a class="d-flex lab-choice-btn custom-default-font2" href="reserve-user-lab-view.html">
+                <div class="btn btn-success">
+                  View
+                </div>
+              </a>
+            </div>
+          </div>
+
+
+          <div class="lab-choice-section">
+            <img class="lab-choice-img" src="../../css/pics/computerlab.jpg" alt="computer-lab">
+            <div class="lab-choice-details">
+              <h3>GK406</h3>
+              <p class="status-text full-text"><u>FULL</u></p>
+
+                <span>Total Seats: </span>
+                <span><strong>23</strong></span>
+              </p>
+
+              <a class="d-flex lab-choice-btn custom-default-font2" href="reserve-user-lab-view.html">
+                <div class="btn btn-success">
+                  View
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="arrows-section">
+            <button class="arrow-button">&larr;</button>  Page 1<button class="arrow-button right-arrow">&rarr;</button>
+          </div>
+      </div>
+
+
+
+    </section>
+
+
+
+
+
+
+    <!--Script section -->
+    <script src="https://kit.fontawesome.com/d9289310f5.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+  <script>
+
+    $(document).ready(function () {
+    $("#toggleSidebar").on("click", function () {
+        $(".hidden-sidebar").toggleClass("show");
+      });
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+      var divs = document.querySelectorAll(".lab-choice-section");
+
+      divs.forEach(function (div) {
+        var availabilityText = div.querySelector(".status-text");
+        var currentLabDetail = div.querySelector(".lab-choice-details");
+
+        if (availabilityText) {
+          var textColor = window.getComputedStyle(availabilityText).color;
+
+          if (textColor === "rgb(255, 0, 0)" || textColor === "red") {
+            currentLabDetail.style.backgroundColor = "orange";
+          }
+        }
+      });
+    });
+
+
+    function populateFromTimeOptions() {
+      var startTime = new Date();
+      startTime.setHours(7, 30, 0); // Set start time to 7:30 AM
+
+      var endTime = new Date();
+      endTime.setHours(17, 0, 0); // Set end time to 5:00 PM
+
+      var interval = 30 * 60 * 1000; // 30 minutes in milliseconds
+
+      var selectElement = document.getElementById("fromTime");
+
+      for (var time = startTime.getTime(); time <= endTime.getTime(); time += interval) {
+        var option = document.createElement("option");
+        var timeString = new Date(time).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+        option.value = timeString;
+        option.text = timeString;
+        selectElement.add(option);
+      }
+    }
+
+
+    function populateToTimeOptions() {
+      var startTime = new Date();
+      startTime.setHours(8, 0, 0); // Set start time to 8:00 AM
+
+      var endTime = new Date();
+      endTime.setHours(17, 30, 0); // Set end time to 5:30 PM
+
+      var interval = 30 * 60 * 1000; // 30 minutes in milliseconds
+
+      var selectElement = document.getElementById("toTime");
+
+      for (var time = startTime.getTime(); time <= endTime.getTime(); time += interval) {
+        var option = document.createElement("option");
+        var timeString = new Date(time).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+        option.value = timeString;
+        option.text = timeString;
+        selectElement.add(option);
+      }
+    }
+    function populateDateOptions() {
+      var selectRoom = document.getElementById('inputRoom');
+
+
+      var currentDate = new Date();
+
+      for (var i = 0; i < 8; i++) {
+
+        var nextDate = new Date(currentDate);
+        nextDate.setDate(currentDate.getDate() + i);
+
+
+        var month = nextDate.toLocaleString('default', { month: 'long' });
+        var day = nextDate.getDate();
+        var weekday = nextDate.toLocaleString('en', { weekday: 'long' });
+
+
+        var option = document.createElement('option');
+        option.value = nextDate.toISOString().slice(0, 10); // Format: YYYY-MM-DD
+        option.text = `${weekday}, ${month} ${day}`;
+
+
+        selectRoom.appendChild(option);
+      }
+    }
+
+
+    populateFromTimeOptions();
+    populateToTimeOptions();
+    populateDateOptions()
+</script>
+</html>

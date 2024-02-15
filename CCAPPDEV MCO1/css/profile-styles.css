@@ -1,13 +1,10 @@
 
 
+
 .no-decor{
   text-decoration:none
 }
 .custom-default-font1{
-  font-family: "Montserrat";
-  font-size: 1rem;
-}
-.custom-default-font2{
   font-family: "Montserrat";
   font-size: 1rem;
 }
@@ -18,7 +15,6 @@
 }
 .index-navbar{
   background-color: #12372A;
-  z-index: 998;
 
 }
 .custom-color2
@@ -70,7 +66,7 @@
 
 
 body{
-  padding-top: 113px;
+  padding-top: 180px;
 }
 .search-bar-input{
 
@@ -92,7 +88,11 @@ body{
   height: 100px;
   border-radius: 50%;
 }
-
+.profile-regular-pic{
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+}
 .profile-section-text{
   font-family: "Montserrat";
   font-size: normal;
@@ -108,13 +108,32 @@ body{
   animation: slightly-big 1s ease-in-out infinite alternate;
 
 }
+.profile-contact-section{
+  width: 25%;
+  border-right: 5px solid #12372A;
+  padding-right:10px;
+  justify-content:flex-start;
 
+
+  display: flex;
+
+
+}
+.profile-main-section{
+  padding: 20px;
+  width: 75%;
+}
+
+.contact-info-div{
+  width: 70%;
+
+}
 
 .profile-body{
   display: flex;
   margin-left: 20px;
   width: 100%;
-  padding: 50px;
+
 
 }
 
@@ -125,22 +144,71 @@ body{
   display: inline-block;
   text-align: center;
 
+
+
 }
 .custom-header1
 {
   font-family: "Ubuntu";
   color:#ADBC9F;
 }
+.custom-header2
+{
+  font-family: "Ubuntu";
+  color:#436850;
+}
+
+.custom-border-bottom1{
+  border-bottom: 5px solid #12372A;
+  padding-bottom: 10px;
+}
 p{
   font-family: "Montserrat";
 }
+.profile-name{
+  color: #436850;
+}
+.contact-info-div{
+  width:100%;
+  background-color: #ADBC9F;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-top:3px solid black;
+  border-bottom: 3px solid black;
+}
+
+.contact-title{
+  width: 100%;
+  text-align: center;
+  color:#12372A;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.contact-table{
+  width: 100%;
+
+}
+
+.description-div{
+  color: white;
+  padding: 20px;
+  width: 100%;
+  height: 300px;
+  background-color:  #436850;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-top:3px solid black;
+  border-bottom: 3px solid black;
 
 
-
+}
 
 .reservation-next-days{
+  margin-top: 10px;
+  padding-top: 10px;
   justify-content: center;
   align-items: center;
+  border-top: 5px solid #12372A;
 }
 
 .day-container {
@@ -221,80 +289,48 @@ body {
 }
 
 .close-btns{
-  position: absolute;
   transform: scale(0.8);
-  font-size: 1rem;
-  left: 97%;
-  bottom:90%;
 }
-.profile-main-section{
-  width: 70%;
+
+.toggle-sidebar-custom1{
+  background-color: #12372A;
+  transition: background-color 0.2s ease-in-out;
+
+}
+
+.toggle-sidebar-custom1:hover{
+  background-color: white;
+}
+.fa-bars{
+  color: #FBFADA;
+}
+
+
+.reservations-btn-div{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-
-}
-.profile-contact-section{
-  width: 30%;
-  border-right: 5px solid #12372A;
-}
-
-
-.buttons-section{
-  display: flex;
-  flex-direction: column;
   justify-content: center;
 }
+.custom-btn-3{
 
-.custom-btn-4{
-
-  background-color: #FBFADA;
-  font-size:4rem;
-  font-weight: bold;
+  color: white;
+  background-color:#436850;
+  font-size: 2rem;
   font-family: "Montserrat";
-  margin: 30px;
-  padding: 20px;
-
-}
-
-.btn-hover-custom-1{
+  font-weight: bold;
   transition: transform 0.2s ease-in-out;
 }
 
-.btn-hover-custom-2{
-  transition: transform 0.2s ease-in-out;
-}
-
-.btn-hover-custom-2:hover {
-  cursor: pointer;
+.custom-btn-3:hover{
   transform: scale(1.1);
   border: 6px solid #ADBC9F;
 }
 
-.btn-hover-custom-1:hover{
-  cursor: pointer;
-  transform: scale(1.1);
-  border: 6px solid black;
-}
+@keyframes slightly-big{
+  from{
+    transform: scale(1);
+  }
+  to{
+    transform: scale(1.2);
 
-.custom-btn-5{
-  margin: 30px;
-  padding: 20px;
-  background-color: #436850;
-  color: white;
-  font-size:4rem;
-  font-weight: bold;
-  font-family: "Montserrat";
-}
-
-.welcome-msg{
-  text-align: center;
-  font-family: "Montserrat";
-  font-size: 5rem;
-}
-.technician-text{
-  font-family: "Bree Serif";
-  font-weight: bold;
-  color: #436850;
-
+  }
 }

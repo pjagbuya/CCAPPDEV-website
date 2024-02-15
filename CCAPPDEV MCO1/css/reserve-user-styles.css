@@ -72,7 +72,7 @@
 
 body{
   padding-top: 113px;
-
+  display: flex;
 }
 
 h2{
@@ -143,10 +143,7 @@ p{
 
 
 
-.reservation-next-days{
-  justify-content: center;
-  align-items: center;
-}
+
 
 .day-container {
   display: flex;
@@ -165,10 +162,6 @@ p{
   color: #FBFADA;
   background-color: #12372A;
 
-}
-body {
-  font-family: 'Arial', sans-serif;
-  display: flex;
 }
 
 .toggle-sidebar-btn {
@@ -273,6 +266,9 @@ body {
   justify-content: center;
 }
 
+.filter-section{
+
+}
 
 .avail-text{
   color: green;
@@ -361,6 +357,7 @@ input[type="checkbox"] {
 
 .reservation-next-days{
   width: 90%;
+
   justify-content: center;
   align-items: center;
 
@@ -419,7 +416,40 @@ input[type="checkbox"] {
   box-shadow: 0px 0px 50px 10px #CDFADB;
   color:#CDFADB;
 }
+.custom-button-1{
 
+  background-color: #ADBC9F;
+  width: 200px;
+  height: 100px;
+  font-size: 2rem;
+  padding: 10px;
+  font-family: "Montserrat";
+  font-weight: bold;
+  border-radius: 25px;
+
+  transition: transform 0.2s ease-in-out;
+}
+
+.filter-part-1{
+
+  margin: 40px;
+
+}
+.label-custom-1{
+  font-size: 1rem;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.filter-part-2{
+
+  justify-content: center;
+}
+
+.custom-button-1:hover{
+  transform: scale(1.1);
+  border: 7px ridge #ADBC9F;
+}
 
 .selected-seat-text-section{
   margin: 10px;
@@ -431,8 +461,20 @@ input[type="checkbox"] {
   border: 20px ridge #436850;
   padding: 20px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.lab-choices-section{
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+.arrows-section{
+  display: flex;
+  justify-content: center;
 }
 
 .seat-modal {
@@ -541,12 +583,15 @@ input[type="checkbox"] {
   margin-top:0;
 }
 
-.custom-button-1{
-
+.custom-button-6{
   background-color: #FBFADA;
   margin-right: 10px;
   margin-left: 10px;
   transition: transform 0.2s ease-in-out;
+  border-radius: 25px;
+  width: 150px;
+  height: 70px;
+  font-size: 1.5rem;
 
 }
 .custom-button-2{
@@ -558,7 +603,7 @@ input[type="checkbox"] {
   transition: transform 0.2s ease-in-out;
 
 }
-.custom-button-1:hover{
+.custom-button-6:hover{
   transform: scale(1.1);
   color: white;
   background-color: #12372A;
@@ -570,6 +615,17 @@ input[type="checkbox"] {
 }
 .is-anonymous-section{
   font-family: "Montserrat";
+}
+
+.starting-section-top-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+footer{
+  display: none;
+  justify-content: center;
 }
 @keyframes slightly-big{
   from{

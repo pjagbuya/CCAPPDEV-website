@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
 
-
-    <link rel="stylesheet" href="LT-user-styles.css">
+    <link rel="stylesheet" href="../../css/chatbox-styles.css">
+    <link rel="stylesheet" href="../../css/navbar-styles.css">
+    <link rel="stylesheet" href="../../css/LT-user-styles.css">
 
 
     <!-- Google Fonts -->
@@ -93,24 +94,43 @@
       <div class="sidebar-section-container">
         <input class="checkbox-section" type="checkbox" name="isRememberStatus" value=""> Remember Me
       </div>
-      <div class="sidebar-section-container">
-        <i class="icon-section fa-solid fa-user"></i> Profile
-      </div>
-      <div class="sidebar-section-container">
-        <i class="icon-section fa-solid fa-users"></i> Browse Users
 
-      </div>
-      <div class="sidebar-section-container">
-        <i class="icon-section fa-solid fa-laptop"></i> Browse Labs
-      </div>
-      <div class="sidebar-section-container">
-        <i class="icon-section fa-solid fa-flag"></i> Report a Problem
-      </div>
-      <div class="sidebar-section-container">
-        <i class="icon-section fa-solid fa-right-from-bracket"></i> Logout
-      </div>
+      <a href="../LT-user/LT-user-profile.html" target="_self">
+        <div class="sidebar-section-container">
+          <i class="icon-section fa-solid fa-user"></i> Profile
+        </div>
+      </a>
+
+      <a href="" target="_self">
+        <div class="sidebar-section-container">
+          <i class="icon-section fa-solid fa-users"></i> Browse Users
+        </div>
+      </a>
+
+
+      <a href="../reserve-user/reserve-user-search-lab.html" target="_self">
+        <div class="sidebar-section-container">
+          <i class="icon-section fa-solid fa-laptop"></i> Browse Labs
+        </div>
+      </a>
+
+
+      <a href="../report-form/report-form.html" target="_self">
+        <div class="sidebar-section-container">
+          <i class="icon-section fa-solid fa-flag"></i> Report a Problem
+        </div>
+      </a>
+
+      <a class="no-decor" href="../../index.html" target="_self">
+        <div class="sidebar-section-container no-decor" >
+          <i class="icon-section fa-solid fa-right-from-bracket"></i> Logout
+        </div>
+      </a>
+
 
     </div>
+
+
     <div class="profile-body">
       <section class= "profile-contact-section flex-column">
         <div class="profile-pic-and-name text-center">
@@ -188,7 +208,10 @@
 
 
         <div class="buttons-section">
-          <button class="custom-btn-4 btn-hover-custom-1" type="button" name="button">Reserve Student</button>
+
+          <a href="LT-user-reserve-student.html" target="_self">
+            <button class="custom-btn-4 btn-hover-custom-1" type="button" name="button">Reserve Student</button>
+          </a>
           <button class="custom-btn-5 btn-hover-custom-2" type="button" name="button">View/Edit Reservations</button>
         </div>
 

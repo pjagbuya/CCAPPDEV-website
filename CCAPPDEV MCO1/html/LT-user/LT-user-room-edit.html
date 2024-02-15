@@ -4,8 +4,10 @@
     <meta charset="utf-8">
 
 
-    <link rel="stylesheet" href="../../css/LT-user-styles-2.css">
-    <link rel="stylesheet" href="../../css/reserve-user-styles.css">
+    <link rel="stylesheet" href="../../css/template-styles.css">
+    <link rel="stylesheet" href="../../css/reserve-edit.css">
+    <link rel="stylesheet" href="../../css/navbar-styles.css">
+    <link rel="stylesheet" href="../../css/chatbox-styles.css">
 
 
     <!-- Google Fonts -->
@@ -16,7 +18,7 @@
 
     <!--Bootstrap help Section -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <title>Reserve student</title>
+    <title>Search Results</title>
   </head>
 
 
@@ -114,7 +116,7 @@
                   <i class="icon-section fa-solid fa-users"></i> Browse Users
                 </div>
               </a>
-
+    
 
               <a href="../reserve-user/reserve-user-search-lab-LT.html" target="_self">
                 <div class="sidebar-section-container">
@@ -137,7 +139,6 @@
 
 
             </div>
-
             <div id="chatbox" onclick="playMusic()">
               <div id="chatlist">
                 <h1 class="d-flex justify-content-center">Reports</h1>
@@ -273,300 +274,144 @@
             <script src="../../js/chatbox.js"></script>
 
 
+    <div class="reserve-edit">
+
+        <div class="inner-box">
+
+          <div class="exit-section d-flex flex-start flex-row">
+            <a href="LT-user-reserve-edit.html">
+              <button class="btn btn-danger my-3" type="button" name="button">Exit Room Editor</button>
+            </a>
+
+          </div>
+
+          <h1>Room Editor</h1>
+            <div class="inner-box-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th class="header tc">Room<img src="https://www.svgrepo.com/show/42233/pencil-edit-button.svg" style="width: 20px"></th>
+                    <th class="header tc">Date<img src="https://www.svgrepo.com/show/42233/pencil-edit-button.svg" style="width: 20px"></th>
+                    <th class="header tc">Time Slot<img src="https://www.svgrepo.com/show/42233/pencil-edit-button.svg" style="width: 20px"></th>
+                    <th class="header tc">Seat No.<img src="https://www.svgrepo.com/show/42233/pencil-edit-button.svg" style="width: 20px"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="tc" rowspan="3">GK302A<br>
+
+                      <a href="LT-user-seat-edit.html">
+                        <button>View</button>
+                      </a>
+
+                    </td>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">7:30 A.M. - 8:00 A.M.</td>
+                    <td class="tc">12</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">9:30 A.M. - 10:00 A.M.</td>
+                    <td class="tc">8</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">1:30 P.M. - 2:00 P.M.</td>
+                    <td class="tc">17</td>
+                  </tr>
+                  <tr>
+                    <td class="tc" rowspan="3">GK302B<br>
+                      <a href="LT-user-seat-edit.html">
+                        <button>View</button>
+                      </a>
+
+                    </td>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">7:30 A.M. - 8:00 A.M.</td>
+                    <td class="tc">8</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">9:30 A.M. - 10:00 A.M.</td>
+                    <td class="tc">10</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc" class="tc">1:30 P.M. - 2:00 P.M.</td>
+                    <td class="tc">17</td>
+                  </tr>
+                  <tr>
+                    <td class="tc" rowspan="3">GK304<br>
+                      <a href="LT-user-seat-edit.html">
+                        <button>View</button>
+                      </a>
+
+                    </td>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">7:30 A.M. - 8:00 A.M.</td>
+                    <td class="tc">8</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">9:30 A.M. - 10:00 A.M.</td>
+                    <td class="tc">9</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">1:30 P.M. - 2:00 P.M.</td>
+                    <td class="tc">17</td>
+                  </tr>
 
 
-    <section class= "student-select-section">
+                  <tr>
+                    <td class="tc" rowspan="3">GK402<br>
+                      <a href="LT-user-seat-edit.html">
+                        <button>View</button>
+                      </a>
 
-      <div class="search-section">
-        <h3>ID No. &nbsp;</h3>
-        <input class="reserve-user-input" type="text" name="" value="">
-        <button class="custom-btn-1" type="button" name="button">Search</button>
+                    </td>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">7:30 A.M. - 8:00 A.M.</td>
+                    <td class="tc">8</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">9:30 A.M. - 10:00 A.M.</td>
+                    <td class="tc">8</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">1:30 P.M. - 2:00 P.M.</td>
+                    <td class="tc">27</td>
+                  </tr>
 
-      </div>
 
-      <div class="room-selection-section">
-        <h2>Room: <span>GK202</span> </h2>
-        <button class="custom-btn-1" type="button" name="button" onclick="openModal()">Select Room</button>
-      </div>
+                  <tr>
+                    <td class="tc" rowspan="3">GK404<br>
+                      <a href="LT-user-seat-edit.html">
+                        <button>View</button>
+                      </a>
 
-      <div class="student-table-section">
-
-
-
-
-        <div class="table-scroll-section">
-          <table>
-            <thead>
-              <tr>
-                <th class="table-cell">ID</th>
-                <th class="table-cell">Last Name</th>
-                <th class="table-cell">First Name</th>
-                <th class="table-cell">Middle Name</th>
-                <th class="table-cell">Reserve</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="table-cell">12389997</td>
-                <td class="table-cell">Do</td>
-                <td class="table-cell">John</td>
-                <td class="table-cell">Manchester</td>
-                <td class="table-cell">
-                  <a href="LT-user-reserve-student-details.html">
-                    <button class="reserve-student-button" type="button" name="button">Reserve Student</button>
-                  </a>
-
-                </td>
-              </tr>
-              <tr>
-                <td class="table-cell">12387697</td>
-                <td class="table-cell">Doe</td>
-                <td class="table-cell">Joanna</td>
-                <td class="table-cell">Cumberbatch</td>
-                <td class="table-cell">
-                  <a href="LT-user-reserve-student-details.html">
-                    <button class="reserve-student-button" type="button" name="button">Reserve Student</button>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td class="table-cell">12386497</td>
-                <td class="table-cell">Does</td>
-                <td class="table-cell">Jerry</td>
-                <td class="table-cell">Tom</td>
-                <td class="table-cell">
-                  <a href="LT-user-reserve-student-details.html">
-                    <button class="reserve-student-button" type="button" name="button">Reserve Student</button>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td class="table-cell">12389907</td>
-                <td class="table-cell">Doesn't</td>
-                <td class="table-cell">Josh</td>
-                <td class="table-cell">Gibbson</td>
-                <td class="table-cell">
-                  <a href="LT-user-reserve-student-details.html">
-                    <button class="reserve-student-button" type="button" name="button">Reserve Student</button>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td class="table-cell">12382397</td>
-                <td class="table-cell">Doesn'tn't</td>
-                <td class="table-cell">Johnathan</td>
-                <td class="table-cell">Man</td>
-                <td class="table-cell">
-                  <a href="LT-user-reserve-student-details.html">
-                    <button class="reserve-student-button" type="button" name="button">Reserve Student</button>
-                  </a>
-                 </td>
-              </tr>
-            </tbody>
-
-          </table>
+                    </td>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">7:30 A.M. - 8:00 A.M.</td>
+                    <td class="tc">8</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">9:30 A.M. - 10:00 A.M.</td>
+                    <td class="tc">13</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">1:30 P.M. - 2:00 P.M.</td>
+                    <td class="tc">17</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
         </div>
-
-
-
-
-      </div>
-
-
-
-
-
-    </section>
-
-
-
-
-
-
-
-
-
-
-
-    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
-
-    <div class="select-room-modal" id="selectRoomModal">
-      <div onclick="closeModal()"  class="x-button-align-section">
-        <button class="btn btn-danger" type="button" name="X-Button">X</button>
-      </div>
-
-
-
-      <div class="filter-section">
-
-        <div class="d-flex filter-part-1">
-          <div class="d-flex filter-part-1 align-items-center">
-
-            <h3 class="label-custom-1">Room Name: </h3>
-            <div class="d-flex align-items-center mx-3">
-              <input type="text" name="" value="">
-            </div>
-
-          </div>
-          <div class="d-flex flex-column filter-part-1">
-            <h2 class="label-custom-1">Date: </h2>
-
-            <select class="form-control-input-date" id="inputRoom">
-
-            </select>
-
-            <h2 class="label-custom-1">Room Type: </h2>
-            <select class="form-control-input-room" id="inputRoom">
-              <option value="room1">Any</option>
-              <option value="room1">GK2</option>
-              <option value="room2">GK3</option>
-              <option value="room3">GK4</option>
-            </select>
-
-
-          </div>
-
-          <div class="d-flex flex-column filter-part-1">
-            <h2 class="label-custom-1" name="dropdownFrom">From: </h2>
-            <select class="form-control-1" id="fromTime"></select>
-            <h2 class="label-custom-1" name="dropdownTo">To: </h2>
-            <select class="form-control-2" id="toTime"></select>
-          </div>
-          <div class="d-flex flex-column filter-part-2">
-            <button class="custom-button-6 mx-5" type="button" name="button">Filter</button>
-          </div>
-
-
-
-        </div>
-
-
-
-
-      </div>
-      <div class="lab-choices-section">
-
-          <div class="lab-choice-section">
-            <img class="lab-choice-img" src="../../css/pics/computerlab.jpg" alt="computer-lab">
-            <div class="lab-choice-details">
-              <h3>GK302A</h3>
-              <p class="status-text avail-text"><u>AVAILABLE</u></p>
-
-
-              <p>
-                <span>Total Seats: </span>
-                <span><strong>23</strong></span>
-              </p>
-
-              <div class="d-flex lab-choice-btn custom-default-font2">
-                <div class="btn btn-success">
-                  Select
-                </div>
-              </div>
-
-
-            </div>
-          </div>
-          <div class="lab-choice-section">
-            <img class="lab-choice-img" src="../../css/pics/computerlab.jpg" alt="computer-lab">
-            <div class="lab-choice-details">
-              <h3>GK302B</h3>
-              <p class="status-text avail-text"><u>AVAILABLE</u></p>
-
-
-              <p>
-                <span>Total Seats: </span>
-                <span><strong>23</strong></span>
-              </p>
-
-              <div class="d-flex lab-choice-btn custom-default-font2">
-                <div class="btn btn-success">
-                  Select
-                </div>
-              </div>
-
-
-            </div>
-          </div>
-          <div class="lab-choice-section">
-            <img class="lab-choice-img" src="../../css/pics/computerlab.jpg" alt="computer-lab">
-            <div class="lab-choice-details">
-              <h3>GK306A</h3>
-              <p class="status-text avail-text"><u>AVAILABLE</u></p>
-
-
-              <p>
-                <span>Total Seats: </span>
-                <span><strong>23</strong></span>
-              </p>
-
-              <div class="d-flex lab-choice-btn custom-default-font2">
-                <div class="btn btn-success">
-                  Select
-                </div>
-              </div>
-
-
-            </div>
-          </div>
-
-          <div class="lab-choice-section">
-            <img class="lab-choice-img" src="../../css/pics/computerlab.jpg" alt="computer-lab">
-            <div class="lab-choice-details">
-              <h3>GK404</h3>
-              <p class="status-text avail-text"><u>AVAILABLE</u></p>
-
-
-              <p>
-                <span>Total Seats: </span>
-                <span><strong>23</strong></span>
-              </p>
-
-              <div class="d-flex lab-choice-btn custom-default-font2">
-                <div class="btn btn-success">
-                  Select
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="lab-choice-section">
-            <img class="lab-choice-img" src="../../css/pics/computerlab.jpg" alt="computer-lab">
-            <div class="lab-choice-details">
-              <h3>GK405</h3>
-              <p class="status-text avail-text"><u>AVAILABLE</u></p>
-
-                <span>Total Seats: </span>
-                <span><strong>23</strong></span>
-              </p>
-
-              <div class="d-flex lab-choice-btn custom-default-font2">
-                <div class="btn btn-success">
-                  Select
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-
-
-
-
-      </div>
-
-      <div class="arrows-section">
-        <button class="arrow-button">&larr;</button>  Page 1<button class="arrow-button right-arrow">&rarr;</button>
-      </div>
-
-
-
     </div>
-
-
-
-
-
 
 
 
@@ -586,90 +431,40 @@
   });
 });
 
-
-  function openModal() {
-
-    document.getElementById('selectRoomModal').style.display = 'flex';
-    document.getElementById('modalOverlay').style.display = 'block';
-  }
-
-  function closeModal() {
-
-    document.getElementById('selectRoomModal').style.display = 'none';
-    document.getElementById('modalOverlay').style.display = 'none';
-  }
-
-
-  function populateFromTimeOptions() {
-    var startTime = new Date();
-    startTime.setHours(7, 30, 0);
-
-    var endTime = new Date();
-    endTime.setHours(17, 0, 0);
-
-    var interval = 30 * 60 * 1000;
-
-    var selectElement = document.getElementById("fromTime");
-
-    for (var time = startTime.getTime(); time <= endTime.getTime(); time += interval) {
-      var option = document.createElement("option");
-      var timeString = new Date(time).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-      option.value = timeString;
-      option.text = timeString;
-      selectElement.add(option);
+  function chatBox() {
+    var chatbox = document.getElementById("chatbox");
+    if (chatbox.style.display === "block") {
+      chatbox.style.display = "none";
+    } else {
+      chatbox.style.display = "block";
     }
   }
 
-
-  function populateToTimeOptions() {
-    var startTime = new Date();
-    startTime.setHours(8, 0, 0);
-
-    var endTime = new Date();
-    endTime.setHours(17, 30, 0);
-
-    var interval = 30 * 60 * 1000;
-
-    var selectElement = document.getElementById("toTime");
-
-    for (var time = startTime.getTime(); time <= endTime.getTime(); time += interval) {
-      var option = document.createElement("option");
-      var timeString = new Date(time).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-      option.value = timeString;
-      option.text = timeString;
-      selectElement.add(option);
-    }
-  }
-  function populateDateOptions() {
-    var selectRoom = document.getElementById('inputRoom');
-
-
-    var currentDate = new Date();
-
-    for (var i = 0; i < 8; i++) {
-
-      var nextDate = new Date(currentDate);
-      nextDate.setDate(currentDate.getDate() + i);
-
-
-      var month = nextDate.toLocaleString('default', { month: 'long' });
-      var day = nextDate.getDate();
-      var weekday = nextDate.toLocaleString('en', { weekday: 'long' });
-
-
-      var option = document.createElement('option');
-      option.value = nextDate.toISOString().slice(0, 10); // Format: YYYY-MM-DD
-      option.text = `${weekday}, ${month} ${day}`;
-
-
-      selectRoom.appendChild(option);
-    }
+  function changeTab(old_div_id,new_div_id){
+    div1 = document.getElementById(old_div_id);
+    div2 = document.getElementById(new_div_id);
+    div1.style.display = "none";
+    div2.style.display = "block";
   }
 
+  function textLong(text, length) {
+    if (text == null) {
+        return "";
+    }
+    if (text.length <= length) {
+        return text;
+    }
+    text = text.substring(0, length);
+    last = text.lastIndexOf(" ");
+    text = text.substring(0, last);
+    return text + "...";
 
-  populateFromTimeOptions();
-  populateToTimeOptions();
-  populateDateOptions()
+  }
 
-</script>
+  function playMusic(){
+  	let myAudio = document.querySelector('#audio');
+	myAudio.play();
+  }
+
+  </script>
 </html>

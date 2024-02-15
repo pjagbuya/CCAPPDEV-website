@@ -33,253 +33,111 @@
 
   <!--Navigation Bar-->
 
-  <nav class="index-navbar navbar navbar-expand-lg bg-body-tertiary fixed-top">
 
-    <button id="toggleSidebar" class="btn  btn-outline-secondary toggle-sidebar-custom1 toggle-sidebar-btn">
-      <i class="fa-solid fa-bars fa-3x"></i>
-    </button>
+          <nav class="index-navbar navbar navbar-expand-lg bg-body-tertiary fixed-top">
 
-    <i class="custom-color1 animo-icon fa-solid fa-calendar-days fa-4x"></i>
+            <button id="toggleSidebar" class="btn  btn-outline-secondary toggle-sidebar-custom1 toggle-sidebar-btn">
+              <i class="fa-solid fa-bars fa-3x"></i>
+            </button>
 
-    <div class="animo-text">
-      <a href="index.html" class ="no-decor" target="_self">
-      <span class="navbar-text header-custom2">
-        <div class="custom-color2">
-          AnimoLab
-        </div>
-      </span>
-      </a>
-    </div>
+            <i class="custom-color1 animo-icon fa-solid fa-calendar-days fa-4x"></i>
 
-
-    <!--Search Bar-->
-    <div class="search-section container-fluid search_bar d-flex justify-content-center">
-      <form class="d-flex" role="search">
-        <input class="search-bar-input form-control me-2" type="search" placeholder="Search" aria-label="Search">
-
-        <a href="../reserve-user/reserve-user-search-lab.html" target="_self">
-          <button class="btn btn-outline-light" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
-        </a>
-        <div class="mx-2 dropdown">
-
-          <button class="btn btn-outline-light dropdown-toggle" type="button" id="browseDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Browse
-          </button>
+            <div class="animo-text">
+              <a href="index.html" class ="no-decor" target="_self">
+              <span class="navbar-text header-custom2">
+                <div class="custom-color2">
+                  AnimoLab
+                </div>
+              </span>
+              </a>
+            </div>
 
 
-          <div class="dropdown-menu dropdown-browse-section" aria-labelledby="browseDropdown">
+            <!--Search Bar-->
+            <div class="search-section container-fluid search_bar d-flex justify-content-center">
+              <form class="d-flex" role="search">
+                <input class="search-bar-input form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
 
-            <a href="../search-user/search-results.html" target="_self">
-              <button class="dropdown-item" type="button">Browse Users</button>
+                <div class="mx-2 dropdown">
+                  <button class="btn btn-outline-light dropdown-toggle" type="button" id="browseDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Browse
+                  </button>
+                  <div class="dropdown-menu dropdown-browse-section" aria-labelledby="browseDropdown">
+                    <a href="../search-user/search-results-LT.html" target="_self">
+                      <button class="dropdown-item" type="button">Browse Users</button>
+                    </a>
+                    <a href="../reserve-user/reserve-user-search-lab-LT.html" target="_self">
+                      <button class="dropdown-item" type="button">Browse Labs</button>
+                    </a>
+
+
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="profile-section">
+
+              <!--Hardcoded name1-->
+              <div class="profile-section-text">
+                Flint R. Lockwood
+              </div>
+              <div class="pic-and-mail">
+                <img class="profile-section-pic" src="https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" alt="default-pic">
+                <div class="mail-icon-section" onclick="chatBox()">
+                  <i class="fa-solid fa-bell fa-3x"></i>
+                  <i class="circle-icon fa-solid fa-circle"></i>
+                </div>
+              </div>
+
+
+
+            </div>
+
+
+
+
+          </nav>
+          <div class="hidden-sidebar">
+            <div class="sidebar-section-container">
+              <input class="checkbox-section" type="checkbox" name="isRememberStatus" value=""> Remember Me
+            </div>
+
+            <a href="../LT-user/LT-user-profile.html" target="_self">
+              <div class="sidebar-section-container">
+                <i class="icon-section fa-solid fa-user"></i> Profile
+              </div>
+            </a>
+
+            <a href="../search-user/search-results-LT.html" target="_self">
+              <div class="sidebar-section-container">
+                <i class="icon-section fa-solid fa-users"></i> Browse Users
+              </div>
             </a>
 
 
-            <a href="../reserve-user/reserve-user-search-lab.html" target="_self">
-              <button class="dropdown-item" type="button">Browse Labs</button>
+            <a href="../reserve-user/reserve-user-search-lab-LT.html" target="_self">
+              <div class="sidebar-section-container">
+                <i class="icon-section fa-solid fa-laptop"></i> Browse Labs
+              </div>
+            </a>
+
+
+            <a href="../report-form/report-form-LT.html" target="_self">
+              <div class="sidebar-section-container">
+                <i class="icon-section fa-solid fa-flag"></i> Report a Problem
+              </div>
+            </a>
+
+            <a class="no-decor" href="../../index.html" target="_self">
+              <div class="sidebar-section-container no-decor" >
+                <i class="icon-section fa-solid fa-right-from-bracket"></i> Logout
+              </div>
             </a>
 
 
           </div>
-        </div>
-      </form>
-    </div>
-
-    <div class="profile-section">
-
-      <!--Hardcoded name1-->
-      <div class="profile-section-text">
-        Paul Josef P. Agbuya
-      </div>
-      <div class="pic-and-mail">
-        <img class="profile-section-pic" src="https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" alt="default-pic">
-        <div class="mail-icon-section">
-          <i class="fa-solid fa-bell fa-3x"></i>
-          <i class="circle-icon fa-solid fa-circle"></i>
-        </div>
-      </div>
-
-
-
-    </div>
-
-
-
-
-  </nav>
-  <div class="hidden-sidebar">
-    <div class="sidebar-section-container">
-      <input class="checkbox-section" type="checkbox" name="isRememberStatus" value=""> Remember Me
-    </div>
-
-    <a href="../profile/profile-default.html" target="_self">
-      <div class="sidebar-section-container">
-        <i class="icon-section fa-solid fa-user"></i> Profile
-      </div>
-    </a>
-
-    <a href="../search-user/search-results.html" target="_self">
-      <div class="sidebar-section-container">
-        <i class="icon-section fa-solid fa-users"></i> Browse Users
-      </div>
-    </a>
-
-
-    <a href="../reserve-user/reserve-user-search-lab.html" target="_self">
-      <div class="sidebar-section-container">
-        <i class="icon-section fa-solid fa-laptop"></i> Browse Labs
-      </div>
-    </a>
-
-
-    <a href="../report-form/report-form.html" target="_self">
-      <div class="sidebar-section-container">
-        <i class="icon-section fa-solid fa-flag"></i> Report a Problem
-      </div>
-    </a>
-
-    <a class="no-decor" href="../../index.html" target="_self">
-      <div class="sidebar-section-container no-decor" >
-        <i class="icon-section fa-solid fa-right-from-bracket"></i> Logout
-      </div>
-    </a>
-
-
-  </div>
-  <div id="chatbox" onclick="playMusic()">
-    <div id="chatlist">
-      <h1 class="d-flex justify-content-center">Notifications</h1>
-      <div class="chatbox-container" onclick="changeTab('chatlist','direct-message')">
-        <div class="chatbox-profilePic">
-          <img src="https://static.wikia.nocookie.net/vgost/images/5/56/Rick_Astley.jpg/revision/latest?cb=20220705002743" class="profile-pic">
-        </div>
-        <div class="chatbox-chatContainer">
-          <div class="chatbox-chatname">
-            Rick Astley
-          </div>
-          <div class="chatbox-chat">
-            Never Gonna Give You Up...
-          </div>
-        </div>
-      </div>
-
-      <div class="chatbox-container">
-        <div class="chatbox-profilePic">
-          <img src="https://miro.medium.com/v2/resize:fit:698/1*0jjdu52m0MO4SjLWiCVOlg.jpeg" class="profile-pic">
-        </div>
-        <div class="chatbox-chatContainer">
-          <div class="chatbox-chatname">
-            Hatsune Miku
-          </div>
-          <div class="chatbox-chat">
-            ミクだよ！ミクだよ！ミ...
-          </div>
-        </div>
-      </div>
-
-      <div class="chatbox-container">
-        <div class="chatbox-profilePic">
-          <img src="https://i.pinimg.com/736x/d3/33/28/d3332868c128f24285865d56db9dadc7.jpg" class="profile-pic">
-        </div>
-        <div class="chatbox-chatContainer">
-          <div class="chatbox-chatname">
-            Silverwolf
-          </div>
-          <div class="chatbox-chat">
-            POT 6 LEE, NOT EVEN Mł...
-          </div>
-        </div>
-      </div>
-
-      <div class="chatbox-container">
-        <div class="chatbox-profilePic">
-          <img src="https://media.discordapp.net/attachments/1077880234554167357/1206829856860536882/Chain.png?ex=65dd6ee3&is=65caf9e3&hm=8673ec6729bb00b818251fa81f9764c19e177693d6f3e2ade7c0aba774a97c05&=&format=webp&quality=lossless&width=658&height=676" class="profile-pic">
-        </div>
-        <div class="chatbox-chatContainer">
-          <div class="chatbox-chatname">
-            Joaquin Miguel Sinjian
-          </div>
-          <div class="chatbox-chat">
-            Bro, STADVDB needs CSMO...
-          </div>
-        </div>
-      </div>
-
-      <div class="chatbox-container">
-        <div class="chatbox-profilePic">
-          <img src="https://pbs.twimg.com/media/FtHR_xEXoAQS1Hl?format=jpg&name=large" class="profile-pic">
-        </div>
-        <div class="chatbox-chatContainer">
-          <div class="chatbox-chatname">
-            Majima Gorou
-          </div>
-          <div class="chatbox-chat">
-            桐生ーちゃんわどこ？！！
-          </div>
-        </div>
-      </div>
-
-      <div class="chatbox-container">
-        <div class="chatbox-profilePic">
-          <img src="https://media.tenor.com/EzdIBaQtr0YAAAAM/fnaf-superidol-epic-gaming.gif" class="profile-pic">
-        </div>
-        <div class="chatbox-chatContainer">
-          <div class="chatbox-chatname">
-            De Xian Rong
-          </div>
-          <div class="chatbox-chat">
-            Super idol 的笑容都没...
-          </div>
-        </div>
-      </div>
-
-      <div class="chatbox-container">
-        <div class="chatbox-profilePic">
-          <img src="https://media.discordapp.net/attachments/1077880234554167357/1206834071075037224/image.png?ex=65dd72d0&is=65cafdd0&hm=57241974c0a3ede7a8939d3d51d84aa32e32dbe25ec5d008a53a1788581cf070&=&format=webp&quality=lossless" class="profile-pic">
-        </div>
-        <div class="chatbox-chatContainer">
-          <div class="chatbox-chatname">
-            Enzo Arkin Panugayan
-          </div>
-          <div class="chatbox-chat">
-            KITCHEN GUN? I BOUGH...
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="direct-message">
-      <div class="direct-message-header">
-          <div class="direct-message-header-pic">
-            <img src="https://static.wikia.nocookie.net/vgost/images/5/56/Rick_Astley.jpg/revision/latest?cb=20220705002743" class="direct-message-item">
-          </div>
-          <div class="direct-message-header-name">
-            Rick Astley
-          </div>
-          <div class="direct-message-header-exit" onclick="changeTab('direct-message','chatlist')">
-            <img src="https://banner2.cleanpng.com/20180426/bae/kisspng-x-mark-computer-icons-check-mark-clip-art-5ae1aac8182a71.821442211524738760099.jpg" class="direct-message-item">
-          </div>
-      </div>
-      <div class="direct-message-body">
-          <div class="direct-message-recieve">
-            <div class="direct-message-body-pic">
-              <img src="https://static.wikia.nocookie.net/vgost/images/5/56/Rick_Astley.jpg/revision/latest?cb=20220705002743" class="direct-message-item">
-            </div>
-            <div class="direct-message-body-message">
-              Never Gonna Give You Up
-            </div>
-
-          </div>
-      </div>
-      <div class="direct-message-footer">
-          <input type="type">
-      </div>
-    </div>
-
-    <audio id="audio" src="../../css/audio/musicChat.mp3" style="display: flex"></audio>
-  </div>
-  <script src="../../js/chatbox.js"></script>
-
-
   <section class="lab-reserve-review-section">
 
     <div class="reservation-id-div">
@@ -332,7 +190,7 @@
 
     </div>
 
-    <button type="button" class="custom-button-2 left-btn">Change Lab Room Slot</button>
+
     <h2>Room: <strong>GK302</strong></h2>
     <div class="table-info-div">
       <table id="reservationInfoTable" class="info-table">
@@ -378,7 +236,6 @@
 
     </div>
 
-    <button type="button" class="custom-button-2 left-btn">Change Lab Room Slot</button>
 
 
     <h2>Room: <strong>GK304B</strong></h2>
@@ -426,7 +283,7 @@
 
     </div>
 
-    <button type="button" class="custom-button-2 left-btn">Change Lab Room Slot</button>
+
 
 
     <h2>Room: <strong>GK306A</strong></h2>
@@ -474,7 +331,7 @@
 
     </div>
 
-    <button type="button" class="custom-button-2 left-btn">Change Lab Room Slot</button>
+
 
 
     <h2>Room: <strong>GK306B</strong></h2>
@@ -522,20 +379,17 @@
 
     </div>
 
-    <button type="button" class="custom-button-2 left-btn">Change Lab Room Slot</button>
 
-    <a href="reserve-user-search-lab.html" target="_self">
-      <button type="button" class=" custom-button-2 right-btn">Add Lab Room Slot</button>
-    </a>
+
 
 
     <footer>
-      <a href="../profile/profile-default.html" target="_self">
-        <button class="custom-button-1">Confirm Reservations</button>
+      <a href="LT-user-profile.html" target="_self">
+        <button class="custom-button-1">Confirm Edits</button>
       </a>
 
 
-      <a href="reserve-user-search-lab.html" target="_self">
+      <a href="LT-user-reserve-edit.html" target="_self">
         <button class="custom-button-1">Cancel</button>
       </a>
     </footer>
@@ -554,12 +408,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 <script>
-
-$(document).ready(function () {
-$("#toggleSidebar").on("click", function () {
-  $(".hidden-sidebar").toggleClass("show");
-});
-});
   function copySelected(seatBox) {
     var sourceText = seatBox.innerText;
     document.querySelector('.selected-seat-text').innerText = sourceText;

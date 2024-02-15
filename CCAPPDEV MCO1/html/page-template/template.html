@@ -31,7 +31,6 @@
   <body>
 
     <!--Navigation Bar-->
-
     <nav class="index-navbar navbar navbar-expand-lg bg-body-tertiary fixed-top">
 
       <button id="toggleSidebar" class="btn  btn-outline-secondary toggle-sidebar-custom1 toggle-sidebar-btn">
@@ -55,15 +54,29 @@
       <div class="search-section container-fluid search_bar d-flex justify-content-center">
         <form class="d-flex" role="search">
           <input class="search-bar-input form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
 
+          <a href="../reserve-user/reserve-user-search-lab.html" target="_self">
+            <button class="btn btn-outline-light" type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </a>
           <div class="mx-2 dropdown">
+
             <button class="btn btn-outline-light dropdown-toggle" type="button" id="browseDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Browse
             </button>
+
+
             <div class="dropdown-menu dropdown-browse-section" aria-labelledby="browseDropdown">
-              <button class="dropdown-item" type="submit">Browse Labs</button>
-              <button class="dropdown-item" type="submit">Browse Users</button>
+
+              <a href="../search-user/search-results.html" target="_self">
+                <button class="dropdown-item" type="button">Browse Users</button>
+              </a>
+
+
+              <a href="../reserve-user/reserve-user-search-lab.html" target="_self">
+                <button class="dropdown-item" type="button">Browse Labs</button>
+              </a>
+
+
             </div>
           </div>
         </form>
@@ -95,22 +108,39 @@
       <div class="sidebar-section-container">
         <input class="checkbox-section" type="checkbox" name="isRememberStatus" value=""> Remember Me
       </div>
-      <div class="sidebar-section-container">
-        <i class="icon-section fa-solid fa-user"></i> Profile
-      </div>
-      <div class="sidebar-section-container">
-        <i class="icon-section fa-solid fa-users"></i> Browse Users
 
-      </div>
-      <div class="sidebar-section-container">
-        <i class="icon-section fa-solid fa-laptop"></i> Browse Labs
-      </div>
-      <div class="sidebar-section-container">
-        <i class="icon-section fa-solid fa-flag"></i> Report a Problem
-      </div>
-      <div class="sidebar-section-container">
-        <i class="icon-section fa-solid fa-right-from-bracket"></i> Logout
-      </div>
+      <a href="../profile/profile-default.html" target="_self">
+        <div class="sidebar-section-container">
+          <i class="icon-section fa-solid fa-user"></i> Profile
+        </div>
+      </a>
+
+      <a href="../search-user/search-results.html" target="_self">
+        <div class="sidebar-section-container">
+          <i class="icon-section fa-solid fa-users"></i> Browse Users
+        </div>
+      </a>
+
+
+      <a href="../reserve-user/reserve-user-search-lab.html" target="_self">
+        <div class="sidebar-section-container">
+          <i class="icon-section fa-solid fa-laptop"></i> Browse Labs
+        </div>
+      </a>
+
+
+      <a href="../report-form/report-form.html" target="_self">
+        <div class="sidebar-section-container">
+          <i class="icon-section fa-solid fa-flag"></i> Report a Problem
+        </div>
+      </a>
+
+      <a class="no-decor" href="../../index.html" target="_self">
+        <div class="sidebar-section-container no-decor" >
+          <i class="icon-section fa-solid fa-right-from-bracket"></i> Logout
+        </div>
+      </a>
+
 
     </div>
 
@@ -214,7 +244,7 @@
           </div>
         </div>
       </div>
-      
+
       <div id="direct-message">
         <div class="direct-message-header">
             <div class="direct-message-header-pic">
@@ -293,7 +323,7 @@
     last = text.lastIndexOf(" ");
     text = text.substring(0, last);
     return text + "...";
-    
+
   }
 
   function playMusic(){

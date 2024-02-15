@@ -360,11 +360,22 @@ table{
   overflow: auto;
   margin-top: 20px;
   border: 20px ridge #12372A;
-
   flex: wrap;
   justify-content: space-between;
-
   z-index: 2000;
 
+}
 
+.reserve-student-button{
+  border-radius: 10px;
+  background-color: #436850;
+  color:#FBFADA;
+  transition: all 0.2s ease-in-out;
+}
+
+.reserve-student-button:hover{
+  transform: scale(1.1);
+  font-weight: bold;
+  color: #FBFADA;
+  background-color: #12372A;
 }

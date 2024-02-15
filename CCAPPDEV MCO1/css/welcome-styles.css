@@ -156,6 +156,7 @@ body{
 
 
 .call-to-action-section{
+  margin-top: 10%;
   padding: 40px;
   align-items: center;
   justify-content: center;
@@ -192,6 +193,78 @@ body{
   color:#74E291;
 }
 
+
+
+
+.video-showcase-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.showcase-body{
+  display: flex;
+  justify-content: center;
+
+}
+
+.carousel-contianer{
+
+  height: 600px;
+  vertical-align: center;
+
+
+
+}
+.carousel-main{
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color:#12372A;
+
+}
+.carousel-item{
+  padding: 40px;
+  align-items: center;
+  justify-content: right;
+}
+
+.carousel-item-text{
+  color: black;
+  padding: 15px;
+  background-color: white;
+  transform: translate(-65%, 0%);
+  margin: 2% 13%;
+  border: 1px solid black;
+  border-radius: 15px;
+  font-family: "Montserrat";
+}
+.computers-title-section{
+  text-align: center;
+  background-color: #FBFADA;
+  width: 100%;
+  font-size: 4rem;
+  font-family:"Bree Serif";
+  color:#436850;
+  text-shadow: 2px 2px 4px rgba(173, 188, 159, 1);
+}
+
+.computer-word-text{
+  color:#12372A;
+  text-shadow: 2px 2px 4px rgba(18, 55, 42, 1);
+}
+
+.one-of-third{
+  width: 33%;
+  margin-left: 20px;
+}
+
+.vid-slot{
+
+  width: 650px;
+  height: 450px;
+}
 @keyframes nav-text-onhover {
   0%{
     background-color: #12372A;

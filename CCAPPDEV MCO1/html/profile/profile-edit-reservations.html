@@ -4,9 +4,10 @@
     <meta charset="utf-8">
 
 
-    <link rel="stylesheet" href="../../css/reserve-user-styles.css">
-    <link rel="stylesheet" href="../../css/chatbox-styles.css">
+    <link rel="stylesheet" href="../../css/reserve-edit.css">
     <link rel="stylesheet" href="../../css/navbar-styles.css">
+    <link rel="stylesheet" href="../../css/chatbox-styles.css">
+
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -278,197 +279,87 @@
     <script src="../../js/chatbox.js"></script>
 
 
+    <div class="reserve-edit">
+        <div class="inner-box">
 
-    <section class="lab-slots-browse-section">
+          <div class="exit-section d-flex flex-start flex-row">
+            <a href="profile-default.html">
+              <button class="btn btn-danger my-3" type="button" name="button">Exit Reservation Editor</button>
+            </a>
+          </div>
+          <h1>Reservation Editor</h1>
+            <div class="inner-box-table">
+                <table>
+                    <thead>
+                      <tr>
 
-      <div class="filter-section">
+                          <th class="header tc">Reservation ID</th>
+                          <th class="header tc"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
 
-        <div class="d-flex filter-part-1">
-          <div class="d-flex filter-part-1 align-items-center">
+                          <td class="tc">23155</td>
+                          <td class="tc">
 
-            <h2 class="label-custom-1">Search Name: </h2>
-            <div class="d-flex align-items-center mx-3">
-              <input type="text" name="" value="">
+                            <a href="profile-edit-reservations-room.html">
+                              <button class="view-button mx-5">View</button>
+
+                            </a>
+                            <button class="btn btn-danger my-1 mx-2">Cancel Reservation</button>
+
+                          </td>
+                      </tr>
+                      <tr>
+
+                        <td class="tc">78351</td>
+                        <td class="tc">
+                          <a href="profile-edit-reservations-room.html">
+                            <button class="view-button mx-5">View</button>
+
+                          </a>
+                          <button class="btn btn-danger my-1 mx-2">Cancel Reservation</button>
+                        </td>
+                      </tr>
+                      <tr>
+
+                        <td class="tc">32142</td>
+                        <td class="tc">
+                          <a href="profile-edit-reservations-room.html">
+                            <button class="view-button mx-5">View</button>
+
+                          </a>
+                          <button class="btn btn-danger my-1 mx-2">Cancel Reservation</button>
+                        </td>
+                      </tr>
+                      <tr>
+
+                        <td class="tc">12411</td>
+                        <td class="tc">
+                          <a href="profile-edit-reservations-room.html">
+                            <button class="view-button mx-5">View</button>
+
+                          </a>
+                          <button class="btn btn-danger my-1 mx-2">Cancel Reservation</button>
+                        </td>
+                      </tr>
+                      <tr>
+
+                        <td class="tc">94523</td>
+                        <td class="tc">
+                          <a href="profile-edit-reservations-room.html">
+                            <button class="view-button mx-5">View</button>
+
+                          </a>
+                          <button class="btn btn-danger my-1 mx-2">Cancel Reservation</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
             </div>
-
-          </div>
-          <div class="d-flex flex-column filter-part-1">
-            <h2 class="label-custom-1">Date: </h2>
-
-
-
-            <select class="form-control-input-date" id="inputRoom">
-
-            </select>
-
-            <h2 class="label-custom-1">Room Type: </h2>
-            <select class="form-control-input-room" id="inputRoom">
-              <option value="room1">Any</option>
-              <option value="room1">GK2</option>
-              <option value="room2">GK3</option>
-              <option value="room3">GK4</option>
-            </select>
-
-
-          </div>
-
-
-
-          <div class="d-flex flex-column filter-part-1">
-            <h2 class="label-custom-1" name="dropdownFrom">From: </h2>
-            <select class="form-control-1" id="fromTime"></select>
-            <h2 class="label-custom-1" name="dropdownTo">To: </h2>
-            <select class="form-control-2" id="toTime"></select>
-          </div>
-          <div class="d-flex flex-column filter-part-2">
-            <button class="custom-button-6 mx-5" type="button" name="button">Filter</button>
-          </div>
-
-
-
         </div>
-
-
-
-
-      </div>
-      <div class="lab-choices-section">
-
-          <div class="lab-choice-section">
-            <img class="lab-choice-img" src="../../css/pics/computerlab.jpg" alt="computer-lab">
-            <div class="lab-choice-details">
-              <h3>GK302A</h3>
-              <p class="status-text avail-text"><u>AVAILABLE</u></p>
-
-
-              <p>
-                <span>Total Seats: </span>
-                <span><strong>23</strong></span>
-              </p>
-
-
-
-
-              <a class="d-flex lab-choice-btn custom-default-font2" href="reserve-user-lab-view.html">
-                <div class="btn btn-success">
-                  View
-                </div>
-              </a>
-
-
-            </div>
-          </div>
-          <div class="lab-choice-section">
-            <img class="lab-choice-img" src="../../css/pics/computerlab.jpg" alt="computer-lab">
-            <div class="lab-choice-details">
-              <h3>GK302B</h3>
-              <p class="status-text avail-text"><u>AVAILABLE</u></p>
-
-
-              <p>
-                <span>Total Seats: </span>
-                <span><strong>23</strong></span>
-              </p>
-
-              <a class="d-flex lab-choice-btn custom-default-font2" href="reserve-user-lab-view.html">
-                <div class="btn btn-success">
-                  View
-                </div>
-              </a>
-
-
-            </div>
-          </div>
-          <div class="lab-choice-section">
-            <img class="lab-choice-img" src="../../css/pics/computerlab.jpg" alt="computer-lab">
-            <div class="lab-choice-details">
-              <h3>GK306A</h3>
-              <p class="status-text avail-text"><u>AVAILABLE</u></p>
-
-
-              <p>
-                <span>Total Seats: </span>
-                <span><strong>23</strong></span>
-              </p>
-
-              <a class="d-flex lab-choice-btn custom-default-font2" href="reserve-user-lab-view.html">
-                <div class="btn btn-success">
-                  View
-                </div>
-              </a>
-
-
-            </div>
-          </div>
-
-          <div class="lab-choice-section">
-            <img class="lab-choice-img" src="../../css/pics/computerlab.jpg" alt="computer-lab">
-            <div class="lab-choice-details">
-              <h3>GK404</h3>
-              <p class="status-text avail-text"><u>AVAILABLE</u></p>
-
-
-              <p>
-                <span>Total Seats: </span>
-                <span><strong>23</strong></span>
-              </p>
-
-              <a class="d-flex lab-choice-btn custom-default-font2" href="reserve-user-lab-view.html">
-                <div class="btn btn-success">
-                  View
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <div class="lab-choice-section">
-            <img class="lab-choice-img" src="../../css/pics/computerlab.jpg" alt="computer-lab">
-            <div class="lab-choice-details">
-              <h3>GK405</h3>
-              <p class="status-text full-text"><u>FULL</u></p>
-
-                <span>Total Seats: </span>
-                <span><strong>23</strong></span>
-              </p>
-
-              <a class="d-flex lab-choice-btn custom-default-font2" href="reserve-user-lab-view.html">
-                <div class="btn btn-success">
-                  View
-                </div>
-              </a>
-            </div>
-          </div>
-
-
-          <div class="lab-choice-section">
-            <img class="lab-choice-img" src="../../css/pics/computerlab.jpg" alt="computer-lab">
-            <div class="lab-choice-details">
-              <h3>GK406</h3>
-              <p class="status-text full-text"><u>FULL</u></p>
-
-                <span>Total Seats: </span>
-                <span><strong>23</strong></span>
-              </p>
-
-              <a class="d-flex lab-choice-btn custom-default-font2" href="reserve-user-lab-view.html">
-                <div class="btn btn-success">
-                  View
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <div class="arrows-section">
-            <button class="arrow-button">&larr;</button>  Page 1<button class="arrow-button right-arrow">&rarr;</button>
-          </div>
-      </div>
-
-
-
-    </section>
-
-
-
+    </div>
 
 
 
@@ -480,98 +371,10 @@
   </body>
   <script>
 
-    $(document).ready(function () {
-    $("#toggleSidebar").on("click", function () {
-        $(".hidden-sidebar").toggleClass("show");
-      });
-    });
-    document.addEventListener("DOMContentLoaded", function () {
-      var divs = document.querySelectorAll(".lab-choice-section");
-
-      divs.forEach(function (div) {
-        var availabilityText = div.querySelector(".status-text");
-        var currentLabDetail = div.querySelector(".lab-choice-details");
-
-        if (availabilityText) {
-          var textColor = window.getComputedStyle(availabilityText).color;
-
-          if (textColor === "rgb(255, 0, 0)" || textColor === "red") {
-            currentLabDetail.style.backgroundColor = "orange";
-          }
-        }
-      });
-    });
-
-
-    function populateFromTimeOptions() {
-      var startTime = new Date();
-      startTime.setHours(7, 30, 0); // Set start time to 7:30 AM
-
-      var endTime = new Date();
-      endTime.setHours(17, 0, 0); // Set end time to 5:00 PM
-
-      var interval = 30 * 60 * 1000; // 30 minutes in milliseconds
-
-      var selectElement = document.getElementById("fromTime");
-
-      for (var time = startTime.getTime(); time <= endTime.getTime(); time += interval) {
-        var option = document.createElement("option");
-        var timeString = new Date(time).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-        option.value = timeString;
-        option.text = timeString;
-        selectElement.add(option);
-      }
-    }
-
-
-    function populateToTimeOptions() {
-      var startTime = new Date();
-      startTime.setHours(8, 0, 0); // Set start time to 8:00 AM
-
-      var endTime = new Date();
-      endTime.setHours(17, 30, 0); // Set end time to 5:30 PM
-
-      var interval = 30 * 60 * 1000; // 30 minutes in milliseconds
-
-      var selectElement = document.getElementById("toTime");
-
-      for (var time = startTime.getTime(); time <= endTime.getTime(); time += interval) {
-        var option = document.createElement("option");
-        var timeString = new Date(time).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-        option.value = timeString;
-        option.text = timeString;
-        selectElement.add(option);
-      }
-    }
-    function populateDateOptions() {
-      var selectRoom = document.getElementById('inputRoom');
-
-
-      var currentDate = new Date();
-
-      for (var i = 0; i < 8; i++) {
-
-        var nextDate = new Date(currentDate);
-        nextDate.setDate(currentDate.getDate() + i);
-
-
-        var month = nextDate.toLocaleString('default', { month: 'long' });
-        var day = nextDate.getDate();
-        var weekday = nextDate.toLocaleString('en', { weekday: 'long' });
-
-
-        var option = document.createElement('option');
-        option.value = nextDate.toISOString().slice(0, 10); // Format: YYYY-MM-DD
-        option.text = `${weekday}, ${month} ${day}`;
-
-
-        selectRoom.appendChild(option);
-      }
-    }
-
-
-    populateFromTimeOptions();
-    populateToTimeOptions();
-    populateDateOptions()
+  $(document).ready(function () {
+  $("#toggleSidebar").on("click", function () {
+    $(".hidden-sidebar").toggleClass("show");
+  });
+});
 </script>
 </html>

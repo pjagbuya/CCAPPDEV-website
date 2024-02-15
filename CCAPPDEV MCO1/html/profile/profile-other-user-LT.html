@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
 
+
+    <link rel="stylesheet" href="../../css/profile-styles.css">
     <link rel="stylesheet" href="../../css/chatbox-styles.css">
     <link rel="stylesheet" href="../../css/navbar-styles.css">
-    <link rel="stylesheet" href="../../css/LT-user-styles.css">
-
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,110 +32,112 @@
     <!--Navigation Bar-->
 
 
-            <nav class="index-navbar navbar navbar-expand-lg bg-body-tertiary fixed-top">
+    <nav class="index-navbar navbar navbar-expand-lg bg-body-tertiary fixed-top">
 
-              <button id="toggleSidebar" class="btn  btn-outline-secondary toggle-sidebar-custom1 toggle-sidebar-btn">
-                <i class="fa-solid fa-bars fa-3x"></i>
-              </button>
+      <button id="toggleSidebar" class="btn  btn-outline-secondary toggle-sidebar-custom1 toggle-sidebar-btn">
+        <i class="fa-solid fa-bars fa-3x"></i>
+      </button>
 
-              <i class="custom-color1 animo-icon fa-solid fa-calendar-days fa-4x"></i>
+      <i class="custom-color1 animo-icon fa-solid fa-calendar-days fa-4x"></i>
 
-              <div class="animo-text">
-                <a href="index.html" class ="no-decor" target="_self">
-                <span class="navbar-text header-custom2">
-                  <div class="custom-color2">
-                    AnimoLab
-                  </div>
-                </span>
-                </a>
-              </div>
-
-
-              <!--Search Bar-->
-              <div class="search-section container-fluid search_bar d-flex justify-content-center">
-                <form class="d-flex" role="search">
-                  <input class="search-bar-input form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-
-                  <div class="mx-2 dropdown">
-                    <button class="btn btn-outline-light dropdown-toggle" type="button" id="browseDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Browse
-                    </button>
-                    <div class="dropdown-menu dropdown-browse-section" aria-labelledby="browseDropdown">
-                      <a href="../search-user/search-results-LT.html" target="_self">
-                        <button class="dropdown-item" type="button">Browse Users</button>
-                      </a>
-                      <a href="../reserve-user/reserve-user-search-lab-LT.html" target="_self">
-                        <button class="dropdown-item" type="button">Browse Labs</button>
-                      </a>
+      <div class="animo-text">
+        <a href="index.html" class ="no-decor" target="_self">
+        <span class="navbar-text header-custom2">
+          <div class="custom-color2">
+            AnimoLab
+          </div>
+        </span>
+        </a>
+      </div>
 
 
-                    </div>
-                  </div>
-                </form>
-              </div>
+      <!--Search Bar-->
+      <div class="search-section container-fluid search_bar d-flex justify-content-center">
+        <form class="d-flex" role="search">
+          <input class="search-bar-input form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
 
-              <div class="profile-section">
-
-                <!--Hardcoded name1-->
-                <div class="profile-section-text">
-                  Flint R. Lockwood
-                </div>
-                <div class="pic-and-mail">
-                  <img class="profile-section-pic" src="https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" alt="default-pic">
-                  <div class="mail-icon-section" onclick="chatBox()">
-                    <i class="fa-solid fa-bell fa-3x"></i>
-                    <i class="circle-icon fa-solid fa-circle"></i>
-                  </div>
-                </div>
-
-
-
-              </div>
-
-
-
-
-            </nav>
-            <div class="hidden-sidebar">
-              <div class="sidebar-section-container">
-                <input class="checkbox-section" type="checkbox" name="isRememberStatus" value=""> Remember Me
-              </div>
-
-              <a href="../LT-user/LT-user-profile.html" target="_self">
-                <div class="sidebar-section-container">
-                  <i class="icon-section fa-solid fa-user"></i> Profile
-                </div>
-              </a>
-
+          <div class="mx-2 dropdown">
+            <button class="btn btn-outline-light dropdown-toggle" type="button" id="browseDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Browse
+            </button>
+            <div class="dropdown-menu dropdown-browse-section" aria-labelledby="browseDropdown">
               <a href="../search-user/search-results-LT.html" target="_self">
-                <div class="sidebar-section-container">
-                  <i class="icon-section fa-solid fa-users"></i> Browse Users
-                </div>
+                <button class="dropdown-item" type="button">Browse Users</button>
               </a>
-
-
               <a href="../reserve-user/reserve-user-search-lab-LT.html" target="_self">
-                <div class="sidebar-section-container">
-                  <i class="icon-section fa-solid fa-laptop"></i> Browse Labs
-                </div>
-              </a>
-
-
-              <a href="../report-form/report-form-LT.html" target="_self">
-                <div class="sidebar-section-container">
-                  <i class="icon-section fa-solid fa-flag"></i> Report a Problem
-                </div>
-              </a>
-
-              <a class="no-decor" href="../../index.html" target="_self">
-                <div class="sidebar-section-container no-decor" >
-                  <i class="icon-section fa-solid fa-right-from-bracket"></i> Logout
-                </div>
+                <button class="dropdown-item" type="button">Browse Labs</button>
               </a>
 
 
             </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="profile-section">
+
+        <!--Hardcoded name1-->
+        <div class="profile-section-text">
+          Flint R. Lockwood
+        </div>
+        <div class="pic-and-mail">
+          <img class="profile-section-pic" src="https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" alt="default-pic">
+          <div class="mail-icon-section" onclick="chatBox()">
+            <i class="fa-solid fa-bell fa-3x"></i>
+            <i class="circle-icon fa-solid fa-circle"></i>
+          </div>
+        </div>
+
+
+
+      </div>
+
+
+
+
+    </nav>
+    <div class="hidden-sidebar">
+      <div class="sidebar-section-container">
+        <input class="checkbox-section" type="checkbox" name="isRememberStatus" value=""> Remember Me
+      </div>
+
+      <a href="../LT-user/LT-user-profile.html" target="_self">
+        <div class="sidebar-section-container">
+          <i class="icon-section fa-solid fa-user"></i> Profile
+        </div>
+      </a>
+
+      <a href="../search-user/search-results-LT.html" target="_self">
+        <div class="sidebar-section-container">
+          <i class="icon-section fa-solid fa-users"></i> Browse Users
+        </div>
+      </a>
+
+
+      <a href="../reserve-user/reserve-user-search-lab-LT.html" target="_self">
+        <div class="sidebar-section-container">
+          <i class="icon-section fa-solid fa-laptop"></i> Browse Labs
+        </div>
+      </a>
+
+
+      <a href="../report-form/report-form-LT.html" target="_self">
+        <div class="sidebar-section-container">
+          <i class="icon-section fa-solid fa-flag"></i> Report a Problem
+        </div>
+      </a>
+
+      <a class="no-decor" href="../../index.html" target="_self">
+        <div class="sidebar-section-container no-decor" >
+          <i class="icon-section fa-solid fa-right-from-bracket"></i> Logout
+        </div>
+      </a>
+
+
+    </div>
+
+
         <div id="chatbox" onclick="playMusic()">
           <div id="chatlist">
             <h1 class="d-flex justify-content-center">Reports</h1>
@@ -271,32 +273,22 @@
         <script src="../../js/chatbox.js"></script>
 
 
-
-
     <div class="profile-body">
       <section class= "profile-contact-section flex-column">
-        <div class="profile-pic-and-name text-center ">
+        <div class="profile-pic-and-name text-center">
 
 
           <!--Hardcoded name2-->
-          <div class="justify-content-center profile-column-section d-flex flex-column align-items-center justify-content-center">
-            <div class="d-flex flex-column ">
-              <div class="btn btn-danger my-2">
-                Delete Profile
-              </div>
-              <div class="btn btn-warning my-2">
-                Edit Picture
-              </div>
+          <div class="profile-column-section d-flex flex-column align-items-center justify-content-center">
 
-            </div>
             <img class="profile-regular-pic" src="https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" alt="default-pic">
 
             <p class="profile-name">
-              Flint R. Lockwood <i class="fa-solid fa-pencil"></i>
-
+              Paul Josef P. Agbuya
             </p>
+
             <p class="profile-name">
-              ID : 19984234
+              ID : 12206660
             </p>
 
 
@@ -306,29 +298,32 @@
         </div>
         <hr>
         <div class="description-div">
-
+          <div class="course-desc">
+            <h2 class= "custom-header1">Course</h2>
+            <p>BS in Computer Science: Major in Software Technology</p>
+          </div>
 
 
           <div class="about-me">
-            <h2 class= "custom-header1">About Me <i class="fa-solid fa-pencil"></i></h2>
-            <p>Casual technician passing by. Appreciate in finding new friends or casual talk</p>
+            <h2 class= "custom-header1">About Me</h2>
+            <p>Casual student passing by. Appreciate in finding new friends or casual talk</p>
 
           </div>
 
         </div>
         <div class="contact-info-div ">
-          <div class="contact-title d-flex justify-content-center">
+          <div class="contact-title">
             <i class="fa-solid fa-phone"></i>&nbsp; CONTACT
           </div>
 
           <table class="contact-table" cellpadding="10">
             <tr class="text-decoration-underline">
-              <td>lockwood2@gmail.com</td>
-              <td><i class="fa-solid fa-pencil"></i></td>
+              <td>pjagbuya2@gmail.com</td>
+
             </tr>
             <tr class="text-decoration-underline">
               <td>Add another contact detail</td>
-              <td><i class="fa-solid fa-plus"></i></td>
+
             </tr>
 
           </table>
@@ -346,35 +341,16 @@
 
 
 
-
-        <div class="welcome-section-LT">
-          <h1 class="welcome-msg">Welcome Lab <span class="technician-text">Technician!</span></h1>
-        </div>
-
-
-        <div class="buttons-section">
-
-          <a href="LT-user-reserve-student.html" target="_self">
-            <button class="custom-btn-4 btn-hover-custom-1" type="button" name="button">Reserve Student</button>
-          </a>
-
-          <a href="LT-user-reserve-edit.html">
-            <button class="custom-btn-5 btn-hover-custom-2" type="button" name="button">View/Edit Reservations</button>
-          </a>
+        <div class="reservation-next-days">
+          <h2 class="custom-header2 custom-border-bottom1">Current Reservations</h2>
+          <div class="day-container" id="daysContainer">
+          </div>
 
         </div>
-
-
 
 
       </section>
     </div>
-
-
-
-
-
-
 
 
 
@@ -395,7 +371,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
   </body>
   <script>
 
@@ -417,21 +392,21 @@
 
     // Hard-coded reservation for the second day
     if (i === 1) {
-       reservation = "<div class='date-details'><p class='text-decoration-underline'> GK304B  </p><p>(Seat 32)</p>  <p>7:30 A.M - 8:00 A.M</p>" +
-       '<button type="button" class="btn btn-danger close-btns">X</button></div>'+
-       "<div class='date-details'><p class='text-decoration-underline'> GK304B  </p><p>(Seat 32)</p>  <p>8:00 A.M - 8:30 A.M</p>"+
-       '<button type="button" class="btn btn-danger close-btns">X</button></div>';
+       reservation = "<div class='date-details'><p class='text-decoration-underline'> GK304B  </p><p>(Seat 32)</p>  <p>7:30 A.M - 8:00 A.M</p> </div>" +
+
+       "<div class='date-details'><p class='text-decoration-underline'> GK304B  </p><p>(Seat 32)</p>  <p>8:00 A.M - 8:30 A.M</p></div>";
+
      }
      else if (i === 4) {
-        reservation = "<div class='date-details'><p class='text-decoration-underline'> GK302A  </p><p>(Seat 16)</p>  <p>10:30 A.M - 11:00 A.M</p>" +
-        '<button type="button" class="btn btn-danger close-btns">X</button></div>' +
-        "<div class='date-details'><p class='text-decoration-underline'> GK302A  </p><p>(Seat 16)</p>  <p>11:00 A.M - 11:30 A.M</p>" +
-        '<button type="button" class="btn btn-danger close-btns">X</button></div>';
+        reservation = "<div class='date-details'><p class='text-decoration-underline'> GK302A  </p><p>(Seat 16)</p>  <p>10:30 A.M - 11:00 A.M</p> </div>" +
+
+        "<div class='date-details'><p class='text-decoration-underline'> GK302A  </p><p>(Seat 16)</p>  <p>11:00 A.M - 11:30 A.M</p></div>";
+
       }
 
       else if (i === 7) {
-         reservation = "<div class='date-details'><p class='text-decoration-underline'> GK306B  </p><p>(Seat 20)</p>  <p>2:30 P.M - 3:00 P.M</p>" +
-         '<button type="button" class="btn btn-danger close-btns">X</button></div>';
+         reservation = "<div class='date-details'><p class='text-decoration-underline'> GK306B  </p><p>(Seat 20)</p>  <p>2:30 P.M - 3:00 P.M</p></div>";
+
        }
 
      day.setDate(currentDate.getDate() + i);

@@ -117,7 +117,7 @@ body{
   display: flex;
   margin-left: 20px;
   width: 100%;
-  padding: 50px;
+
 
 }
 
@@ -240,6 +240,9 @@ body {
 .profile-contact-section{
   width: 30%;
   border-right: 5px solid #12372A;
+  display: flex;
+  justify-content: center;
+
 }
 
 
@@ -300,4 +303,31 @@ body {
   font-weight: bold;
   color: #436850;
 
+}
+
+
+.about-me{
+  display: flex;
+  flex-direction:column;
+  margin: 10px;
+}
+.contact-info-div{
+  display: flex;
+  flex-direction: column;
+  background-color: #ADBC9F;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-top:3px solid black;
+  border-bottom: 3px solid black;
+  margin-right: 30px;
+  margin-left: 10px;
+}
+
+
+.contact-title{
+  background-color: #12372A;
+  display: flex;
+  align-items: center;
+  color: #FBFADA;
+  font-size: 1.75rem;
 }

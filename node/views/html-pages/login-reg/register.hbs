@@ -1,0 +1,46 @@
+{{> navbar-home}}
+<div class="register-form-section">
+  <div class="register-body">
+    <div class="register-form-header">
+      <h1>Sign up a new user account</h1>
+      <br>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <div class="d-flex p-5 flex-column justify-content-center">
+        <form action="../profile/profile-default.html" method="get">
+
+          <label class="form-proper">Username</label><br>
+          <input type="text" name="Username" class="form-proper" required><br>
+
+          <label class="form-proper">DLSU ID</label><br>
+          <input type="text" name="UserID" class="form-proper" required><br>
+
+          <label class="form-proper">DLSU Email</label><br>
+          <input type="text" name="Email" class="form-proper" required><br>
+
+          <label class="form-proper">Password</label><br>
+          <input type="password" name="Password" class="form-proper" required><br>
+
+          <label class="form-proper">Confirm Password</label><br>
+          <input type="password" name="Password-Confirmation" class="form-proper" required><br>
+
+
+          <br><br>
+          <div class="d-flex flex-row justify-content-center">
+
+            <input type="reset" value="Clear" class="form-proper mx-5 btn-hover-1"></input>  <!--Probably not needed since form is really short anyway -->
+
+
+            <a href="/user">
+              <input type="submit" value="Register" class="form-proper mx-5 btn-hover-1"></input>
+            </a>
+
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

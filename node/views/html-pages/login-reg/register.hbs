@@ -1,4 +1,5 @@
 {{> navbar-home}}
+
 <div class="register-form-section">
   <div class="register-body">
     <div class="register-form-header">
@@ -8,19 +9,19 @@
 
     <div class="d-flex justify-content-center">
       <div class="d-flex p-5 flex-column justify-content-center">
-        <form action="../profile/profile-default.html" method="get">
+        <form action="/register" method="POST">
 
           <label class="form-proper">Username</label><br>
-          <input type="text" name="Username" class="form-proper" required><br>
+          <input type="text" name="username" class="form-proper" required><br>
 
           <label class="form-proper">DLSU ID</label><br>
-          <input type="text" name="UserID" class="form-proper" required><br>
+          <input type="text" name="id" class="form-proper" required><br>
 
           <label class="form-proper">DLSU Email</label><br>
-          <input type="text" name="Email" class="form-proper" required><br>
+          <input type="text" name="email" class="form-proper" required><br>
 
           <label class="form-proper">Password</label><br>
-          <input type="password" name="Password" class="form-proper" required><br>
+          <input type="password" name="password" class="form-proper" required><br>
 
           <label class="form-proper">Confirm Password</label><br>
           <input type="password" name="Password-Confirmation" class="form-proper" required><br>
@@ -32,9 +33,9 @@
             <input type="reset" value="Clear" class="form-proper mx-5 btn-hover-1"></input>  <!--Probably not needed since form is really short anyway -->
 
 
-            <a href="/user">
-              <input type="submit" value="Register" class="form-proper mx-5 btn-hover-1"></input>
-            </a>
+
+            <input type="submit" value="Register" class="form-proper mx-5 btn-hover-1"></input>
+
 
           </div>
 

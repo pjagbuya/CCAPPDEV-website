@@ -6,10 +6,18 @@ const userRouter = express.Router();
 
 
 
-const data = require('../dataInfo.js');
 
 console.log("Connecteed to router")
 // Start her after template above
+
+function PutUserData(req, res, next)
+{
+  if (req.body.userID == 1){
+
+  }
+  next()
+
+}
 
 function findID(id, data)
 {
@@ -22,57 +30,56 @@ function findID(id, data)
   return final;
 
 }
+const data = require('../dataInfo.js');
 
 let userData = data.getData()['student-users'];
 
-userRouter.get("/:id",  function(req, resp){
 
 
-    let user = findID(req.params.id, userData);
-    let profName = user['name'];
+
+
+
+userRouter.get("/",  function(req, resp){
+
+
+
 
     resp.render('html-pages/student/profile',{
         layout: 'index-user',
-        title: profName,
-        name: profName,
-        id: req.params.id
-
-
+        title: req.user.username,
+        name: req.user.username,
+        id: req.user.id
     });
 });
 
-userRouter.get("/:id/search-users",  function(req, resp){
-
-  let user = findID(req.params.id, userData);
-  let profName = user['name'];
+userRouter.get("/search-users",  function(req, resp){
+  let profName = req.user.name;
   resp.render('html-pages/search-user/search-user',{
       layout: 'index-user',
       titel: "Search Users",
-      name: profName,
-      id: req.params.id
+      name: req.user.username,
+      id: req.user.id
 
   });
 });
 
-userRouter.get("/:id/search-labs",  function(req, resp){
-  let user = findID(req.params.id, userData);
-  let profName = user['name'];
+userRouter.get("/search-labs",  function(req, resp){
+  let profName = req.user.name;
   resp.render('html-pages/search-lab/search-lab',{
       layout: 'search-lab',
       title: "Search Labs",
-      name: profName,
-      id: req.params.id
+      name: req.user.username,
+      id: req.user.id
   });
 });
 
-userRouter.get("/:id/edit-reservation",  function(req, resp){
-  let user = findID(req.params.id, userData);
-  let profName = user['name'];
+userRouter.get("/edit-reservation",  function(req, resp){
+  let profName = req.user.name;
   resp.render('html-pages/student-edit/edit-reservation',{
       layout: 'edit-reservation',
       title: "Reservation Edits",
-      name: profName,
-      id: req.params.id
+      name: req.user.username,
+      id: req.user.id
   });
 });
 //
@@ -80,3 +87,5 @@ userRouter.get("/:id/edit-reservation",  function(req, resp){
 // userRouter.use("/search-user", searchRouter);
 
 module.exports = userRouter
+
+module.exports.data = data

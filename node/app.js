@@ -1,57 +1,82 @@
-//Install Command:
-//npm init
-//npm i express express-handlebars body-parser
-if (process.env.NODE_ENV !== 'production'){
-  require('dotenv').config();
-}
 
 
-const data = require('./dataInfo.js');
+//boilerplate begins here
+//Global db
 
-let userData = data.getData()['student-users'];
-
-
-//This example is an example for the use of Ajax with JQuery.
 const express = require('express');
 const server = express();
-const router = express.Router();
-
 
 const bodyParser = require('body-parser')
+const bcrypt = require('bcrypt');
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
-
 const handlebars = require('express-handlebars');
 server.set('view engine', 'hbs');
 server.engine('hbs', handlebars.engine({
     extname: 'hbs',
 }));
-const bcrypt = require('bcrypt');
-const passport = require("passport");
-const flash = require('express-flash');
-const session = require('express-session');
-const initializePassport = require('./passport-config')
-sample_users = []
-
-initializePassport(passport,
-                   emailID => sample_users.find(user=> user.email===emailID ),
-                   userID => sample_users.find(user=> user.id===userID ),
-                    )
-
-
 server.use(express.static('public'));
-server.use(flash())
+//ends here
+const session = require('express-session');
+
 server.use(session({
-  secret:process.env.SESSION_SECRET,
+  secret: 'hjalksjfla',
   resave: false,
-  saveUninitialized: false
-}))
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
+function errorFn(err){
+    console.log('Error fond. Please trace!');
+    console.error(err);
+}
 
-server.use(passport.initialize());
-server.use(passport.session());
+function successFn(res){
+    console.log('Database query successful!');
+}
+
+// MongoDB setup
+// PRIMARY KEYS ARE AUTOMATIC
+const {MongoClient} = require('mongodb');
+const databaseURL = "mongodb://localhost:27017";
+const mongoClient = new MongoClient(databaseURL);
+
+const databaseName = "AnimoDB";
+const collectionLogin = "User";
 
 
 
+//
+//
+let db;
+
+
+
+
+mongoClient.connect().then(function(con){
+
+  console.log("Attempt to create!");
+  const dbo = mongoClient.db(databaseName);
+  db = dbo;
+
+  dbo.createCollection(collectionLogin)
+    .then(successFn)
+    .catch(function (err){
+      console.log('Collection already exists');
+  });
+}).catch(errorFn);
+
+
+
+
+
+module.exports.withMongo = (fn) => async (req, res, next) => {
+  try {
+    req.db = db;
+    await fn(req, res, next);
+  } catch (error) {
+    next(error);
+  }
+};
 
 
 server.get('/', function(req, resp){
@@ -61,56 +86,19 @@ server.get('/', function(req, resp){
 
     });
 });
-server.get('/login', function(req, resp){
-    resp.render('html-pages/login-reg/login',{
-        layout: 'index-home',
-        title: 'Login Page'
 
-    });
-});
+const registerLoginRouter = require('./controllers/register-login')
+server.use("/", registerLoginRouter);
 
-server.post('/login', passport.authenticate('local', {
-  successRedirect: '/user',
-  failurRedirect: '/login',
-  failureFlash: true
-}));
-
-
-server.get('/register', function(req, resp){
-    resp.render('html-pages/login-reg/register',{
-        layout: 'index-home',
-        title: 'Register Page'
-
-    });
-});
-
-
-server.post('/register', async (req, resp) => {
-  try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    sample_users.push({
-      username : req.body.username,
-      id : req.body.id,
-      email: req.body.email,
-      password : hashedPassword
-    })
-
-
-    resp.redirect('/login')
-
-  } catch (e) {
-    resp.redirect("/register")
-
-  }
-  console.log("Received post request");
-  console.log(sample_users);
-
-
-});
-
-
-const userRouter = require('./routes/users');
+const userRouter = require('./controllers/users');
 server.use("/user", userRouter);
+
+const loginRouter = require('./controllers/login');
+server.use("/", loginRouter);
+
+
+
+
 
 const port = process.env.PORT | 9090;
 server.listen(port, function(){

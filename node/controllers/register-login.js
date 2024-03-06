@@ -1,12 +1,10 @@
 const express = require("express");
 const bcrypt = require('bcrypt');
 const registerLoginRouter = express.Router();
-const withMongo = require('../app.js').withMongo;
-
-const collectionLogin = "User";
+const mongoose = require('mongoose');
 
 
-
+ const registerModel = require("../models/register-model");
 
 
 
@@ -21,32 +19,41 @@ registerLoginRouter.get('/register', function(req, resp){
 
 
 
-registerLoginRouter.post('/register', withMongo(async (req, resp) => {
-
-
-  const col = req.db.collection(collectionLogin);
-
+registerLoginRouter.post('/register', async (req, resp) => {
 
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
     const info = {
-      username : req.body.username,
+      username : "default",
       dlsuID  : req.body.id,
       email    : req.body.email,
       password : hashedPassword,
       imageSource: null,
       firstName : req.body.firstname,
       lastName  : req.body.lastname,
-      middleInitial: req.body.mi,
+      middleInitial: req.body.mi
     };
 
-    col.insertOne(info)
+    const registerInstance = await registerModel.create(info)
 
-    resp.redirect('/login');
 
+    console.log("Before saving:", registerInstance.toObject()); // Log object before saving
+
+    registerInstance.save().then(function(login)
+    {
+      console.log('User created');
+      resp.redirect('/login');
+
+    });
+    console.log("Saved user data:", registerInstance.toObject()); // Log object after saving
+
+    // console.log(info);
 
   } catch (e) {
+
+    console.log('Failure');
+    console.error(e);
+    console.error("Error:" + e.stack);
     resp.redirect("/register");
 
   }
@@ -54,7 +61,7 @@ registerLoginRouter.post('/register', withMongo(async (req, resp) => {
 
 
 
-}));
+});
 
 
 const loginRouter = require('./login');

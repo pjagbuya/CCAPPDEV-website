@@ -4,19 +4,6 @@
 const express = require("express");
 const userRouter = express.Router();
 
-// Start her after template above
-
-// function PutUserData(req, res, next)
-// {
-//   if (req.body.userID == 1){
-//
-//   }
-//   next()
-//
-// }
-
-
-
 
 
 userRouter.get("/:id",  function(req, resp){

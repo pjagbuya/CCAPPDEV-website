@@ -5,6 +5,9 @@
 
 const express = require('express');
 const server = express();
+module.exports.mongoose= require('mongoose');
+module.exports.mongoose.connect('mongodb://localhost:27017/AnimoDB');
+
 
 const bodyParser = require('body-parser')
 const bcrypt = require('bcrypt');

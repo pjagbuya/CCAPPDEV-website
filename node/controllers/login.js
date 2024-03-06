@@ -5,6 +5,12 @@ const loginRouter = express.Router();
 const withMongo = require('../app.js').withMongo;
 const collectionLogin = "User"
 
+const loginModel = require('../models/register-model');
+
+
+
+
+
 loginRouter.get('/login', function(req, resp){
 
 
@@ -15,16 +21,13 @@ loginRouter.get('/login', function(req, resp){
     });
 });
 
-loginRouter.post('/login',  withMongo(async (req, resp) =>{
+loginRouter.post('/login',  async (req, resp) =>{
+
 
   const userID = req.body.userID;  // Assuming userID is sent in the request body
 
   try {
-
-    const col = req.db.collection(collectionLogin);
-
-
-    const user = await col.findOne({
+    const user = await loginModel.findOne({
       $or: [
         { dlsuID: userID },
         { email: userID },
@@ -38,23 +41,27 @@ loginRouter.post('/login',  withMongo(async (req, resp) =>{
       return;
     }
 
+
     console.log("Found user");
-
-
-
-
-
     if(await bcrypt.compare(req.body.password, user.password)){
-      console.log("Success");
 
       req.session.user = user;
 
-      resp.redirect("/user/"+ user.dlsuID);
+
+      if(user.dlsuID.toString().slice(0,3)=="101")
+      {
+        console.log("Success Lab technician");
+        resp.redirect("/lt-user/"+ user.dlsuID);
+      }
+      else{
+        console.log("Success");
+        resp.redirect("/user/"+ user.dlsuID);
+      }
+
 
     }
     else{
      console.log("Error password");
-
      resp.redirect("/login");
     }
 
@@ -64,10 +71,13 @@ loginRouter.post('/login',  withMongo(async (req, resp) =>{
     resp.status(500).send({ error: "Internal server error" });
   }
 
-}));
+});
 
 
 const userRouter = require('./users');
 loginRouter.use("/user", userRouter);
+
+const ltRouter = require('./LT-user.js');
+loginRouter.use("/lt-user", ltRouter);
 
 module.exports = loginRouter

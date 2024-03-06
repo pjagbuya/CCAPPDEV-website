@@ -1,4 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+
+  function openModal() {
+
+    document.getElementById('selectRoomModal').style.display = 'flex';
+    document.getElementById('modalOverlay').style.display = 'block';
+  }
+
+  function closeModal() {
+
+    document.getElementById('selectRoomModal').style.display = 'none';
+    document.getElementById('modalOverlay').style.display = 'none';
+  }
+
+  var selectRoomBtn = document.getElementsByClassName("custom-btn-1")[1];
+  selectRoomBtn.addEventListener("click", function (e) {
+    e.preventDefault(); // Allows for asynchronous loading and actions, remember this
+    document.getElementById('selectRoomModal').style.display = 'flex';
+    document.getElementById('modalOverlay').style.display = 'block';
+  });
+
+
   var toggleSidebar = document.getElementById("toggleSidebar");
 
   toggleSidebar.addEventListener("click", function (e) {

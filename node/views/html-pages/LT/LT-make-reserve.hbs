@@ -1,0 +1,289 @@
+
+
+    <section class= "student-select-section">
+
+      <div class="search-section">
+        <h3>ID No. &nbsp;</h3>
+        <input class="reserve-user-input" type="text" name="" value="">
+        <button class="custom-btn-1" type="button" name="button">Search</button>
+
+      </div>
+
+      <div class="room-selection-section">
+        <h2>Room: <span>GK202</span> </h2>
+        <button class="custom-btn-1" type="button" name="button" onclick="openModal()">Select Room</button>
+      </div>
+
+      <div class="student-table-section">
+
+
+
+
+        <div class="table-scroll-section">
+          <table>
+            <thead>
+              <tr>
+                <th class="table-cell">ID</th>
+                <th class="table-cell">Last Name</th>
+                <th class="table-cell">First Name</th>
+                <th class="table-cell">Middle Name</th>
+                <th class="table-cell">Reserve</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="table-cell">12389997</td>
+                <td class="table-cell">Do</td>
+                <td class="table-cell">John</td>
+                <td class="table-cell">Manchester</td>
+                <td class="table-cell">
+                  <a href="LT-user-reserve-student-details.html">
+                    <button class="reserve-student-button" type="button" name="button">Reserve Student</button>
+                  </a>
+
+                </td>
+              </tr>
+              <tr>
+                <td class="table-cell">12387697</td>
+                <td class="table-cell">Doe</td>
+                <td class="table-cell">Joanna</td>
+                <td class="table-cell">Cumberbatch</td>
+                <td class="table-cell">
+                  <a href="LT-user-reserve-student-details.html">
+                    <button class="reserve-student-button" type="button" name="button">Reserve Student</button>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td class="table-cell">12386497</td>
+                <td class="table-cell">Does</td>
+                <td class="table-cell">Jerry</td>
+                <td class="table-cell">Tom</td>
+                <td class="table-cell">
+                  <a href="LT-user-reserve-student-details.html">
+                    <button class="reserve-student-button" type="button" name="button">Reserve Student</button>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td class="table-cell">12389907</td>
+                <td class="table-cell">Doesn't</td>
+                <td class="table-cell">Josh</td>
+                <td class="table-cell">Gibbson</td>
+                <td class="table-cell">
+                  <a href="LT-user-reserve-student-details.html">
+                    <button class="reserve-student-button" type="button" name="button">Reserve Student</button>
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td class="table-cell">12382397</td>
+                <td class="table-cell">Doesn'tn't</td>
+                <td class="table-cell">Johnathan</td>
+                <td class="table-cell">Man</td>
+                <td class="table-cell">
+                  <a href="LT-user-reserve-student-details.html">
+                    <button class="reserve-student-button" type="button" name="button">Reserve Student</button>
+                  </a>
+                 </td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+
+
+
+
+      </div>
+
+
+
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()"></div>
+
+    <div class="select-room-modal" id="selectRoomModal">
+      <div onclick="closeModal()"  class="x-button-align-section">
+        <button class="btn btn-danger" type="button" name="X-Button">X</button>
+      </div>
+
+
+
+      <div class="filter-section">
+
+        <div class="d-flex filter-part-1">
+          <div class="d-flex filter-part-1 align-items-center">
+
+            <h3 class="label-custom-1">Room Name: </h3>
+            <div class="d-flex align-items-center mx-3">
+              <input type="text" name="" value="">
+            </div>
+
+          </div>
+          <div class="d-flex flex-column filter-part-1">
+            <h2 class="label-custom-1">Date: </h2>
+
+            <select class="form-control-input-date" id="inputRoom">
+
+            </select>
+
+            <h2 class="label-custom-1">Room Type: </h2>
+            <select class="form-control-input-room" id="inputRoom">
+              <option value="room1">Any</option>
+              <option value="room1">GK2</option>
+              <option value="room2">GK3</option>
+              <option value="room3">GK4</option>
+            </select>
+
+
+          </div>
+
+          <div class="d-flex flex-column filter-part-1">
+            <h2 class="label-custom-1" name="dropdownFrom">From: </h2>
+            <select class="form-control-1" id="fromTime"></select>
+            <h2 class="label-custom-1" name="dropdownTo">To: </h2>
+            <select class="form-control-2" id="toTime"></select>
+          </div>
+          <div class="d-flex flex-column filter-part-2">
+            <button class="custom-button-6 mx-5" type="button" name="button">Filter</button>
+          </div>
+
+
+
+        </div>
+
+
+
+
+      </div>
+      <div class="lab-choices-section">
+
+          <div class="lab-choice-section">
+            <img class="lab-choice-img" src="pics/computerlab.jpg" alt="computer-lab">
+            <div class="lab-choice-details">
+              <h3>GK302A</h3>
+              <p class="status-text avail-text"><u>AVAILABLE</u></p>
+
+
+              <p>
+                <span>Total Seats: </span>
+                <span><strong>23</strong></span>
+              </p>
+
+              <div class="d-flex lab-choice-btn custom-default-font2">
+                <div class="btn btn-success">
+                  Select
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+          <div class="lab-choice-section">
+            <img class="lab-choice-img" src="pics/computerlab.jpg" alt="computer-lab">
+            <div class="lab-choice-details">
+              <h3>GK302B</h3>
+              <p class="status-text avail-text"><u>AVAILABLE</u></p>
+
+
+              <p>
+                <span>Total Seats: </span>
+                <span><strong>23</strong></span>
+              </p>
+
+              <div class="d-flex lab-choice-btn custom-default-font2">
+                <div class="btn btn-success">
+                  Select
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+          <div class="lab-choice-section">
+            <img class="lab-choice-img" src="pics/computerlab.jpg" alt="computer-lab">
+            <div class="lab-choice-details">
+              <h3>GK306A</h3>
+              <p class="status-text avail-text"><u>AVAILABLE</u></p>
+
+
+              <p>
+                <span>Total Seats: </span>
+                <span><strong>23</strong></span>
+              </p>
+
+              <div class="d-flex lab-choice-btn custom-default-font2">
+                <div class="btn btn-success">
+                  Select
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+          <div class="lab-choice-section">
+            <img class="lab-choice-img" src="pics/computerlab.jpg" alt="computer-lab">
+            <div class="lab-choice-details">
+              <h3>GK404</h3>
+              <p class="status-text avail-text"><u>AVAILABLE</u></p>
+
+
+              <p>
+                <span>Total Seats: </span>
+                <span><strong>23</strong></span>
+              </p>
+
+              <div class="d-flex lab-choice-btn custom-default-font2">
+                <div class="btn btn-success">
+                  Select
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lab-choice-section">
+            <img class="lab-choice-img" src="pics/computerlab.jpg" alt="computer-lab">
+            <div class="lab-choice-details">
+              <h3>GK405</h3>
+              <p class="status-text avail-text"><u>AVAILABLE</u></p>
+
+                <span>Total Seats: </span>
+                <span><strong>23</strong></span>
+              </p>
+
+              <div class="d-flex lab-choice-btn custom-default-font2">
+                <div class="btn btn-success">
+                  Select
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+      </div>
+
+      <div class="arrows-section">
+        <button class="arrow-button">&larr;</button>  Page 1<button class="arrow-button right-arrow">&rarr;</button>
+      </div>
+
+
+
+    </div>

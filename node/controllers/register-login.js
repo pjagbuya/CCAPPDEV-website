@@ -24,7 +24,7 @@ registerLoginRouter.post('/register', async (req, resp) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const info = {
-      username : "default",
+      username : req.body.username,
       dlsuID  : req.body.id,
       email    : req.body.email,
       password : hashedPassword,

@@ -13,11 +13,27 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('modalOverlay').style.display = 'none';
   }
 
+  // var selectRoomBtn = document.getElementsByClassName("custom-btn-1")[1];
+  // selectRoomBtn.addEventListener("click", function (e) {
+  //   e.preventDefault(); // Allows for asynchronous loading and actions, remember this
+  //   document.getElementById('selectRoomModal').style.display = 'flex';
+  //   document.getElementById('modalOverlay').style.display = 'block';
+  // });
+
   var selectRoomBtn = document.getElementsByClassName("custom-btn-1")[1];
-  selectRoomBtn.addEventListener("click", function (e) {
-    e.preventDefault(); // Allows for asynchronous loading and actions, remember this
-    document.getElementById('selectRoomModal').style.display = 'flex';
-    document.getElementById('modalOverlay').style.display = 'block';
+  selectRoomBtn.addEventListener("click", function(e){
+
+      e.preventDefault();
+      document.getElementById('selectRoomModal').style.display = 'flex';
+      document.getElementById('modalOverlay').style.display = 'block';
+
+  });
+
+  var overlay = document.getElementById("modalOverlay");
+  overlay.addEventListener("click", function (e) {
+    e.preventDefault();
+    document.getElementById('selectRoomModal').style.display = 'none';
+    document.getElementById('modalOverlay').style.display = 'none';
   });
 
 
@@ -28,7 +44,14 @@ document.addEventListener("DOMContentLoaded", function () {
     var hiddenSidebar = document.querySelector(".hidden-sidebar");
     hiddenSidebar.classList.toggle("show");
   });
+  var selectedExitBtn = document.getElementsByClassName("x-button-align-section")[0];
+  selectedExitBtn.addEventListener("click", function(e){
+      e.preventDefault();
 
+      document.getElementById('selectRoomModal').style.display = 'none';
+      document.getElementById('modalOverlay').style.display = 'none';
+
+  });
   const currentDate = new Date();
 
   const daysContainer = $("#daysContainer");

@@ -1,0 +1,57 @@
+body{margin: 0px;}
+footer, header, .main{
+    width: 100%;  
+}
+
+footer, header{ position: sticky; background-color: LimeGreen; }
+
+.center-area{
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+}
+header{ 
+    padding-top: 8px; padding-bottom: 16px; 
+    top: 0px;
+    border-bottom: 2px solid black;
+}
+.notice-area{ display: flex; align-items: center; }
+.notice-area > img{ width: 50px; margin-right: 16px; margin-left: 32px; }
+.notice-area > h1{ width: 50px; margin: 0px;}
+
+footer{ bottom: 0px; border-top: 2px solid black; }
+footer > .center-area{ display: flex; justify-content: center; }
+.resp-area{ padding-top: 8px; padding-bottom: 16px; }
+.resp-area > input{ width: 50%; margin-right: 8px; }
+
+.main{
+    background-image: url("https://cdn.pixabay.com/photo/2021/01/01/16/07/clouds-5879037_960_720.jpg");
+    height: 100vh; 
+    overflow: hidden; }
+.main > .center-area {
+    background-color: PaleGreen;
+    height: 100vh;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+}
+
+#message-area,tr,td{ width: 100%; }
+#message-area > tr {height: 40px}
+#message-area > tr:first-child > td { padding-top: 16px}
+#message-area > tr > .sent-td{ display: flex; justify-content: right; }
+#message-area > tr > td > .sent-span{
+    background-color: LightSkyBlue;
+    padding: 8px;
+    border-radius: 25px 25px 0px 25px;
+    font-weight: 22px;
+    margin-right: 8px;
+}
+#message-area > tr > td > .recieve-span{
+    background-color: LightSkyBlue;
+    padding: 8px;
+    border-radius: 25px 25px 25px 0px;
+    font-weight: 22px;
+    margin-left: 8px;
+}
+
+

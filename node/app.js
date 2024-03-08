@@ -46,12 +46,7 @@ const mongoClient = new MongoClient(databaseURL);
 const databaseName = "AnimoDB";
 const collectionLogin = "User";
 
-
-
-//
-//
-let db;
-
+//Helpersconst handlebars = require('handlebars');
 
 
 
@@ -71,15 +66,6 @@ mongoClient.connect().then(function(con){
 
 
 
-
-module.exports.withMongo = (fn) => async (req, res, next) => {
-  try {
-    req.db = db;
-    await fn(req, res, next);
-  } catch (error) {
-    next(error);
-  }
-};
 
 
 server.get('/', function(req, resp){

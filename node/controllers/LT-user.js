@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const ltRouter = express.Router();
 
 const usersModel = require("../models/register-model");
+const labModel = require("../models/labs-model").LabModel;
 
 
 
@@ -30,6 +31,7 @@ ltRouter.get('/:id/reserve', async function(req, resp){
 
       //excludes admin Users
       const users = await  usersModel.find({dlsuID: { $regex: /^(?!.*101).*$/ }});
+      const labs = await labModel.find({});
 
       // Check if users array is empty
       if (users.length === 0) {
@@ -43,12 +45,30 @@ ltRouter.get('/:id/reserve', async function(req, resp){
         }
       }
 
+      if(labs.length != 0){
+        console.log(JSON.stringify(labs));
+      }else{
+        console.log("cannot find labs data");
+      }
+
+
+
+
+
+
       resp.render('html-pages/LT/LT-make-reserve', {
         layout: 'index-lt-user-2',
         title: 'Tech Reserve ',
         name: req.session.user.username,
-        users: JSON.parse(JSON.stringify(users)) // Pass the list of users to the template
+        users: JSON.parse(JSON.stringify(users)), // Pass the list of users to the template
+        labs: JSON.parse(JSON.stringify(labs)),
+        helpers: {
+          isAvailable: function (string) { return string === 'AVAILABLE'; }
+        }
       });
+
+
+
     } catch (error) {
       console.error("Error retrieving users:", error);
       // Handle errors appropriately (e.g., send an error response to the client)

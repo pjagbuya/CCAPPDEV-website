@@ -48,7 +48,7 @@
     "timeID": 10,
     "timeIN": "11:30",
     "timeOUT": "12:00"
-  }
+  },
   {
     "timeID": 11,
     "timeIN": "12:00",

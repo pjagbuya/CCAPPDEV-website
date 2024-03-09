@@ -63,16 +63,15 @@ seatSchema.pre('save', async function (next) {
   try {
     const labName = this.labName;
 
-    // Count the total number of seats for the specific lab
+
     const totalSeats = await this.constructor.countDocuments({ labName });
 
-    // Update labTotalSlots
+
     await LabModel.findOneAndUpdate({ labName }, { $set: { labTotalSlots: totalSeats } });
 
-    // Count the number of seats with studentUser as NULL
+
     const availSeats = await this.constructor.countDocuments({ labName, studentUser: null });
 
-    // Update labAvailSlots
     await LabModel.findOneAndUpdate({ labName }, { $set: { labAvailSlots: availSeats } });
 
     next();
@@ -109,4 +108,5 @@ module.exports.ThursdayModel = ThursdayModel;
 module.exports.FridayModel = FridayModel;
 module.exports.SaturdayModel = SaturdayModel;
 module.exports.SundayModel = SundayModel;
+module.exports.SeatModel = mongoose.model('Seat', seatSchema);
 module.exports.LabModel = LabModel;

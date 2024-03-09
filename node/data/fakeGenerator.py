@@ -1,5 +1,5 @@
 import json
-LABROOMS = ["GK301", "GK402", "Gk206", "GK307", "GK208"]
+LABROOMS = ["GK301", "GK402", "GK206", "GK307", "GK208"]
 WEEKDAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
 
@@ -20,13 +20,13 @@ if __name__ == "__main__":
     for day in WEEKDAYS:
         for name in LABROOMS:
             for i in range(1, 41):
-                for t in range(1,20):
-                    formatted_number = str(t).zfill(3)
+                for t in range(1, 21):
+
 
                     seat_entry = {
                         "labName": name,
                         "weekDay": day,
-                        "seatNumber": "" + formatted_number,
+                        "seatNumber": f"{i}",
                         "seatTimeID": t,
                         "studentUser": student_user,
                         "isAnon": is_anon

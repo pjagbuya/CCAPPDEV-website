@@ -10,7 +10,7 @@
       </div>
 
       <div class="room-selection-section">
-        <h2>Room: <span>GK202</span> </h2>
+        <h2>Room: <span id="roomName" name="roomNameLabel">N/A</span> </h2>
         <button class="custom-btn-1" type="button" name="button" onclick="openModal()">Select Room</button>
       </div>
 
@@ -31,18 +31,6 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="table-cell">12389997</td>
-                <td class="table-cell">Do</td>
-                <td class="table-cell">John</td>
-                <td class="table-cell">Manchester</td>
-                <td class="table-cell">
-                  <a href="LT-user-reserve-student-details.html">
-                    <button class="reserve-student-button" type="button" name="button">Reserve Student</button>
-                  </a>
-
-                </td>
-              </tr>
               {{#each users}}
               <tr>
                 <td class="table-cell">{{dlsuID}}</td>
@@ -57,50 +45,7 @@
                 </td>
               </tr>
               {{/each}}
-              <!-- <tr>
-                <td class="table-cell">12387697</td>
-                <td class="table-cell">Doe</td>
-                <td class="table-cell">Joanna</td>
-                <td class="table-cell">Cumberbatch</td>
-                <td class="table-cell">
-                  <a href="LT-user-reserve-student-details.html">
-                    <button class="reserve-student-button" type="button" name="button">Reserve Student</button>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td class="table-cell">12386497</td>
-                <td class="table-cell">Does</td>
-                <td class="table-cell">Jerry</td>
-                <td class="table-cell">Tom</td>
-                <td class="table-cell">
-                  <a href="LT-user-reserve-student-details.html">
-                    <button class="reserve-student-button" type="button" name="button">Reserve Student</button>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td class="table-cell">12389907</td>
-                <td class="table-cell">Doesn't</td>
-                <td class="table-cell">Josh</td>
-                <td class="table-cell">Gibbson</td>
-                <td class="table-cell">
-                  <a href="LT-user-reserve-student-details.html">
-                    <button class="reserve-student-button" type="button" name="button">Reserve Student</button>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td class="table-cell">12382397</td>
-                <td class="table-cell">Doesn'tn't</td>
-                <td class="table-cell">Johnathan</td>
-                <td class="table-cell">Man</td>
-                <td class="table-cell">
-                  <a href="LT-user-reserve-student-details.html">
-                    <button class="reserve-student-button" type="button" name="button">Reserve Student</button>
-                  </a>
-                 </td>
-              </tr> -->
+
             </tbody>
 
           </table>
@@ -143,7 +88,7 @@
 
             <h3 class="label-custom-1">Room Name: </h3>
             <div class="d-flex align-items-center mx-3">
-              <input type="text" name="" value="">
+              <input type="text" name="roomNameInput" value="">
             </div>
 
           </div>
@@ -210,7 +155,7 @@
               </p>
 
               <div class="d-flex lab-choice-btn custom-default-font2">
-                <div class="btn btn-success">
+                <div class="btn btn-success selectBtn-LT-Reserve" data-labname="{{labName}}">
                   Select
                 </div>
               </div>

@@ -41,7 +41,6 @@ const seatSchema = new mongoose.Schema({
     required: true,
     enum: WEEKDAYS,
   },
-
   seatNumber: {
     type: String,
     required: true,
@@ -68,14 +67,11 @@ seatSchema.pre('save', async function (next) {
 
 
     const totalSeats = await this.constructor.countDocuments({ labName });
-
-
-    await LabModel.findOneAndUpdate({ labName }, { $set: { labTotalSlots: totalSeats } });
-
-
     const availSeats = await this.constructor.countDocuments({ labName, studentUser: null });
-
-    await LabModel.findOneAndUpdate({ labName }, { $set: { labAvailSlots: availSeats } });
+    console.log('Updating LabModel for lab:', labName);
+    console.log('Total Seats:', totalSeats);
+    console.log('Available Seats:', availSeats);
+    await LabModel.findOneAndUpdate({ labName }, { $set: { labTotalSlots: totalSeats, labAvailSlots: availSeats } });
 
     next();
   } catch (error) {
@@ -84,6 +80,26 @@ seatSchema.pre('save', async function (next) {
 });
 
 
+async function updateLabInformation() {
+  try {
+    const labs = await LabModel.find({});
+    for (const lab of labs) {
+      const labName = lab.labName;
 
-module.exports.SeatModel = mongoose.model('Seat', seatSchema);
+      const totalSeats = await SeatModel.countDocuments({ labName });
+      const availSeats = await SeatModel.countDocuments({ labName, studentUser: null });
+
+      await LabModel.findOneAndUpdate({ labName }, { $set: { labTotalSlots: totalSeats, labAvailSlots: availSeats } });
+    }
+
+    console.log('Lab information updated successfully!');
+  } catch (error) {
+    console.error('Error updating lab information:', error);
+  }
+}
+const SeatModel = mongoose.model('Seat', seatSchema);
+
+
+module.exports.SeatModel = SeatModel;
 module.exports.LabModel = LabModel;
+module.exports.updateLabInformation = updateLabInformation;

@@ -32,8 +32,26 @@ document.addEventListener("DOMContentLoaded", function () {
   var overlay = document.getElementById("modalOverlay");
   overlay.addEventListener("click", function (e) {
     e.preventDefault();
+
     document.getElementById('selectRoomModal').style.display = 'none';
     document.getElementById('modalOverlay').style.display = 'none';
+  });
+
+  const reserveButtons = document.querySelectorAll('.selectBtn-LT-Reserve');
+
+  reserveButtons.forEach(button => {
+    button.addEventListener('click', function() {
+
+      const labName = this.getAttribute('data-labname');
+
+
+      const roomNameElement = document.getElementById('roomName');
+
+
+      roomNameElement.textContent = labName;
+      document.getElementById('selectRoomModal').style.display = 'none';
+      document.getElementById('modalOverlay').style.display = 'none';
+    });
   });
 
 

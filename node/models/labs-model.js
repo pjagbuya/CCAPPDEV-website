@@ -10,8 +10,15 @@ const labSchema = new mongoose.Schema({
       unique: true,
       required: true,
     },
-  labTotalSlots: Number,
-  labAvailSlots: Number,
+  labTotalSlots: {
+                  type: Number,
+                  default: 0,
+
+                  },
+  labAvailSlots: {
+                    type: Number,
+                    default: 0,
+                },
   labStatus: {
     type: String,
     enum: ['AVAILABLE', 'UNAVAILABLE', 'FULL'],
@@ -49,6 +56,29 @@ const seatSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+});
+
+
+seatSchema.pre('save', async function (next) {
+  try {
+    const labName = this.labName;
+
+    // Count the total number of seats for the specific lab
+    const totalSeats = await this.constructor.countDocuments({ labName });
+
+    // Update labTotalSlots
+    await LabModel.findOneAndUpdate({ labName }, { $set: { labTotalSlots: totalSeats } });
+
+    // Count the number of seats with studentUser as NULL
+    const availSeats = await this.constructor.countDocuments({ labName, studentUser: null });
+
+    // Update labAvailSlots
+    await LabModel.findOneAndUpdate({ labName }, { $set: { labAvailSlots: availSeats } });
+
+    next();
+  } catch (error) {
+    next(error);
+  }
 });
 
 const daySchema = new mongoose.Schema({

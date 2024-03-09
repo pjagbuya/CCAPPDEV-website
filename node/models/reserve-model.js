@@ -20,12 +20,8 @@ const reservationSchema = new mongoose.Schema({
     required: true,
     ref: 'User',
   },
-  reservationDate: {
-    type: Date,
-    required: true,
-  },
 
-  ReservationSeats: [{
+  reservationSeats: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Seat',
   }],

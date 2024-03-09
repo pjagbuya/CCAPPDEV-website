@@ -1,5 +1,6 @@
 import json
 LABROOMS = ["GK301", "GK402", "Gk206", "GK307", "GK208"]
+WEEKDAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
 
 def save_to_json(data, output_file):
@@ -16,19 +17,21 @@ if __name__ == "__main__":
 
     seat_list = []
 
+    for day in WEEKDAYS:
+        for name in LABROOMS:
+            for i in range(1, 41):
+                for t in range(1,20):
+                    formatted_number = str(t).zfill(3)
 
-    for name in LABROOMS:
-        for i in range(1, 41):
-            for t in range(1,20):
-                formatted_number = str(t).zfill(3)
-
-                seat_entry = {
-                    "labName": name,
-                    "seatNumber": "" + formatted_number,
-                    "seatTimeID": t,
-                    "isAnon": is_anon
-                }
-                seat_list.append(seat_entry)
+                    seat_entry = {
+                        "labName": name,
+                        "weekDay": day,
+                        "seatNumber": "" + formatted_number,
+                        "seatTimeID": t,
+                        "studentUser": student_user,
+                        "isAnon": is_anon
+                    }
+                    seat_list.append(seat_entry)
 
 
 
@@ -36,4 +39,4 @@ if __name__ == "__main__":
     output_filename = "seatData.json"
     save_to_json(seat_list, output_filename)
 
-    print(f"Generated {len(LABROOMS)*40*20} entries. Check {output_filename} for the generated data.")
+    print(f"Generated {len(LABROOMS)*40*20*7} entries. Check {output_filename} for the generated data.")

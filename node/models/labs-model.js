@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 mongoose.connect('mongodb://localhost:27017/AnimoDB');
 
-
+const WEEKDAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
 const labSchema = new mongoose.Schema({
   labName: {
@@ -36,6 +36,11 @@ const seatSchema = new mongoose.Schema({
     maxLength: 45,
     ref: 'Lab',
   },
+  weekDay: {
+    type: String,
+    required: true,
+    enum: WEEKDAYS,
+  },
 
   seatNumber: {
     type: String,
@@ -46,7 +51,10 @@ const seatSchema = new mongoose.Schema({
     required: true,
     ref: 'Time'
   },
-
+  studentUser: {
+    type: Number,
+    ref: 'User',
+  },
   isAnon: {
     type: Boolean,
     default: false,
@@ -75,33 +83,7 @@ seatSchema.pre('save', async function (next) {
   }
 });
 
-const daySchema = new mongoose.Schema({
-  dayOfWeek: {
-    type: String,
-    required: true,
-    enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-  },
-  seatId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Seat',
-  },
-});
-
-const MondayModel = mongoose.model('Monday', daySchema);
-const TuesdayModel = mongoose.model('Tuesday', daySchema);
-const WednesdayModel = mongoose.model('Wednesday', daySchema);
-const ThursdayModel = mongoose.model('Thursday', daySchema);
-const FridayModel = mongoose.model('Friday', daySchema);
-const SaturdayModel = mongoose.model('Saturday', daySchema);
-const SundayModel = mongoose.model('Sunday', daySchema);
 
 
-module.exports.MondayModel = MondayModel;
-module.exports.TuesdayModel = TuesdayModel;
-module.exports.WednesdayModel = WednesdayModel;
-module.exports.ThursdayModel = ThursdayModel;
-module.exports.FridayModel = FridayModel;
-module.exports.SaturdayModel = SaturdayModel;
-module.exports.SundayModel = SundayModel;
 module.exports.SeatModel = mongoose.model('Seat', seatSchema);
 module.exports.LabModel = LabModel;

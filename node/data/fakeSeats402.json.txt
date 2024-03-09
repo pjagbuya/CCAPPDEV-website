@@ -1,9 +1,82 @@
+[
 
+  {
+    "labName": "GK402",
+    "seatNumber": "001",
+    "seatTimeIN": "07:30",
+    "seatTimeOUT": "08:00",
+    "studentUser": null,
+    "isAnon": false
+  },
+  {
+    "labName": "GK402",
+    "seatNumber": "001",
+    "seatTimeIN": "08:00",
+    "seatTimeOUT": "08:30",
+    "studentUser": null,
+    "isAnon": false
+  },
+  {
+    "labName": "GK402",
+    "seatNumber": "001",
+    "seatTimeIN": "08:30",
+    "seatTimeOUT": "09:00",
+    "studentUser": null,
+    "isAnon": false
+  },
   {
     "labName": "GK402",
     "seatNumber": "001",
     "seatTimeIN": "09:00",
     "seatTimeOUT": "09:30",
+    "studentUser": null,
+    "isAnon": false
+  },
+  {
+    "labName": "GK402",
+    "seatNumber": "001",
+    "seatTimeIN": "09:30",
+    "seatTimeOUT": "10:00",
+    "studentUser": null,
+    "isAnon": false
+  },
+  {
+    "labName": "GK402",
+    "seatNumber": "001",
+    "seatTimeIN": "07:30",
+    "seatTimeOUT": "08:00",
+    "studentUser": null,
+    "isAnon": false
+  },
+  {
+    "labName": "GK402",
+    "seatNumber": "001",
+    "seatTimeIN": "08:00",
+    "seatTimeOUT": "08:30",
+    "studentUser": null,
+    "isAnon": false
+  },
+  {
+    "labName": "GK402",
+    "seatNumber": "001",
+    "seatTimeIN": "08:30",
+    "seatTimeOUT": "09:00",
+    "studentUser": null,
+    "isAnon": false
+  },
+  {
+    "labName": "GK402",
+    "seatNumber": "001",
+    "seatTimeIN": "09:00",
+    "seatTimeOUT": "09:30",
+    "studentUser": null,
+    "isAnon": false
+  },
+  {
+    "labName": "GK402",
+    "seatNumber": "001",
+    "seatTimeIN": "09:30",
+    "seatTimeOUT": "10:00",
     "studentUser": null,
     "isAnon": false
   },
@@ -23,12 +96,110 @@
     "studentUser": null,
     "isAnon": false
   },
+  {
+    "labName": "GK402",
+    "seatNumber": "003",
+    "seatTimeIN": "10:30",
+    "seatTimeOUT": "11:00",
+    "studentUser": null,
+    "isAnon": false
+  },
+  {
+    "labName": "GK402",
+    "seatNumber": "003",
+    "seatTimeIN": "11:00",
+    "seatTimeOUT": "11:30",
+    "studentUser": null,
+    "isAnon": false
+  },
+  {
+    "labName": "GK402",
+    "seatNumber": "003",
+    "seatTimeIN": "11:30",
+    "seatTimeOUT": "12:00",
+    "studentUser": null,
+    "isAnon": false
+  },
+  {
+    "labName": "GK402",
+    "seatNumber": "004",
+    "seatTimeIN": "12:00",
+    "seatTimeOUT": "12:30",
+    "studentUser": null,
+    "isAnon": false
+  },
+  {
+    "labName": "GK402",
+    "seatNumber": "004",
+    "seatTimeIN": "12:30",
+    "seatTimeOUT": "13:00",
+    "studentUser": null,
+    "isAnon": false
+  },
+  {
+    "labName": "GK402",
+    "seatNumber": "004",
+    "seatTimeIN": "13:00",
+    "seatTimeOUT": "13:30",
+    "studentUser": null,
+    "isAnon": false
+  },
+  {
+    "labName": "GK402",
+    "seatNumber": "004",
+    "seatTimeIN": "13:30",
+    "seatTimeOUT": "14:00",
+    "studentUser": null,
+    "isAnon": false
+  },
+  {
+    "labName": "GK402",
+    "seatNumber": "004",
+    "seatTimeIN": "14:00",
+    "seatTimeOUT": "14:30",
+    "studentUser": null,
+    "isAnon": false
+  },
 
   {
     "labName": "GK402",
-    "seatNumber": "030",
+    "seatNumber": "005",
     "seatTimeIN": "16:30",
     "seatTimeOUT": "17:00",
     "studentUser": null,
     "isAnon": false
+  },
+  {
+    "labName": "GK402",
+    "seatNumber": "005",
+    "seatTimeIN": "17:00",
+    "seatTimeOUT": "17:30",
+    "studentUser": null,
+    "isAnon": false
+  },
+  {
+    "labName": "GK402",
+    "seatNumber": "005",
+    "seatTimeIN": "17:30",
+    "seatTimeOUT": "18:00",
+    "studentUser": null,
+    "isAnon": false
+  },
+  {
+    "labName": "GK402",
+    "seatNumber": "005",
+    "seatTimeIN": "18:00",
+    "seatTimeOUT": "18:30",
+    "studentUser": null,
+    "isAnon": false
+  },
+  {
+    "labName": "GK402",
+    "seatNumber": "005",
+    "seatTimeIN": "18:30",
+    "seatTimeOUT": "19:00",
+    "studentUser": null,
+    "isAnon": false
   }
+
+]

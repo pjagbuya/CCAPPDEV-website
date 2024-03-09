@@ -40,13 +40,10 @@ const seatSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  seatTimeIN: {
-    type: String,
+  seatTimeID: {
+    type: Number,
     required: true,
-  },
-  seatTimeOUT: {
-    type: String,
-    required: true,
+    ref: 'Time'
   },
   studentUser: {
     type: Number,

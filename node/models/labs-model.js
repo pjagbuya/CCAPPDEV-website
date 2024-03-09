@@ -36,6 +36,7 @@ const seatSchema = new mongoose.Schema({
     maxLength: 45,
     ref: 'Lab',
   },
+
   seatNumber: {
     type: String,
     required: true,
@@ -45,10 +46,7 @@ const seatSchema = new mongoose.Schema({
     required: true,
     ref: 'Time'
   },
-  studentUser: {
-    type: Number,
-    ref: 'User',
-  },
+
   isAnon: {
     type: Boolean,
     default: false,

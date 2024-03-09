@@ -26,7 +26,6 @@ if __name__ == "__main__":
                     "labName": name,
                     "seatNumber": "" + formatted_number,
                     "seatTimeID": t,
-                    "studentUser": student_user,
                     "isAnon": is_anon
                 }
                 seat_list.append(seat_entry)

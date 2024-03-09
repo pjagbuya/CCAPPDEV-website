@@ -77,6 +77,6 @@ ltRouter.get('/:id/reserve', async function(req, resp){
 
 
 const reserveRouter = require('./LT-reserve')
-ltRouter.use(":id/reserve", reserveRouter);
+ltRouter.use(":id/make-reserve", reserveRouter);
 
 module.exports = ltRouter

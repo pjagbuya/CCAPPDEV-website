@@ -1,0 +1,175 @@
+
+  <section class="lab-slots-browse-section-2">
+    <div class="starting-section-top-text">
+      <h1>Room: <span><strong>GK302</strong></span></h1>
+      <h2>Select a Date: </h2>
+    </div>
+
+    <div id="weekdaysChoices" class="reservation-next-days">
+
+      <div class="day-container" id="daysContainer">
+
+      </div>
+
+    </div>
+
+
+    <div id="selectSeatsSection" class="selected-seat-section flex-column">
+      <button class="selected-seat-button" type="button" name="button" onclick="openModal()">Select a Seat</button>
+      <p class="selected-seat-text-section">Selected seat: <strong> <span id="seatNum" class="selected-seat-text">N/A</span> </strong></p>
+      <p class="is-anonymous-section">set Anonymous? &nbsp;<input type="checkbox" name="isAnon" value=""> </p>
+    </div>
+
+    <div id="timeTableSection" class="time-table-section">
+      <!-- Morning Time Slot Table -->
+      <table id="morningTable" class="time-table">
+        <thead>
+          <tr>
+            <th class="time-slot-column">Time Slot</th>
+            <th class="reserve-check-column">Reserve</th>
+            <th class="seat-booked-column">Seat No.</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+
+      <!-- Afternoon Time Slot Table -->
+      <table id="afternoonTable" class="time-table">
+        <thead>
+          <tr>
+            <th class="time-slot-column">Time Slot</th>
+            <th class="reserve-check-column">Reserve</th>
+            <th class="seat-booked-column">Seat No.</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+
+    </div>
+
+    <footer>
+
+      <button class="confirm-reservation-btn custom-button-2" data-toggle="modal" data-target="#confirmationModal">Confirm Reservations</button>
+
+
+
+      <a href="LT-user-reserve-student.html" target="_self">
+        <button class="cancel-btn arrow-button">Cancel</button>
+      </a>
+
+    </footer>
+  </section>
+
+  <div id="modalSeats" class="seat-modal">
+    <button type="button" class="btn btn-danger close-btns" onclick="closeModal()">X</button>
+
+    <section id="room-container" class="room-container">
+      <div class="d-flex align-items-center">
+        <div class="whiteboard-section">
+          <p><strong>Whiteboard/ PPT</strong></p>
+        </div>
+
+
+        <div class="container">
+          <!-- Top Half -->
+          <div class="row">
+            <div class="box no-margin-top">
+              <div class="seat-box no-margin-top">
+                1
+              </div>
+              <div class="seat-box">
+                2
+              </div>
+
+
+
+            </div>
+            <div class="box">
+              <div class="seat-box no-margin-top">
+                9
+              </div>
+              <div class="seat-box">
+                10
+              </div>
+
+
+            </div>
+            <div class="box">
+              <div class="seat-box no-margin-top">
+                17
+              </div>
+              <div class="seat-box">
+                18
+              </div>
+
+
+            </div>
+            <div class="box">
+              <div class="seat-box no-margin-top">
+                25
+              </div>
+              <div class="seat-box">
+                26
+              </div>
+
+
+            </div>
+            <div class="box">
+              <div class="seat-box no-margin-top">
+                33
+              </div>
+              <div class="seat-box">
+                34
+              </div>
+
+
+            </div>
+          </div>
+          <!-- Bottom Half -->
+          <div class="row">
+            <div class="box">
+              <div class="seat-box no-margin-top">
+                5
+              </div>
+
+
+            </div>
+            <div class="box">
+              <div class="seat-box no-margin-top">
+                13
+              </div>
+
+
+            </div>
+            <div class="box">
+              <div class="seat-box no-margin-top">
+                21
+              </div>
+
+
+            </div>
+            <div class="box">
+              <div class="seat-box no-margin-top">
+                29
+              </div>
+
+
+            </div>
+            <div class="box">
+              <div class="seat-box no-margin-top">
+                37
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+    </section>
+  </div>

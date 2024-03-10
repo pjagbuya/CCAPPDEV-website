@@ -38,17 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelector('.selected-seat-text').innerText = sourceText;
   }
 
-  function copySelectedToCheck(checkboxElement, tableCell) {
 
-    var sourceText = document.querySelector('.selected-seat-text').innerText
-    if (checkboxElement.checked && sourceText != 'N/A') {
-      document.querySelector(tableCell).innerText = sourceText;
-    } else {
-      document.querySelector('.${tableCell}').innerText = 'X';
-    }
-
-
-  }
 
 
 
@@ -62,86 +52,6 @@ document.addEventListener("DOMContentLoaded", function() {
     var hiddenSidebar = document.querySelector(".hidden-sidebar");
     hiddenSidebar.classList.toggle("show");
   });
-  // Get all seat-box elements
-  var seatBoxes = document.querySelectorAll('.seat-box');
-
-  // Add function to send seat number selected
-  seatBoxes.forEach(function(seatBox) {
-    seatBox.addEventListener('click', function() {
-      copySelected(seatBox);
-      closeModalSeats();
-      showTimeTable();
-    });
-  });
-
-  function generateTimeSlotTable(tableId, timeName, startTime, endTime) {
-    const table = document.getElementById(tableId).querySelector('tbody');
-    var data_count = 0;
-    var row;
-
-    for (let minutes = startTime * 60; minutes < endTime * 60; minutes += 30) {
-      const hourStart = Math.floor(minutes / 60);
-      const minuteStart = minutes % 60;
-      const hourEnd = Math.floor((minutes + 30) / 60);
-      const minuteEnd = (minutes + 30) % 60;
-
-
-      const timeSlot = `${hourStart}:${minuteStart === 0 ? '00' : minuteStart} - ${hourEnd}:${minuteEnd === 0 ? '00' : minuteEnd}`;
-
-      // Hardcoded time slot block
-      if (data_count == 6 && timeName == "morning") {
-        row = `<tr>
-                          <td class="time-slot-data ${timeName}-time-slot-${data_count}">${timeSlot}</td>
-                          <td class="checkbox-data ${timeName}-checkbox-slot-${data_count}" >X</td>
-                          <td class="seat-num-data ${timeName}-seat-slot-${data_count}">X</td>
-
-                       </tr>`;
-      }
-
-      else if (data_count == 8 && timeName == "morning") {
-        row = `        <tr>
-                          <td class="time-slot-data ${timeName}-time-slot-${data_count}">${timeSlot}</td>
-                          <td class="checkbox-data ${timeName}-checkbox-slot-${data_count}" >
-                            <a class="taken-slot-text " data-toggle="tooltip" data-placement="top" title="Taken by ID 12206660" href="../profile/profile-other-user.html">
-                              <u>TAKEN</u>
-                            </a>
-                          </td>
-                          <td class="seat-num-data ${timeName}-seat-slot-${data_count}">24</td>
-
-                       </tr>`;
-      }
-
-      else if (data_count == 4 && timeName == "afternoon") {
-        row = `        <tr>
-                          <td class="time-slot-data ${timeName}-time-slot-${data_count}">${timeSlot}</td>
-                          <td class="checkbox-data ${timeName}-checkbox-slot-${data_count}" >
-                            <div class="taken-slot-text" data-toggle="tooltip" data-placement="top" title="Taken by ID ???">
-                              <u>TAKEN</u>
-                            </div>
-                          </td>
-                          <td class="seat-num-data ${timeName}-seat-slot-${data_count}">25</td>
-
-                       </tr>`;
-      }
-      else {
-        row = `<tr>
-                          <td class="time-slot-data ${timeName}-time-slot-${data_count}">${timeSlot}</td>
-                          <td class="checkbox-data ${timeName}-checkbox-slot-${data_count}" ><input onclick='copySelectedToCheck(this, ".${timeName}-seat-slot-${data_count}")' type="checkbox"></td>
-                          <td class="seat-num-data ${timeName}-seat-slot-${data_count}">X</td>
-                       </tr>`;
-      }
-
-      data_count += 1;
-
-
-      table.innerHTML += row;
-    }
-  }
-
-  generateTimeSlotTable("morningTable", "morning", 7, 12);
-
-
-  generateTimeSlotTable("afternoonTable", "afternoon", 12, 17);
 
 
   // Function to create dates
@@ -280,6 +190,7 @@ let selectedDayDiv = null;
 
   function handleDayDivClick(dayDataToSend) {
     $('#modalSeats').empty();
+    $('#timeTableSection').empty();
     postData(dayDataToSend)
       .then(data => {
         console.log('Server response:', data);
@@ -342,13 +253,67 @@ let selectedDayDiv = null;
 
           var weekDay = dateText.split(',')[0].trim();
           seatBox.addEventListener('click', function() {
+
             copySelected(seatBox);
+
             closeModalSeats();
             showTimeTable();
             postSeatData(weekDay, seatNumber)
                 .then(data => {
+
                     console.log('Server response in seat Times and seats:', data.dataM);
                     console.log('Server response in seat Times and seats:', data.dataN);
+                    let profileTemplateString = document.getElementById("time-template").innerHTML;
+                    let renderProfile = Handlebars.compile(profileTemplateString);
+
+                    const templateSource = document.getElementById('time-template').innerHTML;
+                    console.log("Compiling: " + templateSource);
+                    const template = Handlebars.compile(templateSource);
+                    Handlebars.registerHelper('isNull', function(user, options) {
+                      return user === null ? options.fn(this) : options.inverse(this);;
+                    });
+                    let renderedProfile =  renderProfile({
+                    dataM:data.dataM,
+                    dataN:data.dataN ,
+                    helpers: {
+                      eq: function (a, b, options) {
+                         return a === b ? options.fn(this) : options.inverse(this);
+                       },
+                       isNull: function(user, options) {
+                                        return user === null ? options.fn(this) : options.inverse(this);
+                                      }
+                    }});
+
+                    $('#timeTableSection').append(renderedProfile);
+
+                    function copySelectedToCheck(checkboxElement, tableCell) {
+
+
+                      var sourceText = $('.selected-seat-text').text();
+                      console.log("Source text is visibly: " + sourceText);
+
+
+                      if (sourceText === 'N/A') {
+                        sourceText = 'X';
+                      }
+
+                      if (checkboxElement.checked && sourceText != 'N/A') {
+                        document.getElementById(tableCell).innerText = sourceText;
+                      } else {
+                        document.getElementById(tableCell).innerText = 'X';
+                      }
+
+
+                    }
+                    $('.time-chkBox').on('click', function() {
+
+                      var seatTimeID = $(this).data('id-toggler');
+
+
+                      copySelectedToCheck(this, seatTimeID);
+                    });
+
+
                   });
           });
         });

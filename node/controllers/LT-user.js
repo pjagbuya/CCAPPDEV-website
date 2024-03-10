@@ -20,7 +20,7 @@ ltRouter.get('/:id', function(req, resp){
         dlsuID: req.session.user.dlsuID,
         email: req.session.user.email,
         redirectReserve: "/lt-user/" + req.session.user.dlsuID + "/reserve",
-        redirectEdit: "/lt-user/" + req.session.user.dlsuID + "/reserve"
+        redirectEdit: "/lt-user/" + req.session.user.dlsuID + "/view"
 
     });
 });
@@ -30,5 +30,6 @@ ltRouter.get('/:id', function(req, resp){
 
 const reserveRouter = require('./LT-reserve');
 ltRouter.use("/:id/", reserveRouter);
-
+const viewEditRouter = require('./LT-view-edit');
+ltRouter.use("/:id/", viewEditRouter);
 module.exports = ltRouter;

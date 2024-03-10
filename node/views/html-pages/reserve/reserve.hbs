@@ -1,7 +1,8 @@
 
   <section class="lab-slots-browse-section-2">
     <div class="starting-section-top-text">
-      <h1>Room: <span><strong>GK302</strong></span></h1>
+      <h1>Student User ID: <span id="userID"><strong>{{userID}}</strong></span></h1>
+      <h1>Room: <span id="labName"><strong>{{labName}}</strong></span></h1>
       <h2>Select a Date: </h2>
     </div>
 
@@ -15,7 +16,7 @@
 
 
     <div id="selectSeatsSection" class="selected-seat-section flex-column">
-      <button class="selected-seat-button" type="button" name="button" onclick="openModal()">Select a Seat</button>
+      <button id="selectSeatButton" class="selected-seat-button" type="button" name="button" onclick="openModalSeats()">Select a Seat</button>
       <p class="selected-seat-text-section">Selected seat: <strong> <span id="seatNum" class="selected-seat-text">N/A</span> </strong></p>
       <p class="is-anonymous-section">set Anonymous? &nbsp;<input type="checkbox" name="isAnon" value=""> </p>
     </div>
@@ -47,10 +48,10 @@
 
         </tbody>
       </table>
+      <br>
 
     </div>
-
-    <footer>
+    <footer >
 
       <button class="confirm-reservation-btn custom-button-2" data-toggle="modal" data-target="#confirmationModal">Confirm Reservations</button>
 
@@ -61,10 +62,11 @@
       </a>
 
     </footer>
+
   </section>
 
   <div id="modalSeats" class="seat-modal">
-    <button type="button" class="btn btn-danger close-btns" onclick="closeModal()">X</button>
+    <button type="button" class="btn btn-danger close-btns">X</button>
 
     <section id="room-container" class="room-container">
       <div class="d-flex align-items-center">
@@ -83,7 +85,6 @@
               <div class="seat-box">
                 2
               </div>
-
 
 
             </div>
@@ -105,7 +106,6 @@
                 18
               </div>
 
-
             </div>
             <div class="box">
               <div class="seat-box no-margin-top">
@@ -115,16 +115,11 @@
                 26
               </div>
 
-
             </div>
             <div class="box">
               <div class="seat-box no-margin-top">
                 33
               </div>
-              <div class="seat-box">
-                34
-              </div>
-
 
             </div>
           </div>
@@ -134,12 +129,18 @@
               <div class="seat-box no-margin-top">
                 5
               </div>
+              <div class="seat-box ">
+                6
+              </div>
 
 
             </div>
             <div class="box">
               <div class="seat-box no-margin-top">
                 13
+              </div>
+              <div class="seat-box">
+                14
               </div>
 
 
@@ -148,6 +149,9 @@
               <div class="seat-box no-margin-top">
                 21
               </div>
+              <div class="seat-box">
+                22
+              </div>
 
 
             </div>
@@ -155,12 +159,18 @@
               <div class="seat-box no-margin-top">
                 29
               </div>
+              <div class="seat-box">
+                30
+              </div>
 
 
             </div>
             <div class="box">
               <div class="seat-box no-margin-top">
                 37
+              </div>
+              <div class="seat-box">
+                38
               </div>
 
 
@@ -173,3 +183,58 @@
 
     </section>
   </div>
+
+
+
+  <div class="confirmed-reservations-message">
+
+  </div>
+
+  <div id="overlay" class="overlay" onclick="closeModalSeats()"></div>
+
+
+    <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirm Reservation</h5>
+                    <button type="button" class="close btn-danger" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+
+                <div class="modal-body">
+                    Are you sure you want to confirm the following informaiton:<br>
+                     <strong>Room: GK302</strong>
+                    <table>
+                      <thead>
+                        <th class="tc">Time slot</th>
+                        <th class="tc">Seat number</th>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="tc">
+                            7:30-8:00 A.M.
+                          </td>
+                          <td class="tc">
+                            22
+                          </td>
+                        </tr>
+
+                      </tbody>
+
+                    </table>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                    <a href="LT-user-reserve-student.html">
+                      <button type="button" class="btn btn-primary" onclick="confirmReservation()">Confirm</button>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>

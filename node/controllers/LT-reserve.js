@@ -4,7 +4,7 @@ const reserveRouter = express.Router();
 const mongoose = require("mongoose");
 const usersModel = require("../models/register-model");
 const labModel = require("../models/labs-model").LabModel;
-const SeatModel = require("../models/labs-model").SeatModel;
+const seatModel = require("../models/labs-model").SeatModel;
 const updateLabInformation = require("../models/labs-model").updateLabInformation;
 
 
@@ -38,24 +38,11 @@ const updateLabInformation = require("../models/labs-model").updateLabInformatio
 
 
 
-       const newSeat = new SeatModel({
-         labName: 'GK301', // Add other necessary properties
-         weekDay: 'Monday',
-         seatNumber: '041',
-         seatTimeID: 1,
-       });
-         await newSeat.save();
-         console.log('Seat saved successfully!');
-
-         await SeatModel.deleteOne({ _id: newSeat._id });
-         console.log('Seat deleted successfully!');
-
-
-
        resp.render('html-pages/LT/LT-make-reserve', {
          layout: 'index-lt-user-2',
          title: 'Tech Reserve ',
          name: req.session.user.username,
+         techID: req.session.user.dlsuID,
          users: JSON.parse(JSON.stringify(users)), // Pass the list of users to the template
          labs: JSON.parse(JSON.stringify(labs)),
          helpers: {
@@ -71,4 +58,79 @@ const updateLabInformation = require("../models/labs-model").updateLabInformatio
      }
  });
 
+
+ reserveRouter.post('/reserve', async function(req, resp){
+   console.log("Received from ajax", req.body);
+   const { roomName, userID  } = req.body;
+   console.log("Post requested " + userID + " and " + roomName);
+
+
+   if (roomName === 'N/A') {
+     resp.status(400).json({ error: 'Room Name is missing' });
+   } else {
+     console.log("Sent url: " +`/lt-user/${req.session.user.dlsuID}/reserve/${userID}/${roomName}`)
+     resp.send({ redirect: `/lt-user/${req.session.user.dlsuID}/reserve/${userID}/${roomName}` });
+   }
+ });
+
+
+ reserveRouter.get('/reserve/:userID/:labRoom', async function(req, resp){
+
+   try {
+
+
+       try {
+
+         //excludes admin Users
+         await updateLabInformation();
+
+         const { dlsuID, labRoom } = req.params;
+
+         const user = await usersModel.findOne({ dlsuID: req.params.userID });
+         console.log('User Data:', user);
+
+         const labs = await labModel.findOne({ labName: labRoom });
+         console.log('Lab Data:', labs);
+
+
+         const seats = await seatModel.find({labName: labRoom})
+
+         // Continue with your logic...
+
+         resp.render('html-pages/reserve/reserve', {
+           layout: 'index-lt-user-reserve-user',
+           title: 'Tech Reserve User ' + user.dlsuID,
+           name: req.session.user.username,
+           userID: req.params.userID,
+           labName: labRoom,
+
+           helpers: {
+             isAvailable: function (string) { return string === 'AVAILABLE'; }
+           }
+         });
+
+       } catch (error) {
+         console.error('Error loading data:', error);
+         // Handle the error (e.g., send an error response to the client)
+       }
+
+
+       // resp.render('html-pages/LT/LT-make-reserve', {
+       //   layout: 'index-lt-user-2',
+       //   title: 'Tech Reserve ',
+       //   name: req.session.user.username,
+       //   users: JSON.parse(JSON.stringify(users)), // Pass the list of users to the template
+       //   labs: JSON.parse(JSON.stringify(labs)),
+       //   helpers: {
+       //     isAvailable: function (string) { return string === 'AVAILABLE'; }
+       //   }
+       // });
+
+
+
+     } catch (error) {
+       console.error("Error retrieving users:", error);
+
+     }
+ });
 module.exports = reserveRouter;

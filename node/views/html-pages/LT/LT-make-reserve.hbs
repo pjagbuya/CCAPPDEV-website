@@ -11,7 +11,7 @@
 
       <div class="room-selection-section">
         <h2>Room: <span id="roomName" name="roomNameLabel">N/A</span> </h2>
-        <button class="custom-btn-1" type="button" name="button" onclick="openModal()">Select Room</button>
+        <button  class="custom-btn-1" type="button" name="button" >Select Room</button>
       </div>
 
       <div class="student-table-section">
@@ -20,6 +20,7 @@
 
 
         <div class="table-scroll-section">
+          <h1 id="techNameLabel" style="display:none">{{techID}}</h1>
           <table>
             <thead>
               <tr>
@@ -38,11 +39,13 @@
                 <td class="table-cell">{{firstName}}</td>
                 <td class="table-cell">{{middleInitial}}</td>
                 <td class="table-cell">
-                  <a href="LT-user-reserve-student-details.html">
-                    <button class="reserve-student-button" type="button" name="button">Reserve Student</button>
-                  </a>
 
-                </td>
+
+                  <button data-tech-id="{{techID}}" class="reserve-student-button" type="button" name="reserve-btn">Reserve Student</button>
+
+
+
+
               </tr>
               {{/each}}
 
@@ -95,7 +98,7 @@
           <div class="d-flex flex-column filter-part-1">
             <h2 class="label-custom-1">Date: </h2>
 
-            <select class="form-control-input-date" id="inputRoom">
+            <select class="form-control-input-date" id="inputDate">
 
             </select>
 

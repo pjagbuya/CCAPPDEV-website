@@ -10,24 +10,23 @@ const reservationSchema = new mongoose.Schema({
     unique: true,
     index: true,
   },
-  labID: {
-    type: Number,
-    required: true,
-    ref: 'Lab',
-  },
+
   userID: {
     type: Number,
     required: true,
     ref: 'User',
   },
-
   reservationSeats: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Seat',
   }],
-  ReservationStatus: {
+  reservationStatus: {
     type: String,
-    enum: ['Finished', 'Ongoing', 'Upcoming'],
+    enum: ['Ongoing', 'Upcoming'],
     default: 'Upcoming',
   },
 });
+
+
+
+module.exports = mongoose.model('reservation', reservationSchema);

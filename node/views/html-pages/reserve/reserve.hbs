@@ -1,4 +1,5 @@
 
+
   <section class="lab-slots-browse-section-2">
     <input type="hidden" id="techIDInput" name="techID" value="{{techID}}">
     <input type="hidden" id="userIDInput" name="userID" value="{{userID}}">
@@ -20,7 +21,7 @@
 
 
     <div id="selectSeatsSection" class="selected-seat-section flex-column">
-      <button id="selectSeatButton" class="selected-seat-button" type="button" name="button" onclick="openModalSeats()">Select a Seat</button>
+      <button id="selectSeatButton" class="selected-seat-button" type="button" name="button" >Select a Seat</button>
       <p class="selected-seat-text-section">Selected seat: <strong> <span id="seatNum" class="selected-seat-text">N/A</span> </strong></p>
       <p class="is-anonymous-section">set Anonymous? &nbsp;<input type="checkbox" name="isAnon" value=""> </p>
     </div>
@@ -70,7 +71,6 @@
   </section>
 
   <div id="modalSeats" class="seat-modal">
-    <button type="button" class="btn btn-danger close-btns" ionclick="closeModalSeats()">X</button>
 
   </div>
 
@@ -80,7 +80,7 @@
 
   </div>
 
-  <div id="overlay" class="overlay" onclick="closeModalSeats()"></div>
+  <div id="overlay" class="overlay" ></div>
 
 
     <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

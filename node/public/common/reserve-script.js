@@ -2,6 +2,23 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 
+
+  function openModalSeats() {
+    document.getElementById('modalSeats').style.display = 'flex';
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('room-container').style.display = 'flex';
+  }
+
+  function closeModalSeats() {
+    document.getElementById('modalSeats').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('room-container').style.display = 'none';
+  }
+
+  $("#toggleSidebar").on("click", function () {
+    $(".hidden-sidebar").toggleClass("show");
+  });
+
   function showSelectSeat() {
 
     document.getElementById('selectSeatsSection').style.display = 'flex';
@@ -128,6 +145,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
   // Function to create dates
+let selectedDayDiv = null;
   function createDates() {
     return new Promise((resolve, reject) => {
       const currentDate = new Date();
@@ -153,24 +171,56 @@ document.addEventListener("DOMContentLoaded", function() {
 
         dayDiv.appendChild(formattedDateElement);
 
-        dayDiv.addEventListener("click", () => {
+        dayDiv.addEventListener("click", function() {
           const dayDataToSend = {
             day: day.toLocaleDateString('en-US', { weekday: 'long' }),
           };
           document.getElementById('selectSeatsSection').style.display = 'flex';
-          document.getElementById('selectSeatButton').addEventListener("click", function(){
-          document.getElementById('modalSeats').style.display = 'flex';
-          document.getElementById('overlay').style.display = 'block';
-          document.getElementById('room-container').style.display = 'flex';
-          });
-          resolve(dayDataToSend);
+          if (selectedDayDiv) {
+            selectedDayDiv.style.backgroundColor = "white";
+          }
+          handleDayDivClick(dayDataToSend);
+
+          this.style.backgroundColor = "#ADBC9F";
+          selectedDayDiv = this;
         });
 
         daysContainer.appendChild(dayDiv);
       }
     });
   }
+  // Function to post data
+  function postSeatData(weekDay, seatNumber) {
+    return new Promise((resolve, reject) => {
+      const techID = document.getElementById('techIDInput').value;
+      const userID = document.getElementById('userIDInput').value;
+      const labName = document.getElementById('labNameInput').value;
+      console.log("Selected Day: " + weekDay);
+      console.log("labName:", labName);
+      console.log("seatNumber:", seatNumber);
 
+      $.ajax({
+        url: `/lt-user/${techID}/reserve/seat`,
+        type: 'POST',
+        data: {
+          weekDay: String(weekDay),
+          labName: String(labName),
+          seatNumber: String(seatNumber)
+        },
+        success: function (result, status) {
+          console.log('Request successfully sent:', status);
+          resolve({
+            dataM: result.dataM,
+            dataN: result.dataN
+          });
+        },
+        error: function (error) {
+          console.error('Error in AJAX request:', error);
+          reject(error);
+        }
+      });
+    });
+  }
   // Function to post data
   function postData(weekDay) {
     return new Promise((resolve, reject) => {
@@ -192,112 +242,118 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   }
+  function organizeSeatsIntoBlocks(seats) {
+    const organizedBlocks = [];
 
-  // Usage
-  createDates()
-    .then(dayDataToSend => postData(dayDataToSend))
-    .then(data => {
-      console.log('Server response:', data);
+    // Iterate over the seats, creating blocks of 4 seats each
+    for (let i = 0; i < seats.length; i += 4) {
+      const groupNumber = Math.floor(i / 4) + 1;
+      const block = seats.slice(i, i + 4);
 
-      // Perform actions with the data
-      const templateData = { data };
-      const templateSource = document.getElementById('my-template').innerHTML;
-      const template = Handlebars.compile(templateSource);
-      const outputContainer = document.getElementById('modalSeats');
-      outputContainer.innerHTML = template(templateData);
+      // If the block is incomplete, pad it with null values
+      while (block.length < 4) {
+        block.push(null);
+      }
+
+      // Attach seatNumber key to each seat in the block
+      const seatsWithSeatNumber = block.map((seat, index) => ({
+        seatNumber: i + index + 1,
+        seat
+      }));
+
+      const groupObject = {
+        group: groupNumber,
+        seats: seatsWithSeatNumber
+      };
+
+      organizedBlocks.push(groupObject);
+    }
+
+    return organizedBlocks;
+  }
+
+  Handlebars.registerHelper('eq', function (a, b, options) {
+    return a === b ? options.fn(this) : options.inverse(this);
+  });
 
 
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-  // function postData(weekDay) {
-  //   const techID = document.getElementById('techIDInput').value;
-  //   const userID = document.getElementById('userIDInput').value;
-  //   const labName = document.getElementById('labNameInput').value;
-  //   console.log("Selected Day: " +weekDay);
-  //
-  //   $.ajax({
-  //     url: `/lt-user/${techID}/reserve/${userID}/${labName}`,
-  //     type: 'POST',
-  //
-  //     data: weekDay,
-  //     success: function (result, status) {
-  //       document.getElementById('selectSeatButton').addEventListener("click", openModalSeats);
-  //       console.log(result);
-  //       //
-  //       const templateData = { data: result.data };
-  //
-  //
-  //       const templateSource = document.getElementById('my-template').innerHTML;
-  //       const template = Handlebars.compile(templateSource);
-  //       const outputContainer = document.getElementById('modalSeats');
-  //       outputContainer.innerHTML = template(templateData);
-  //     },
-  //
-  //   });
-  // }
-  //
-  // //7 Day week generator
-  // function createDates(){
-  //   const currentDate = new Date();
-  //
-  //   const daysContainer = document.getElementById("daysContainer");
-  //   let selectedDayDiv = null;
-  //   for (let i = 0; i < 8; i++) {
-  //     const day = new Date();
-  //
-  //
-  //
-  //
-  //     day.setDate(currentDate.getDate() + i);
-  //
-  //     const options = {
-  //       weekday: 'short',
-  //       month: 'short',
-  //       day: 'numeric'
-  //     };
-  //     const formattedDate = day.toLocaleDateString('en-US', options);
-  //
-  //     const dayDiv = document.createElement("div");
-  //     dayDiv.className = "day";
-  //
-  //
-  //     const formattedDateElement = document.createElement("div");
-  //     formattedDateElement.className = "format-date";
-  //     formattedDateElement.textContent = formattedDate;
-  //
-  //     dayDiv.appendChild(formattedDateElement);
-  //
-  //     dayDiv.addEventListener("click", () => {
-  //       const dayDataToSend = {
-  //
-  //          day: day.toLocaleDateString('en-US', { weekday: 'long' }),
-  //        };
-  //        try {
-  //
-  //         const response =  postData(`${postURL}`, dayDataToSend);
-  //
-  //
-  //         console.log('Server response:', response);
-  //       } catch (error) {
-  //
-  //         console.error('Error:', error);
-  //       }
-  //
-  //       if (selectedDayDiv) {
-  //         selectedDayDiv.style.backgroundColor = "white";
-  //       }
-  //       showSelectSeat();
-  //
-  //
-  //       dayDiv.style.backgroundColor = "#ADBC9F";
-  //
-  //       selectedDayDiv = dayDiv;
-  //     });
-  //
-  //     daysContainer.appendChild(dayDiv);
-  //   }
-  // }
 
+  function handleDayDivClick(dayDataToSend) {
+    $('#modalSeats').empty();
+    postData(dayDataToSend)
+      .then(data => {
+        console.log('Server response:', data);
+
+        const array = data;
+        const templateData = organizeSeatsIntoBlocks(array)
+
+
+
+        console.log(templateData)
+        // Handlebars.registerHelper('eq', function (a, b, options) {
+        //   return a === b ? options.fn(this) : options.inverse(this);
+        // });
+        let profileTemplateString = document.getElementById("my-template").innerHTML;
+        let renderProfile = Handlebars.compile(profileTemplateString);
+
+        const templateSource = document.getElementById('my-template').innerHTML;
+        console.log("Compiling: " + templateSource);
+        const template = Handlebars.compile(templateSource);
+
+        let renderedProfile =  renderProfile({data:templateData,
+        helpers: {
+          eq: function (a, b, options) {
+             return a === b ? options.fn(this) : options.inverse(this);
+           }
+        }});
+        console.log("renderedProfile below: "+ renderedProfile);
+        $('#modalSeats').append(renderedProfile);
+
+          document.getElementById('selectSeatButton').addEventListener("click", function(){
+            document.getElementById('modalSeats').style.display = 'flex';
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('room-container').style.display = 'flex';
+
+          });
+
+        $("#overlay").on("click", function () {
+          closeModalSeats();
+        });
+        $("#seatXBtn").on("click", function () {
+          closeModalSeats();
+        });
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      })
+      .finally(() => {
+        let selectedNum = "";
+
+        document.getElementById('selectSeatButton').addEventListener("click", openModalSeats);
+
+        var seatBoxes = document.querySelectorAll('.seat-box');
+
+
+        seatBoxes.forEach(function(seatBox) {
+          var seatNumber = seatBox.textContent.trim();
+
+          var dateText = selectedDayDiv.textContent.trim();
+
+
+          var weekDay = dateText.split(',')[0].trim();
+          seatBox.addEventListener('click', function() {
+            copySelected(seatBox);
+            closeModalSeats();
+            showTimeTable();
+            postSeatData(weekDay, seatNumber)
+                .then(data => {
+                    console.log('Server response in seat Times and seats:', data.dataM);
+                    console.log('Server response in seat Times and seats:', data.dataN);
+                  });
+          });
+        });
+      });
+  }
+
+  createDates();
 });

@@ -2,10 +2,12 @@ const express = require("express");
 const bcrypt = require('bcrypt');
 const reserveRouter = express.Router();
 const mongoose = require("mongoose");
+const hbs = require("handlebars");
 const usersModel = require("../models/register-model");
 const labModel = require("../models/labs-model").LabModel;
 const seatModel = require("../models/labs-model").SeatModel;
 const segregateSeats = require("../models/labs-model").segregateSeats;
+const getUniqueSeatNumbers = require("../models/labs-model").getUniqueSeatNumbers
 const getSeatTimeRange = require("../models/labs-model").getSeatTimeRange;
 const timeModel = require("../models/time-model");
 const updateLabInformation = require("../models/labs-model").updateLabInformation;
@@ -112,6 +114,7 @@ const updateLabInformation = require("../models/labs-model").updateLabInformatio
 
            helpers: {
              getSeatTimeRange: getSeatTimeRange,
+
            }
          });
 
@@ -130,10 +133,129 @@ const updateLabInformation = require("../models/labs-model").updateLabInformatio
  });
  reserveRouter.post('/reserve/:userID/:labRoom', async function(req, resp){
        const seats = await seatModel.find({weekDay: req.body.day, labName:req.params.labRoom})
-
+       console.log("Finding the " + req.body.day)
        const grouped_seats = segregateSeats(seats);
-       resp.send({data: grouped_seats});
-      console.log(grouped_seats);
+
+       var seatNumberSet = new Set();
+
+       for (const subgroup of grouped_seats[req.body.day]) {
+         const uniqueSeatNumbers = getUniqueSeatNumbers(subgroup.seats);
+         uniqueSeatNumbers.forEach(seatNumber => {seatNumberSet.add(seatNumber)});
+
+       }
+
+      var uniqueSeatNumbersArray = Array.from(seatNumberSet);
+       console.log("Seats found: " + uniqueSeatNumbersArray);
+       resp.send({
+         data: uniqueSeatNumbersArray
+       });
+
  });
+ async function getOccupyingUserID(timeID, day, labName, seatNumber) {
+   try {
+     const occupiedSeat = await seatModel.findOne({
+       seatNumber,
+       weekDay: day,
+       labName,
+       seatTimeID: timeID,
+       studentUser: { $exists: true }
+     });
+
+     return occupiedSeat ? occupiedSeat.studentUser : null;
+   } catch (error) {
+     console.error('Error:', error);
+     return null;
+   }
+ }
+ function isUserNull(user) {
+   return user === null;
+ }
+ function isMorning(timeInterval) {
+   const twelveThirty = '12:30';
+
+   return timeInterval.timeOUT < twelveThirty;
+ }
+
+ function getTimeInterval(timeIntervals, seatTimeID) {
+   const time = timeIntervals.find(time => time.timeID === seatTimeID);
+   return time ? `${time.timeIN} - ${time.timeOUT}` : '';
+ }
+ function convertToFullWeekday(shorthand) {
+  const weekdaysMap = {
+    'Sun': 'Sunday',
+    'Mon': 'Monday',
+    'Tue': 'Tuesday',
+    'Wed': 'Wednesday',
+    'Thu': 'Thursday',
+    'Fri': 'Friday',
+    'Sat': 'Saturday',
+  };
+
+  return weekdaysMap[shorthand] || shorthand;
+}
+
+
+
+function isMorningInterval(timeInterval) {
+  const startTime = timeInterval.split(' - ')[0];
+  return startTime < '12:00';
+}
+
+function isAfternoonInterval(timeInterval) {
+  const startTime = timeInterval.split(' - ')[0];
+  return startTime >= '12:00' && startTime < '17:00';
+}
+
+ reserveRouter.post('/reserve/seat', async function(req, resp){
+
+   try {
+     const { weekDay, labName, seatNumber } = req.body;
+     console.log("Selected Day: " + weekDay);
+     console.log("labName:", labName);
+     console.log("seatNumber:", seatNumber);
+     console.log("Request body has returned " + JSON.parse(JSON.stringify(req.body)) );
+
+
+     // Assuming seatNumber is an array
+     const seats = await seatModel.find({
+       weekDay: convertToFullWeekday(weekDay),
+       labName: labName,
+       seatNumber: { $in: seatNumber }
+     });
+
+     const seatTimeIDs = seats.map(seat => seat.seatTimeID);
+
+
+
+     const timeIntervals = await timeModel.find({
+       timeID: { $in: seatTimeIDs }
+     });
+
+     console.log("Seat Time IDs" + seatTimeIDs);
+
+     const seatTimeIntervals = seats.map(seat => ({
+       _id: seat._id,
+       seatTimeID: seat.seatTimeID,
+       studentUser: seat.studentUser,
+       timeInterval: getTimeInterval(timeIntervals, seat.seatTimeID)
+     }));
+
+
+     const morningIntervals = seatTimeIntervals.filter(seat => isMorningInterval(seat.timeInterval));
+     const afternoonIntervals = seatTimeIntervals.filter(seat => isAfternoonInterval(seat.timeInterval));
+
+     resp.send({ dataM: morningIntervals,
+                 dataN: afternoonIntervals
+                });
+     console.log("Seat time intervals of seat", seatTimeIntervals);
+     console.log("Morning scheds ", morningIntervals);
+     console.log("Afternoon scheds ", afternoonIntervals);
+
+
+   } catch (error) {
+     console.error('Error:', error);
+     resp.status(500).json({ error: 'Internal Server Error' });
+   }
+});
 
 module.exports = reserveRouter;

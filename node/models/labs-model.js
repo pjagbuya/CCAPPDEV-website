@@ -71,10 +71,12 @@ function segregateSeats(seats) {
       if (!seatsByWeekday[weekday]) {
         seatsByWeekday[weekday] = [];
       }
+
+      // console.log("Splitting by "+ weekday)
       seatsByWeekday[weekday].push(seat);
     });
 
-    // Create subgroups for each weekday
+
     const subgroupsByWeekday = {};
     Object.keys(seatsByWeekday).forEach((weekday) => {
       const seatsForWeekday = seatsByWeekday[weekday];
@@ -96,11 +98,23 @@ function splitSeatsIntoSubgroups(seats) {
     const subgroups = Array.from({ length: numberOfSubgroups }, (_, index) => ({
       subgroupNumber: index + 1,
       seats: seats.slice(index * 4, (index + 1) * 4),
-    }));
+    }))
+
 
     return subgroups;
   } catch (error) {
     console.error('Error splitting seats into subgroups:', error);
+    throw error;
+  }
+}
+
+function getUniqueSeatNumbers(seats) {
+  try {
+    const uniqueSeatNumbers = [...new Set(seats.map((seat) => seat.seatNumber))];
+
+    return uniqueSeatNumbers;
+  } catch (error) {
+    console.error('Error getting unique seat numbers:', error);
     throw error;
   }
 }
@@ -165,6 +179,7 @@ async function updateLabInformation() {
 const SeatModel = mongoose.model('Seat', seatSchema);
 
 module.exports.segregateSeats = segregateSeats;
+module.exports.getUniqueSeatNumbers = getUniqueSeatNumbers;
 module.exports.SeatModel = SeatModel;
 module.exports.LabModel = LabModel;
 module.exports.updateLabInformation = updateLabInformation;

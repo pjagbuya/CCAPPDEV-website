@@ -541,7 +541,7 @@ input[type="checkbox"] {
 .container {
   display: block;
   flex-direction: column;
-  width: 300px;
+  width: 700px;
   height: 300px;
 }
 

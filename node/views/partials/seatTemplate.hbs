@@ -1,160 +1,140 @@
 
-<section id="room-container" class="room-container">
-  <div class="d-flex align-items-center">
-    <div class="whiteboard-section">
-      <p><strong>Whiteboard/ PPT</strong></p>
-    </div>
 
 
-    <div class="container">
-      <!-- Top Half -->
-      {{#each data}}
 
-      {{#if (eq subgroupNumber 1)}}
-      <div class="row">
+<script id="my-template" type="text/x-handlebars-template">
+  <button id="seatXBtn" type="button" class="btn btn-danger close-btns" >X</button>
 
-
-        <div class="box no-margin-top">
-
-
-          {{#each seats}}
-          <div class="seat-box _{{seatNumber}}">
-            {{seatNumber}}
-          </div>
-          {{/each}}
-
-
-        </div>
-        {{/if}}
-
-        {{#if (eq subgroupNumber 3)}}
-        <div class="box">
-
-
-          {{#each seats}}
-          <div class="seat-box _{{seatNumber}}">
-            {{seatNumber}}
-          </div>
-          {{/each}}
-
-
-        </div>
-        {{/if}}
-        {{#if (eq subgroupNumber 5)}}
-        <div class="box">
-
-
-          {{#each seats}}
-          <div class="seat-box _{{seatNumber}}">
-            {{seatNumber}}
-          </div>
-          {{/each}}
-
-
-        </div>
-        {{/if}}
-        {{#if (eq subgroupNumber 7)}}
-        <div class="box">
-
-
-          {{#each seats}}
-          <div class="seat-box _{{seatNumber}}">
-            {{seatNumber}}
-          </div>
-          {{/each}}
-
-
-        </div>
-        {{/if}}
-        {{#if (eq subgroupNumber 9)}}
-        <div class="box">
-
-
-          {{#each seats}}
-          <div class="seat-box _{{seatNumber}}">
-            {{seatNumber}}
-          </div>
-          {{/each}}
-
-
-        </div>
-        {{/if}}
+  <section id="room-container" class="room-container">
+    <div class="d-flex align-items-center">
+      <div class="whiteboard-section">
+        <p><strong>Whiteboard/ PPT</strong></p>
       </div>
+
+      <div class="container">
+        <!-- Top Half -->
+        <div class="row">
+        \{{#each data}}
+
+
+        \{{#eq group 1}}
+
+            <div class="box no-margin-top">
+              \{{#each seats}}
+                <div class="seat-box _\{{seatNumber}}">
+                  \{{seatNumber}}
+                </div>
+              \{{/each}}
+            </div>
+
+
+        \{{/eq}}
+
+        \{{#eq group 3}}
+          <div class="box">
+            \{{#each seats}}
+              <div class="seat-box _\{{seatNumber}}">
+                \{{seatNumber}}
+              </div>
+            \{{/each}}
+          </div>
+        \{{/eq}}
+
+        \{{#eq group 5}}
+          <div class="box">
+            \{{#each seats}}
+              <div class="seat-box _\{{seatNumber}}">
+                \{{seatNumber}}
+              </div>
+            \{{/each}}
+          </div>
+        \{{/eq}}
+
+        \{{#eq group 7}}
+          <div class="box">
+            \{{#each seats}}
+              <div class="seat-box _\{{seatNumber}}">
+                \{{seatNumber}}
+              </div>
+            \{{/each}}
+          </div>
+        \{{/eq}}
+
+        \{{#eq group 9}}
+          <div class="box">
+            \{{#each seats}}
+              <div class="seat-box _\{{seatNumber}}">
+                \{{seatNumber}}
+              </div>
+            \{{/each}}
+          </div>
+
+
+        \{{/eq}}
+        \{{/each}}
+      </div>
+
       <!-- Bottom Half -->
       <div class="row">
-        {{#if (eq subgroupNumber 2)}}
-        <div class="box no-margin-top">
+        \{{#each data}}
+        \{{#eq group 2}}
 
-
-          {{#each seats}}
-          <div class="seat-box _{{seatNumber}}">
-            {{seatNumber}}
+          <div class="box no-margin-top">
+            \{{#each seats}}
+              <div class="seat-box _\{{seatNumber}}">
+                \{{seatNumber}}
+              </div>
+            \{{/each}}
           </div>
-          {{/each}}
+        \{{/eq}}
 
-
-        </div>
-        {{/if}}
-
-        {{#if (eq subgroupNumber 4)}}
-        <div class="box">
-
-
-          {{#each seats}}
-          <div class="seat-box _{{seatNumber}}">
-            {{seatNumber}}
+        \{{#eq group 4}}
+          <div class="box">
+            \{{#each seats}}
+              <div class="seat-box _\{{seatNumber}}">
+                \{{seatNumber}}
+              </div>
+            \{{/each}}
           </div>
-          {{/each}}
+        \{{/eq}}
 
-
-        </div>
-        {{/if}}
-        {{#if (eq subgroupNumber 6)}}
-        <div class="box">
-
-
-          {{#each seats}}
-          <div class="seat-box _{{seatNumber}}">
-            {{seatNumber}}
+        \{{#eq group 6}}
+          <div class="box">
+            \{{#each seats}}
+              <div class="seat-box _\{{seatNumber}}">
+                \{{seatNumber}}
+              </div>
+            \{{/each}}
           </div>
-          {{/each}}
+        \{{/eq}}
 
-
-        </div>
-        {{/if}}
-        {{#if (eq subgroupNumber 8)}}
-        <div class="box">
-
-
-          {{#each seats}}
-          <div class="seat-box _{{seatNumber}}">
-            {{seatNumber}}
+        \{{#eq group 8}}
+          <div class="box">
+            \{{#each seats}}
+              <div class="seat-box _\{{seatNumber}}">
+                \{{seatNumber}}
+              </div>
+            \{{/each}}
           </div>
-          {{/each}}
+        \{{/eq}}
 
-
-        </div>
-        {{/if}}
-        {{#if (eq subgroupNumber 10)}}
-        <div class="box">
-
-
-          {{#each seats}}
-          <div class="seat-box _{{seatNumber}}">
-            {{seatNumber}}
+        \{{#eq group 10}}
+          <div class="box">
+            \{{#each seats}}
+              <div class="seat-box _\{{seatNumber}}">
+                \{{seatNumber}}
+              </div>
+            \{{/each}}
           </div>
-          {{/each}}
 
 
-        </div>
+        \{{/eq}}
 
+
+      \{{/each}}
       </div>
-      {{/if}}
-
-      {{/each}}
-
     </div>
   </div>
+  </section>
 
-
-</section>
+</script>

@@ -1,0 +1,160 @@
+
+<section id="room-container" class="room-container">
+  <div class="d-flex align-items-center">
+    <div class="whiteboard-section">
+      <p><strong>Whiteboard/ PPT</strong></p>
+    </div>
+
+
+    <div class="container">
+      <!-- Top Half -->
+      {{#each data}}
+
+      {{#if (eq subgroupNumber 1)}}
+      <div class="row">
+
+
+        <div class="box no-margin-top">
+
+
+          {{#each seats}}
+          <div class="seat-box _{{seatNumber}}">
+            {{seatNumber}}
+          </div>
+          {{/each}}
+
+
+        </div>
+        {{/if}}
+
+        {{#if (eq subgroupNumber 3)}}
+        <div class="box">
+
+
+          {{#each seats}}
+          <div class="seat-box _{{seatNumber}}">
+            {{seatNumber}}
+          </div>
+          {{/each}}
+
+
+        </div>
+        {{/if}}
+        {{#if (eq subgroupNumber 5)}}
+        <div class="box">
+
+
+          {{#each seats}}
+          <div class="seat-box _{{seatNumber}}">
+            {{seatNumber}}
+          </div>
+          {{/each}}
+
+
+        </div>
+        {{/if}}
+        {{#if (eq subgroupNumber 7)}}
+        <div class="box">
+
+
+          {{#each seats}}
+          <div class="seat-box _{{seatNumber}}">
+            {{seatNumber}}
+          </div>
+          {{/each}}
+
+
+        </div>
+        {{/if}}
+        {{#if (eq subgroupNumber 9)}}
+        <div class="box">
+
+
+          {{#each seats}}
+          <div class="seat-box _{{seatNumber}}">
+            {{seatNumber}}
+          </div>
+          {{/each}}
+
+
+        </div>
+        {{/if}}
+      </div>
+      <!-- Bottom Half -->
+      <div class="row">
+        {{#if (eq subgroupNumber 2)}}
+        <div class="box no-margin-top">
+
+
+          {{#each seats}}
+          <div class="seat-box _{{seatNumber}}">
+            {{seatNumber}}
+          </div>
+          {{/each}}
+
+
+        </div>
+        {{/if}}
+
+        {{#if (eq subgroupNumber 4)}}
+        <div class="box">
+
+
+          {{#each seats}}
+          <div class="seat-box _{{seatNumber}}">
+            {{seatNumber}}
+          </div>
+          {{/each}}
+
+
+        </div>
+        {{/if}}
+        {{#if (eq subgroupNumber 6)}}
+        <div class="box">
+
+
+          {{#each seats}}
+          <div class="seat-box _{{seatNumber}}">
+            {{seatNumber}}
+          </div>
+          {{/each}}
+
+
+        </div>
+        {{/if}}
+        {{#if (eq subgroupNumber 8)}}
+        <div class="box">
+
+
+          {{#each seats}}
+          <div class="seat-box _{{seatNumber}}">
+            {{seatNumber}}
+          </div>
+          {{/each}}
+
+
+        </div>
+        {{/if}}
+        {{#if (eq subgroupNumber 10)}}
+        <div class="box">
+
+
+          {{#each seats}}
+          <div class="seat-box _{{seatNumber}}">
+            {{seatNumber}}
+          </div>
+          {{/each}}
+
+
+        </div>
+
+      </div>
+      {{/if}}
+
+      {{/each}}
+
+    </div>
+  </div>
+
+
+</section>

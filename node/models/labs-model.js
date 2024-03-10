@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 mongoose.connect('mongodb://localhost:27017/AnimoDB');
 
 const WEEKDAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-
+const Time = require('./time-model');
 const labSchema = new mongoose.Schema({
   labName: {
       type: String,
@@ -60,6 +60,71 @@ const seatSchema = new mongoose.Schema({
   },
 });
 
+function segregateSeats(seats) {
+  try {
+    // Create an object to store seats grouped by weekday
+    const seatsByWeekday = {};
+
+    // Group seats by weekday
+    seats.forEach((seat) => {
+      const weekday = seat.weekDay;
+      if (!seatsByWeekday[weekday]) {
+        seatsByWeekday[weekday] = [];
+      }
+      seatsByWeekday[weekday].push(seat);
+    });
+
+    // Create subgroups for each weekday
+    const subgroupsByWeekday = {};
+    Object.keys(seatsByWeekday).forEach((weekday) => {
+      const seatsForWeekday = seatsByWeekday[weekday];
+      const subgroups = splitSeatsIntoSubgroups(seatsForWeekday);
+      subgroupsByWeekday[weekday] = subgroups;
+    });
+
+    return subgroupsByWeekday;
+  } catch (error) {
+    console.error('Error splitting seats by weekday:', error);
+    throw error;
+  }
+}
+function splitSeatsIntoSubgroups(seats) {
+  try {
+
+    const numberOfSubgroups = Math.ceil(seats.length / 4);
+
+    const subgroups = Array.from({ length: numberOfSubgroups }, (_, index) => ({
+      subgroupNumber: index + 1,
+      seats: seats.slice(index * 4, (index + 1) * 4),
+    }));
+
+    return subgroups;
+  } catch (error) {
+    console.error('Error splitting seats into subgroups:', error);
+    throw error;
+  }
+}
+async function getSeatTimeRange(seatTimeID) {
+  try {
+    // Find the corresponding Time document based on seatTimeID
+    const time = await Time.findOne({ timeID: seatTimeID }).exec();
+
+    if (!time) {
+      throw new Error(`Time with timeID ${seatTimeID} not found`);
+    }
+
+
+    const { timeIN, timeOUT } = time;
+
+
+    const timeInterval = `${timeIN} - ${timeOUT}`;
+
+    return timeInterval;
+  } catch (error) {
+    console.error('Error getting seat time range:', error);
+    throw error;
+  }
+}
 
 seatSchema.pre('save', async function (next) {
   try {
@@ -99,7 +164,7 @@ async function updateLabInformation() {
 }
 const SeatModel = mongoose.model('Seat', seatSchema);
 
-
+module.exports.segregateSeats = segregateSeats;
 module.exports.SeatModel = SeatModel;
 module.exports.LabModel = LabModel;
 module.exports.updateLabInformation = updateLabInformation;

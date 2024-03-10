@@ -34,19 +34,9 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
 
-  function openModalSeats() {
-    document.getElementById('modalSeats').style.display = 'flex';
-    document.getElementById('overlay').style.display = 'block';
-    document.getElementById('room-container').style.display = 'flex';
-  }
 
-  function closeModalSeats() {
-    document.getElementById('modalSeats').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
-    document.getElementById('room-container').style.display = 'none';
-  }
 
-  document.getElementById('selectSeatButton').addEventListener("click", openModalSeats)
+
 
   var toggleSidebar = document.getElementById("toggleSidebar");
 
@@ -137,52 +127,177 @@ document.addEventListener("DOMContentLoaded", function() {
   generateTimeSlotTable("afternoonTable", "afternoon", 12, 17);
 
 
+  // Function to create dates
+  function createDates() {
+    return new Promise((resolve, reject) => {
+      const currentDate = new Date();
+      const daysContainer = document.getElementById("daysContainer");
 
+      for (let i = 0; i < 8; i++) {
+        const day = new Date();
+        day.setDate(currentDate.getDate() + i);
 
-  //7 Day week generator
-  const currentDate = new Date();
+        const options = {
+          weekday: 'short',
+          month: 'short',
+          day: 'numeric'
+        };
+        const formattedDate = day.toLocaleDateString('en-US', options);
 
-  const daysContainer = document.getElementById("daysContainer");
-  let selectedDayDiv = null;
-  for (let i = 0; i < 8; i++) {
-    const day = new Date();
+        const dayDiv = document.createElement("div");
+        dayDiv.className = "day";
 
+        const formattedDateElement = document.createElement("div");
+        formattedDateElement.className = "format-date";
+        formattedDateElement.textContent = formattedDate;
 
+        dayDiv.appendChild(formattedDateElement);
 
+        dayDiv.addEventListener("click", () => {
+          const dayDataToSend = {
+            day: day.toLocaleDateString('en-US', { weekday: 'long' }),
+          };
+          document.getElementById('selectSeatsSection').style.display = 'flex';
+          document.getElementById('selectSeatButton').addEventListener("click", function(){
+          document.getElementById('modalSeats').style.display = 'flex';
+          document.getElementById('overlay').style.display = 'block';
+          document.getElementById('room-container').style.display = 'flex';
+          });
+          resolve(dayDataToSend);
+        });
 
-    day.setDate(currentDate.getDate() + i);
-
-    const options = {
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric'
-    };
-    const formattedDate = day.toLocaleDateString('en-US', options);
-
-    const dayDiv = document.createElement("div");
-    dayDiv.className = "day";
-
-
-    const formattedDateElement = document.createElement("div");
-    formattedDateElement.className = "format-date";
-    formattedDateElement.textContent = formattedDate;
-
-    dayDiv.appendChild(formattedDateElement);
-
-
-    dayDiv.addEventListener("click", () => {
-
-      if (selectedDayDiv) {
-        selectedDayDiv.style.backgroundColor = "white";
+        daysContainer.appendChild(dayDiv);
       }
-      showSelectSeat();
-
-
-      dayDiv.style.backgroundColor = "#ADBC9F";
-
-      selectedDayDiv = dayDiv;
     });
-
-    daysContainer.appendChild(dayDiv);
   }
+
+  // Function to post data
+  function postData(weekDay) {
+    return new Promise((resolve, reject) => {
+      const techID = document.getElementById('techIDInput').value;
+      const userID = document.getElementById('userIDInput').value;
+      const labName = document.getElementById('labNameInput').value;
+      console.log("Selected Day: " + weekDay);
+
+      $.ajax({
+        url: `/lt-user/${techID}/reserve/${userID}/${labName}`,
+        type: 'POST',
+        data: weekDay,
+        success: function (result, status) {
+          resolve(result.data);
+        },
+        error: function (error) {
+          reject(error);
+        }
+      });
+    });
+  }
+
+  // Usage
+  createDates()
+    .then(dayDataToSend => postData(dayDataToSend))
+    .then(data => {
+      console.log('Server response:', data);
+
+      // Perform actions with the data
+      const templateData = { data };
+      const templateSource = document.getElementById('my-template').innerHTML;
+      const template = Handlebars.compile(templateSource);
+      const outputContainer = document.getElementById('modalSeats');
+      outputContainer.innerHTML = template(templateData);
+
+
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  // function postData(weekDay) {
+  //   const techID = document.getElementById('techIDInput').value;
+  //   const userID = document.getElementById('userIDInput').value;
+  //   const labName = document.getElementById('labNameInput').value;
+  //   console.log("Selected Day: " +weekDay);
+  //
+  //   $.ajax({
+  //     url: `/lt-user/${techID}/reserve/${userID}/${labName}`,
+  //     type: 'POST',
+  //
+  //     data: weekDay,
+  //     success: function (result, status) {
+  //       document.getElementById('selectSeatButton').addEventListener("click", openModalSeats);
+  //       console.log(result);
+  //       //
+  //       const templateData = { data: result.data };
+  //
+  //
+  //       const templateSource = document.getElementById('my-template').innerHTML;
+  //       const template = Handlebars.compile(templateSource);
+  //       const outputContainer = document.getElementById('modalSeats');
+  //       outputContainer.innerHTML = template(templateData);
+  //     },
+  //
+  //   });
+  // }
+  //
+  // //7 Day week generator
+  // function createDates(){
+  //   const currentDate = new Date();
+  //
+  //   const daysContainer = document.getElementById("daysContainer");
+  //   let selectedDayDiv = null;
+  //   for (let i = 0; i < 8; i++) {
+  //     const day = new Date();
+  //
+  //
+  //
+  //
+  //     day.setDate(currentDate.getDate() + i);
+  //
+  //     const options = {
+  //       weekday: 'short',
+  //       month: 'short',
+  //       day: 'numeric'
+  //     };
+  //     const formattedDate = day.toLocaleDateString('en-US', options);
+  //
+  //     const dayDiv = document.createElement("div");
+  //     dayDiv.className = "day";
+  //
+  //
+  //     const formattedDateElement = document.createElement("div");
+  //     formattedDateElement.className = "format-date";
+  //     formattedDateElement.textContent = formattedDate;
+  //
+  //     dayDiv.appendChild(formattedDateElement);
+  //
+  //     dayDiv.addEventListener("click", () => {
+  //       const dayDataToSend = {
+  //
+  //          day: day.toLocaleDateString('en-US', { weekday: 'long' }),
+  //        };
+  //        try {
+  //
+  //         const response =  postData(`${postURL}`, dayDataToSend);
+  //
+  //
+  //         console.log('Server response:', response);
+  //       } catch (error) {
+  //
+  //         console.error('Error:', error);
+  //       }
+  //
+  //       if (selectedDayDiv) {
+  //         selectedDayDiv.style.backgroundColor = "white";
+  //       }
+  //       showSelectSeat();
+  //
+  //
+  //       dayDiv.style.backgroundColor = "#ADBC9F";
+  //
+  //       selectedDayDiv = dayDiv;
+  //     });
+  //
+  //     daysContainer.appendChild(dayDiv);
+  //   }
+  // }
+
 });

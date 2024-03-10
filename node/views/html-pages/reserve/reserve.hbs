@@ -1,5 +1,9 @@
 
   <section class="lab-slots-browse-section-2">
+    <input type="hidden" id="techIDInput" name="techID" value="{{techID}}">
+    <input type="hidden" id="userIDInput" name="userID" value="{{userID}}">
+    <input type="hidden" id="labNameInput" name="labName" value="{{labName}}">
+
     <div class="starting-section-top-text">
       <h1>Student User ID: <span id="userID"><strong>{{userID}}</strong></span></h1>
       <h1>Room: <span id="labName"><strong>{{labName}}</strong></span></h1>
@@ -66,122 +70,8 @@
   </section>
 
   <div id="modalSeats" class="seat-modal">
-    <button type="button" class="btn btn-danger close-btns">X</button>
+    <button type="button" class="btn btn-danger close-btns" ionclick="closeModalSeats()">X</button>
 
-    <section id="room-container" class="room-container">
-      <div class="d-flex align-items-center">
-        <div class="whiteboard-section">
-          <p><strong>Whiteboard/ PPT</strong></p>
-        </div>
-
-
-        <div class="container">
-          <!-- Top Half -->
-          <div class="row">
-            <div class="box no-margin-top">
-              <div class="seat-box no-margin-top">
-                1
-              </div>
-              <div class="seat-box">
-                2
-              </div>
-
-
-            </div>
-            <div class="box">
-              <div class="seat-box no-margin-top">
-                9
-              </div>
-              <div class="seat-box">
-                10
-              </div>
-
-
-            </div>
-            <div class="box">
-              <div class="seat-box no-margin-top">
-                17
-              </div>
-              <div class="seat-box">
-                18
-              </div>
-
-            </div>
-            <div class="box">
-              <div class="seat-box no-margin-top">
-                25
-              </div>
-              <div class="seat-box">
-                26
-              </div>
-
-            </div>
-            <div class="box">
-              <div class="seat-box no-margin-top">
-                33
-              </div>
-
-            </div>
-          </div>
-          <!-- Bottom Half -->
-          <div class="row">
-            <div class="box">
-              <div class="seat-box no-margin-top">
-                5
-              </div>
-              <div class="seat-box ">
-                6
-              </div>
-
-
-            </div>
-            <div class="box">
-              <div class="seat-box no-margin-top">
-                13
-              </div>
-              <div class="seat-box">
-                14
-              </div>
-
-
-            </div>
-            <div class="box">
-              <div class="seat-box no-margin-top">
-                21
-              </div>
-              <div class="seat-box">
-                22
-              </div>
-
-
-            </div>
-            <div class="box">
-              <div class="seat-box no-margin-top">
-                29
-              </div>
-              <div class="seat-box">
-                30
-              </div>
-
-
-            </div>
-            <div class="box">
-              <div class="seat-box no-margin-top">
-                37
-              </div>
-              <div class="seat-box">
-                38
-              </div>
-
-
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-
-    </section>
   </div>
 
 

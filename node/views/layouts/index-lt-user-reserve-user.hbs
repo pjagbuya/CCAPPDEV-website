@@ -35,6 +35,22 @@
     <script type="text/javascript" src="/common/chatbox.js"></script>
     <script type="text/javascript" src="/common/general.js"></script>
     <script type="text/javascript" src="/common/reserve-script.js"></script>
+    <script type="text/javascript" id="my-template" type="text/x-handlebars-template">
+      {{> seatTemplate}}
+
+      function openModalSeats() {
+        document.getElementById('modalSeats').style.display = 'flex';
+        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('room-container').style.display = 'flex';
+      }
+
+      function closeModalSeats() {
+        document.getElementById('modalSeats').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('room-container').style.display = 'none';
+      }
+      document.getElementById('selectSeatButton').addEventListener("click", openModalSeats);
+    </script>
   </head>
   <body>
 

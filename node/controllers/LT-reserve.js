@@ -5,6 +5,9 @@ const mongoose = require("mongoose");
 const usersModel = require("../models/register-model");
 const labModel = require("../models/labs-model").LabModel;
 const seatModel = require("../models/labs-model").SeatModel;
+const segregateSeats = require("../models/labs-model").segregateSeats;
+const getSeatTimeRange = require("../models/labs-model").getSeatTimeRange;
+const timeModel = require("../models/time-model");
 const updateLabInformation = require("../models/labs-model").updateLabInformation;
 
 
@@ -93,19 +96,22 @@ const updateLabInformation = require("../models/labs-model").updateLabInformatio
          console.log('Lab Data:', labs);
 
 
-         const seats = await seatModel.find({labName: labRoom})
 
-         // Continue with your logic...
+         //
+         // console.log(grouped_seats);
+
 
          resp.render('html-pages/reserve/reserve', {
            layout: 'index-lt-user-reserve-user',
            title: 'Tech Reserve User ' + user.dlsuID,
            name: req.session.user.username,
+           techID: req.session.user.dlsuID,
            userID: req.params.userID,
            labName: labRoom,
+           postURL:`/lt-user/${req.session.user.dlsuID}/reserve/${user.dlsuID}/${labRoom}`,
 
            helpers: {
-             isAvailable: function (string) { return string === 'AVAILABLE'; }
+             getSeatTimeRange: getSeatTimeRange,
            }
          });
 
@@ -115,17 +121,6 @@ const updateLabInformation = require("../models/labs-model").updateLabInformatio
        }
 
 
-       // resp.render('html-pages/LT/LT-make-reserve', {
-       //   layout: 'index-lt-user-2',
-       //   title: 'Tech Reserve ',
-       //   name: req.session.user.username,
-       //   users: JSON.parse(JSON.stringify(users)), // Pass the list of users to the template
-       //   labs: JSON.parse(JSON.stringify(labs)),
-       //   helpers: {
-       //     isAvailable: function (string) { return string === 'AVAILABLE'; }
-       //   }
-       // });
-
 
 
      } catch (error) {
@@ -133,4 +128,12 @@ const updateLabInformation = require("../models/labs-model").updateLabInformatio
 
      }
  });
+ reserveRouter.post('/reserve/:userID/:labRoom', async function(req, resp){
+       const seats = await seatModel.find({weekDay: req.body.day, labName:req.params.labRoom})
+
+       const grouped_seats = segregateSeats(seats);
+       resp.send({data: grouped_seats});
+      console.log(grouped_seats);
+ });
+
 module.exports = reserveRouter;

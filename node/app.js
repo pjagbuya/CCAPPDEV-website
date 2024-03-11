@@ -4,25 +4,33 @@
 //Global db
 
 const express = require('express');
-const server = express();
+const { createServer } = require('node:http');
+const { join } = require('node:path');
+const { Server } = require('socket.io');
+
+const app = express();
+const server = createServer(app);
+const io = new Server(server);
+
 module.exports.mongoose= require('mongoose');
 module.exports.mongoose.connect('mongodb://localhost:27017/AnimoDB');
 
-
 const bodyParser = require('body-parser')
 const bcrypt = require('bcrypt');
-server.use(express.json());
-server.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 const handlebars = require('express-handlebars');
-server.set('view engine', 'hbs');
-server.engine('hbs', handlebars.engine({
+app.set('view engine', 'hbs');
+app.engine('hbs', handlebars.engine({
     extname: 'hbs',
 }));
-server.use(express.static('public'));
+
+app.use(express.static('public'));
 //ends here
 const session = require('express-session');
 
-server.use(session({
+app.use(session({
   secret: 'hjalksjfla',
   resave: false,
   saveUninitialized: true,
@@ -65,7 +73,10 @@ mongoClient.connect().then(function(con){
 
 
 
-server.get('/', function(req, resp){
+
+
+
+app.get('/', function(req, resp){
     resp.render('html-pages/welcome',{
         layout: 'index-home',
         title: 'Welcome to AnimoLab'
@@ -73,21 +84,35 @@ server.get('/', function(req, resp){
     });
 });
 
-
 const registerLoginRouter = require('./controllers/register-login')
-server.use("/", registerLoginRouter);
+app.use("/", registerLoginRouter);
 
 const userRouter = require('./controllers/users');
-server.use("/user", userRouter);
+app.use("/user", userRouter);
 
 const loginRouter = require('./controllers/login');
-server.use("/", loginRouter);
+app.use("/", loginRouter);
+
+const chatRouter = require('./controllers/chat');
+app.use("/", chatRouter);
 
 const searchUserRouter = require('./controllers/search-user');
-server.use("/", searchUserRouter);
+app.use("/", searchUserRouter);
 
+const searchLabRouter = require('./controllers/search-lab');
+app.use("/", searchLabRouter);
 
+io.on('connection', (socket) => {
+  console.log(`user connected ${socket.id}`);
 
+  socket.on("send-message", function(data){
+    io.emit("recieve-message", data);
+  });
+  
+  socket.on('disconnect', function(){
+    console.log(`user disconnected ${socket.id}`);
+  });
+});
 
 
 const port = process.env.PORT | 9090;

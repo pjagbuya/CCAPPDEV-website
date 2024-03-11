@@ -55,6 +55,8 @@ function convertTimeIdToInterval(timeId) {
      return 'Time Interval Not Found';
    }
  }
+
+ 
  async function keyLabNamesToSeatIds(reservationIdValue, reservationIdField = 'reservationID') {
    try {
      const query = {};
@@ -63,22 +65,22 @@ function convertTimeIdToInterval(timeId) {
      const reservation = await reservationModel.findOne(query)
        .populate('reservationSeats');
 
-     const result = []; // Array to store lab data objects
+     const result = [];
 
-     const seatsByLabName = {}; // Helper for grouping
+     const seatsByLabName = {};
+     const sortedSeats = reservation.reservationSeats.sort((seat1, seat2) => seat1.seatTimeID - seat2.seatTimeID);
 
-     reservation.reservationSeats.forEach((seat, index) => { // Include index
+     const labNamesToSeats = sortedSeats.reduce((acc, seat) => {
        const labName = seat.labName;
 
-       if (!seatsByLabName[labName]) {
-         seatsByLabName[labName] = {
-           labName: labName,
+       if (!acc[labName]) {
+         acc[labName] = {
+           labName,
            firstSeat: null,
            otherSeats: [],
            totalSeats: 0
          };
        }
-
 
        const seatData = {
          seatId: seat._id,
@@ -87,21 +89,17 @@ function convertTimeIdToInterval(timeId) {
          timeInterval: convertTimeIdToInterval(seat.seatTimeID)
        }
 
-       if (index === 0) { // First seat
-         seatsByLabName[labName].firstSeat = seatData;
+       if (!acc[labName].firstSeat) {
+         acc[labName].firstSeat = seatData;
        } else {
-         seatsByLabName[labName].otherSeats.push(seatData);
+         acc[labName].otherSeats.push(seatData);
        }
-       seatsByLabName[labName].totalSeats++;
-     });
 
+       acc[labName].totalSeats++;
+       return acc;
+     }, {});
 
-     for (const labName in seatsByLabName) {
-
-       result.push(seatsByLabName[labName]);
-     }
-
-     return result;
+     return Object.values(labNamesToSeats);
    } catch(error) {
      console.error("Error grouping seats:", error);
      throw error;

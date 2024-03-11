@@ -6,7 +6,6 @@ const userRouter = express.Router();
 
 
 
-console.log("Connecteed to router 2")
 // Start her after template above
 
 userRouter.get("",  function(req, resp){

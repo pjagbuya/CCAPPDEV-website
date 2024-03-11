@@ -2,7 +2,7 @@
 const express = require("express");
 const bcrypt = require('bcrypt');
 const loginRouter = express.Router();
-const withMongo = require('../app.js').withMongo;
+
 const collectionLogin = "User"
 
 const loginModel = require('../models/register-model');

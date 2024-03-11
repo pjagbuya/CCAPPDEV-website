@@ -2,16 +2,23 @@ const mongoose = require("mongoose")
 
 mongoose.connect('mongodb://localhost:27017/AnimoDB');
 
-
-
+const WEEKDAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const Time = require('./time-model');
 const labSchema = new mongoose.Schema({
   labName: {
       type: String,
       unique: true,
       required: true,
     },
-  labTotalSlots: Number,
-  labAvailSlots: Number,
+  labTotalSlots: {
+                  type: Number,
+                  default: 0,
+
+                  },
+  labAvailSlots: {
+                    type: Number,
+                    default: 0,
+                },
   labStatus: {
     type: String,
     enum: ['AVAILABLE', 'UNAVAILABLE', 'FULL'],
@@ -29,17 +36,19 @@ const seatSchema = new mongoose.Schema({
     maxLength: 45,
     ref: 'Lab',
   },
+  weekDay: {
+    type: String,
+    required: true,
+    enum: WEEKDAYS,
+  },
   seatNumber: {
     type: String,
     required: true,
   },
-  seatTimeIN: {
-    type: String,
+  seatTimeID: {
+    type: Number,
     required: true,
-  },
-  seatTimeOUT: {
-    type: String,
-    required: true,
+    ref: 'Time'
   },
   studentUser: {
     type: Number,
@@ -51,32 +60,126 @@ const seatSchema = new mongoose.Schema({
   },
 });
 
-const daySchema = new mongoose.Schema({
-  dayOfWeek: {
-    type: String,
-    required: true,
-    enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-  },
-  seatId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Seat',
-  },
+function segregateSeats(seats) {
+  try {
+    // Create an object to store seats grouped by weekday
+    const seatsByWeekday = {};
+
+    // Group seats by weekday
+    seats.forEach((seat) => {
+      const weekday = seat.weekDay;
+      if (!seatsByWeekday[weekday]) {
+        seatsByWeekday[weekday] = [];
+      }
+
+      // console.log("Splitting by "+ weekday)
+      seatsByWeekday[weekday].push(seat);
+    });
+
+
+    const subgroupsByWeekday = {};
+    Object.keys(seatsByWeekday).forEach((weekday) => {
+      const seatsForWeekday = seatsByWeekday[weekday];
+      const subgroups = splitSeatsIntoSubgroups(seatsForWeekday);
+      subgroupsByWeekday[weekday] = subgroups;
+    });
+
+    return subgroupsByWeekday;
+  } catch (error) {
+    console.error('Error splitting seats by weekday:', error);
+    throw error;
+  }
+}
+function splitSeatsIntoSubgroups(seats) {
+  try {
+
+    const numberOfSubgroups = Math.ceil(seats.length / 4);
+
+    const subgroups = Array.from({ length: numberOfSubgroups }, (_, index) => ({
+      subgroupNumber: index + 1,
+      seats: seats.slice(index * 4, (index + 1) * 4),
+    }))
+
+
+    return subgroups;
+  } catch (error) {
+    console.error('Error splitting seats into subgroups:', error);
+    throw error;
+  }
+}
+
+function getUniqueSeatNumbers(seats) {
+  try {
+    const uniqueSeatNumbers = [...new Set(seats.map((seat) => seat.seatNumber))];
+
+    return uniqueSeatNumbers;
+  } catch (error) {
+    console.error('Error getting unique seat numbers:', error);
+    throw error;
+  }
+}
+async function getSeatTimeRange(seatTimeID) {
+  try {
+    // Find the corresponding Time document based on seatTimeID
+    const time = await Time.findOne({ timeID: seatTimeID }).exec();
+
+    if (!time) {
+      throw new Error(`Time with timeID ${seatTimeID} not found`);
+    }
+
+
+    const { timeIN, timeOUT } = time;
+
+
+    const timeInterval = `${timeIN} - ${timeOUT}`;
+
+    return timeInterval;
+  } catch (error) {
+    console.error('Error getting seat time range:', error);
+    throw error;
+  }
+}
+
+seatSchema.pre('save', async function (next) {
+  try {
+    const labName = this.labName;
+
+
+    const totalSeats = await this.constructor.countDocuments({ labName });
+    const availSeats = await this.constructor.countDocuments({ labName, studentUser: null });
+    console.log('Updating LabModel for lab:', labName);
+    console.log('Total Seats:', totalSeats);
+    console.log('Available Seats:', availSeats);
+    await LabModel.findOneAndUpdate({ labName }, { $set: { labTotalSlots: totalSeats, labAvailSlots: availSeats } });
+
+    next();
+  } catch (error) {
+    next(error);
+  }
 });
 
-const MondayModel = mongoose.model('Monday', daySchema);
-const TuesdayModel = mongoose.model('Tuesday', daySchema);
-const WednesdayModel = mongoose.model('Wednesday', daySchema);
-const ThursdayModel = mongoose.model('Thursday', daySchema);
-const FridayModel = mongoose.model('Friday', daySchema);
-const SaturdayModel = mongoose.model('Saturday', daySchema);
-const SundayModel = mongoose.model('Sunday', daySchema);
 
+async function updateLabInformation() {
+  try {
+    const labs = await LabModel.find({});
+    for (const lab of labs) {
+      const labName = lab.labName;
 
-module.exports.MondayModel = MondayModel;
-module.exports.TuesdayModel = TuesdayModel;
-module.exports.WednesdayModel = WednesdayModel;
-module.exports.ThursdayModel = ThursdayModel;
-module.exports.FridayModel = FridayModel;
-module.exports.SaturdayModel = SaturdayModel;
-module.exports.SundayModel = SundayModel;
+      const totalSeats = await SeatModel.countDocuments({ labName });
+      const availSeats = await SeatModel.countDocuments({ labName, studentUser: null });
+
+      await LabModel.findOneAndUpdate({ labName }, { $set: { labTotalSlots: totalSeats, labAvailSlots: availSeats } });
+    }
+
+    console.log('Lab information updated successfully!');
+  } catch (error) {
+    console.error('Error updating lab information:', error);
+  }
+}
+const SeatModel = mongoose.model('Seat', seatSchema);
+
+module.exports.segregateSeats = segregateSeats;
+module.exports.getUniqueSeatNumbers = getUniqueSeatNumbers;
+module.exports.SeatModel = SeatModel;
 module.exports.LabModel = LabModel;
+module.exports.updateLabInformation = updateLabInformation;

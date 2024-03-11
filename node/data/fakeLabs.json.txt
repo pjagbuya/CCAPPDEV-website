@@ -12,19 +12,19 @@
     "labStatus": "UNAVAILABLE"
   },
   {
-    "labName": "GK506",
+    "labName": "GK206",
     "labTotalSlots": 20,
     "labAvailSlots": 5,
     "labStatus": "FULL"
   },
   {
-    "labName": "GK607",
+    "labName": "GK307",
     "labTotalSlots": 35,
     "labAvailSlots": 25,
     "labStatus": "AVAILABLE"
   },
   {
-    "labName": "GK708",
+    "labName": "GK208",
     "labTotalSlots": 18,
     "labAvailSlots": 8,
     "labStatus": "UNAVAILABLE"

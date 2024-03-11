@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const ltRouter = express.Router();
 
 const usersModel = require("../models/register-model");
-const labModel = require("../models/labs-model").LabModel;
+
 
 
 
@@ -20,63 +20,16 @@ ltRouter.get('/:id', function(req, resp){
         dlsuID: req.session.user.dlsuID,
         email: req.session.user.email,
         redirectReserve: "/lt-user/" + req.session.user.dlsuID + "/reserve",
-        redirectEdit: "/lt-user/" + req.session.user.dlsuID + "/reserve"
+        redirectEdit: "/lt-user/" + req.session.user.dlsuID + "/view"
 
     });
 });
 
-ltRouter.get('/:id/reserve', async function(req, resp){
-  console.log("Loaded")
-  try {
-
-      //excludes admin Users
-      const users = await  usersModel.find({dlsuID: { $regex: /^(?!.*101).*$/ }});
-      const labs = await labModel.find({});
-
-      // Check if users array is empty
-      if (users.length === 0) {
-        console.log("No users found in the database.");
-      } else {
-        console.log("Found", users.length, "users:"); // Print the number of users
-
-        // Optionally, print specific user details (be mindful of privacy)
-        for (const user of users) {
-          console.log("  - Username:", user.username); // Replace with relevant properties
-        }
-      }
-
-      if(labs.length != 0){
-        console.log(JSON.stringify(labs));
-      }else{
-        console.log("cannot find labs data");
-      }
 
 
 
-
-
-
-      resp.render('html-pages/LT/LT-make-reserve', {
-        layout: 'index-lt-user-2',
-        title: 'Tech Reserve ',
-        name: req.session.user.username,
-        users: JSON.parse(JSON.stringify(users)), // Pass the list of users to the template
-        labs: JSON.parse(JSON.stringify(labs)),
-        helpers: {
-          isAvailable: function (string) { return string === 'AVAILABLE'; }
-        }
-      });
-
-
-
-    } catch (error) {
-      console.error("Error retrieving users:", error);
-      // Handle errors appropriately (e.g., send an error response to the client)
-    }
-})
-
-
-const reserveRouter = require('./LT-reserve')
-ltRouter.use(":id/reserve", reserveRouter);
-
-module.exports = ltRouter
+const reserveRouter = require('./LT-reserve');
+ltRouter.use("/:id/", reserveRouter);
+const viewEditRouter = require('./LT-view-edit');
+ltRouter.use("/:id/", viewEditRouter);
+module.exports = ltRouter;

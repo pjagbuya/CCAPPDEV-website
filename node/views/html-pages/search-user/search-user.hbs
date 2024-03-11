@@ -1,107 +1,23 @@
   <div class="search-results">
         <div class="inner-box">
-            <div class="profiles">
-                <img src="https://static.wikia.nocookie.net/drama/images/5/50/Coco_Martin.png/revision/latest?cb=20201010163442"/>
-                <div class="profile-texts">
-                    <div class="profile-name">
-                        Paul Josef P. Agbuya
-                    </div>
-                    <div class="user-id">
-                        12206660
-                    </div>
-                </div>
-                <div class="user-status">
-                    <strong>Student</strong>
-                </div>
-
+            <h1> Search a user </h1>
+            <form action="/user/:id/search-users" method="POST">
                 <div>
-                  <a href="../profile/profile-other-user.html">
-                    <button class="view-button">View</button>
-                  </a>
-                </div>
-            </div>
-            <div class="profiles">
-                <img src="https://tdps.berkeley.edu/sites/default/files/styles/openberkeley_image_full/public/general/miranda_lin_manuel.jpg?itok=uLkFsdBu&timestamp=1588632325"/>
-                <div class="profile-texts">
-                    <div class="profile-name">
-                        Enzo Arkin Panugayan
-                    </div>
-                    <div class="user-id">
-                        12212345
-                    </div>
-                </div>
-                <div class="user-status">
-                    <strong>Student</strong>
+                    <label>Username</label>
+                    <input type="text" id="username" name="username">
                 </div>
                 <div>
-                  <a href="../profile/profile-other-user.html">
-                    <button class="view-button">View</button>
-                  </a>
-                </div>
-            </div>
-            <div class="profiles">
-                <img src="https://yt3.googleusercontent.com/ytc/AIf8zZQ3IytP_3tyrXbxDZ1_Xp0GXX5_vYUVC6eqoXH_Tg=s900-c-k-c0x00ffffff-no-rj"/>
-                <div class="profile-texts">
-                    <div class="profile-name">
-                        Dalrianne Francesca Togado
-                    </div>
-                    <div class="user-id">
-                        12208244
-                    </div>
-                </div>
-                <div class="user-status">
-                    <strong>Student</strong>
+                    <label>DLSU ID</label>
+                    <input type="text" id="dlsuID" name="dlsuID">
                 </div>
                 <div>
-                  <a href="../profile/profile-other-user.html">
-                    <button class="view-button">View</button>
-                  </a>
+                    <label>Firstname</label>
+                    <input type="text" id="firstname" name="firstname">
+                </div><div>
+                    <label>Lastname</label>
+                    <input type="text" id="lastname" name="lastname">
                 </div>
-            </div>
-            <div class="profiles">
-                <img src="data:image/jpeg;base64,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"/>
-                <div class="profile-texts">
-                    <div class="profile-name">
-                        Joaquin Generoso Garcia Sinjian
-                    </div>
-                    <div class="user-id">
-                        joaquin.sinjian@dlsu.edu.ph
-                    </div>
-                </div>
-                <div class="user-status">
-                    <strong>Lab Technician</strong>
-                </div>
-                <div>
-                  <a href="../profile/profile-other-user.html">
-                    <button class="view-button">View</button>
-                  </a>
-                </div>
-            </div>
-            <div class="profiles">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTtFsBXIpWen9pHDbpR762V6jHPZuxW4jzBA&usqp=CAU"/>
-                <div class="profile-texts">
-                    <div class="profile-name">
-                        Vice Ganda
-                    </div>
-                    <div class="user-id">
-                        12295136
-                    </div>
-                </div>
-                <div class="user-status">
-                    <strong>Student</strong>
-                </div>
-                <div>
-                  <a href="../profile/profile-other-user.html">
-                    <button class="view-button">View</button>
-                  </a>
-
-                </div>
-            </div>
-            <div class="footer">
-                <button class="arrow-button">&larr;</button>  Page 1<button class="arrow-button right-arrow">&rarr;</button>
-            </div>
-
+                <button type="submit">Search</button>
+            </form>
         </div>
-
-
     </div>

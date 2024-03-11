@@ -1,20 +1,18 @@
-
+{{#each profile}}
     <div class="profile-body">
       <section class= "profile-contact-section flex-column">
         <div class="profile-pic-and-name text-center">
 
-
-          <!--Hardcoded name2-->
           <div class="profile-column-section d-flex flex-column align-items-center justify-content-center">
 
-            <img class="profile-regular-pic" src="https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" alt="default-pic">
+            <img class="profile-regular-pic" src="{{imageSource}}" alt="default-pic">
 
             <p class="profile-name">
-              Paul Josef P. Agbuya
+              {{firstName}} {{lastName}}
             </p>
 
             <p class="profile-name">
-              ID : 12206660
+              ID : {{dlsuID}}
             </p>
 
 
@@ -26,13 +24,13 @@
         <div class="description-div">
           <div class="course-desc">
             <h2 class= "custom-header1">Course</h2>
-            <p>BS in Computer Science: Major in Software Technology</p>
+            <p>BS in Computer Science: Major in Software Technology</p> <!-- TODO: REPLACE WITH DB DATA -->
           </div>
 
 
           <div class="about-me">
             <h2 class= "custom-header1">About Me</h2>
-            <p>Casual student passing by. Appreciate in finding new friends or casual talk</p>
+            <p>Casual student passing by. Appreciate in finding new friends or casual talk</p> <!-- TODO: REPLACE WITH DB DATA -->
 
           </div>
 
@@ -44,11 +42,7 @@
 
           <table class="contact-table" cellpadding="10">
             <tr class="text-decoration-underline">
-              <td>pjagbuya2@gmail.com</td>
-
-            </tr>
-            <tr class="text-decoration-underline">
-              <td>Add another contact detail</td>
+              <td>{{email}}</td>
 
             </tr>
 
@@ -77,3 +71,4 @@
 
       </section>
     </div>
+{{/each}}

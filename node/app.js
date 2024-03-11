@@ -65,9 +65,6 @@ mongoClient.connect().then(function(con){
 
 
 
-
-
-
 server.get('/', function(req, resp){
     resp.render('html-pages/welcome',{
         layout: 'index-home',
@@ -75,6 +72,7 @@ server.get('/', function(req, resp){
 
     });
 });
+
 
 const registerLoginRouter = require('./controllers/register-login')
 server.use("/", registerLoginRouter);
@@ -84,6 +82,9 @@ server.use("/user", userRouter);
 
 const loginRouter = require('./controllers/login');
 server.use("/", loginRouter);
+
+const searchUserRouter = require('./controllers/search-user');
+server.use("/", searchUserRouter);
 
 
 

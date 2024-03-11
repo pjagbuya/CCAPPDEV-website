@@ -1,0 +1,32 @@
+  <div class="search-results">
+        <div class="inner-box">
+            {{#each users}}
+            <div class="profiles">
+                <img src={{imageSource}}/>
+                <div class="profile-texts">
+                    <div class="profile-name">
+                        {{username}}
+                    </div>
+                    <div class="user-id">
+                        {{dlsuID}}
+                    </div>
+                </div>
+                <div class="user-status">
+                    <strong>Student</strong>
+                </div>
+
+                <div>
+                  <a href="../profile/{{dlsuID}}">
+                    <button class="view-button">View</button>
+                  </a>
+                </div>
+            </div>
+            {{/each}}
+            <div class="footer">
+                <button class="arrow-button">&larr;</button>  Page 1<button class="arrow-button right-arrow">&rarr;</button>
+            </div>
+
+        </div>
+
+
+    </div>

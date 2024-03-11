@@ -16,4 +16,4 @@ mongoose.connect('mongodb://localhost:27017/AnimoDB');
  }, {versionKey: false});
 
 
-module.exports = mongoose.model("User", registerSchema);
+module.exports = mongoose.model("user", registerSchema);

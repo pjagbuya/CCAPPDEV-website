@@ -24,7 +24,7 @@ loginRouter.get('/login', function(req, resp){
 loginRouter.post('/login',  async (req, resp) =>{
 
 
-  const userID = req.body.userID;  // Assuming userID is sent in the request body
+  const userID = req.body.userID;
 
   try {
     const user = await loginModel.findOne({

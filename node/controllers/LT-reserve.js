@@ -6,12 +6,18 @@ const hbs = require("handlebars");
 const usersModel = require("../models/register-model");
 const labModel = require("../models/labs-model").LabModel;
 const seatModel = require("../models/labs-model").SeatModel;
+const Reservation = require("../models/reserve-model");
 const segregateSeats = require("../models/labs-model").segregateSeats;
 const getUniqueSeatNumbers = require("../models/labs-model").getUniqueSeatNumbers
 const getSeatTimeRange = require("../models/labs-model").getSeatTimeRange;
 const timeModel = require("../models/time-model");
 const updateLabInformation = require("../models/labs-model").updateLabInformation;
+let currentId = 6;
 
+function generateShortId() {
+  currentId++;
+  return currentId.toString().padStart(6, '0');
+}
 
 
  reserveRouter.get('/reserve', async function(req, resp){
@@ -48,6 +54,8 @@ const updateLabInformation = require("../models/labs-model").updateLabInformatio
          title: 'Tech Reserve ',
          name: req.session.user.username,
          techID: req.session.user.dlsuID,
+         dlsuID: req.session.user.dlsuID,
+         userType: 'lt-user',
          users: JSON.parse(JSON.stringify(users)), // Pass the list of users to the template
          labs: JSON.parse(JSON.stringify(labs)),
          helpers: {
@@ -65,9 +73,9 @@ const updateLabInformation = require("../models/labs-model").updateLabInformatio
 
 
  reserveRouter.post('/reserve', async function(req, resp){
-   console.log("Received from ajax", req.body);
+   // console.log("Received from ajax", req.body);
    const { roomName, userID  } = req.body;
-   console.log("Post requested " + userID + " and " + roomName);
+   // console.log("Post requested " + userID + " and " + roomName);
 
 
    if (roomName === 'N/A') {
@@ -110,8 +118,9 @@ const updateLabInformation = require("../models/labs-model").updateLabInformatio
            techID: req.session.user.dlsuID,
            userID: req.params.userID,
            labName: labRoom,
+           userType: 'lt-user',
            postURL:`/lt-user/${req.session.user.dlsuID}/reserve/${user.dlsuID}/${labRoom}`,
-
+           confirmedURL:`/lt-user/${req.session.user.dlsuID}/reserve`,
            helpers: {
              getSeatTimeRange: getSeatTimeRange,
 
@@ -131,7 +140,57 @@ const updateLabInformation = require("../models/labs-model").updateLabInformatio
 
      }
  });
+
+
+ reserveRouter.post('/reserve/confirm', async function(req, resp){
+
+
+   const { userID, labName, seatSlots } = req.body;
+
+   console.log("received this user "+ "userID");
+
+   try {
+
+     const seats = await seatModel.find({ _id: { $in: seatSlots } });
+
+     const occupiedSeats = seats.filter(seat => seat.studentUser !== null);
+     if (occupiedSeats.length > 0) {
+       return res.status(400).json({ error: 'Some of your chosen seats are already reserved' });
+     }
+     const updatePromises = seats.map(seat => {
+       seat.studentUser = userID;
+       return seat.save();
+     });
+
+     await Promise.all(updatePromises);
+
+
+     const reservation = new Reservation({
+       reservationID: String(generateShortId()),
+       userID: userID,
+       reservationSeats: seatSlots,
+       reservationStatus: "Upcoming"
+     });
+
+     console.log("Saving the following details as reservation: " + reservation)
+
+     await reservation.save();
+
+     resp.status(200).json({ message: 'Seats updated and reservation created!' });
+   } catch (error) {
+     console.error('Error:', error);
+     resp.status(500).json({ error: 'Something went wrong' });
+   }
+ });
  reserveRouter.post('/reserve/:userID/:labRoom', async function(req, resp){
+        console.log(req.url)
+        console.log("In reserve/userID/labRoom url")
+        const day = req.body?.day;
+       if (day === undefined) {
+         resp.status(400).send({ error: "Missing 'day' in request body" });
+         return
+       }
+
        const seats = await seatModel.find({weekDay: req.body.day, labName:req.params.labRoom})
        console.log("Finding the " + req.body.day)
        const grouped_seats = segregateSeats(seats);
@@ -257,5 +316,6 @@ function isAfternoonInterval(timeInterval) {
      resp.status(500).json({ error: 'Internal Server Error' });
    }
 });
+
 
 module.exports = reserveRouter;

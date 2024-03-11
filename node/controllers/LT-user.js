@@ -14,6 +14,7 @@ ltRouter.get('/:id', function(req, resp){
         layout: 'index-lt-user',
         title: 'Tech ' + req.session.user.username,
         name: req.session.user.username,
+        userType: 'lt-user',
         fullName: req.session.user.firstName +' ' +
                   req.session.user.middleInitial + ' ' +
                   req.session.user.lastName,
@@ -30,6 +31,6 @@ ltRouter.get('/:id', function(req, resp){
 
 const reserveRouter = require('./LT-reserve');
 ltRouter.use("/:id/", reserveRouter);
-const viewEditRouter = require('./LT-view-edit');
+const viewEditRouter = require('./LT-view-edit').viewEditRouter;
 ltRouter.use("/:id/", viewEditRouter);
 module.exports = ltRouter;

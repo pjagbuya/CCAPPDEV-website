@@ -7,14 +7,18 @@ const userRouter = express.Router();
 
 
 userRouter.get("/:id",  function(req, resp){
+  console.log("Attempting to load" + req.params.id);
   if(req.session.user){
     console.log("Logged in as")
     console.log(req.session.user)
     resp.render('html-pages/student/profile',{
         layout: 'index-user',
         title: req.session.user['username'],
+        userType: 'user',
         name: req.session.user['username'],
-        id: req.session.user['dlsuID']
+        id: req.session.user['dlsuID'],
+        dlsuID: req.session.user['dlsuID']
+
     });
   }
 

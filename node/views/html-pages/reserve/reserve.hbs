@@ -30,16 +30,16 @@
 
     </div>
 
-    
+
     <footer >
 
       <button class="confirm-reservation-btn custom-button-2" data-toggle="modal" data-target="#confirmationModal">Confirm Reservations</button>
 
 
 
-      <a href="LT-user-reserve-student.html" target="_self">
+      <!-- <a href="LT-user-reserve-student.html" target="_self"> -->
         <button class="cancel-btn arrow-button">Cancel</button>
-      </a>
+      <!-- </a> -->
 
     </footer>
 
@@ -52,54 +52,8 @@
 
 
   <div class="confirmed-reservations-message">
+    {{> confirmation-modal}}
 
   </div>
 
   <div id="overlay" class="overlay" ></div>
-
-
-    <div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Confirm Reservation</h5>
-                    <button type="button" class="close btn-danger" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-
-                <div class="modal-body">
-                    Are you sure you want to confirm the following informaiton:<br>
-                     <strong>Room: GK302</strong>
-                    <table>
-                      <thead>
-                        <th class="tc">Time slot</th>
-                        <th class="tc">Seat number</th>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td class="tc">
-                            7:30-8:00 A.M.
-                          </td>
-                          <td class="tc">
-                            22
-                          </td>
-                        </tr>
-
-                      </tbody>
-
-                    </table>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                    <a href="LT-user-reserve-student.html">
-                      <button type="button" class="btn btn-primary" onclick="confirmReservation()">Confirm</button>
-                    </a>
-
-                </div>
-            </div>
-        </div>
-    </div>

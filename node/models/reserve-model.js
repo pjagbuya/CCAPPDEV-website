@@ -5,7 +5,7 @@ mongoose.connect('mongodb://localhost:27017/AnimoDB');
 
 const reservationSchema = new mongoose.Schema({
   reservationID: {
-    type: Number,
+    type: String,
     required: true,
     unique: true,
     index: true,

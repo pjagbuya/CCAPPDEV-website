@@ -99,8 +99,8 @@ app.use("/", loginRouter);
 const searchUserRouter = require('./controllers/search-user');
 app.use("/search-user", searchUserRouter);
 //
-// const searchLabRouter = require('./controllers/search-lab');
-// app.use("/", searchLabRouter);
+const searchLabRouter = require('./controllers/search-lab');
+app.use("/", searchLabRouter);
 
 // io.on('connection', (socket) => {
 //   console.log(`user connected ${socket.id}`);

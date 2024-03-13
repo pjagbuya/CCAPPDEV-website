@@ -13,14 +13,15 @@ console.log("Connecteed to router 3")
 // Start her after template above
 
 
-searchUserRouter.get("/:id/search-user",  function(req, resp){ 
-    resp.render('html-pages/search-user/search-user',{
+searchUserRouter.get("/:id/search-users",  function(req, resp){ 
+    resp.render('html-pages/search/search-user',{
         layout: "index-user",
         title: "Search User",
+        userType: "user"
     }); // render & page
 });
 
-searchUserRouter.post("/user/:id",  function(req, resp){
+searchUserRouter.post("/:id/search-user-results",  function(req, resp){
     const searchQuery = { };
 
     // builds onto the searchQuery object based on filled fields
@@ -40,7 +41,7 @@ searchUserRouter.post("/user/:id",  function(req, resp){
 
 
     userModel.find(searchQuery).lean().then(function(users){
-        resp.render('html-pages/search-user/search-user-results',{
+        resp.render('html-pages/search/search-user-results',{
             layout: "index-user",
             title: "User Search Results",
             users: users
@@ -54,7 +55,7 @@ searchUserRouter.get("/profile/:id",  function(req, resp){
     const searchQuery = { dlsuID: dlsuID };
 
     userModel.find(searchQuery).lean().then(function(profile){
-        resp.render('html-pages/search-user/search-user-view',{
+        resp.render('html-pages/search/search-user-view',{
             layout: "index-user",
             title: "User Search Results",
             profile: profile

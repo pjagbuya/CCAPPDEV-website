@@ -114,8 +114,8 @@ function convertTimeIdToInterval(timeId) {
 
       const reservations = await reservationModel.find({}).sort({ reservationStatus: 1 });;
       var uid = req.session.user.dlsuID;
-      resp.render('html-pages/LT/LT-reservations', {
-        layout: 'index-lt-reservations',
+      resp.render('html-pages/LT/LT-view-reservations', {
+        layout: 'LT/index-LT-view-reservations',
         title: 'Tech Reservations View',
         userType: 'lt-user',
         name: req.session.user.username,
@@ -143,8 +143,8 @@ function convertTimeIdToInterval(timeId) {
 
      console.log(labSeatsMap);
 
-       resp.render('html-pages/LT/lt-reservation-data', {
-         layout: 'LT/index-lt-reservation-data',
+       resp.render('html-pages/LT/LT-reservation-data', {
+         layout: 'LT/index-LT-view-reservations',
          title: 'Tech Reservations View',
          userType: 'lt-user',
          name: req.session.user.username,

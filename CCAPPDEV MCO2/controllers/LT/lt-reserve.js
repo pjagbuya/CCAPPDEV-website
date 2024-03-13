@@ -49,8 +49,8 @@ function generateShortId() {
 
 
 
-       resp.render('html-pages/LT/LT-make-reserve', {
-         layout: 'index-lt-user-2',
+       resp.render('html-pages/LT/LT-make-reservation', {
+         layout: 'LT/index-LT-make-reservation',
          title: 'Tech Reserve ',
          name: req.session.user.username,
          techID: req.session.user.dlsuID,
@@ -111,8 +111,8 @@ function generateShortId() {
          // console.log(grouped_seats);
 
 
-         resp.render('html-pages/reserve/reserve', {
-           layout: 'index-lt-user-reserve-user',
+         resp.render('html-pages/reserve/LT-reserve-func', {
+           layout: 'LT/index-LT-reserve-func',
            title: 'Tech Reserve User ' + user.dlsuID,
            name: req.session.user.username,
            techID: req.session.user.dlsuID,

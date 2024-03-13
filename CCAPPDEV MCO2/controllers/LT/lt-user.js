@@ -11,7 +11,7 @@ ltRouter.get('/:id', function(req, resp){
 
 
     resp.render('html-pages/LT/LT-profile',{
-        layout: 'LT/index-lt-user',
+        layout: 'LT/index-LT-user',
         title: 'Tech ' + req.session.user.username,
         name: req.session.user.username,
         userType: 'lt-user',

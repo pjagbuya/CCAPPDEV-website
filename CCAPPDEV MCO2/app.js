@@ -87,8 +87,8 @@ app.get('/', function(req, resp){
 const registerLoginRouter = require('./controllers/register')
 app.use("/", registerLoginRouter);
 
-// const userRouter = require('./controllers/users');
-// app.use("/user", userRouter);
+const userRouter = require('./controllers/users');
+app.use("/user", userRouter);
 
 const loginRouter = require('./controllers/login');
 app.use("/", loginRouter);
@@ -96,11 +96,11 @@ app.use("/", loginRouter);
 // const chatRouter = require('./controllers/chat');
 // app.use("/", chatRouter);
 
-const searchUserRouter = require('./controllers/search-user');
-app.use("/search-user", searchUserRouter);
-//
-const searchLabRouter = require('./controllers/search-lab');
-app.use("/", searchLabRouter);
+//const searchUserRouter = require('./controllers/search-user');
+//app.use("/search-user", searchUserRouter);
+
+// const searchLabRouter = require('./controllers/search-lab');
+// app.use("/", searchLabRouter);
 
 // io.on('connection', (socket) => {
 //   console.log(`user connected ${socket.id}`);

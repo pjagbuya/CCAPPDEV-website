@@ -57,7 +57,10 @@ userRouter.get("/:id",  function(req, resp){
 //   });
 // });
 //
-const searchRouter = require('./search-user');
-userRouter.use("/", searchRouter);
+const searchUserRouter = require('./search-user');
+userRouter.use("/", searchUserRouter);
+
+const searchLabRouter = require('./search-lab');
+userRouter.use("/", searchLabRouter);
 
 module.exports = userRouter

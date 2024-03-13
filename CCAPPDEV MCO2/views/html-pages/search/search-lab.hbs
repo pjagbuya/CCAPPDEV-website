@@ -54,129 +54,25 @@
       </div>
       <div class="lab-choices-section">
 
+          {{#each rooms}}
           <div class="lab-choice-section">
             <img class="lab-choice-img" src="/pics/computerlab.jpg" alt="computer-lab">
             <div class="lab-choice-details">
-              <h3>GK302A</h3>
+              <h3>{{labName}}</h3>
               <p class="status-text avail-text"><u>AVAILABLE</u></p>
-
-
               <p>
                 <span>Total Seats: </span>
-                <span><strong>23</strong></span>
+                <span><strong>{{labAvailSlots}}/{{labTotalSlots}}</strong></span>
               </p>
-
-
-
-
               <a class="d-flex lab-choice-btn custom-default-font2" href="reserve-user-lab-view.html">
-                <div class="btn btn-success">
-                  View
-                </div>
-              </a>
-
-
-            </div>
-          </div>
-          <div class="lab-choice-section">
-            <img class="lab-choice-img" src="/pics/computerlab.jpg" alt="computer-lab">
-            <div class="lab-choice-details">
-              <h3>GK302B</h3>
-              <p class="status-text avail-text"><u>AVAILABLE</u></p>
-
-
-              <p>
-                <span>Total Seats: </span>
-                <span><strong>23</strong></span>
-              </p>
-
-              <a class="d-flex lab-choice-btn custom-default-font2" href="reserve-user-lab-view.html">
-                <div class="btn btn-success">
-                  View
-                </div>
-              </a>
-
-
-            </div>
-          </div>
-          <div class="lab-choice-section">
-            <img class="lab-choice-img" src="/pics/computerlab.jpg" alt="computer-lab">
-            <div class="lab-choice-details">
-              <h3>GK306A</h3>
-              <p class="status-text avail-text"><u>AVAILABLE</u></p>
-
-
-              <p>
-                <span>Total Seats: </span>
-                <span><strong>23</strong></span>
-              </p>
-
-              <a class="d-flex lab-choice-btn custom-default-font2" href="reserve-user-lab-view.html">
-                <div class="btn btn-success">
-                  View
-                </div>
-              </a>
-
-
-            </div>
-          </div>
-
-          <div class="lab-choice-section">
-            <img class="lab-choice-img" src="/pics/computerlab.jpg" alt="computer-lab">
-            <div class="lab-choice-details">
-              <h3>GK404</h3>
-              <p class="status-text avail-text"><u>AVAILABLE</u></p>
-
-
-              <p>
-                <span>Total Seats: </span>
-                <span><strong>23</strong></span>
-              </p>
-
-              <a class="d-flex lab-choice-btn custom-default-font2" href="reserve-user-lab-view.html">
-                <div class="btn btn-success">
+                <div class="btn btn-success" id="view-btn-{{labName}}">
                   View
                 </div>
               </a>
             </div>
           </div>
-
-          <div class="lab-choice-section">
-            <img class="lab-choice-img" src="/pics/computerlab.jpg" alt="computer-lab">
-            <div class="lab-choice-details">
-              <h3>GK405</h3>
-              <p class="status-text full-text"><u>FULL</u></p>
-
-                <span>Total Seats: </span>
-                <span><strong>23</strong></span>
-              </p>
-
-              <a class="d-flex lab-choice-btn custom-default-font2" href="reserve-user-lab-view.html">
-                <div class="btn btn-success">
-                  View
-                </div>
-              </a>
-            </div>
-          </div>
-
-
-          <div class="lab-choice-section">
-            <img class="lab-choice-img" src="/pics/computerlab.jpg" alt="computer-lab">
-            <div class="lab-choice-details">
-              <h3>GK406</h3>
-              <p class="status-text full-text"><u>FULL</u></p>
-
-                <span>Total Seats: </span>
-                <span><strong>23</strong></span>
-              </p>
-
-              <a class="d-flex lab-choice-btn custom-default-font2" href="reserve-user-lab-view.html">
-                <div class="btn btn-success">
-                  View
-                </div>
-              </a>
-            </div>
-          </div>
+          {{/each}}
+          
 
           <div class="arrows-section">
             <button class="arrow-button">&larr;</button>  Page 1<button class="arrow-button right-arrow">&rarr;</button>

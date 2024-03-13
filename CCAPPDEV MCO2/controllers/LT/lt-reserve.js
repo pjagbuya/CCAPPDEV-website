@@ -53,6 +53,7 @@ function generateShortId() {
          layout: 'LT/index-LT-make-reservation',
          title: 'Tech Reserve ',
          name: req.session.user.username,
+
          techID: req.session.user.dlsuID,
          dlsuID: req.session.user.dlsuID,
          userType: 'lt-user',

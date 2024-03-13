@@ -14,7 +14,7 @@ const loginModel = require('../models/register-model');
 loginRouter.get('/login', function(req, resp){
 
 
-    resp.render('html-pages/login-reg/login',{
+    resp.render('html-pages/home/H-login',{
         layout: 'index-home',
         title: 'Login Page'
 

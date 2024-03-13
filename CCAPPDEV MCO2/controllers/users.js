@@ -12,7 +12,7 @@ userRouter.get("/:id",  function(req, resp){
     console.log("Logged in as")
     console.log(req.session.user)
     resp.render('html-pages/user/U-user',{
-        layout: 'index-user',
+        layout: 'user/index-user',
         title: req.session.user['username'],
         userType: 'user',
         name: req.session.user['username'],

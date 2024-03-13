@@ -78,7 +78,7 @@ mongoClient.connect().then(function(con){
 
 app.get('/', function(req, resp){
     resp.render('html-pages/home/H-home',{
-        layout: 'index-home',
+        layout: 'home/index-home',
         title: 'Welcome to AnimoLab'
 
     });

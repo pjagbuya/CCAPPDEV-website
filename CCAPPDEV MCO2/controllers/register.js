@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 
 registerLoginRouter.get('/register', function(req, resp){
     resp.render('html-pages/login-reg/register',{
-        layout: 'index-home',
+        layout: 'home/index-home',
         title: 'Register Page'
 
     });

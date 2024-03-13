@@ -15,7 +15,7 @@ console.log("Connecteed to router 3")
 
 searchLabRouter.get("/:id/search-labs",  function(req, resp){ 
     resp.render('html-pages/search/search-lab',{
-        layout: "index-search-lab",
+        layout: "search/index-search-lab",
         title: "Search Lab",
         UserType: "user"
     }); // render & page

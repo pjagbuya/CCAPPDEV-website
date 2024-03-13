@@ -15,7 +15,7 @@ loginRouter.get('/login', function(req, resp){
 
 
     resp.render('html-pages/home/H-login',{
-        layout: 'index-home',
+        layout: 'home/index-home',
         title: 'Login Page'
 
     });

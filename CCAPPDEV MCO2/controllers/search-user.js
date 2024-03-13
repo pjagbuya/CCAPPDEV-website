@@ -15,7 +15,7 @@ console.log("Connecteed to router 3")
 
 searchUserRouter.get("/:id/search-users",  function(req, resp){ 
     resp.render('html-pages/search/search-user',{
-        layout: "index-user",
+        layout: "user/index-user",
         title: "Search User",
         userType: "user"
     }); // render & page
@@ -42,7 +42,7 @@ searchUserRouter.post("/:id/search-user-results",  function(req, resp){
 
     userModel.find(searchQuery).lean().then(function(users){
         resp.render('html-pages/search/search-user-results',{
-            layout: "index-user",
+            layout: "user/index-user",
             title: "User Search Results",
             users: users
         }); // render & page
@@ -56,7 +56,7 @@ searchUserRouter.get("/profile/:id",  function(req, resp){
 
     userModel.find(searchQuery).lean().then(function(profile){
         resp.render('html-pages/search/search-user-view',{
-            layout: "index-user",
+            layout: "user/index-user",
             title: "User Search Results",
             profile: profile
             

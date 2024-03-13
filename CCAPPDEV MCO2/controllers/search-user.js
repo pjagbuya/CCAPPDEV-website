@@ -13,14 +13,14 @@ console.log("Connecteed to router 3")
 // Start her after template above
 
 
-searchUserRouter.get("/user/:id/search-users",  function(req, resp){ 
+searchUserRouter.get("/",  function(req, resp){ 
     resp.render('html-pages/search-user/search-user',{
         layout: "index-user",
         title: "Search User",
     }); // render & page
 });
 
-searchUserRouter.post("/user/:id/search-users",  function(req, resp){
+searchUserRouter.post("/user/:id",  function(req, resp){
     const searchQuery = { };
 
     // builds onto the searchQuery object based on filled fields
@@ -49,7 +49,7 @@ searchUserRouter.post("/user/:id/search-users",  function(req, resp){
 });
 
 // for loading the search result
-searchUserRouter.get("/user/profile/:id",  function(req, resp){ 
+searchUserRouter.get("/profile/:id",  function(req, resp){ 
     const dlsuID = req.params.id;
     const searchQuery = { dlsuID: dlsuID };
 

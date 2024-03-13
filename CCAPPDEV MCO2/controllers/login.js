@@ -77,7 +77,7 @@ loginRouter.post('/login',  async (req, resp) =>{
 const userRouter = require('./users');
 loginRouter.use("/user", userRouter);
 
-const ltRouter = require('./LT-user.js');
+const ltRouter = require('./LT/LT-users');
 loginRouter.use("/lt-user", ltRouter);
 
 module.exports = loginRouter

@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const viewEditRouter = express.Router();
 const mongoose = require("mongoose");
 const usersModel = require("../../models/register-model");
-const labModel = require("../../models/labs-model").LabModel;
+const labModel = require("../../models/lab-model").LabModel;
 const reservationModel = require("../../models/reserve-model");
 const Time = require("../../models/time-model");
 var allUniqueTimes;
@@ -163,6 +163,10 @@ function convertTimeIdToInterval(timeId) {
 
 
  });
+
+const searchUserRouter = require('../search-user');
+viewEditRouter.use("/search-user", searchUserRouter);
+
  module.exports = {
    convertTimeIdToInterval,
    keyLabNamesToSeatIds,

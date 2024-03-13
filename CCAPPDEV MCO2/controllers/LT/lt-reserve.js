@@ -4,14 +4,14 @@ const reserveRouter = express.Router();
 const mongoose = require("mongoose");
 const hbs = require("handlebars");
 const usersModel = require("../../models/register-model");
-const labModel = require("../../models/labs-model").LabModel;
-const seatModel = require("../../models/labs-model").SeatModel;
+const labModel = require("../../models/lab-model").LabModel;
+const seatModel = require("../../models/lab-model").SeatModel;
 const Reservation = require("../../models/reserve-model");
-const segregateSeats = require("../../models/labs-model").segregateSeats;
-const getUniqueSeatNumbers = require("../../models/labs-model").getUniqueSeatNumbers
-const getSeatTimeRange = require("../../models/labs-model").getSeatTimeRange;
+const segregateSeats = require("../../models/lab-model").segregateSeats;
+const getUniqueSeatNumbers = require("../../models/lab-model").getUniqueSeatNumbers
+const getSeatTimeRange = require("../../models/lab-model").getSeatTimeRange;
 const timeModel = require("../../models/time-model");
-const updateLabInformation = require("../../models/labs-model").updateLabInformation;
+const updateLabInformation = require("../../models/lab-model").updateLabInformation;
 let currentId = 6;
 
 function generateShortId() {
@@ -318,5 +318,7 @@ function isAfternoonInterval(timeInterval) {
    }
 });
 
+const searchUserRouter = require('../search-user');
+reserveRouter.use("/search-user", searchUserRouter);
 
 module.exports = reserveRouter;

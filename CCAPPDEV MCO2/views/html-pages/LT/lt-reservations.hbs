@@ -1,0 +1,43 @@
+
+    <div class="reserve-edit">
+        <div class="inner-box">
+
+          <div class="exit-section d-flex flex-start flex-row">
+            <a href="LT-user-profile.html">
+              <button class="btn btn-danger my-3" type="button" name="button">Exit Reservation Editor</button>
+            </a>
+          </div>
+          <h1>Reservation Editor</h1>
+            <div class="inner-box-table">
+                <table>
+                    <thead>
+                      <tr>
+                          <th class="header tc">Username</th>
+                          <th class="header tc">Reservation ID</th>
+                          <th class="header tc">Status</th>
+                          <th class="header tc"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{#each reservations}}
+                      <tr>
+                          <td class="tc">{{userID}}</td>
+                          <td class="tc">{{reservationID}}</td>
+                          <td class="tc">{{reservationStatus}}</td>
+                          <td class="tc">
+
+
+                            <a href="{{redirectBase}}view/{{reservationID}}">
+                              <button class="view-button">View</button>
+                            </a>
+                            <button class="btn btn-danger my-1 mx-2">Cancel Reservation</button>
+
+                          </td>
+                      </tr>
+                      {{/each}}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

@@ -178,6 +178,8 @@ async function updateLabInformation() {
 }
 const SeatModel = mongoose.model('Seat', seatSchema);
 
+
+module.exports.getSeatTimeRange = getSeatTimeRange;
 module.exports.segregateSeats = segregateSeats;
 module.exports.getUniqueSeatNumbers = getUniqueSeatNumbers;
 module.exports.SeatModel = SeatModel;

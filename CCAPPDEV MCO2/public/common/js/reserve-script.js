@@ -2,7 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 
-
+  const checkedSeatIds = [];
   function openModalSeats() {
     document.getElementById('modalSeats').style.display = 'flex';
     document.getElementById('overlay').style.display = 'block';
@@ -99,6 +99,34 @@ let selectedDayDiv = null;
       }
     });
   }
+
+  function postReservationData(seatSlots) {
+
+
+    const techID = document.getElementById('techIDInput').value;
+    const userID = document.getElementById('userIDInput').value;
+    const labName = document.getElementById('labNameInput').value;
+    console.log("Data being sent:", {
+      userID: String(userID),
+      labName: String(labName),
+      seatSlots: seatSlots
+    });
+
+      $.ajax({
+        url: `/lt-user/${techID}/reserve/confirm`,
+        type: 'POST',
+        data: {
+          userID: String(userID),
+          labName: String(labName),
+          seatSlots: seatSlots
+        },
+        function (result, status) {
+          console.log('Request reservation successfully sent:', status);
+        }
+      });
+
+
+  }
   // Function to post data
   function postSeatData(weekDay, seatNumber) {
     return new Promise((resolve, reject) => {
@@ -185,7 +213,33 @@ let selectedDayDiv = null;
   Handlebars.registerHelper('eq', function (a, b, options) {
     return a === b ? options.fn(this) : options.inverse(this);
   });
+  function copySelectSeatSlots(button) {
+    console.log("confirmation modal opened");
 
+    const $modal = $('.modal-body');
+    const modalTableBody = $modal.find('table tbody');
+
+    // Search both tables
+    const tables = $('#morningTable, #afternoonTable');
+    modalTableBody.empty();
+
+    tables.find('.time-chkBox:checked').each(function() {
+      const $checkbox = $(this);
+      const $row = $checkbox.closest('tr');
+
+      console.log("Finding Checkboxes");
+
+      const timeInterval = $row.find('.time-slot-data').text().trim();
+      const seatNumber = $row.find('.seat-num-data').text().trim();
+
+      modalTableBody.append(`
+        <tr>
+          <td class="tc">${timeInterval}</td>
+          <td class="tc">${seatNumber}</td>
+        </tr>
+      `);
+    });
+  }
 
 
   function handleDayDivClick(dayDataToSend) {
@@ -246,6 +300,7 @@ let selectedDayDiv = null;
 
 
         seatBoxes.forEach(function(seatBox) {
+
           var seatNumber = seatBox.textContent.trim();
 
           var dateText = selectedDayDiv.textContent.trim();
@@ -253,7 +308,7 @@ let selectedDayDiv = null;
 
           var weekDay = dateText.split(',')[0].trim();
           seatBox.addEventListener('click', function() {
-
+            $('#timeTableSection').empty();
             copySelected(seatBox);
 
             closeModalSeats();
@@ -305,13 +360,38 @@ let selectedDayDiv = null;
 
 
                     }
-                    $('.time-chkBox').on('click', function() {
 
+                    const labName = document.getElementById('labNameInput').value;
+                    $('.time-chkBox').on('change', function() {
                       var seatTimeID = $(this).data('id-toggler');
 
 
                       copySelectedToCheck(this, seatTimeID);
+
+                      const seatId = event.target.dataset.seatId;
+                      if (event.target.checked) {
+                        checkedSeatIds.push(seatId);
+                      } else {
+                        const index = checkedSeatIds.indexOf(seatId);
+                        if (index !== -1) {
+                          checkedSeatIds.splice(index, 1);
+                        }
+                      }
+
+
                     });
+                    $('#confirmationModal').on('shown.bs.modal', function() {
+
+
+                        $('#confirmation-labName').text(labName);
+                        copySelectSeatSlots($('.confirm-reservation-btn'))
+                        $('#confirmModalBtn').on('click', function() {
+                          postReservationData(checkedSeatIds);
+                        });
+                    });
+
+
+
 
 
                   });

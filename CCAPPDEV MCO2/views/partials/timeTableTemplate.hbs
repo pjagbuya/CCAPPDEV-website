@@ -1,7 +1,3 @@
-
-
-
-
 <script id="time-template" type="text/x-handlebars-template">
 
     <!-- Morning Time Slot Table -->
@@ -19,9 +15,9 @@
 
 
         <tr>
-          <td data-seat-id="\{{_id}}"  class="time-slot-data ">\{{timeInterval}}</td>
+          <td  class="time-slot-data ">\{{timeInterval}}</td>
           \{{#isNull studentUser}}
-            <td class="checkbox-data" ><input data-id-toggler="_time-\{{seatTimeID}}" class="time-chkBox"  type="checkbox"></td>
+            <td class="checkbox-data" ><input data-seat-id="\{{_id}}" data-id-toggler="_time-\{{seatTimeID}}" class="time-chkBox"  type="checkbox"></td>
           \{{else}}
             <td class="checkbox-data" ><u>\{{studentUser}}</u></td>
           \{{/isNull}}
@@ -45,9 +41,9 @@
       <tbody>
         \{{#each dataN}}
         <tr>
-          <td data-seat-id="\{{_id}}" class="time-slot-data _time-\{{seatTimeID}}">\{{timeInterval}}</td>
+          <td  class="time-slot-data ">\{{timeInterval}}</td>
           \{{#isNull studentUser}}
-            <td class="checkbox-data" ><input data-id-toggler="_time-\{{seatTimeID}}" class="time-chkBox"  type="checkbox"></td>
+            <td class="checkbox-data" ><input data-seat-id="\{{_id}}" data-id-toggler="_time-\{{seatTimeID}}" class="time-chkBox"  type="checkbox"></td>
           \{{else}}
             <td class="checkbox-data" ><u>\{{studentUser}}</u></td>
           \{{/isNull}}

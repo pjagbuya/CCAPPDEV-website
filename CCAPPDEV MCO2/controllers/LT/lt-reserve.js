@@ -82,7 +82,7 @@ function generateShortId() {
    if (roomName === 'N/A') {
      resp.status(400).json({ error: 'Room Name is missing' });
    } else {
-     console.log("Sent url: " +`/lt-user/${req.session.user.dlsuID}/reserve/${userID}/${roomName}`)
+     console.log("Sent url: " +`/lt-user/${req.session.user.dlsuID}/reserve/${userID}/${roomName}`);
      resp.send({ redirect: `/lt-user/${req.session.user.dlsuID}/reserve/${userID}/${roomName}` });
    }
  });
@@ -117,6 +117,7 @@ function generateShortId() {
            title: 'Tech Reserve User ' + user.dlsuID,
            name: req.session.user.username,
            techID: req.session.user.dlsuID,
+           dlsuID: req.session.user.dlsuID,
            userID: req.params.userID,
            labName: labRoom,
            userType: 'lt-user',

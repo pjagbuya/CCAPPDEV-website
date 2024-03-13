@@ -1,0 +1,59 @@
+
+
+  <section class="lab-slots-browse-section-2">
+    <input type="hidden" id="techIDInput" name="techID" value="{{techID}}">
+    <input type="hidden" id="userIDInput" name="userID" value="{{userID}}">
+    <input type="hidden" id="labNameInput" name="labName" value="{{labName}}">
+
+    <div class="starting-section-top-text">
+      <h1>Student User ID: <span id="userID"><strong>{{userID}}</strong></span></h1>
+      <h1>Room: <span id="labName"><strong>{{labName}}</strong></span></h1>
+      <h2>Select a Date: </h2>
+    </div>
+
+    <div id="weekdaysChoices" class="reservation-next-days">
+
+      <div class="day-container" id="daysContainer">
+
+      </div>
+
+    </div>
+
+
+    <div id="selectSeatsSection" class="selected-seat-section flex-column">
+      <button id="selectSeatButton" class="selected-seat-button" type="button" name="button" >Select a Seat</button>
+      <p class="selected-seat-text-section">Selected seat: <strong> <span id="seatNum" class="selected-seat-text">N/A</span> </strong></p>
+      <p class="is-anonymous-section">set Anonymous? &nbsp;<input type="checkbox" name="isAnon" value=""> </p>
+    </div>
+
+    <div id="timeTableSection" class="time-table-section">
+
+    </div>
+
+
+    <footer >
+
+      <button class="confirm-reservation-btn custom-button-2" data-toggle="modal" data-target="#confirmationModal">Confirm Reservations</button>
+
+
+
+      <!-- <a href="LT-user-reserve-student.html" target="_self"> -->
+        <button class="cancel-btn arrow-button">Cancel</button>
+      <!-- </a> -->
+
+    </footer>
+
+  </section>
+
+  <div id="modalSeats" class="seat-modal">
+
+  </div>
+
+
+
+  <div class="confirmed-reservations-message">
+    {{> confirmation-modal}}
+
+  </div>
+
+  <div id="overlay" class="overlay" ></div>

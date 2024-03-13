@@ -11,7 +11,7 @@ userRouter.get("/:id",  function(req, resp){
   if(req.session.user){
     console.log("Logged in as")
     console.log(req.session.user)
-    resp.render('html-pages/student/profile',{
+    resp.render('html-pages/user/U-user',{
         layout: 'index-user',
         title: req.session.user['username'],
         userType: 'user',
@@ -57,7 +57,7 @@ userRouter.get("/:id",  function(req, resp){
 //   });
 // });
 //
-// const searchRouter = require('./search-user');
-// userRouter.use("/search-user", searchRouter);
+const searchRouter = require('./search-user');
+userRouter.use("/", searchRouter);
 
 module.exports = userRouter

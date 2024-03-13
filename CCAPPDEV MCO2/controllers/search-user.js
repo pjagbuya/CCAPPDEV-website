@@ -13,7 +13,7 @@ console.log("Connecteed to router 3")
 // Start her after template above
 
 
-searchUserRouter.get("/",  function(req, resp){ 
+searchUserRouter.get("/:id/search-user",  function(req, resp){ 
     resp.render('html-pages/search-user/search-user',{
         layout: "index-user",
         title: "Search User",

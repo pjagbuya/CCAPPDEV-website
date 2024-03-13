@@ -9,7 +9,7 @@ const Reservation = require("../models/reserve-model");
 const segregateSeats = require("../models/lab-model").segregateSeats;
 const getUniqueSeatNumbers = require("../models/lab-model").getUniqueSeatNumbers
 const getSeatTimeRange = require("../models/lab-model").getSeatTimeRange;
-
+const MAX_RESERVED_SEATS_VISIBLE = 3;
 const Time = require("../models/time-model");
 const weekdaysFull = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const weekdaysShort = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
@@ -139,7 +139,13 @@ userRouter.get("/:id",  async function(req, resp){
         if (!seats[group]) {
           seats[group] = [];
         }
-        seats[group].push(seatDetails);
+
+
+        //Limits the seats the user can view
+        if (seats[group].length < MAX_RESERVED_SEATS_VISIBLE) {
+          seats[group].push(seatDetails);
+        }
+
       } catch (error) {
         console.error(`Error fetching seat details for seat ID: ${reservationSeatId}`, error);
       }

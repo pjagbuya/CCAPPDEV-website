@@ -87,8 +87,8 @@ app.get('/', function(req, resp){
 const registerLoginRouter = require('./controllers/register-login')
 app.use("/", registerLoginRouter);
 
-const userRouter = require('./controllers/users');
-app.use("/user", userRouter);
+// const userRouter = require('./controllers/users');
+// app.use("/user", userRouter);
 
 const loginRouter = require('./controllers/login');
 app.use("/", loginRouter);
@@ -96,23 +96,23 @@ app.use("/", loginRouter);
 // const chatRouter = require('./controllers/chat');
 // app.use("/", chatRouter);
 
-const searchUserRouter = require('./controllers/search-user');
-app.use("/", searchUserRouter);
+// const searchUserRouter = require('./controllers/search-user');
+// app.use("/", searchUserRouter);
+//
+// const searchLabRouter = require('./controllers/search-lab');
+// app.use("/", searchLabRouter);
 
-const searchLabRouter = require('./controllers/search-lab');
-app.use("/", searchLabRouter);
-
-io.on('connection', (socket) => {
-  console.log(`user connected ${socket.id}`);
-
-  socket.on("send-message", function(data){
-    io.emit("recieve-message", data);
-  });
-
-  socket.on('disconnect', function(){
-    console.log(`user disconnected ${socket.id}`);
-  });
-});
+// io.on('connection', (socket) => {
+//   console.log(`user connected ${socket.id}`);
+//
+//   socket.on("send-message", function(data){
+//     io.emit("recieve-message", data);
+//   });
+//
+//   socket.on('disconnect', function(){
+//     console.log(`user disconnected ${socket.id}`);
+//   });
+// });
 
 
 const port = process.env.PORT | 9090;

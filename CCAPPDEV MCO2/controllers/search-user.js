@@ -25,9 +25,9 @@ console.log("Connecteed to router 3")
 
 async function initializeUniqueTimes() {
     const uniqueTimeIds = await Time.distinct('timeID', { timeID: { $gte: 1, $lte: 20 } });
-  
+
     const timeData = await Time.find({ timeID: { $in: uniqueTimeIds } })
-  
+
     allUniqueTimes = timeData.map(({ timeID, timeIN, timeOUT }) => ({
       timeId: timeID,
       timeInterval: `${timeIN} - ${timeOUT}`
@@ -39,52 +39,52 @@ function formatWeekdayDate(weekday) {
 
     const today = new Date();
     let currentWeekdayIndex = today.getDay();
- 
- 
+
+
     if (!weekdaysFull.includes(weekday)) {
       throw new Error('Invalid weekday provided');
     }
- 
+
     const targetWeekdayIndex = weekdaysFull.indexOf(weekday);
- 
+
     let daysToAdd = (targetWeekdayIndex - currentWeekdayIndex + 7) % 7;
     if (daysToAdd === 0 && currentWeekdayIndex === targetWeekdayIndex) {
       daysToAdd = 0;
     }
- 
+
     const targetDate = new Date();
     targetDate.setDate(today.getDate() + daysToAdd);
- 
- 
+
+
     const shortWeekday = weekdaysShort[targetDate.getDay()];
- 
+
     const formattedDate = `${shortWeekday}, ${targetDate.toDateString().split(' ')[1]} ${targetDate.getDate()}`;
- 
+
     return formattedDate;
   }
  function convertTimeIdToInterval(timeId) {
     const matchingTime = allUniqueTimes.find(timeData => timeData.timeId === timeId);
- 
+
     if (matchingTime) {
       return matchingTime.timeInterval;
     } else {
       return 'Time Interval Not Found';
     }
   }
- 
- 
+
+
   async function getSeatDate(weekday) {
     const today = new Date();
- 
- 
+
+
     while (today.getDay() !== weekdaysFull.indexOf(weekday)) {
       today.setDate(today.getDate() + 1);
     }
- 
+
     return today;
   }
- 
- 
+
+
   Handlebars.registerHelper('eq', function (a, b, options) {
     return a === b ? options.fn(this) : options.inverse(this);
   });
@@ -97,7 +97,7 @@ function formatWeekdayDate(weekday) {
       return 0; // Handle other data types (return 0 for non-strings or arrays)
     }
   });
- 
+
   Handlebars.registerHelper('gte', function (value1, value2) {
    if (typeof value1 === 'number' && typeof value2 === 'number') {
      return value1 >= value2;
@@ -105,13 +105,13 @@ function formatWeekdayDate(weekday) {
      return false; // Handle non-numeric values or invalid comparisons
    }
  });
- 
+
  Handlebars.registerHelper('limitEach', function (array, limit, options) {
    const subArray = array.slice(0, limit);
    return options.fn(subArray);
  });
 
-searchUserRouter.get("/:id/search-users",  function(req, resp){ 
+searchUserRouter.get("/:id/search-users",  function(req, resp){
     var userString = req.params.id;
     var userType = "";
 
@@ -163,7 +163,7 @@ searchUserRouter.get("/profile/:id",  async function(req, resp){
     const seats = {};
     const dlsuID = req.params.id;
     const searchQuery = { dlsuID: dlsuID };
-  
+
     // Loop through each reservation and its associated seat IDs
     // Each seat IDs is segregated via key pattern "next_day_0, next_day_1"
     // Loop through each reservation and its associated seat IDs
@@ -176,8 +176,8 @@ searchUserRouter.get("/profile/:id",  async function(req, resp){
             console.log(`Seat not found for reservation seat ID: ${reservationSeatId}`);
             continue;
           }
-  
-  
+
+
           const seatDetails = {
             _id: seat._id,
             seatNumber: seat.seatNumber,
@@ -185,56 +185,64 @@ searchUserRouter.get("/profile/:id",  async function(req, resp){
             timeInterval: await getSeatTimeRange(seat.seatTimeID),
             labName: seat.labName, // Include if needed
           };
-  
-  
+
+
           const today = new Date();
           const seatDate = await getSeatDate(seat.weekDay);
-  
+
           const daysDifference = Math.floor((seatDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
-  
+
           const group = `next_day_${Math.max(0, daysDifference)}`;
-  
-  
+
+
           if (!seats[group]) {
             seats[group] = [];
           }
-  
-  
+
+
           //Limits the seats the user can view
           if (seats[group].length < MAX_RESERVED_SEATS_VISIBLE) {
             seats[group].push(seatDetails);
           }
-  
+
         } catch (error) {
           console.error(`Error fetching seat details for seat ID: ${reservationSeatId}`, error);
         }
       }
     }
     console.log("Json of seats: ", seats);
-  
-  
-    console.log("Attempting to load" + req.params.id);
+
+
+      console.log("Attempting to load" + req.params.id);
+
       console.log("Logged in as")
       console.log(req.session.user)
       profile = await userModel.findOne(searchQuery)
-        console.log("found profile")
-        console.log(profile)
+      console.log("found profile")
+      console.log(profile)
+
+
         resp.render('html-pages/search/search-user-view',{
             layout: "user/index-user",
             title: "User Search Results",
             seats: JSON.parse(JSON.stringify(seats)),
-            profile: profile, 
-            firstName: profile.firstName,  
-            lastName: profile.lastName, 
+            profile: profile,
+            firstName: profile.firstName,
+            lastName: profile.lastName,
             view_dlsuID: profile.dlsuID, // for the viewed profile
-            email: profile.email, 
-            dlsuID: req.params.id // user's own dlsuID
-            
-        }); // render & page
-  });
+            userType: "user",
+            dlsuID: req.session.user.dlsuID,
+            email: profile.email
+
+        });
+
+
+
+  }); // then & func
+
 
 // for loading the search result
-// searchUserRouter.get("/profile/:id",  function(req, resp){ 
+// searchUserRouter.get("/profile/:id",  function(req, resp){
 //     const dlsuID = req.params.id;
 //     const searchQuery = { dlsuID: dlsuID };
 
@@ -242,9 +250,9 @@ searchUserRouter.get("/profile/:id",  async function(req, resp){
 //         resp.render('html-pages/search/search-user-view',{
 //             layout: "user/index-user",
 //             title: "User Search Results",
-//             profile: profile,   
+//             profile: profile,
 //             dlsuID: req.params.id
-            
+
 //         }); // render & page
 //     }); // then & func
 // });

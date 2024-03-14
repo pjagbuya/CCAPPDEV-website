@@ -1,6 +1,8 @@
 
 
-
+.filter-section{
+  width: 100%;
+}
 .no-decor{
     text-decoration:none
   }
@@ -12,7 +14,7 @@
     font-family: "Montserrat";
     font-size: 1rem;
   }
-  
+
   .custom-color1
   {
     color: #FBFADA;
@@ -20,13 +22,13 @@
   .index-navbar{
     background-color: #12372A;
     z-index: 998;
-  
+
   }
   .custom-color2
   {
     color: #ADBC9F;
   }
-  
+
   .header-custom2
   {
     font-size: 2.5rem;
@@ -40,7 +42,7 @@
   .animo-icon{
     margin-left: 10px
   }
-  
+
   .pic-and-mail{
     position: relative;
   }
@@ -58,31 +60,31 @@
     left: 25px;
     z-index: 3;
   }
-  
+
   .mail-icon-section:hover{
     color: #CDFADB;
     cursor: pointer;
     transform: scale(1.2);
   }
-  
+
   .custom-color3{
     color: #CDFADB;
   }
-  
-  
+
+
   body{
     padding-top: 113px;
     display: flex;
   }
-  
+
   h2{
     font-family: "Montserrat";
   }
   .search-bar-input{
-  
+
     width: 400px !important;
     height: 40px !important;
-  
+
   }
   .profile-section{
     display: flex;
@@ -91,14 +93,14 @@
     align-items: center;
     justify-content: center;
     vertical-align: middle;
-  
+
   }
   .profile-section-pic{
     width: 100px;
     height: 100px;
     border-radius: 50%;
   }
-  
+
   .profile-section-text{
     font-family: "Montserrat";
     font-size: normal;
@@ -106,30 +108,30 @@
     font-size: 1.25rem;
     margin-right: 10px;
   }
-  
-  
+
+
   .animo-text:hover
   {
-  
+
     animation: slightly-big 1s ease-in-out infinite alternate;
-  
+
   }
-  
-  
+
+
   .profile-body{
     display: flex;
     margin-left: 20px;
     width: 100%;
-  
+
   }
-  
-  
-  
+
+
+
   .profile-pic-and-name{
     margin: 0 auto;
     display: inline-block;
     text-align: center;
-  
+
   }
   .custom-header1
   {
@@ -139,38 +141,38 @@
   p{
     font-family: "Montserrat";
   }
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
   .day-container {
     display: flex;
     justify-content: space-between;
     margin: 20px 0;
   }
-  
+
   .day {
     width: calc(100% / 7);
     border: 1px solid #ccc;
     padding: 10px;
     text-align: center;
   }
-  
+
   .format-date{
     color: #FBFADA;
     background-color: #12372A;
-  
+
   }
-  
+
   .toggle-sidebar-btn {
-  
+
     top: 10px;
     left: 10px;
     z-index: 6;
   }
-  
+
   .hidden-sidebar {
     display: block;
     position: fixed;
@@ -183,9 +185,9 @@
     transition: left 0.2s ease-in-out;
     z-index: 5;
   }
-  
+
   .hidden-sidebar.show {
-  
+
     left: 0px;
   }
   .icon-section{
@@ -199,25 +201,25 @@
   .sidebar-section-container{
     display: flex;
     align-items: center;
-  
+
     padding: 20px;
     font-size: 18px;
     font-family: "Montserrat";
   }
-  
+
   .sidebar-section-container:hover{
     cursor: pointer;
-  
+
     background-color: #436850;
     color: white;
-  
+
   }
-  
+
   .date-details{
     background-color: #ADBC9F;
     margin-bottom: 20px;
   }
-  
+
   .close-btns{
     position: absolute;
     transform: scale(0.8);
@@ -225,8 +227,8 @@
     left: 97%;
     bottom:90%;
   }
-  
-  
+
+
   .lab-slots-browse-section{
     width: 100%;
     border: 20px ridge #436850;
@@ -244,14 +246,14 @@
     width: 30%;
     height: 300px;
     margin: 20px;
-  
+
   }
-  
+
   .lab-choice-img{
     width: 60%;
     height: 80%;
   }
-  
+
   .lab-choice-details{
     background-color:#ADBC9F;
     padding: 10px;
@@ -261,61 +263,61 @@
     height: 80%;
     margin: 5px;
   }
-  
+
   .lab-choice-btn{
     justify-content: center;
   }
-  
+
   .avail-text{
     color: green;
     font-weight: bold;
   }
-  
-  
+
+
   .full-text{
     color: red;
     font-weight: bold;
   }
-  
+
   .arrow-button{
     background-color: #FBFADA;
     margin-right: 10px;
     margin-left: 10px;
     transition: transform 0.2s ease-in-out;
-  
+
   }
-  
+
   .arrow-button:hover{
     transform: scale(1.1);
     color: white;
     background-color: #12372A;
-  
+
   }
-  
+
   .time-table-section{
     width: 100%;
     display: none;
     justify-content: center;
-  
+
   }
-  
+
   .time-table{
     text-align: center;
     border: 5px solid black;
     background-color: #FBFADA;
     margin: 20px;
-  
+
     width: 45%;
   }
-  
+
   input[type="checkbox"] {
     transform: scale(1.5);
   }
-  
+
   .time-slot-data{
     border: 3px solid black;
   }
-  
+
   .checkbox-data{
     border: 3px solid black;
     transition: transform 0.2s ease-in-out;
@@ -338,8 +340,8 @@
     width: 10%;
     border-left: 3px solid black
   }
-  
-  
+
+
   /*Hard coded locked reservation*/
   .morning-time-slot-6{
     background-color: orange;
@@ -350,24 +352,24 @@
   .morning-seat-slot-6{
     background-color: orange;
   }
-  
+
   .reservation-next-days{
     width: 90%;
-  
+
     justify-content: center;
     align-items: center;
-  
+
   }
-  
+
   .day-container {
     display: flex;
     justify-content: space-between;
     margin: 20px 0;
-  
+
   }
-  
-  
-  
+
+
+
   .day {
     width: calc(100% / 7);
     border: 1px solid #ccc;
@@ -380,17 +382,17 @@
     background-color:#FBFADA;
     transform: scale(1.2);
   }
-  
+
   .day:click{
     cursor: pointer;
     background-color:#436850;
   }
-  
+
   .format-date{
     color: #FBFADA;
     background-color: #436850;
   }
-  
+
   .selected-seat-section{
     width: 100%;
     height: 200px;
@@ -406,14 +408,14 @@
     height: 100px;
     transition: transform 0.2s ease-in-out;
   }
-  
+
   .selected-seat-button:hover{
     transform: scale(1.1);
     box-shadow: 0px 0px 50px 10px #CDFADB;
     color:#CDFADB;
   }
   .custom-button-1{
-  
+
     background-color: #ADBC9F;
     width: 200px;
     height: 100px;
@@ -422,31 +424,31 @@
     font-family: "Montserrat";
     font-weight: bold;
     border-radius: 25px;
-  
+
     transition: transform 0.2s ease-in-out;
   }
-  
+
   .filter-part-1{
-  
+
     margin: 40px;
-  
+
   }
   .label-custom-1{
     font-size: 1rem;
     margin-top: 20px;
     font-weight: bold;
   }
-  
+
   .filter-part-2{
-  
+
     justify-content: center;
   }
-  
+
   .custom-button-1:hover{
     transform: scale(1.1);
     border: 7px ridge #ADBC9F;
   }
-  
+
   .selected-seat-text-section{
     margin: 10px;
     font-size: 2rem;
@@ -459,20 +461,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  
+
   }
-  
+
   .lab-choices-section{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
   }
-  
+
   .arrows-section{
     display: flex;
     justify-content: center;
   }
-  
+
   .seat-modal {
     display: none;
     position: fixed;
@@ -487,10 +489,10 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     justify-content: center;
-  
-  
+
+
   }
-  
+
   .overlay {
     display: none;
     position: fixed;
@@ -501,13 +503,13 @@
     background: rgba(0, 0, 0, 0.5);
     z-index: 999;
   }
-  
+
   /* Style for the close button */
   .close {
-  
+
     cursor: pointer;
     position: absolute;
-  
+
     top: 10px;
     right: 10px;
   }
@@ -515,11 +517,11 @@
     display:flex;
     flex-wrap: wrap;
     justify-content:center;
-  
+
     align-items:center;
     z-index: 1001;
   }
-  
+
   .whiteboard-section{
     display: flex;
     width: 120px;
@@ -529,23 +531,23 @@
     border: 5px solid black;
     text-align:center;
     align-items: center;
-  
-  
+
+
   }
-  
-  
+
+
   .container {
     display: block;
     flex-direction: column;
     width: 700px;
     height: 300px;
   }
-  
+
   .row {
     display: flex;
     flex: 1;
   }
-  
+
   .box {
     display:flex;
     flex: 1;
@@ -553,9 +555,9 @@
     margin: 20px 20px;
     box-sizing: border-box;
     flex-direction:column;
-  
+
   }
-  
+
   .seat-box{
     width:60px;
     height:30px;
@@ -568,7 +570,7 @@
     font-family: "Montserrat";
     transition: transform 0.2s ease-in-out;
   }
-  
+
   .seat-box:hover{
     cursor: pointer;
     transform: scale(1.1);
@@ -578,7 +580,7 @@
   .no-margin-top{
     margin-top:0;
   }
-  
+
   .custom-button-6{
     background-color: #FBFADA;
     margin-right: 10px;
@@ -588,16 +590,16 @@
     width: 150px;
     height: 70px;
     font-size: 1.5rem;
-  
+
   }
   .custom-button-2{
-  
+
     background-color: #436850;
     color: #FBFADA;
     margin-right: 10px;
     margin-left: 10px;
     transition: transform 0.2s ease-in-out;
-  
+
   }
   .custom-button-6:hover{
     transform: scale(1.1);
@@ -609,7 +611,7 @@
     color: white;
     background-color: #12372A;
   }
-  
+
   .taken-slot-text:hover{
     cursor: pointer;
     color:#FBFADA;
@@ -617,7 +619,7 @@
   .is-anonymous-section{
     font-family: "Montserrat";
   }
-  
+
   .starting-section-top-text{
     display: flex;
     flex-direction: column;
@@ -634,7 +636,6 @@
     }
     to{
       transform: scale(1.2);
-  
+
     }
   }
-  

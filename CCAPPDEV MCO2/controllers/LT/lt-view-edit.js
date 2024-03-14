@@ -149,7 +149,6 @@ function convertTimeIdToInterval(timeId) {
          userType: 'lt-user',
          name: req.session.user.username,
          data: labSeatsMap,
-         labName:labSeatsMap[0].labName,
          dlsuID: req.session.user.dlsuID,
          redirectBase: "/lt-user/"+req.session.user.dlsuID+`/view/${req.params.resID}`,
          helpers: {

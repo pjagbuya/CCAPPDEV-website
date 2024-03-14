@@ -1,39 +1,51 @@
 
 $(document).ready(function () {
 
-    
+
     $("#search-lab-msg-btn").on('click',function(e){
+      $('.lab-choices-section').empty();
+
       e.preventDefault();
+
         $.post('search-labs',
           { msg: $('#search-lab-msg-txt').val() },
           function(data, status){
             if(status === 'success'){
+              $('.lab-choices-section').empty();
               console.log(data);
+              console.log("Labs in data")
               console.log(data.labs);
               $('#search-lab-msg-txt').val('');
 
-              let profileTemplateString = document.getElementById("lab-template").innerHTML;
-              let renderProfile = Handlebars.compile(profileTemplateString);
 
               const templateSource = document.getElementById('lab-template').innerHTML;
               console.log("Compiling: " + templateSource);
               const template = Handlebars.compile(templateSource);
-              Handlebars.registerHelper('isNull', function(user, options) {
-                return user === null ? options.fn(this) : options.inverse(this);;
+              Handlebars.registerHelper("isAvailable", function(string){
+                 return string === 'AVAILABLE';
               });
-              let renderedProfile =  renderProfile({
-              labs:data,
-              helpers: {
-                eq: function (a, b, options) {
-                    return a === b ? options.fn(this) : options.inverse(this);
-                  },
-                  isNull: function(user, options) {
-                                  return user === null ? options.fn(this) : options.inverse(this);
-                                }
-              }});
+              let renderedProfile =  template({
+              labs:data.labs
+            });
 
               $('.lab-choices-section').append(renderedProfile);
-              console.log(renderProfile);
+              console.log("Rendered compilations for search lab view");
+              console.log(renderedProfile);
+
+              var divs = document.querySelectorAll(".lab-choice-section");
+
+              divs.forEach(function (div) {
+                var availabilityText = div.querySelector(".status-text");
+                var currentLabDetail = div.querySelector(".lab-choice-details");
+
+                if (availabilityText) {
+                  var textColor = window.getComputedStyle(availabilityText).color;
+
+                  if (textColor === "rgb(255, 0, 0)" || textColor === "red") {
+                    currentLabDetail.style.backgroundColor = "orange";
+                  }
+                }
+              });
             }//if
           });//fn+post
       });//btn

@@ -100,14 +100,14 @@ Handlebars.registerHelper('limitEach', function (array, limit, options) {
   const subArray = array.slice(0, limit);
   return options.fn(subArray);
 });
-userRouter.get("/:id",  async function(req, resp){
+
+
+
+async function getAllReservationDetails(userID){
   initializeUniqueTimes();
-  const reservations = await Reservation.find({ userID: req.params.id });
+  const reservations = await Reservation.find({ userID: userID });
   const seats = {};
 
-  // Loop through each reservation and its associated seat IDs
-  // Each seat IDs is segregated via key pattern "next_day_0, next_day_1"
-  // Loop through each reservation and its associated seat IDs
   for (const reservation of reservations) {
     for (const reservationSeatId of reservation.reservationSeats) {
       try {
@@ -151,6 +151,14 @@ userRouter.get("/:id",  async function(req, resp){
       }
     }
   }
+
+  return seats
+}
+userRouter.get("/:id",  async function(req, resp){
+
+
+  seats = await getAllReservationDetails(req.params.id)
+
   console.log("Json of seats: ", seats);
 
 
@@ -173,6 +181,66 @@ userRouter.get("/:id",  async function(req, resp){
 });
 
 
+
+userRouter.get("/view",  async function(req, resp){
+
+
+  console.log("Loaded");
+  console.log("Welcome to viewing reservation user: " + req.session.user.dlsuID);
+
+  try {
+
+    const reservations = await Reservation.find({userID: req.session.user.dlsuID}).sort({ reservationStatus: 1 });;
+    var uid = req.session.user.dlsuID;
+    resp.render('html-pages/user/user-view-reservations', {
+      layout: 'user/index-user-view-reservations',
+      title: 'Tech Reservations View',
+      userType: 'lt-user',
+      name: req.session.user.username,
+      dlsuID: uid,
+      redirectBase: `/user/${uid}/view/`,
+      reservations: JSON.parse(JSON.stringify(reservations)),
+      helpers: {
+        isOngoing: function (string) { return string === 'Ongoing'; },
+
+      }
+    });
+
+
+
+  } catch (e) {
+     console.error("Error retrieving users:", e);
+  }
+
+});
+userRouter.get("/view/:resID",  async function(req, resp){
+
+
+  try {
+    await initializeUniqueTimes(); // Wait for initialization
+    const labSeatsMap = await keyLabNamesToSeatIds(req.params.resID);
+    console.log(labSeatsMap);
+
+    console.log(labSeatsMap);
+
+      resp.render('html-pages/LT/LT-reservation-data', {
+        layout: 'LT/index-LT-view-reservations',
+        title: 'Tech Reservations View',
+        userType: 'lt-user',
+        name: req.session.user.username,
+        data: labSeatsMap,
+        dlsuID: req.session.user.dlsuID,
+        redirectBase: "/lt-user/"+req.session.user.dlsuID+`/view/${req.params.resID}`,
+        helpers: {
+          isOngoing: function (string) { return string === 'Ongoing'; }
+        }
+      });
+  } catch(error) {
+    console.error("Error in route handler:", error);
+
+  }
+});
+
 const searchUserRouter = require('./search-user');
 userRouter.use("/", searchUserRouter);
 
@@ -180,3 +248,4 @@ const searchLabRouter = require('./search-lab');
 userRouter.use("/", searchLabRouter);
 
 module.exports = userRouter
+module.exports.getAllReservationDetails = getAllReservationDetails;

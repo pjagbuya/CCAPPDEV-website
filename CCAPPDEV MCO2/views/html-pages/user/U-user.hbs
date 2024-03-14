@@ -22,7 +22,7 @@
 
             </p>
             <p class="profile-name">
-              ID : 12206660
+              ID : {{dlsuID}}
             </p>
 
 
@@ -34,13 +34,13 @@
         <div class="description-div">
           <div class="course-desc">
             <h2 class= "custom-header1">Course <i class="fa-solid fa-pencil"></i></h2>
-            <p>BS in Computer Science: Major in Software Technology</p>
+            <p>{{course}}</p>
           </div>
 
 
           <div class="about-me">
             <h2 class= "custom-header1">About Me <i class="fa-solid fa-pencil"></i></h2>
-            <p>Casual student passing by. Appreciate in finding new friends or casual talk</p>
+            <p>{{about}}</p>
 
           </div>
 
@@ -164,6 +164,7 @@
               {{/if}}
 
             </div>
+
             <div class="day">
               <div class="format-date">Today</div>
               {{#if (gte (length seats.next_day_6) 1)}}
@@ -183,6 +184,9 @@
           </div>
 
         </div>
+
+
+
         <div class="reservations-btn-div">
           <a href=":id/edit-reservation">
             <button class="custom-btn-3 btn-hover-custom-2" type="button" name="button">View/Edit Reservations</button>
@@ -192,4 +196,4 @@
         </div>
 
       </section>
-    </div>
+  </div>

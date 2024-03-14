@@ -1,7 +1,8 @@
 
 
-
+// const updateLabInformation = require("../models/lab-model").updateLabInformation;
 const express = require("express");
+const Handlebars = require("handlebars");
 const searchLabRouter = express.Router();
 
 // model Imports
@@ -14,50 +15,71 @@ console.log("Connecteed to router 3")
 
 var labs_array = [];
 
-searchLabRouter.get("/:id/search-labs",  function(req, resp){ 
+
+Handlebars.registerHelper("isAvailable", function(string){
+   return string === 'AVAILABLE';
+});
+
+searchLabRouter.get("/:id/search-labs",  function(req, resp){
     resp.render('html-pages/search/search-lab',{
         layout: "search/index-search-lab",
         title: "Search Lab",
-        UserType: "user",
-        labs: labs_array
+        userType: "user",
+        dlsuID: req.session.user.dlsuID,
+        labs: labs_array,
+
     }); // render & page
 });
 
 searchLabRouter.post("/:id/search-labs",  async function(req, resp){
 
-    
-    
+
     labs_array = [];
     try{
         const filter = {};
         const labs = await labModel.find(filter);
 
-        console.log(labs);
+        console.log("labs are loaded");
+        console.log("req.body.search has: " + req.body.msg)
 
-        if (req.body.search){
+        if (req.body.msg){
             labs.forEach(function(lab){
-                if(lab.labName.includes(req.body.search)){
+                if(lab.labName.includes(req.body.msg)){
                     const response = {
                         lab: lab
-                    } 
+
+                    }
                     labs_array.push(response);
                 }
             });
+            console.log("Selecting these particular arrays ");
+            console.log(labs_array)
             const response = {
-                labs: JSON.parse(JSON.stringify(labs_array))
-            } 
+                labs: JSON.parse(JSON.stringify(labs_array)),
+                helpers: {
+                  isAvailable: function (string) {  return string === 'AVAILABLE';}
+                }
+            }
+            console.log("Response sent to the server:")
+            console.log(response);
             resp.send(response);
         }
         else{
+          console.log("Triggering seacrh body empty case")
             labs.forEach(function(lab){
                 const response = {
                     lab: lab
-                } 
+                }
                 labs_array.push(response);
             });
             const response = {
-                labs: JSON.parse(JSON.stringify(labs_array))
-            } 
+                labs: JSON.parse(JSON.stringify(labs_array)),
+                helpers: {
+                  isAvailable: function (string) {  return string === 'AVAILABLE';}
+                }
+            }
+            console.log("Response sent to the server:")
+            console.log(response);
             resp.send(response);
         }
     }

@@ -33,7 +33,7 @@
 }
 
 body{
-  background: url("../pics/home-bg-pic.jpg");
+  background: url("./pics/home-bg-pic.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -230,7 +230,7 @@ body{
 }
 
 /*keyFrames*/
-@keyframes nav-text-onhover 
+@keyframes nav-text-onhover
 {
   0%
   {

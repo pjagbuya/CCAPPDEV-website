@@ -17,9 +17,11 @@ searchUserRouter.get("/:id/search-users",  function(req, resp){
     resp.render('html-pages/search/search-user',{
         layout: "user/index-user",
         title: "Search User",
-        userType: "user"
+        userType: "user",
+        dlsuID: req.params.id
     }); // render & page
 });
+
 
 searchUserRouter.post("/:id/search-user-results",  function(req, resp){
     const searchQuery = { };
@@ -44,7 +46,8 @@ searchUserRouter.post("/:id/search-user-results",  function(req, resp){
         resp.render('html-pages/search/search-user-results',{
             layout: "user/index-user",
             title: "User Search Results",
-            users: users
+            users: users,
+            dlsuID: req.params.id
         }); // render & page
     }); // then & func
 });
@@ -58,7 +61,8 @@ searchUserRouter.get("/profile/:id",  function(req, resp){
         resp.render('html-pages/search/search-user-view',{
             layout: "user/index-user",
             title: "User Search Results",
-            profile: profile
+            profile: profile,
+            dlsuID: req.params.id
             
         }); // render & page
     }); // then & func

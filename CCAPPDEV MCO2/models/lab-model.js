@@ -59,7 +59,7 @@ const seatSchema = new mongoose.Schema({
     default: false,
   },
 });
-
+const SeatModel = mongoose.model('Seat', seatSchema);
 function segregateSeats(seats) {
   try {
     // Create an object to store seats grouped by weekday
@@ -176,7 +176,7 @@ async function updateLabInformation() {
     console.error('Error updating lab information:', error);
   }
 }
-const SeatModel = mongoose.model('Seat', seatSchema);
+
 
 
 module.exports.getSeatTimeRange = getSeatTimeRange;

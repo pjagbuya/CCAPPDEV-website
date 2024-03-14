@@ -330,6 +330,7 @@ let selectedDayDiv = null;
                     let renderedProfile =  renderProfile({
                     dataM:data.dataM,
                     dataN:data.dataN ,
+                    userType: "lt-user",
                     helpers: {
                       eq: function (a, b, options) {
                          return a === b ? options.fn(this) : options.inverse(this);

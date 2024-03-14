@@ -4,7 +4,7 @@
 const express = require("express");
 const Handlebars = require("handlebars");
 const searchLabRouter = express.Router();
-
+const updateLabInformation = require("../models/lab-model").updateLabInformation;
 // model Imports
 const labModel = require('../models/lab-model').LabModel;
 
@@ -20,10 +20,12 @@ Handlebars.registerHelper("isAvailable", function(string){
    return string === 'AVAILABLE';
 });
 
-searchLabRouter.get("/:id/search-labs",  function(req, resp){
+searchLabRouter.get("/:id/search-labs",  async function(req, resp){
+    await updateLabInformation();
     resp.render('html-pages/search/search-lab',{
         layout: "search/index-search-lab",
         title: "Search Lab",
+        imageSource: req.session.user.imageSource,
         userType: "user",
         dlsuID: req.session.user.dlsuID,
         labs: labs_array,
@@ -33,7 +35,7 @@ searchLabRouter.get("/:id/search-labs",  function(req, resp){
 
 searchLabRouter.post("/:id/search-labs",  async function(req, resp){
 
-
+    await updateLabInformation();
     labs_array = [];
     try{
         const filter = {};

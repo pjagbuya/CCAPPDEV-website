@@ -13,11 +13,13 @@ const getSeatTimeRange = require("../../models/lab-model").getSeatTimeRange;
 const timeModel = require("../../models/time-model");
 const updateLabInformation = require("../../models/lab-model").updateLabInformation;
 let currentId = 6;
-
-function generateShortId() {
+function generateUniqueRandomNumber(min, max) {
   currentId++;
+
+
   return currentId.toString().padStart(6, '0');
 }
+
 
 
  reserveRouter.get('/reserve', async function(req, resp){
@@ -53,7 +55,7 @@ function generateShortId() {
          layout: 'LT/index-LT-make-reservation',
          title: 'Tech Reserve ',
          name: req.session.user.username,
-
+         imageSource: req.session.user.imageSource,
          techID: req.session.user.dlsuID,
          dlsuID: req.session.user.dlsuID,
          userType: 'lt-user',
@@ -150,6 +152,8 @@ function generateShortId() {
    const { userID, labName, seatSlots } = req.body;
 
    console.log("received this user "+ "userID");
+   console.log("seat slots chosen");
+   console.log(seatSlots)
 
    try {
 
@@ -168,7 +172,7 @@ function generateShortId() {
 
 
      const reservation = new Reservation({
-       reservationID: String(generateShortId()),
+       reservationID: String(generateUniqueRandomNumber(1, 999999)),
        userID: userID,
        reservationSeats: seatSlots,
        reservationStatus: "Upcoming"

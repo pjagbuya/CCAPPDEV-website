@@ -15,7 +15,7 @@
               </div>
 
             </div>
-            <img class="profile-regular-pic" src="https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" alt="default-pic">
+            <img class="profile-regular-pic" src={{imageSource}} alt="default-pic">
 
             <p class="profile-name">
               {{name}} <i class="fa-solid fa-pencil"></i>
@@ -52,7 +52,7 @@
 
           <table class="contact-table" cellpadding="10">
             <tr class="text-decoration-underline">
-              <td>pjagbuya2@gmail.com</td>
+              <td>{{email}}</td>
               <td><i class="fa-solid fa-pencil"></i></td>
             </tr>
             <tr class="text-decoration-underline">
@@ -188,7 +188,7 @@
 
 
         <div class="reservations-btn-div">
-          <a href=":id/edit-reservation">
+          <a href="{{redirectReserve}}">
             <button class="custom-btn-3 btn-hover-custom-2" type="button" name="button">View/Edit Reservations</button>
           </a>
 

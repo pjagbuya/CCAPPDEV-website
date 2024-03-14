@@ -6,13 +6,15 @@ mongoose.connect('mongodb://localhost:27017/AnimoDB');
 
  const registerSchema = new mongoose.Schema({
    username : String,
-   dlsuID  : String,
+   dlsuID  : Number,
    email    : String,
    password : String,
-   imageSource: Buffer,
+   imageSource: String,
    firstName : String,
    lastName  : String,
    middleInitial: String,
+   course: String,
+   about: String,
  }, {versionKey: false});
 
 

@@ -118,6 +118,7 @@ function convertTimeIdToInterval(timeId) {
         layout: 'LT/index-LT-view-reservations',
         title: 'Tech Reservations View',
         userType: 'lt-user',
+        imageSource: req.session.user.imageSource,
         name: req.session.user.username,
         dlsuID: uid,
         redirectBase: `/lt-user/${uid}/view/`,
@@ -146,6 +147,7 @@ function convertTimeIdToInterval(timeId) {
        resp.render('html-pages/LT/LT-reservation-data', {
          layout: 'LT/index-LT-view-reservations',
          title: 'Tech Reservations View',
+         imageSource: req.session.user.imageSource,
          userType: 'lt-user',
          name: req.session.user.username,
          data: labSeatsMap,

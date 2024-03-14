@@ -111,6 +111,11 @@ function formatWeekdayDate(weekday) {
    return options.fn(subArray);
  });
 
+
+ Handlebars.registerHelper('startsWith101', function (string) {
+   return string.startsWith("101");
+ });
+
 searchUserRouter.get("/:id/search-users",  function(req, resp){
     var userString = req.params.id;
     var userType = "";
@@ -118,21 +123,30 @@ searchUserRouter.get("/:id/search-users",  function(req, resp){
     if(userString === "101"){
         userType = "lt-user";
     }else{ userType = "user"; }
-
+    var imageSource;
+    if(req.session.user.imageSource){
+      imageSource = req.session.user.imageSource
+    }else{
+      imageSource = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
+    }
     resp.render('html-pages/search/search-user',{
         layout: "user/index-user",
         title: "Search User",
         userType: userType,
-        dlsuID: req.params.id
+        dlsuID: req.params.id,
+        imageSource: imageSource
     }); // render & page
 });
 
 
 searchUserRouter.post("/:id/search-user-results",  function(req, resp){
     const searchQuery = { };
-
-    // builds onto the searchQuery object based on filled fields
-    // searches all if nothing is filled
+    var imageSource;
+    if(req.session.user.imageSource){
+      imageSource = req.session.user.imageSource
+    }else{
+      imageSource = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
+    }
     if (req.body.username && req.body.username.trim() !== ''){
         searchQuery.username = req.body.username.trim();
     }
@@ -146,13 +160,19 @@ searchUserRouter.post("/:id/search-user-results",  function(req, resp){
         searchQuery.lastname = req.body.lastname.trim();
     }
 
-
+    var imageSource;
+    if(req.session.user.imageSource){
+      imageSource = req.session.user.imageSource
+    }else{
+      imageSource = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
+    }
     userModel.find(searchQuery).lean().then(function(users){
         resp.render('html-pages/search/search-user-results',{
             layout: "user/index-user",
             title: "User Search Results",
             users: users,
-            dlsuID: req.params.id
+            dlsuID: req.params.id,
+            imageSource:imageSource
         }); // render & page
     }); // then & func
 });
@@ -221,6 +241,20 @@ searchUserRouter.get("/profile/:id",  async function(req, resp){
       console.log("found profile")
       console.log(profile)
 
+      var imageSource;
+      var imageSourceCurr;
+
+      if(req.session.user.imageSource){
+        imageSource = req.session.user.imageSource
+      }else{
+        imageSource = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
+      }
+
+      if(profile.imageSource){
+        imageSourceProfile = profile.imageSource
+      }else{
+        imageSourceProfile = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
+      }
 
         resp.render('html-pages/search/search-user-view',{
             layout: "user/index-user",
@@ -230,6 +264,8 @@ searchUserRouter.get("/profile/:id",  async function(req, resp){
             firstName: profile.firstName,
             lastName: profile.lastName,
             view_dlsuID: profile.dlsuID, // for the viewed profile
+            imageSourceProfile:imageSourceProfile,
+            imageSource:imageSource,
             userType: "user",
             dlsuID: req.session.user.dlsuID,
             email: profile.email

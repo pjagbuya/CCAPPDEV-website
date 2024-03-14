@@ -10,6 +10,7 @@ const segregateSeats = require("../models/lab-model").segregateSeats;
 const getUniqueSeatNumbers = require("../models/lab-model").getUniqueSeatNumbers
 const getSeatTimeRange = require("../models/lab-model").getSeatTimeRange;
 const MAX_RESERVED_SEATS_VISIBLE = 3;
+const reservationModel = require("../models/reserve-model");
 const Time = require("../models/time-model");
 const weekdaysFull = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const weekdaysShort = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
@@ -156,22 +157,47 @@ async function getAllReservationDetails(userID){
 }
 userRouter.get("/:id",  async function(req, resp){
 
+  var abtMe;
+  var course;
+  var imageSource;
 
-  seats = await getAllReservationDetails(req.params.id)
-
+  var seats = await getAllReservationDetails(req.params.id);
+    var uid = req.session.user.dlsuID;
   console.log("Json of seats: ", seats);
 
 
   console.log("Attempting to load" + req.params.id);
   if(req.session.user){
-    console.log("Logged in as")
-    console.log(req.session.user)
+
+    if(req.session.user.about){
+      abtMe = req.session.user.about;
+    }else{
+      abtMe = "User has yet to input a description"
+    }
+    if(req.session.user.course){
+      course = req.session.user.course;
+    }else{
+      course = "User has yet to input a course"
+    }
+
+    if(req.session.user.imageSource){
+      imageSource = req.session.user.imageSource
+    }else{
+      imageSource = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
+    }
+
+    console.log("Image founded is "+ imageSource)
+
     resp.render('html-pages/user/U-user',{
         layout: 'user/index-user',
         title: req.session.user['username'],
         userType: 'user',
+        course: course,
+        imageSource: imageSource,
+        about: abtMe,
         seats: JSON.parse(JSON.stringify(seats)),
-        name: req.session.user['username'],
+        name:  `${req.session.user.firstName} ${req.session.user.middleInitial} ${req.session.user.lastName}`,
+        redirectReserve: `/user/${uid}/reservations/view`,
         id: req.session.user['dlsuID'],
         dlsuID: req.session.user['dlsuID']
 
@@ -182,7 +208,7 @@ userRouter.get("/:id",  async function(req, resp){
 
 
 
-userRouter.get("/view",  async function(req, resp){
+userRouter.get("/:id/reservations/view",  async function(req, resp){
 
 
   console.log("Loaded");
@@ -190,15 +216,16 @@ userRouter.get("/view",  async function(req, resp){
 
   try {
 
-    const reservations = await Reservation.find({userID: req.session.user.dlsuID}).sort({ reservationStatus: 1 });;
+    const reservations = await Reservation.find({userID: req.params.id}).sort({ reservationStatus: 1 });;
     var uid = req.session.user.dlsuID;
     resp.render('html-pages/user/user-view-reservations', {
       layout: 'user/index-user-view-reservations',
-      title: 'Tech Reservations View',
-      userType: 'lt-user',
+      title: 'User Reservations View',
+      userType: 'user',
       name: req.session.user.username,
+      imageSource: req.session.user.imageSource,
       dlsuID: uid,
-      redirectBase: `/user/${uid}/view/`,
+      redirectBase: `/user/${uid}/reservations/view`,
       reservations: JSON.parse(JSON.stringify(reservations)),
       helpers: {
         isOngoing: function (string) { return string === 'Ongoing'; },
@@ -213,21 +240,78 @@ userRouter.get("/view",  async function(req, resp){
   }
 
 });
-userRouter.get("/view/:resID",  async function(req, resp){
+
+
+
+
+
+ async function keyLabNamesToSeatIds(reservationIdValue, reservationIdField = 'reservationID') {
+   try {
+     const query = {};
+     query[reservationIdField] = reservationIdValue;
+
+     const reservation = await reservationModel.findOne(query)
+       .populate('reservationSeats');
+
+     const result = [];
+
+     const seatsByLabName = {};
+     const sortedSeats = reservation.reservationSeats.sort((seat1, seat2) => seat1.seatTimeID - seat2.seatTimeID);
+
+     const labNamesToSeats = sortedSeats.reduce((acc, seat) => {
+       const labName = seat.labName;
+
+       if (!acc[labName]) {
+         acc[labName] = {
+           labName,
+           firstSeat: null,
+           otherSeats: [],
+           totalSeats: 0
+         };
+       }
+
+       const seatData = {
+         seatId: seat._id,
+         seatNumber: seat.seatNumber,
+         weekDay: formatWeekdayDate(seat.weekDay),
+         timeInterval: convertTimeIdToInterval(seat.seatTimeID)
+       }
+
+       if (!acc[labName].firstSeat) {
+         acc[labName].firstSeat = seatData;
+       } else {
+         acc[labName].otherSeats.push(seatData);
+       }
+
+       acc[labName].totalSeats++;
+       return acc;
+     }, {});
+
+     return Object.values(labNamesToSeats);
+   } catch(error) {
+     console.error("Error grouping seats:", error);
+     throw error;
+   }
+ }
+userRouter.get("/:id/reservations/view/:resID",  async function(req, resp){
 
 
   try {
+
+
     await initializeUniqueTimes(); // Wait for initialization
     const labSeatsMap = await keyLabNamesToSeatIds(req.params.resID);
     console.log(labSeatsMap);
 
+
     console.log(labSeatsMap);
 
-      resp.render('html-pages/LT/LT-reservation-data', {
-        layout: 'LT/index-LT-view-reservations',
+      resp.render('html-pages/user/user-reservation-data', {
+        layout: 'user/index-user-view-reservations',
         title: 'Tech Reservations View',
         userType: 'lt-user',
         name: req.session.user.username,
+
         data: labSeatsMap,
         dlsuID: req.session.user.dlsuID,
         redirectBase: "/lt-user/"+req.session.user.dlsuID+`/view/${req.params.resID}`,

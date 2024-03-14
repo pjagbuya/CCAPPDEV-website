@@ -31,7 +31,10 @@ registerLoginRouter.post('/register', async (req, resp) => {
       imageSource: null,
       firstName : req.body.firstname,
       lastName  : req.body.lastname,
-      middleInitial: req.body.mi
+      middleInitial: req.body.mi,
+      course: null,
+      about: null,
+
     };
 
     const registerInstance = await registerModel.create(info)

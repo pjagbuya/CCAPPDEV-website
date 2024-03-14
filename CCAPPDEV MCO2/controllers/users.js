@@ -101,17 +101,16 @@ Handlebars.registerHelper('limitEach', function (array, limit, options) {
   return options.fn(subArray);
 });
 userRouter.get("/:id",  async function(req, resp){
-  try {
   initializeUniqueTimes();
   const reservations = await Reservation.find({ userID: req.params.id });
   const seats = {};
- 
+
   // Loop through each reservation and its associated seat IDs
   // Each seat IDs is segregated via key pattern "next_day_0, next_day_1"
   // Loop through each reservation and its associated seat IDs
   for (const reservation of reservations) {
     for (const reservationSeatId of reservation.reservationSeats) {
-      
+      try {
         // Find the seat document and handle potential errors
         const seat = await SeatModel.findById(reservationSeatId);
         if (!seat) {
@@ -147,9 +146,11 @@ userRouter.get("/:id",  async function(req, resp){
           seats[group].push(seatDetails);
         }
 
-      } 
+      } catch (error) {
+        console.error(`Error fetching seat details for seat ID: ${reservationSeatId}`, error);
+      }
     }
-  
+  }
   console.log("Json of seats: ", seats);
 
 
@@ -168,10 +169,7 @@ userRouter.get("/:id",  async function(req, resp){
 
     });
   }
-}
-  catch (error) {
-    console.error(`Error fetching seat details for seat ID: ${reservationSeatId}`, error);
-  }
+
 });
 
 

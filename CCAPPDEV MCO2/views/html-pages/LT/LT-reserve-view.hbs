@@ -3,8 +3,8 @@
         <div class="inner-box">
 
           <div class="exit-section d-flex flex-start flex-row">
-            <a href="LT-user-profile.html">
-              <button class="btn btn-danger my-3" type="button" name="button">Exit Reservation Editor</button>
+            <a href="/{{userType}}/{{dlsuID}}">
+              <button class="btn btn-danger my-3" type="button" name="button" >Exit Reservation Editor</button>
             </a>
           </div>
           <h1>Reservation Editor</h1>
@@ -26,10 +26,10 @@
                           <td class="tc">{{reservationStatus}}</td>
                           <td class="tc">
 
-                            <a href="{{redirectBase}}{{reservationID}}">
+                            <a href="{{redirectBase}}{{reservationID}}"  onclick="alert('Currently Unavailable')">
                               <button class="view-button">View</button>
                             </a>
-                            <button class="btn btn-danger my-1 mx-2">Cancel Reservation</button>
+                            <button class="btn btn-danger my-1 mx-2"  onclick="alert('Currently Unavailable')">Cancel Reservation</button>
 
                           </td>
                       </tr>

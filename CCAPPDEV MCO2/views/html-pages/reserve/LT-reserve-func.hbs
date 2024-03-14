@@ -23,7 +23,7 @@
     <div id="selectSeatsSection" class="selected-seat-section flex-column">
       <button id="selectSeatButton" class="selected-seat-button" type="button" name="button" >Select a Seat</button>
       <p class="selected-seat-text-section">Selected seat: <strong> <span id="seatNum" class="selected-seat-text">N/A</span> </strong></p>
-      <p class="is-anonymous-section">set Anonymous? &nbsp;<input type="checkbox" name="isAnon" value=""> </p>
+      <p class="is-anonymous-section">set Anonymous? &nbsp;<input  onclick="alert('Currently Unavailable')" type="checkbox" name="isAnon" value=""> </p>
     </div>
 
     <div id="timeTableSection" class="time-table-section">
@@ -37,9 +37,9 @@
 
 
 
-      <!-- <a href="LT-user-reserve-student.html" target="_self"> -->
+      <a href="/lt-user/{{dlsuID}}" target="_self">
         <button class="cancel-btn arrow-button">Cancel</button>
-      <!-- </a> -->
+      </a>
 
     </footer>
 

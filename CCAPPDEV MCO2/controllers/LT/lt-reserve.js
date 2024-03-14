@@ -28,7 +28,7 @@ function generateUniqueRandomNumber(min, max) {
 
        //excludes admin Users
        await updateLabInformation();
-       const users = await  usersModel.find({dlsuID: { $regex: /^(?!.*101).*$/ }});
+       const users = await usersModel.find({});
        const labs = await labModel.find({});
 
        // Check if users array is empty

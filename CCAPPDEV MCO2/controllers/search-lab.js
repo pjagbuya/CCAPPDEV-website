@@ -5,14 +5,14 @@ const express = require("express");
 const searchLabRouter = express.Router();
 
 // model Imports
-const LabModel = require('../models/lab-model');
+const labModel = require('../models/lab-model').LabModel;
 
 
 
 console.log("Connecteed to router 3")
 // Start her after template above
 
-const labs_array = [];
+var labs_array = [];
 
 searchLabRouter.get("/:id/search-labs",  function(req, resp){ 
     resp.render('html-pages/search/search-lab',{
@@ -23,41 +23,48 @@ searchLabRouter.get("/:id/search-labs",  function(req, resp){
     }); // render & page
 });
 
-searchLabRouter.post("ajax-searchlab",  async function(req, resp){
+searchLabRouter.post("/:id/search-labs",  async function(req, resp){
 
+    
+    
     labs_array = [];
-
     try{
         const filter = {};
-        const labs = await LabModel.find(filter);
+        const labs = await labModel.find(filter);
+
+        console.log(labs);
 
         if (req.body.search){
-            labs.foreach(function(lab){
+            labs.forEach(function(lab){
                 if(lab.labName.includes(req.body.search)){
                     const response = {
                         lab: lab
                     } 
-                    resp.send(response);
                     labs_array.push(response);
                 }
             });
+            const response = {
+                labs: JSON.parse(JSON.stringify(labs_array))
+            } 
+            resp.send(response);
         }
         else{
-            labs.foreach(function(lab){
+            labs.forEach(function(lab){
                 const response = {
                     lab: lab
                 } 
-                resp.send(response);
                 labs_array.push(response);
             });
+            const response = {
+                labs: JSON.parse(JSON.stringify(labs_array))
+            } 
+            resp.send(response);
         }
     }
     catch (error) {
         console.error("Error during getting labs:", error);
         resp.status(500).send({ error: "Internal server error" });
     }
-
-    
 });
 
 

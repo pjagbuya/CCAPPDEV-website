@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/npm/handlebars/dist/handlebars.min.js"></script>
 
     <section class="lab-slots-browse-section">
 
@@ -9,12 +10,9 @@
             <h2 class="label-custom-1">Search Name: </h2>
             <div class="d-flex align-items-center mx-3">
               <input type="text" id="search-lab-msg-txt">
+              <button id="search-lab-msg-btn">Filter</button>
             </div>
 
-          </div>
-
-          <div class="d-flex flex-column filter-part-2">
-            <button class="custom-button-6 mx-5" type="button" name="button" id="search-lab-msg-btn">Filter</button>
           </div>
 
 
@@ -25,33 +23,31 @@
 
 
       </div>
+      <script id="lab-template" type="text/x-handlebars-template" ></script>
+      <h1>\{{labs.0}}</h1>
       <div class="lab-choices-section">
 
-          {{#each labs}}
+          \{{#each labs}}
           <div class="lab-choice-section">
             <img class="lab-choice-img" src="/pics/computerlab.jpg" alt="computer-lab">
             <div class="lab-choice-details">
-              <h3>{{labName}}</h3>
-              <p class="status-text avail-text"><u>AVAILABLE</u></p>
+              <h3>\{{labName}}</h3>
+              <p class="status-text avail-text"><u>\{{labStatus}}</u></p>
               <p>
                 <span>Total Seats: </span>
-                <span><strong>{{labAvailSlots}}/{{labTotalSlots}}</strong></span>
+                <span><strong>\{{labAvailSlots}}/\{{labTotalSlots}}</strong></span>
               </p>
               <a class="d-flex lab-choice-btn custom-default-font2" href="reserve-user-lab-view.html">
-                <div class="btn btn-success" id="view-btn-{{labName}}">
+                <div class="btn btn-success" id="view-btn-\{{labName}}">
                   View
                 </div>
               </a>
             </div>
           </div>
-          {{/each}}
-          
-
-          <div class="arrows-section">
-            <button class="arrow-button">&larr;</button>  Page 1<button class="arrow-button right-arrow">&rarr;</button>
-          </div>
+          \{{/each}}
       </div>
-
+      </script>
 
 
     </section>
+

@@ -165,7 +165,7 @@ function convertTimeIdToInterval(timeId) {
  });
 
 const searchUserRouter = require('../search-user');
-viewEditRouter.use("/search-user", searchUserRouter);
+viewEditRouter.use("/", searchUserRouter);
 
  module.exports = {
    convertTimeIdToInterval,

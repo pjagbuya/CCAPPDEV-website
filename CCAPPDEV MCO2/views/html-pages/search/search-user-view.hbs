@@ -64,7 +64,105 @@
         <div class="reservation-next-days">
           <h2 class="custom-header2 custom-border-bottom1">Current Reservations</h2>
           <div class="day-container" id="daysContainer">
-          </div>
+
+
+
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_0) 1)}}
+                {{#each seats.next_day_0 as |reservation|}}
+
+                <div class="date-details">
+                  <p class="text-decoration-underline">{{reservation.labName}}</p>
+                  <p>(Seat {{reservation.seatNumber}})</p>
+                  <p>{{reservation.timeInterval}}</p>
+                </div>
+                {{/each}}
+              {{/if}}
+
+            </div>
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_1) 1)}}
+                {{#each seats.next_day_1 as |reservation|}}
+
+                <div class="date-details">
+                  <p class="text-decoration-underline">{{reservation.labName}}</p>
+                  <p>(Seat {{reservation.seatNumber}})</p>
+                  <p>{{reservation.timeInterval}}</p>
+                </div>
+                {{/each}}
+              {{/if}}
+
+            </div>
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_2) 1)}}
+                {{#each seats.next_day_2 as |reservation|}}
+
+                <div class="date-details">
+                  <p class="text-decoration-underline">{{reservation.labName}}</p>
+                  <p>(Seat {{reservation.seatNumber}})</p>
+                  <p>{{reservation.timeInterval}}</p>
+                </div>
+                {{/each}}
+              {{/if}}
+
+            </div>
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_3) 1)}}
+                {{#each seats.next_day_3 as |reservation|}}
+
+                <div class="date-details">
+                  <p class="text-decoration-underline">{{reservation.labName}}</p>
+                  <p>(Seat {{reservation.seatNumber}})</p>
+                  <p>{{reservation.timeInterval}}</p>
+                </div>
+                {{/each}}
+              {{/if}}
+
+            </div>
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_4) 1)}}
+                {{#each seats.next_day_4 as |reservation|}}
+                <div class="date-details">
+                  <p class="text-decoration-underline">{{reservation.labName}}</p>
+                  <p>(Seat {{reservation.seatNumber}})</p>
+                  <p>{{reservation.timeInterval}}</p>
+                </div>
+                {{/each}}
+              {{/if}}
+
+            </div>
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_5) 1)}}
+                {{#each seats.next_day_5 as |reservation|}}
+
+                <div class="date-details">
+                  <p class="text-decoration-underline">{{reservation.labName}}</p>
+                  <p>(Seat {{reservation.seatNumber}})</p>
+                  <p>{{reservation.timeInterval}}</p>
+                </div>
+                {{/each}}
+              {{/if}}
+
+            </div>
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_6) 1)}}
+                {{#each seats.next_day_6 as |reservation|}}
+
+                <div class="date-details">
+                  <p class="text-decoration-underline">{{reservation.labName}}</p>
+                  <p>(Seat {{reservation.seatNumber}})</p>
+                  <p>{{reservation.timeInterval}}</p>
+                </div>
+                {{/each}}
+              {{/if}}
+            </div>
 
         </div>
 

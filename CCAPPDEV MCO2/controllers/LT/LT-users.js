@@ -27,7 +27,7 @@ ltRouter.get('/:id', function(req, resp){
 });
 
 const searchUserRouter = require('../search-user');
-ltRouter.use("/search-user", searchUserRouter);
+ltRouter.use("/", searchUserRouter);
 
 
 const reserveRouter = require('./LT-reserve');

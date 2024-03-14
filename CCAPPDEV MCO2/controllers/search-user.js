@@ -1,6 +1,6 @@
 
 
-
+const Handlebars = require('handlebars');
 const express = require("express");
 const searchUserRouter = express.Router();
 
@@ -14,10 +14,17 @@ console.log("Connecteed to router 3")
 
 
 searchUserRouter.get("/:id/search-users",  function(req, resp){ 
+    var userString = req.params.id;
+    var userType = "";
+
+    if(userString === "101"){
+        userType = "lt-user";
+    }else{ userType = "user"; }
+
     resp.render('html-pages/search/search-user',{
         layout: "user/index-user",
         title: "Search User",
-        userType: "user",
+        userType: userType,
         dlsuID: req.params.id
     }); // render & page
 });
@@ -61,7 +68,7 @@ searchUserRouter.get("/profile/:id",  function(req, resp){
         resp.render('html-pages/search/search-user-view',{
             layout: "user/index-user",
             title: "User Search Results",
-            profile: profile,
+            profile: profile,   
             dlsuID: req.params.id
             
         }); // render & page

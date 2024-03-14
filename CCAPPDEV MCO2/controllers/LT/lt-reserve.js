@@ -320,6 +320,6 @@ function isAfternoonInterval(timeInterval) {
 });
 
 const searchUserRouter = require('../search-user');
-reserveRouter.use("/search-user", searchUserRouter);
+reserveRouter.use("/", searchUserRouter);
 
 module.exports = reserveRouter;

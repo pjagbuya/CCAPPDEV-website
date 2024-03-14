@@ -1,18 +1,18 @@
-{{#each profile}}
+
     <div class="profile-body">
       <section class= "profile-contact-section flex-column">
         <div class="profile-pic-and-name text-center">
 
           <div class="profile-column-section d-flex flex-column align-items-center justify-content-center">
 
-            <img class="profile-regular-pic" src="{{imageSource}}" alt="default-pic">
+            <img class="profile-regular-pic" src="" alt="default-pic">
 
             <p class="profile-name">
               {{firstName}} {{lastName}}
             </p>
 
             <p class="profile-name">
-              ID : {{dlsuID}}
+              ID : {{view_dlsuID}}
             </p>
 
 
@@ -162,11 +162,14 @@
                 </div>
                 {{/each}}
               {{/if}}
-            </div>
+            </div> <!-- day-->
 
-        </div>
+
+
+          </div><!-- day container -->
+
+        </div><!-- reservation next days-->
 
 
       </section>
     </div>
-{{/each}}

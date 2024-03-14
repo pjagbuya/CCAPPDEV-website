@@ -214,21 +214,23 @@ searchUserRouter.get("/profile/:id",  async function(req, resp){
   
   
     console.log("Attempting to load" + req.params.id);
-    if(req.session.user){
       console.log("Logged in as")
       console.log(req.session.user)
-      userModel.find(searchQuery).lean().then(function(profile){
+      profile = await userModel.findOne(searchQuery)
+        console.log("found profile")
+        console.log(profile)
         resp.render('html-pages/search/search-user-view',{
             layout: "user/index-user",
             title: "User Search Results",
             seats: JSON.parse(JSON.stringify(seats)),
-            profile: profile,   
-            dlsuID: req.params.id
+            profile: profile, 
+            firstName: profile.firstName,  
+            lastName: profile.lastName, 
+            view_dlsuID: profile.dlsuID, // for the viewed profile
+            email: profile.email, 
+            dlsuID: req.params.id // user's own dlsuID
             
         }); // render & page
-    }); // then & func
-    }
-  
   });
 
 // for loading the search result

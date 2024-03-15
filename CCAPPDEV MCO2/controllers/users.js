@@ -106,12 +106,13 @@ Handlebars.registerHelper('limitEach', function (array, limit, options) {
 
 async function getAllReservationDetails(userID){
   initializeUniqueTimes();
+  try {
   const reservations = await Reservation.find({ userID: userID });
   const seats = {};
 
   for (const reservation of reservations) {
     for (const reservationSeatId of reservation.reservationSeats) {
-      try {
+
         // Find the seat document and handle potential errors
         const seat = await SeatModel.findById(reservationSeatId);
         if (!seat) {
@@ -147,10 +148,12 @@ async function getAllReservationDetails(userID){
           seats[group].push(seatDetails);
         }
 
-      } catch (error) {
-        console.error(`Error fetching seat details for seat ID: ${reservationSeatId}`, error);
+
       }
     }
+  }
+  catch (error) {
+    console.error(`Error fetching seat details for seat ID: ${reservationSeatId}`, error);
   }
 
   return seats

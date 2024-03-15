@@ -36,7 +36,7 @@ function generateUniqueRandomNumber(min, max) {
          console.log("No users found in the database.");
        } else {
          console.log("Found", users.length, "users:"); // Print the number of users
-
+       }
          // Optionally, print specific user details (be mindful of privacy)
          for (const user of users) {
            console.log("  - Username:", user.username); // Replace with relevant properties

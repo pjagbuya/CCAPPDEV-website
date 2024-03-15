@@ -203,7 +203,17 @@ userRouter.get("/:id",  async function(req, resp){
         name:  `${req.session.user.firstName} ${req.session.user.middleInitial} ${req.session.user.lastName}`,
         redirectReserve: `/user/${uid}/reservations/view`,
         id: req.session.user['dlsuID'],
-        dlsuID: req.session.user['dlsuID']
+        dlsuID: req.session.user['dlsuID'],
+        helper:{
+          isNull: function(value){
+            if(value)
+            {
+              return false
+            }else{
+              return true
+            }
+          }
+        }
 
     });
   }
@@ -303,6 +313,10 @@ userRouter.get("/:id/reservations/view",  async function(req, resp){
      throw error;
    }
  }
+
+ Handlebars.registerHelper('isNull', function (value) {
+   return value === undefined || value === null; // Concise check for null or undefined
+ }); 
 userRouter.get("/:id/reservations/view/:resID",  async function(req, resp){
 
 

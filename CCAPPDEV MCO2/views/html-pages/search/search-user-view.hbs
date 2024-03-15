@@ -24,13 +24,21 @@
         <div class="description-div">
           <div class="course-desc">
             <h2 class= "custom-header1">Course</h2>
+            {{#if (isNull course)}}
+            <p>User has yet to put course description</p>
+            {{else}}
             <p>{{course}}</p>
+            {{/if}}
           </div>
 
 
           <div class="about-me">
             <h2 class= "custom-header1">About Me</h2>
+            {{#if (isNull about)}}
+            <p>User has yet to put about description</p>
+            {{else}}
             <p>{{about}}</p>
+            {{/if}}
 
           </div>
 

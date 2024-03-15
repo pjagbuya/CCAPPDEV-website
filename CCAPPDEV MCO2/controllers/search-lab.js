@@ -22,6 +22,8 @@ Handlebars.registerHelper("isAvailable", function(string){
 
 searchLabRouter.get("/:id/search-labs",  async function(req, resp){
     await updateLabInformation();
+    const filter = {};
+    labs_array = await labModel.find(filter);
     resp.render('html-pages/search/search-lab',{
         layout: "search/index-search-lab",
         title: "Search Lab",

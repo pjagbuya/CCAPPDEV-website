@@ -2,7 +2,7 @@
 $(document).ready(function () {
 
 
-    $("#search-lab-msg-btn").on('click',function(e){
+    $("#search-lab-msg-txt").on('input',function(e){
       $('.lab-choices-section').empty();
 
       e.preventDefault();
@@ -15,7 +15,6 @@ $(document).ready(function () {
               console.log(data);
               console.log("Labs in data")
               console.log(data.labs);
-              $('#search-lab-msg-txt').val('');
 
 
               const templateSource = document.getElementById('lab-template').innerHTML;

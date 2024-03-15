@@ -143,16 +143,16 @@ searchUserRouter.post("/:id/search-user-results",  function(req, resp){
     const searchQuery = { };
     var imageSource;
 
-    if (req.body.username && req.body.username.trim() !== ''){
+    if (req.body.username && req.body.username.trim() !== '' && !req.body.username.includes('/')){
         searchQuery.username = req.body.username.trim();
     }
-    if (req.body.dlsuID && req.body.dlsuID.trim() !== ''){
+    if (req.body.dlsuID && req.body.dlsuID.trim() !== '' && !req.body.dlsuID.includes('/')){
         searchQuery.dlsuID = req.body.dlsuID.trim();
     }
-    if (req.body.firstname && req.body.firstname.trim() !== ''){
+    if (req.body.firstname && req.body.firstname.trim() !== '' && !req.body.firstname.includes('/')){
         searchQuery.firstname = req.body.firstname.trim();
     }
-    if (req.body.lastname && req.body.lastname.trim() !== ''){
+    if (req.body.lastname && req.body.lastname.trim() !== '' && !req.body.lastname.includes('/')){
         searchQuery.lastname = req.body.lastname.trim();
     }
 

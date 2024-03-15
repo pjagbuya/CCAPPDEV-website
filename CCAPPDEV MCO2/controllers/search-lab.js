@@ -24,10 +24,18 @@ searchLabRouter.get("/:id/search-labs",  async function(req, resp){
     await updateLabInformation();
     const filter = {};
     labs_array = await labModel.find(filter);
+    var imageSource;
+
+    if(req.session.user.imageSource){
+      imageSource = req.session.user.imageSource
+    }else{
+      imageSource = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
+    }
+
     resp.render('html-pages/search/search-lab',{
         layout: "search/index-search-lab",
         title: "Search Lab",
-        imageSource: req.session.user.imageSource,
+        imageSource: imageSource,
         userType: "user",
         dlsuID: req.session.user.dlsuID,
         labs: labs_array,

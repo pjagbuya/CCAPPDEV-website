@@ -214,6 +214,12 @@ userRouter.get("/:id/reservations/view",  async function(req, resp){
   console.log("Loaded");
   console.log("Welcome to viewing reservation user: " + req.session.user.dlsuID);
 
+  var imageSource;
+  if(req.session.user.imageSource){
+    imageSource = req.session.user.imageSource
+  }else{
+    imageSource = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
+  }
   try {
 
     const reservations = await Reservation.find({userID: req.params.id}).sort({ reservationStatus: 1 });;
@@ -223,7 +229,7 @@ userRouter.get("/:id/reservations/view",  async function(req, resp){
       title: 'User Reservations View',
       userType: 'user',
       name: req.session.user.username,
-      imageSource: req.session.user.imageSource,
+      imageSource: imageSource,
       dlsuID: uid,
       redirectBase: `/user/${uid}/reservations/view`,
       reservations: JSON.parse(JSON.stringify(reservations)),
@@ -305,16 +311,21 @@ userRouter.get("/:id/reservations/view/:resID",  async function(req, resp){
 
 
     console.log(labSeatsMap);
-
+    var imageSource;
+    if(req.session.user.imageSource){
+      imageSource = req.session.user.imageSource
+    }else{
+      imageSource = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
+    }
       resp.render('html-pages/user/user-reservation-data', {
         layout: 'user/index-user-view-reservations',
         title: 'Tech Reservations View',
-        userType: 'lt-user',
         name: req.session.user.username,
-
+        imageSource:imageSource,
         data: labSeatsMap,
+        userType: 'user',
         dlsuID: req.session.user.dlsuID,
-        redirectBase: "/lt-user/"+req.session.user.dlsuID+`/view/${req.params.resID}`,
+        redirectBase: "/user/"+req.session.user.dlsuID+`/view/${req.params.resID}`,
         helpers: {
           isOngoing: function (string) { return string === 'Ongoing'; }
         }

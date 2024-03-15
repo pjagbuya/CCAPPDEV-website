@@ -31,9 +31,8 @@ ltRouter.get('/:id', function(req, resp){
       imageSource = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
     }
 
-    console.log("Image founded is "+ imageSource)
-    console.log("Logged in as")
-    console.log(req.session.user)
+
+
 
     resp.render('html-pages/LT/LT-profile',{
         layout: 'LT/index-LT-user',

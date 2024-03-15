@@ -112,13 +112,19 @@ function convertTimeIdToInterval(timeId) {
 
     try {
 
+      var imageSource;
+      if(req.session.user.imageSource){
+        imageSource = req.session.user.imageSource
+      }else{
+        imageSource = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
+      }
       const reservations = await reservationModel.find({}).sort({ reservationStatus: 1 });;
       var uid = req.session.user.dlsuID;
       resp.render('html-pages/LT/LT-view-reservations', {
         layout: 'LT/index-LT-view-reservations',
         title: 'Tech Reservations View',
         userType: 'lt-user',
-        imageSource: req.session.user.imageSource,
+        imageSource: imageSource,
         name: req.session.user.username,
         dlsuID: uid,
         redirectBase: `/lt-user/${uid}/view/`,
@@ -141,13 +147,17 @@ function convertTimeIdToInterval(timeId) {
      await initializeUniqueTimes(); // Wait for initialization
      const labSeatsMap = await keyLabNamesToSeatIds(req.params.resID);
      console.log(labSeatsMap);
-
-     console.log(labSeatsMap);
+     var imageSource;
+     if(req.session.user.imageSource){
+       imageSource = req.session.user.imageSource
+     }else{
+       imageSource = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
+     }
 
        resp.render('html-pages/LT/LT-reservation-data', {
          layout: 'LT/index-LT-view-reservations',
          title: 'Tech Reservations View',
-         imageSource: req.session.user.imageSource,
+         imageSource: imageSource,
          userType: 'lt-user',
          name: req.session.user.username,
          data: labSeatsMap,

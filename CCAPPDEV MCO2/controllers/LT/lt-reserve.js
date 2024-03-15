@@ -40,7 +40,7 @@ function generateUniqueRandomNumber(min, max) {
          // Optionally, print specific user details (be mindful of privacy)
          for (const user of users) {
            console.log("  - Username:", user.username); // Replace with relevant properties
-         }
+
        }
 
        if(labs.length != 0){
@@ -49,13 +49,18 @@ function generateUniqueRandomNumber(min, max) {
          console.log("cannot find labs data");
        }
 
-
+       var imageSource;
+       if(req.session.user.imageSource){
+         imageSource = req.session.user.imageSource
+       }else{
+         imageSource = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
+       }
 
        resp.render('html-pages/LT/LT-make-reservation', {
          layout: 'LT/index-LT-make-reservation',
          title: 'Tech Reserve ',
          name: req.session.user.username,
-         imageSource: req.session.user.imageSource,
+         imageSource: imageSource,
          techID: req.session.user.dlsuID,
          dlsuID: req.session.user.dlsuID,
          userType: 'lt-user',
@@ -112,7 +117,12 @@ function generateUniqueRandomNumber(min, max) {
 
          //
          // console.log(grouped_seats);
-
+         var imageSource;
+         if(req.session.user.imageSource){
+           imageSource = req.session.user.imageSource
+         }else{
+           imageSource = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
+         }
 
          resp.render('html-pages/reserve/LT-reserve-func', {
            layout: 'LT/index-LT-reserve-func',
@@ -121,6 +131,7 @@ function generateUniqueRandomNumber(min, max) {
            techID: req.session.user.dlsuID,
            dlsuID: req.session.user.dlsuID,
            userID: req.params.userID,
+           imageSource: imageSource,
            labName: labRoom,
            userType: 'lt-user',
            postURL:`/lt-user/${req.session.user.dlsuID}/reserve/${user.dlsuID}/${labRoom}`,

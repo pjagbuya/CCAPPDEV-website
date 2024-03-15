@@ -113,7 +113,7 @@ function formatWeekdayDate(weekday) {
 
 
  Handlebars.registerHelper('startsWith101', function (string) {
-   return string.startsWith("101");
+   return (string+"").startsWith("101");
  });
 
 searchUserRouter.get("/:id/search-users",  function(req, resp){
@@ -142,11 +142,7 @@ searchUserRouter.get("/:id/search-users",  function(req, resp){
 searchUserRouter.post("/:id/search-user-results",  function(req, resp){
     const searchQuery = { };
     var imageSource;
-    if(req.session.user.imageSource){
-      imageSource = req.session.user.imageSource
-    }else{
-      imageSource = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
-    }
+
     if (req.body.username && req.body.username.trim() !== ''){
         searchQuery.username = req.body.username.trim();
     }
@@ -160,7 +156,6 @@ searchUserRouter.post("/:id/search-user-results",  function(req, resp){
         searchQuery.lastname = req.body.lastname.trim();
     }
 
-    var imageSource;
     if(req.session.user.imageSource){
       imageSource = req.session.user.imageSource
     }else{
@@ -171,7 +166,8 @@ searchUserRouter.post("/:id/search-user-results",  function(req, resp){
             layout: "user/index-user",
             title: "User Search Results",
             users: users,
-            dlsuID: req.params.id,
+            dlsuID: req.session.user.dlsuID,
+            userType: "user",
             imageSource:imageSource
         }); // render & page
     }); // then & func
@@ -242,7 +238,7 @@ searchUserRouter.get("/profile/:id",  async function(req, resp){
       console.log(profile)
 
       var imageSource;
-      var imageSourceCurr;
+      var imageSourceProfile;
 
       if(req.session.user.imageSource){
         imageSource = req.session.user.imageSource

@@ -106,9 +106,10 @@ Handlebars.registerHelper('limitEach', function (array, limit, options) {
 
 async function getAllReservationDetails(userID){
   initializeUniqueTimes();
+  const seats = {};
   try {
   const reservations = await Reservation.find({ userID: userID });
-  const seats = {};
+
 
   for (const reservation of reservations) {
     for (const reservationSeatId of reservation.reservationSeats) {

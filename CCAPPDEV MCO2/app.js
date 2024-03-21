@@ -71,11 +71,6 @@ mongoClient.connect().then(function(con){
   });
 }).catch(errorFn);
 
-
-
-
-
-
 app.get('/', function(req, resp){
     resp.render('html-pages/home/H-home',{
         layout: 'home/index-home',
@@ -102,18 +97,17 @@ app.use("/", loginRouter);
 // const searchLabRouter = require('./controllers/search-lab');
 // app.use("/", searchLabRouter);
 
-// io.on('connection', (socket) => {
-//   console.log(`user connected ${socket.id}`);
-//
-//   socket.on("send-message", function(data){
-//     io.emit("recieve-message", data);
-//   });
-//
-//   socket.on('disconnect', function(){
-//     console.log(`user disconnected ${socket.id}`);
-//   });
-// });
-
+io.on('connection', (socket) => {
+    console.log(`user connected ${socket.id}`);
+  
+    socket.on("send-message", function(data){
+      io.emit("recieve-message", data);
+    });
+    
+    socket.on('disconnect', function(){
+      console.log(`user disconnected ${socket.id}`);
+    });
+  });
 
 const port = process.env.PORT | 3000;
 server.listen(port, function(){

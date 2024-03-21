@@ -1,36 +1,42 @@
+$(document).ready(function(){
+  const socket = io();
 
+  socket.on("connect", function(){
+    displayRecieveMessage(`You connected with id: ${socket.id}`);
+  });
 
-function chatBox() {
-  var chatbox = document.getElementById("chatbox");
-  if (chatbox.style.display === "block") {
-    chatbox.style.display = "none";
-  } else {
-    chatbox.style.display = "block";
+  socket.on("send-message", function(data){
+    socket.broadcast.emit("recieve-message", data);
+  })
+
+  socket.on("recieve-message", function(data){
+    displayRecieveMessage(socket.id + " sent: " + data.message);
+  })
+
+  $("#msg-btn").click(function(){
+    $.post('chat-send',
+      { msg: $('#msg-txt').val() },
+      function(data, status){
+        if(status === 'success'){
+          socket.emit("send-message", {message: data.message, id: socket.id});
+          displaySentMessage(data.message);
+          $('#msg-txt').val('');
+        }//if
+      });//fn+post
+  });//btn
+
+  for(let i = 0; i < 10; i++){
+    $("#chat"+i).click(function(){
+      $.post('chat-send',
+        { roomid: $('#msg-txt').name() },
+        function(data, status){
+          if(status === 'success'){
+            socket.emit("send-message", {message: data.message, id: socket.id});
+            displaySentMessage(data.message);
+            $('#msg-txt').val('');
+          }//if
+        });//fn+post
+    });//btn
+
   }
-}
-
-function changeTab(old_div_id,new_div_id){
-  div1 = document.getElementById(old_div_id);
-  div2 = document.getElementById(new_div_id);
-  div1.style.display = "none";
-  div2.style.display = "block";
-}
-
-function textLong(text, length) {
-  if (text == null) {
-      return "";
-  }
-  if (text.length <= length) {
-      return text;
-  }
-  text = text.substring(0, length);
-  last = text.lastIndexOf(" ");
-  text = text.substring(0, last);
-  return text + "...";
-
-}
-
-function playMusic(){
-  let myAudio = document.querySelector('#audio');
-myAudio.play();
-}
+});

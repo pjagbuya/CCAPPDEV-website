@@ -1,0 +1,120 @@
+[{
+  "_id": {
+    "$oid": "65f363fef6aaa995a93a2de9"
+  },
+  "username": "tech",
+  "dlsuID": 1011,
+  "email": "pjagbuya03@yahoo.com",
+  "password": "$2b$10$94krf9F8kxx12P6mazFm1.CE6G90r1inOh3mlaoWDcdaEikW4utD2",
+  "imageSource": "/pics-users/test1.png",
+  "firstName": "Technician",
+  "lastName": "Man",
+  "middleInitial": "M.",
+  "course": null,
+  "about": null
+},
+{
+  "_id": {
+    "$oid": "65f36414f6aaa995a93a2dff"
+  },
+  "username": "jam",
+  "dlsuID": 202,
+  "email": "pjagbuya03@yahoo.com",
+  "password": "$2b$10$7WTgFShBnKwnuUJmk04BpuIfHieKxSGwI3rs8l4nPkREwDqTPq32u",
+  "imageSource": "/pics-users/test2.jpeg",
+  "firstName": "Jamie",
+  "lastName": "Fox",
+  "middleInitial": "M.",
+  "course": null,
+  "about": null
+},
+{
+  "_id": {
+    "$oid": "65f36437f6aaa995a93a2e0e"
+  },
+  "username": "marie",
+  "dlsuID": 123,
+  "email": "marie@yahoo.com",
+  "password": "$2b$10$4GvBea0ZJqkSU6zCa.8ga.GNJhs86ECwZNi2/hbJHknf1hUF594aG",
+  "imageSource": "/pics-users/test4.png",
+  "firstName": "Goldie",
+  "lastName": "Locks",
+  "middleInitial": "M.",
+  "course": null,
+  "about": null
+},
+{
+  "_id": {
+    "$oid": "65f364d0d24b10e2ed1fc222"
+  },
+  "username": "Adam",
+  "dlsuID": 321,
+  "email": "adam@adam.com",
+  "password": "$2b$10$E3rxPvfv3KkzoSDbfUgCIeXhVUOoX9.nySYDow0jaFzRREZ//6mku",
+  "imageSource": "/pics-users/test3.jpeg",
+  "firstName": "Adam",
+  "lastName": "Adam",
+  "middleInitial": "M.",
+  "course": "Bachelor of Science in Computer Science: Major in Software Technology",
+  "about": null
+},
+{
+  "_id": {
+    "$oid": "65f3658c83ad0c87860cdd15"
+  },
+  "username": "nif",
+  "dlsuID": 32205,
+  "email": "pjagbuya03@yahoo.com",
+  "password": "$2b$10$JYlYdVe98y66omjUzPZHQOz3fp9oYKblawpaPZTPatXuVntQPh//e",
+  "imageSource": "/pics-users/test5.png",
+  "firstName": "Nick",
+  "lastName": "Prince",
+  "middleInitial": "N.",
+  "course": null,
+  "about": "Like to meet new friends"
+},
+{
+  "_id": {
+    "$oid": "65f365efbd61918ba818d59e"
+  },
+  "username": "theguy",
+  "dlsuID": 233,
+  "email": "asd@gmail.com",
+  "password": "$2b$10$5t7vEjj9S3/aYwUvvvS7DenPAdoYIJeMc4T6YojDJOgXn5Xm.iPPW",
+  "imageSource": "/pics-users/ht.png",
+  "firstName": "guy",
+  "lastName": "Guy",
+  "middleInitial": "N.",
+  "course": null,
+  "about": null
+},
+{
+  "_id": {
+    "$oid": "65f37e689f22dd5c2fca56d9"
+  },
+  "username": "asd",
+  "dlsuID": 155,
+  "email": "213",
+  "password": "$2b$10$jbPwYIHlDPBsnVdtlTcbq.LUK5aPr0MI6VBdZ7WMj2bpo93tDh75i",
+  "imageSource": null,
+  "firstName": "asd",
+  "lastName": "asd",
+  "middleInitial": "asd",
+  "course": null,
+  "about": null
+},
+{
+  "_id": {
+    "$oid": "65f3b9b040a39e68518c9a5d"
+  },
+  "username": "jkl",
+  "dlsuID": 445,
+  "email": "pjagbuya2@gmail.com",
+  "password": "$2b$10$qZAHnEcdnw0ecYkdmiKO2usSPXiUilVnTJJ9Xj9CPNkm.3VaHeKAW",
+  "imageSource": null,
+  "firstName": "asd",
+  "lastName": "as",
+  "middleInitial": "a",
+  "course": null,
+  "about": null
+}]

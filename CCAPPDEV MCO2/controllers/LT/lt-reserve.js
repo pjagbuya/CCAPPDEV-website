@@ -12,11 +12,19 @@ const getUniqueSeatNumbers = require("../../models/lab-model").getUniqueSeatNumb
 const getSeatTimeRange = require("../../models/lab-model").getSeatTimeRange;
 const timeModel = require("../../models/time-model");
 const updateLabInformation = require("../../models/lab-model").updateLabInformation;
+const getUserType = require('../functions/user-info-evaluate-functions.js').getUserType;
+const getImageSource = require('../functions/user-info-evaluate-functions.js').getImageSource;
+const convertToFullWeekday = require('../functions/time-functions.js').convertToFullWeekday;
+const getTimeInterval = require('../functions/time-functions.js').getTimeInterval;
+const isMorning =require('../functions/time-functions.js'). isMorning;
+const getOccupyingUserID = require('../functions/time-functions.js').getOccupyingUserID;
+const isUserNull = require('../functions/time-functions.js').isUserNull;
+const isMorningInterval = require('../functions/time-functions.js').isMorningInterval;
+const isAfternoonInterval = require('../functions/time-functions.js').isAfternoonInterval;
+
 let currentId = 6;
 function generateUniqueRandomNumber(min, max) {
   currentId++;
-
-
   return currentId.toString().padStart(6, '0');
 }
 
@@ -30,6 +38,7 @@ function generateUniqueRandomNumber(min, max) {
        await updateLabInformation();
        const users = await usersModel.find({});
        const labs = await labModel.find({});
+       var imageSource =  getImageSource(req.session.user.imageSource);
 
        // Check if users array is empty
        if (users.length === 0) {
@@ -40,20 +49,12 @@ function generateUniqueRandomNumber(min, max) {
          // Optionally, print specific user details (be mindful of privacy)
          for (const user of users) {
            console.log("  - Username:", user.username); // Replace with relevant properties
-
        }
 
        if(labs.length != 0){
          console.log(JSON.stringify(labs));
        }else{
          console.log("cannot find labs data");
-       }
-
-       var imageSource;
-       if(req.session.user.imageSource){
-         imageSource = req.session.user.imageSource
-       }else{
-         imageSource = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
        }
 
        resp.render('html-pages/LT/LT-make-reservation', {
@@ -98,54 +99,37 @@ function generateUniqueRandomNumber(min, max) {
  reserveRouter.get('/reserve/:userID/:labRoom', async function(req, resp){
 
    try {
+       var imageSource =  getImageSource(req.session.user.imageSource);
+       //excludes admin Users
+       await updateLabInformation();
 
+       const { dlsuID, labRoom } = req.params;
 
-       try {
+       const user = await usersModel.findOne({ dlsuID: req.params.userID });
+       console.log('User Data:', user);
 
-         //excludes admin Users
-         await updateLabInformation();
+       const labs = await labModel.findOne({ labName: labRoom });
+       console.log('Lab Data:', labs);
 
-         const { dlsuID, labRoom } = req.params;
+       resp.render('html-pages/reserve/LT-reserve-func', {
+         layout: 'LT/index-LT-reserve-func',
+         title: 'Tech Reserve User ' + user.dlsuID,
+         name: req.session.user.username,
+         techID: req.session.user.dlsuID,
+         dlsuID: req.session.user.dlsuID,
+         userID: req.params.userID,
+         imageSource: imageSource,
+         labName: labRoom,
+         userType: 'lt-user',
+         postURL:`/lt-user/${req.session.user.dlsuID}/reserve/${user.dlsuID}/${labRoom}`,
+         confirmedURL:`/lt-user/${req.session.user.dlsuID}/reserve`,
+         helpers: {
+           getSeatTimeRange: getSeatTimeRange,
 
-         const user = await usersModel.findOne({ dlsuID: req.params.userID });
-         console.log('User Data:', user);
-
-         const labs = await labModel.findOne({ labName: labRoom });
-         console.log('Lab Data:', labs);
-
-
-
-         //
-         // console.log(grouped_seats);
-         var imageSource;
-         if(req.session.user.imageSource){
-           imageSource = req.session.user.imageSource
-         }else{
-           imageSource = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
          }
+       });
 
-         resp.render('html-pages/reserve/LT-reserve-func', {
-           layout: 'LT/index-LT-reserve-func',
-           title: 'Tech Reserve User ' + user.dlsuID,
-           name: req.session.user.username,
-           techID: req.session.user.dlsuID,
-           dlsuID: req.session.user.dlsuID,
-           userID: req.params.userID,
-           imageSource: imageSource,
-           labName: labRoom,
-           userType: 'lt-user',
-           postURL:`/lt-user/${req.session.user.dlsuID}/reserve/${user.dlsuID}/${labRoom}`,
-           confirmedURL:`/lt-user/${req.session.user.dlsuID}/reserve`,
-           helpers: {
-             getSeatTimeRange: getSeatTimeRange,
 
-           }
-         });
-
-       } catch (error) {
-         console.error('Error loading data:', error);
-         // Handle the error (e.g., send an error response to the client)
-       }
 
 
 
@@ -199,6 +183,8 @@ function generateUniqueRandomNumber(min, max) {
      resp.status(500).json({ error: 'Something went wrong' });
    }
  });
+
+
  reserveRouter.post('/reserve/:userID/:labRoom', async function(req, resp){
         console.log(req.url)
         console.log("In reserve/userID/labRoom url")
@@ -227,60 +213,8 @@ function generateUniqueRandomNumber(min, max) {
        });
 
  });
- async function getOccupyingUserID(timeID, day, labName, seatNumber) {
-   try {
-     const occupiedSeat = await seatModel.findOne({
-       seatNumber,
-       weekDay: day,
-       labName,
-       seatTimeID: timeID,
-       studentUser: { $exists: true }
-     });
-
-     return occupiedSeat ? occupiedSeat.studentUser : null;
-   } catch (error) {
-     console.error('Error:', error);
-     return null;
-   }
- }
- function isUserNull(user) {
-   return user === null;
- }
- function isMorning(timeInterval) {
-   const twelveThirty = '12:30';
-
-   return timeInterval.timeOUT < twelveThirty;
- }
-
- function getTimeInterval(timeIntervals, seatTimeID) {
-   const time = timeIntervals.find(time => time.timeID === seatTimeID);
-   return time ? `${time.timeIN} - ${time.timeOUT}` : '';
- }
- function convertToFullWeekday(shorthand) {
-  const weekdaysMap = {
-    'Sun': 'Sunday',
-    'Mon': 'Monday',
-    'Tue': 'Tuesday',
-    'Wed': 'Wednesday',
-    'Thu': 'Thursday',
-    'Fri': 'Friday',
-    'Sat': 'Saturday',
-  };
-
-  return weekdaysMap[shorthand] || shorthand;
-}
 
 
-
-function isMorningInterval(timeInterval) {
-  const startTime = timeInterval.split(' - ')[0];
-  return startTime < '12:00';
-}
-
-function isAfternoonInterval(timeInterval) {
-  const startTime = timeInterval.split(' - ')[0];
-  return startTime >= '12:00' && startTime < '17:00';
-}
 
  reserveRouter.post('/reserve/seat', async function(req, resp){
 

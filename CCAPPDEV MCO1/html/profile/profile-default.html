@@ -67,8 +67,17 @@
 
 
             <div class="dropdown-menu dropdown-browse-section" aria-labelledby="browseDropdown">
-              <button class="dropdown-item" type="button">Browse Labs</button>
-              <button class="dropdown-item" type="button">Browse Users</button>
+
+              <a href="../search-user/search-results.html" target="_self">
+                <button class="dropdown-item" type="button">Browse Users</button>
+              </a>
+
+
+              <a href="../reserve-user/reserve-user-search-lab.html" target="_self">
+                <button class="dropdown-item" type="button">Browse Labs</button>
+              </a>
+
+
             </div>
           </div>
         </form>
@@ -82,7 +91,7 @@
         </div>
         <div class="pic-and-mail">
           <img class="profile-section-pic" src="https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" alt="default-pic">
-          <div class="mail-icon-section">
+          <div class="mail-icon-section" onclick="chatBox()">
             <i class="fa-solid fa-bell fa-3x"></i>
             <i class="circle-icon fa-solid fa-circle"></i>
           </div>
@@ -107,7 +116,7 @@
         </div>
       </a>
 
-      <a href="" target="_self">
+      <a href="../search-user/search-results.html" target="_self">
         <div class="sidebar-section-container">
           <i class="icon-section fa-solid fa-users"></i> Browse Users
         </div>
@@ -135,6 +144,142 @@
 
 
     </div>
+    <div id="chatbox" onclick="playMusic()">
+      <div id="chatlist">
+        <h1 class="d-flex justify-content-center">Notifications</h1>
+        <div class="chatbox-container" onclick="changeTab('chatlist','direct-message')">
+          <div class="chatbox-profilePic">
+            <img src="https://static.wikia.nocookie.net/vgost/images/5/56/Rick_Astley.jpg/revision/latest?cb=20220705002743" class="profile-pic">
+          </div>
+          <div class="chatbox-chatContainer">
+            <div class="chatbox-chatname">
+              Rick Astley
+            </div>
+            <div class="chatbox-chat">
+              Never Gonna Give You Up...
+            </div>
+          </div>
+        </div>
+
+        <div class="chatbox-container">
+          <div class="chatbox-profilePic">
+            <img src="https://miro.medium.com/v2/resize:fit:698/1*0jjdu52m0MO4SjLWiCVOlg.jpeg" class="profile-pic">
+          </div>
+          <div class="chatbox-chatContainer">
+            <div class="chatbox-chatname">
+              Hatsune Miku
+            </div>
+            <div class="chatbox-chat">
+              ミクだよ！ミクだよ！ミ...
+            </div>
+          </div>
+        </div>
+
+        <div class="chatbox-container">
+          <div class="chatbox-profilePic">
+            <img src="https://i.pinimg.com/736x/d3/33/28/d3332868c128f24285865d56db9dadc7.jpg" class="profile-pic">
+          </div>
+          <div class="chatbox-chatContainer">
+            <div class="chatbox-chatname">
+              Silverwolf
+            </div>
+            <div class="chatbox-chat">
+              POT 6 LEE, NOT EVEN Mł...
+            </div>
+          </div>
+        </div>
+
+        <div class="chatbox-container">
+          <div class="chatbox-profilePic">
+            <img src="https://media.discordapp.net/attachments/1077880234554167357/1206829856860536882/Chain.png?ex=65dd6ee3&is=65caf9e3&hm=8673ec6729bb00b818251fa81f9764c19e177693d6f3e2ade7c0aba774a97c05&=&format=webp&quality=lossless&width=658&height=676" class="profile-pic">
+          </div>
+          <div class="chatbox-chatContainer">
+            <div class="chatbox-chatname">
+              Joaquin Miguel Sinjian
+            </div>
+            <div class="chatbox-chat">
+              Bro, STADVDB needs CSMO...
+            </div>
+          </div>
+        </div>
+
+        <div class="chatbox-container">
+          <div class="chatbox-profilePic">
+            <img src="https://pbs.twimg.com/media/FtHR_xEXoAQS1Hl?format=jpg&name=large" class="profile-pic">
+          </div>
+          <div class="chatbox-chatContainer">
+            <div class="chatbox-chatname">
+              Majima Gorou
+            </div>
+            <div class="chatbox-chat">
+              桐生ーちゃんわどこ？！！
+            </div>
+          </div>
+        </div>
+
+        <div class="chatbox-container">
+          <div class="chatbox-profilePic">
+            <img src="https://media.tenor.com/EzdIBaQtr0YAAAAM/fnaf-superidol-epic-gaming.gif" class="profile-pic">
+          </div>
+          <div class="chatbox-chatContainer">
+            <div class="chatbox-chatname">
+              De Xian Rong
+            </div>
+            <div class="chatbox-chat">
+              Super idol 的笑容都没...
+            </div>
+          </div>
+        </div>
+
+        <div class="chatbox-container">
+          <div class="chatbox-profilePic">
+            <img src="https://media.discordapp.net/attachments/1077880234554167357/1206834071075037224/image.png?ex=65dd72d0&is=65cafdd0&hm=57241974c0a3ede7a8939d3d51d84aa32e32dbe25ec5d008a53a1788581cf070&=&format=webp&quality=lossless" class="profile-pic">
+          </div>
+          <div class="chatbox-chatContainer">
+            <div class="chatbox-chatname">
+              Enzo Arkin Panugayan
+            </div>
+            <div class="chatbox-chat">
+              KITCHEN GUN? I BOUGH...
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="direct-message">
+        <div class="direct-message-header">
+            <div class="direct-message-header-pic">
+              <img src="https://static.wikia.nocookie.net/vgost/images/5/56/Rick_Astley.jpg/revision/latest?cb=20220705002743" class="direct-message-item">
+            </div>
+            <div class="direct-message-header-name">
+              Rick Astley
+            </div>
+            <div class="direct-message-header-exit" onclick="changeTab('direct-message','chatlist')">
+              <img src="https://banner2.cleanpng.com/20180426/bae/kisspng-x-mark-computer-icons-check-mark-clip-art-5ae1aac8182a71.821442211524738760099.jpg" class="direct-message-item">
+            </div>
+        </div>
+        <div class="direct-message-body">
+            <div class="direct-message-recieve">
+              <div class="direct-message-body-pic">
+                <img src="https://static.wikia.nocookie.net/vgost/images/5/56/Rick_Astley.jpg/revision/latest?cb=20220705002743" class="direct-message-item">
+              </div>
+              <div class="direct-message-body-message">
+                Never Gonna Give You Up
+              </div>
+
+            </div>
+        </div>
+        <div class="direct-message-footer">
+            <input type="type">
+        </div>
+      </div>
+
+      <audio id="audio" src="../../css/audio/musicChat.mp3" style="display: flex"></audio>
+    </div>
+    <script src="../../js/chatbox.js"></script>
+
+
+
     <div class="profile-body">
       <section class= "profile-contact-section flex-column">
         <div class="profile-pic-and-name text-center">
@@ -142,9 +287,13 @@
 
           <!--Hardcoded name2-->
           <div class="profile-column-section d-flex flex-column align-items-center justify-content-center">
-            <div class="delete profile">
-              <div class="btn btn-danger">
+
+            <div class="d-flex flex-column ">
+              <div class="btn btn-danger my-2">
                 Delete Profile
+              </div>
+              <div class="btn btn-warning my-2">
+                Edit Picture
               </div>
 
             </div>
@@ -217,7 +366,10 @@
 
         </div>
         <div class="reservations-btn-div">
-          <button class="custom-btn-3 btn-hover-custom-2" type="button" name="button">View/Edit Reservations</button>
+          <a href="profile-edit-reservations.html">
+            <button class="custom-btn-3 btn-hover-custom-2" type="button" name="button">View/Edit Reservations</button>
+          </a>
+
 
         </div>
 

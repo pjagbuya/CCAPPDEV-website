@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 
 
-    <link rel="stylesheet" href="../../css/report-styles.css">
+    <link rel="stylesheet" href="../../css/reserve-edit.css">
     <link rel="stylesheet" href="../../css/navbar-styles.css">
     <link rel="stylesheet" href="../../css/chatbox-styles.css">
 
@@ -17,7 +17,7 @@
 
     <!--Bootstrap help Section -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <title>Report Form</title>
+    <title>Search Results</title>
   </head>
 
 
@@ -279,37 +279,87 @@
     <script src="../../js/chatbox.js"></script>
 
 
+    <div class="reserve-edit">
+        <div class="inner-box">
 
-    <!--Report Form Section-->
-    <div class="report-form-section">
-      <div class="report-body">
-        <div class="report-form-header">
-          <h1>Submit a report</h1>
-          <br>
-        </div>
-        <div class="form-proper">
-          <form method="get">
+          <div class="exit-section d-flex flex-start flex-row">
+            <a href="profile-default.html">
+              <button class="btn btn-danger my-3" type="button" name="button">Exit Reservation Editor</button>
+            </a>
+          </div>
+          <h1>Reservation Editor</h1>
+            <div class="inner-box-table">
+                <table>
+                    <thead>
+                      <tr>
 
-            <label class="form-proper">Type of Report</label><br>
-            <select name="report-type" class="form-proper">
-              <option value="Feedback">Feedback</option>
-              <option value="Technical">Technical Issue</option>
-              <option value="Account">Account Issue</option>
-              <option value="Reservation">Reservation Issue</option>
-            </select><br><br>
-            <label class="form-proper">Description</label><br>
-            <textarea name="report-desc" rows="10" cols="80" class="form-proper" placeholder="Input text here"></textarea>
-            <br><br>
-            <input type="reset" value="Clear" class="form-proper"></input>  <!--Probably not needed since form is really short anyway -->
-            <input type="submit" value="Submit" class="form-proper"></input>
-          </form>
+                          <th class="header tc">Reservation ID</th>
+                          <th class="header tc"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+
+                          <td class="tc">23155</td>
+                          <td class="tc">
+
+                            <a href="profile-edit-reservations-room.html">
+                              <button class="view-button mx-5">View</button>
+
+                            </a>
+                            <button class="btn btn-danger my-1 mx-2">Cancel Reservation</button>
+
+                          </td>
+                      </tr>
+                      <tr>
+
+                        <td class="tc">78351</td>
+                        <td class="tc">
+                          <a href="profile-edit-reservations-room.html">
+                            <button class="view-button mx-5">View</button>
+
+                          </a>
+                          <button class="btn btn-danger my-1 mx-2">Cancel Reservation</button>
+                        </td>
+                      </tr>
+                      <tr>
+
+                        <td class="tc">32142</td>
+                        <td class="tc">
+                          <a href="profile-edit-reservations-room.html">
+                            <button class="view-button mx-5">View</button>
+
+                          </a>
+                          <button class="btn btn-danger my-1 mx-2">Cancel Reservation</button>
+                        </td>
+                      </tr>
+                      <tr>
+
+                        <td class="tc">12411</td>
+                        <td class="tc">
+                          <a href="profile-edit-reservations-room.html">
+                            <button class="view-button mx-5">View</button>
+
+                          </a>
+                          <button class="btn btn-danger my-1 mx-2">Cancel Reservation</button>
+                        </td>
+                      </tr>
+                      <tr>
+
+                        <td class="tc">94523</td>
+                        <td class="tc">
+                          <a href="profile-edit-reservations-room.html">
+                            <button class="view-button mx-5">View</button>
+
+                          </a>
+                          <button class="btn btn-danger my-1 mx-2">Cancel Reservation</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
     </div>
-
-
-
-
 
 
 

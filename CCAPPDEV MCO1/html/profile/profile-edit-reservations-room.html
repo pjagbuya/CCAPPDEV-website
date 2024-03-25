@@ -4,7 +4,8 @@
     <meta charset="utf-8">
 
 
-    <link rel="stylesheet" href="../../css/report-styles.css">
+    <link rel="stylesheet" href="../../css/template-styles.css">
+    <link rel="stylesheet" href="../../css/reserve-edit.css">
     <link rel="stylesheet" href="../../css/navbar-styles.css">
     <link rel="stylesheet" href="../../css/chatbox-styles.css">
 
@@ -17,7 +18,7 @@
 
     <!--Bootstrap help Section -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <title>Report Form</title>
+    <title>Search Results</title>
   </head>
 
 
@@ -279,35 +280,144 @@
     <script src="../../js/chatbox.js"></script>
 
 
+    <div class="reserve-edit">
 
-    <!--Report Form Section-->
-    <div class="report-form-section">
-      <div class="report-body">
-        <div class="report-form-header">
-          <h1>Submit a report</h1>
-          <br>
-        </div>
-        <div class="form-proper">
-          <form method="get">
+        <div class="inner-box">
 
-            <label class="form-proper">Type of Report</label><br>
-            <select name="report-type" class="form-proper">
-              <option value="Feedback">Feedback</option>
-              <option value="Technical">Technical Issue</option>
-              <option value="Account">Account Issue</option>
-              <option value="Reservation">Reservation Issue</option>
-            </select><br><br>
-            <label class="form-proper">Description</label><br>
-            <textarea name="report-desc" rows="10" cols="80" class="form-proper" placeholder="Input text here"></textarea>
-            <br><br>
-            <input type="reset" value="Clear" class="form-proper"></input>  <!--Probably not needed since form is really short anyway -->
-            <input type="submit" value="Submit" class="form-proper"></input>
-          </form>
+          <div class="exit-section d-flex flex-start flex-row">
+            <a href="profile-edit-reservations.html">
+              <button class="btn btn-danger my-3" type="button" name="button">Exit Room Editor</button>
+            </a>
+
+          </div>
+
+          <h1>Room Editor</h1>
+            <div class="inner-box-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th class="header tc">Room<img src="https://www.svgrepo.com/show/42233/pencil-edit-button.svg" style="width: 20px"></th>
+                    <th class="header tc">Date<img src="https://www.svgrepo.com/show/42233/pencil-edit-button.svg" style="width: 20px"></th>
+                    <th class="header tc">Time Slot<img src="https://www.svgrepo.com/show/42233/pencil-edit-button.svg" style="width: 20px"></th>
+                    <th class="header tc">Seat No.<img src="https://www.svgrepo.com/show/42233/pencil-edit-button.svg" style="width: 20px"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="tc" rowspan="3">GK302A<br>
+
+                      <a href="profile-edit-reservations-seat.html">
+                        <button>View</button>
+                      </a>
+
+                    </td>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">7:30 A.M. - 8:00 A.M.</td>
+                    <td class="tc">12</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">9:30 A.M. - 10:00 A.M.</td>
+                    <td class="tc">8</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">1:30 P.M. - 2:00 P.M.</td>
+                    <td class="tc">17</td>
+                  </tr>
+                  <tr>
+                    <td class="tc" rowspan="3">GK302B<br>
+                      <a href="profile-edit-reservations-seat.html">
+                        <button>View</button>
+                      </a>
+
+                    </td>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">7:30 A.M. - 8:00 A.M.</td>
+                    <td class="tc">8</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">9:30 A.M. - 10:00 A.M.</td>
+                    <td class="tc">10</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc" class="tc">1:30 P.M. - 2:00 P.M.</td>
+                    <td class="tc">17</td>
+                  </tr>
+                  <tr>
+                    <td class="tc" rowspan="3">GK304<br>
+                      <a href="profile-edit-reservations-seat.html">
+                        <button>View</button>
+                      </a>
+
+                    </td>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">7:30 A.M. - 8:00 A.M.</td>
+                    <td class="tc">8</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">9:30 A.M. - 10:00 A.M.</td>
+                    <td class="tc">9</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">1:30 P.M. - 2:00 P.M.</td>
+                    <td class="tc">17</td>
+                  </tr>
+
+
+                  <tr>
+                    <td class="tc" rowspan="3">GK402<br>
+                      <a href="profile-edit-reservations-seat.html">
+                        <button>View</button>
+                      </a>
+
+                    </td>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">7:30 A.M. - 8:00 A.M.</td>
+                    <td class="tc">8</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">9:30 A.M. - 10:00 A.M.</td>
+                    <td class="tc">8</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">1:30 P.M. - 2:00 P.M.</td>
+                    <td class="tc">27</td>
+                  </tr>
+
+
+                  <tr>
+                    <td class="tc" rowspan="3">GK404<br>
+                      <a href="profile-edit-reservations-seat.html">
+                        <button>View</button>
+                      </a>
+
+                    </td>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">7:30 A.M. - 8:00 A.M.</td>
+                    <td class="tc">8</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">9:30 A.M. - 10:00 A.M.</td>
+                    <td class="tc">13</td>
+                  </tr>
+                  <tr>
+                    <td class="tc">Tues, Feb 13</td>
+                    <td class="tc">1:30 P.M. - 2:00 P.M.</td>
+                    <td class="tc">17</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
         </div>
-      </div>
     </div>
-
-
 
 
 
@@ -326,5 +436,7 @@
     $(".hidden-sidebar").toggleClass("show");
   });
 });
-</script>
+
+
+  </script>
 </html>

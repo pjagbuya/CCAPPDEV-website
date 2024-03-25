@@ -12,7 +12,7 @@ const convertTimeIdToInterval = require("../functions/time-functions.js").conver
 const keyLabNamesToSeatIds = require("../functions/time-functions.js").keyLabNamesToSeatIds;
 const getUserType = require('../functions/user-info-evaluate-functions.js').getUserType;
 const getImageSource = require('../functions/user-info-evaluate-functions.js').getImageSource;
-
+const getSeatDate = require('../functions/time-functions.js').getSeatDate;
 var allUniqueTimes;
 
 

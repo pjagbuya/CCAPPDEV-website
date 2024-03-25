@@ -22,6 +22,7 @@ const getUserType = require('./functions/user-info-evaluate-functions.js').getUs
 const getImageSource = require('./functions/user-info-evaluate-functions.js').getImageSource;
 const buildSearchUserQuery = require('./functions/user-info-evaluate-functions.js').buildSearchUserQuery
 const getReservationJSON = require('./functions/reservations-to-json.js').getReservationJSON
+const getSeatDate = require('./functions/time-functions.js').getSeatDate;
 var allUniqueTimes;
 
 console.log("Connecteed to router search-user")

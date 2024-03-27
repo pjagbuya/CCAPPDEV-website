@@ -7,6 +7,8 @@ const searchLabRouter = express.Router();
 const updateLabInformation = require("../models/lab-model").updateLabInformation;
 // model Imports
 const labModel = require('../models/lab-model').LabModel;
+const isUserTechnician = require('./functions/user-info-evaluate-functions.js').isUserTechnician;
+const getUserType = require('./functions/user-info-evaluate-functions.js').getUserType;
 
 
 
@@ -50,6 +52,13 @@ searchLabRouter.post("/:id/search-labs",  async function(req, resp){
     try{
         const filter = {};
         const labs = await labModel.find(filter);
+        const stringID = req.params.id+""
+        const userType = getUserType(stringID);
+
+        console.log("User type for search labs: ", userType);
+        console.log("String ID for search labs: ", stringID);
+        console.log(`/${userType}/${req.params.id}/reserve/${req.params.id}`);
+
 
         console.log("labs are loaded");
         console.log("req.body.search has: " + req.body.msg)
@@ -68,6 +77,7 @@ searchLabRouter.post("/:id/search-labs",  async function(req, resp){
             console.log(labs_array)
             const response = {
                 labs: JSON.parse(JSON.stringify(labs_array)),
+                redirectBaseURL: `/${userType}/${req.params.id}/reserve/${req.params.id}`,
                 helpers: {
                   isAvailable: function (string) {  return string === 'AVAILABLE';}
                 }
@@ -86,6 +96,7 @@ searchLabRouter.post("/:id/search-labs",  async function(req, resp){
             });
             const response = {
                 labs: JSON.parse(JSON.stringify(labs_array)),
+                redirectBaseURL:`/${userType}/${req.params.id}/reserve/${req.params.id}`,
                 helpers: {
                   isAvailable: function (string) {  return string === 'AVAILABLE';}
                 }
@@ -107,5 +118,6 @@ searchLabRouter.post("/:id/search-labs",  async function(req, resp){
 // LabRouter.use("/search-Lab", searchRouter); //route name
 
 
-
+const userReserveRouter = require('./userReserve.js');
+searchLabRouter.use("/", userReserveRouter );
 module.exports = searchLabRouter

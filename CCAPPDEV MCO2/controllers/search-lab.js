@@ -77,6 +77,8 @@ searchLabRouter.post("/:id/search-labs",  async function(req, resp){
             console.log(labs_array)
             const response = {
                 labs: JSON.parse(JSON.stringify(labs_array)),
+                userType:userType,
+                dlsuID: req.params.id,
                 redirectBaseURL: `/${userType}/${req.params.id}/reserve/${req.params.id}`,
                 helpers: {
                   isAvailable: function (string) {  return string === 'AVAILABLE';}
@@ -89,6 +91,7 @@ searchLabRouter.post("/:id/search-labs",  async function(req, resp){
         else{
           console.log("Triggering seacrh body empty case")
             labs.forEach(function(lab){
+
                 const response = {
                     lab: lab
                 }
@@ -96,6 +99,8 @@ searchLabRouter.post("/:id/search-labs",  async function(req, resp){
             });
             const response = {
                 labs: JSON.parse(JSON.stringify(labs_array)),
+                userType:userType,
+                dlsuID: req.params.id,
                 redirectBaseURL:`/${userType}/${req.params.id}/reserve/${req.params.id}`,
                 helpers: {
                   isAvailable: function (string) {  return string === 'AVAILABLE';}

@@ -22,6 +22,10 @@ const getUserType = require('./functions/user-info-evaluate-functions.js').getUs
 const getImageSource = require('./functions/user-info-evaluate-functions.js').getImageSource;
 const getSeatDate = require('./functions/time-functions.js').getSeatDate;
 const getReservationJSON = require('./functions/reservations-to-json.js').getReservationJSON
+const getUserAbtMe = require('./functions/user-info-evaluate-functions.js').getUserAbtMe;
+const getCourse = require('./functions/user-info-evaluate-functions.js').getCourse;
+
+
 var allUniqueTimes;
 
 
@@ -110,7 +114,7 @@ userRouter.get("/:id/reservations/view",  async function(req, resp){
 });
 
 
-// Route for the user to view reservation
+// Route for the user to view reservations
 userRouter.get("/:id/reservations/view/:resID",  async function(req, resp){
 
 

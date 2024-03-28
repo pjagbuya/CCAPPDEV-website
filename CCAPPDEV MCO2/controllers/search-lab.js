@@ -68,7 +68,6 @@ searchLabRouter.post("/:id/search-labs",  async function(req, resp){
                 if(lab.labName.includes(req.body.msg)){
                     const response = {
                         lab: lab
-
                     }
                     labs_array.push(response);
                 }
@@ -90,6 +89,7 @@ searchLabRouter.post("/:id/search-labs",  async function(req, resp){
         }
         else{
           console.log("Triggering seacrh body empty case")
+            // const labs = await labModel.find({});
             labs.forEach(function(lab){
 
                 const response = {
@@ -124,5 +124,5 @@ searchLabRouter.post("/:id/search-labs",  async function(req, resp){
 
 
 const userReserveRouter = require('./userReserve.js');
-searchLabRouter.use("/", userReserveRouter );
+searchLabRouter.use("/:id", userReserveRouter );
 module.exports = searchLabRouter

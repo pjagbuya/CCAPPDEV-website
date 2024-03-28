@@ -121,7 +121,7 @@ function getReserveJSONtoLoad(username, dlsuID, otherUserID, labRoom, imageSourc
         labName: labRoom,
         userType: 'user',
         postURL:`/user/${dlsuID}/reserve/${dlsuID}/${labRoom}`,
-        confirmedURL:`/user/${dlsuID}/reserve`,
+        confirmedURL:`/user/${dlsuID}`,
         helpers: {
           getSeatTimeRange: getSeatTimeRange,
         }

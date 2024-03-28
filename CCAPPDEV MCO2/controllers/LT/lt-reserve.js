@@ -40,22 +40,7 @@ function generateUniqueRandomNumber(min, max) {
        const labs = await labModel.find({});
        var imageSource =  getImageSource(req.session.user.imageSource);
 
-       // Check if users array is empty
-       if (users.length === 0) {
-         console.log("No users found in the database.");
-       } else {
-         console.log("Found", users.length, "users:"); // Print the number of users
-       }
-         // Optionally, print specific user details (be mindful of privacy)
-         for (const user of users) {
-           console.log("  - Username:", user.username); // Replace with relevant properties
-       }
 
-       if(labs.length != 0){
-         console.log(JSON.stringify(labs));
-       }else{
-         console.log("cannot find labs data");
-       }
 
        resp.render('html-pages/LT/LT-make-reservation', {
          layout: 'LT/index-LT-make-reservation',

@@ -3,6 +3,11 @@
 document.addEventListener("DOMContentLoaded", function() {
 
   const checkedSeatIds = [];
+  const socket = io('http://localhost:3000');
+  socket.on("connect", ()=>{
+    console.log("Socket connected client side");
+  })
+
   function openModalSeats() {
     document.getElementById('modalSeats').style.display = 'flex';
     document.getElementById('overlay').style.display = 'block';
@@ -38,11 +43,29 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelector('.selected-seat-text').innerText = sourceText;
   }
 
+  function isUserTechnician(dlsuID)
+  {
+    if(dlsuID)
+    {
+      if(dlsuID.toString().slice(0,3)=="101")
+      {
+        return true;
+      }
+    }
+    return false
 
 
+  }
+  function getUserType(dlsuID)
+  {
+    if(isUserTechnician(dlsuID))
+    {
+      return "lt-user"
+    }
+    return "user"
 
 
-
+  }
 
 
   var toggleSidebar = document.getElementById("toggleSidebar");
@@ -106,6 +129,7 @@ let selectedDayDiv = null;
     const techID = document.getElementById('techIDInput').value;
     const userID = document.getElementById('userIDInput').value;
     const labName = document.getElementById('labNameInput').value;
+    let userType = getUserType(techID);
     console.log("Data being sent:", {
       userID: String(userID),
       labName: String(labName),
@@ -113,7 +137,7 @@ let selectedDayDiv = null;
     });
 
       $.ajax({
-        url: `/lt-user/${techID}/reserve/confirm`,
+        url: `/${userType}/${techID}/reserve/confirm`,
         type: 'POST',
         data: {
           userID: String(userID),
@@ -133,12 +157,13 @@ let selectedDayDiv = null;
       const techID = document.getElementById('techIDInput').value;
       const userID = document.getElementById('userIDInput').value;
       const labName = document.getElementById('labNameInput').value;
+      let userType = getUserType(techID);
       console.log("Selected Day: " + weekDay);
       console.log("labName:", labName);
       console.log("seatNumber:", seatNumber);
 
       $.ajax({
-        url: `/lt-user/${techID}/reserve/seat`,
+        url: `/${userType}/${techID}/reserve/seat`,
         type: 'POST',
         data: {
           weekDay: String(weekDay),
@@ -366,7 +391,7 @@ let selectedDayDiv = null;
                     $('.time-chkBox').on('change', function() {
                       var seatTimeID = $(this).data('id-toggler');
 
-
+                      isAnon
                       copySelectedToCheck(this, seatTimeID);
 
                       const seatId = event.target.dataset.seatId;
@@ -388,6 +413,7 @@ let selectedDayDiv = null;
                         copySelectSeatSlots($('.confirm-reservation-btn'))
                         $('#confirmModalBtn').on('click', function() {
                           postReservationData(checkedSeatIds);
+                          socket.emit("reserved", )
                         });
                     });
 

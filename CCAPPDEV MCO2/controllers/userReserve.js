@@ -25,6 +25,7 @@ const isUserNull = require('./functions/time-functions.js').isUserNull;
 const isMorningInterval = require('./functions/time-functions.js').isMorningInterval;
 const isAfternoonInterval = require('./functions/time-functions.js').isAfternoonInterval;
 const getReserveJSONtoLoad = require('./functions/user-info-evaluate-functions.js').getReserveJSONtoLoad;
+const generateRandomNumericId = require('./functions/randomizer.js').generateRandomNumericId;
 
 
 userReserveRouter.get('/reserve/:userID/:labRoom', async function(req, resp){
@@ -45,6 +46,7 @@ userReserveRouter.get('/reserve/:userID/:labRoom', async function(req, resp){
       const dataJSON = getReserveJSONtoLoad(req.session.user.username, req.session.user.dlsuID,
                                    user.dlsuID, labRoom,
                                    imageSource, getSeatTimeRange)
+      console.log("JSON To Load in user Reserve Router", dataJSON)
 
       resp.render('html-pages/reserve/LT-reserve-func', dataJSON);
 
@@ -61,6 +63,7 @@ userReserveRouter.post('/reserve/confirm', async function(req, resp){
 
   const { userID, labName, seatSlots } = req.body;
 
+
   console.log("received this user "+ "userID");
   console.log("seat slots chosen");
   console.log(seatSlots)
@@ -68,7 +71,7 @@ userReserveRouter.post('/reserve/confirm', async function(req, resp){
   try {
 
     const seats = await seatModel.find({ _id: { $in: seatSlots } });
-
+    const reservations = await Reservation.find({});
     const occupiedSeats = seats.filter(seat => seat.studentUser !== null);
     if (occupiedSeats.length > 0) {
       return res.status(400).json({ error: 'Some of your chosen seats are already reserved' });
@@ -82,7 +85,7 @@ userReserveRouter.post('/reserve/confirm', async function(req, resp){
 
 
     const reservation = new Reservation({
-      reservationID: String(generateUniqueRandomNumber(1, 999999)),
+      reservationID: String( await generateRandomNumericId(reservations)),
       userID: userID,
       reservationSeats: seatSlots,
       reservationStatus: "Upcoming"

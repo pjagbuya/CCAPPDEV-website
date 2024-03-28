@@ -9,7 +9,7 @@ const Reservation = require("../models/reserve-model");
 const segregateSeats = require("../models/lab-model").segregateSeats;
 const getUniqueSeatNumbers = require("../models/lab-model").getUniqueSeatNumbers
 const getSeatTimeRange = require("../models/lab-model").getSeatTimeRange;
-const MAX_RESERVED_SEATS_VISIBLE = 3;
+
 const reservationModel = require("../models/reserve-model");
 const Time = require("../models/time-model");
 const weekdaysFull = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -42,6 +42,7 @@ userRouter.get("/:id",  async function(req, resp){
   const reservations = await Reservation.find({userID: req.params.id});
   var seats = await getReservationJSON(reservations);
   var uid = req.session.user.dlsuID;
+  console.log("Reservations found", reservations);
   console.log("Json of seats: ", seats);
 
 
@@ -182,6 +183,8 @@ Handlebars.registerHelper('limitEach', function (array, limit, options) {
   return options.fn(subArray);
 });
 
+const userReserveRouter = require('./userReserve.js');
+userRouter.use("/", userReserveRouter );
 
 const searchUserRouter = require('./search-user');
 userRouter.use("/", searchUserRouter);

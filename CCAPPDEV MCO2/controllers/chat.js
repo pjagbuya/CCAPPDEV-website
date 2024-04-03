@@ -26,7 +26,7 @@ chatRouter.post('/chat-send', function(req, resp){
 
   var searchQuery = {roomID : req.body.roomID};
 
-  chatModel.find(searchQuery).then(function(chats){
+  chatModel.find(searchQuery).lean().then(function(chats){
 
     var chatCount = chats.size();
 
@@ -72,7 +72,7 @@ chatRouter.post('/chat-connect', function(req, resp){
 
   var searchQuery = {roomID : req.body.roomID};
 
-  chatModel.find(searchQuery).then(function(chats){
+  chatModel.find(searchQuery).lean().then(function(chats){
 
     resp.send({
         chatOrder : chatCount,

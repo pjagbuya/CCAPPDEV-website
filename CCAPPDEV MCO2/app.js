@@ -91,6 +91,9 @@ app.use("/", loginRouter);
 const chatRouter = require('./controllers/chat');
 app.use("/", chatRouter);
 
+const reportFormRouter = require('./controllers/report-form');
+app.use("/user", reportFormRouter);
+
 //const searchUserRouter = require('./controllers/search-user');
 //app.use("/search-user", searchUserRouter);
 

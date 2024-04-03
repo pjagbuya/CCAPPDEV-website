@@ -5,6 +5,15 @@ $(document).ready(function(){
     displayRecieveMessage(data);
   })
 
+  $('#chat-open-btn').click(function(){
+    if($("#chatbox").css("display") === "none"){
+      $("#chatbox").css("display", "block");
+    }
+    else{
+      $("#chatbox").css("display", "none");
+    }
+  })
+
   $('#direct-message-type-send').click(function(){
     $.post('chat-send',
       { message: $('#direct-message-type').val(), 

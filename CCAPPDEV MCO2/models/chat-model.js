@@ -5,10 +5,14 @@ mongoose.connect('mongodb://localhost:27017/AnimoDB');
 const roomSchema = new mongoose.Schema({
     roomID : { type: Number,
                 required: true },
-    roomName : { type: String }
+    roomName : { type: String },
+    roomPic : { type: String },
+    dlsuID : { type: [Number],
+        required: true,
+        ref: 'User' },
 },{versionKey : false});
 
-const RoomModel = mongoose.model('Room', roomSchema);
+const roomModel = mongoose.model('room', roomSchema);
 
 const chatSchema = new mongoose.Schema({
     chatOrder : { type: Number,
@@ -16,22 +20,26 @@ const chatSchema = new mongoose.Schema({
     roomID : { type: Number,
                 required: true,
                 ref: 'Room' },
-    userID : { type: Number,
+    dlsuID : { type: Number,
                 required: true,
                 ref: 'User' },
+    userName : { type: String,
+                 required: true },
+    imageSource : { type: String,
+                 required: true },            
     message : { type: String }
 },{versionKey : false});
 
-const ChatModel = mongoose.model('Chat', chatSchema);
+const chatModel = mongoose.model('chat', chatSchema);
 
-const userSchema = new mongoose.Schema({
-    userID : { type: Number,
-        required: true },
-    userName : { type: String }
-},{versionKey : false});
-
-const UserModel = mongoose.model('User', userSchema);
-
+function sortChat(chats){
+    try{
+        chats.sort((a,b) => a.chatOrder - b.chatOrder);
+        return chats;
+    }catch(error){
+        console.error('Error sorting chat:', error);
+        throw error;
+    }
+}
 module.exports.RoomModel = RoomModel;
 module.exports.ChatModel = ChatModel;
-module.exports.UserModel = UserModel;

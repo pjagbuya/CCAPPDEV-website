@@ -64,7 +64,8 @@ async function getReservationJSON(reservations){
          seatNumber: seat.seatNumber,
          date: formatWeekdayDate(seat.weekDay),
          timeInterval: await getSeatTimeRange(seat.seatTimeID),
-         labName: seat.labName, // Include if needed
+         labName: seat.labName,
+         isAnon: seat.isAnon
        };
 
 

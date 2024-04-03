@@ -79,12 +79,13 @@
               <div class="format-date">Today</div>
               {{#if (gte (length seats.next_day_0) 1)}}
                 {{#each seats.next_day_0 as |reservation|}}
-
-                <div class="date-details">
-                  <p class="text-decoration-underline">{{reservation.labName}}</p>
-                  <p>(Seat {{reservation.seatNumber}})</p>
-                  <p>{{reservation.timeInterval}}</p>
-                </div>
+                {{#isNotAnon reservation.isAnon}}
+                  <div class="date-details">
+                    <p class="text-decoration-underline">{{reservation.labName}}</p>
+                    <p>(Seat {{reservation.seatNumber}})</p>
+                    <p>{{reservation.timeInterval}}</p>
+                  </div>
+                {{/isNotAnon}}
                 {{/each}}
               {{/if}}
 
@@ -94,11 +95,13 @@
               {{#if (gte (length seats.next_day_1) 1)}}
                 {{#each seats.next_day_1 as |reservation|}}
 
-                <div class="date-details">
-                  <p class="text-decoration-underline">{{reservation.labName}}</p>
-                  <p>(Seat {{reservation.seatNumber}})</p>
-                  <p>{{reservation.timeInterval}}</p>
-                </div>
+                {{#isNotAnon reservation.isAnon}}
+                  <div class="date-details">
+                    <p class="text-decoration-underline">{{reservation.labName}}</p>
+                    <p>(Seat {{reservation.seatNumber}})</p>
+                    <p>{{reservation.timeInterval}}</p>
+                  </div>
+                {{/isNotAnon}}
                 {{/each}}
               {{/if}}
 
@@ -108,11 +111,13 @@
               {{#if (gte (length seats.next_day_2) 1)}}
                 {{#each seats.next_day_2 as |reservation|}}
 
-                <div class="date-details">
-                  <p class="text-decoration-underline">{{reservation.labName}}</p>
-                  <p>(Seat {{reservation.seatNumber}})</p>
-                  <p>{{reservation.timeInterval}}</p>
-                </div>
+                {{#isNotAnon reservation.isAnon}}
+                  <div class="date-details">
+                    <p class="text-decoration-underline">{{reservation.labName}}</p>
+                    <p>(Seat {{reservation.seatNumber}})</p>
+                    <p>{{reservation.timeInterval}}</p>
+                  </div>
+                {{/isNotAnon}}
                 {{/each}}
               {{/if}}
 
@@ -122,11 +127,13 @@
               {{#if (gte (length seats.next_day_3) 1)}}
                 {{#each seats.next_day_3 as |reservation|}}
 
-                <div class="date-details">
-                  <p class="text-decoration-underline">{{reservation.labName}}</p>
-                  <p>(Seat {{reservation.seatNumber}})</p>
-                  <p>{{reservation.timeInterval}}</p>
-                </div>
+                {{#isNotAnon reservation.isAnon}}
+                  <div class="date-details">
+                    <p class="text-decoration-underline">{{reservation.labName}}</p>
+                    <p>(Seat {{reservation.seatNumber}})</p>
+                    <p>{{reservation.timeInterval}}</p>
+                  </div>
+                {{/isNotAnon}}
                 {{/each}}
               {{/if}}
 
@@ -135,11 +142,13 @@
               <div class="format-date">Today</div>
               {{#if (gte (length seats.next_day_4) 1)}}
                 {{#each seats.next_day_4 as |reservation|}}
-                <div class="date-details">
-                  <p class="text-decoration-underline">{{reservation.labName}}</p>
-                  <p>(Seat {{reservation.seatNumber}})</p>
-                  <p>{{reservation.timeInterval}}</p>
-                </div>
+                {{#isNotAnon reservation.isAnon}}
+                  <div class="date-details">
+                    <p class="text-decoration-underline">{{reservation.labName}}</p>
+                    <p>(Seat {{reservation.seatNumber}})</p>
+                    <p>{{reservation.timeInterval}}</p>
+                  </div>
+                {{/isNotAnon}}
                 {{/each}}
               {{/if}}
 
@@ -149,11 +158,13 @@
               {{#if (gte (length seats.next_day_5) 1)}}
                 {{#each seats.next_day_5 as |reservation|}}
 
-                <div class="date-details">
-                  <p class="text-decoration-underline">{{reservation.labName}}</p>
-                  <p>(Seat {{reservation.seatNumber}})</p>
-                  <p>{{reservation.timeInterval}}</p>
-                </div>
+                {{#isNotAnon reservation.isAnon}}
+                  <div class="date-details">
+                    <p class="text-decoration-underline">{{reservation.labName}}</p>
+                    <p>(Seat {{reservation.seatNumber}})</p>
+                    <p>{{reservation.timeInterval}}</p>
+                  </div>
+                {{/isNotAnon}}
                 {{/each}}
               {{/if}}
 
@@ -163,11 +174,13 @@
               {{#if (gte (length seats.next_day_6) 1)}}
                 {{#each seats.next_day_6 as |reservation|}}
 
-                <div class="date-details">
-                  <p class="text-decoration-underline">{{reservation.labName}}</p>
-                  <p>(Seat {{reservation.seatNumber}})</p>
-                  <p>{{reservation.timeInterval}}</p>
-                </div>
+                {{#isNotAnon reservation.isAnon}}
+                  <div class="date-details">
+                    <p class="text-decoration-underline">{{reservation.labName}}</p>
+                    <p>(Seat {{reservation.seatNumber}})</p>
+                    <p>{{reservation.timeInterval}}</p>
+                  </div>
+                {{/isNotAnon}}
                 {{/each}}
               {{/if}}
             </div> <!-- day-->

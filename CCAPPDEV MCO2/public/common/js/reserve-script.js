@@ -3,11 +3,18 @@
 document.addEventListener("DOMContentLoaded", function() {
 
   const checkedSeatIds = [];
+  let isAnon = false;
   const socket = io('http://localhost:3000');
   socket.on("connect", ()=>{
     console.log("Socket connected client side");
   })
-
+  $('#AnonTrigger').on('change', function() {
+    if(document.getElementById('AnonTrigger').checked){
+      isAnon = true
+    }else{
+      isAnon = false
+    }
+  })
   function openModalSeats() {
     document.getElementById('modalSeats').style.display = 'flex';
     document.getElementById('overlay').style.display = 'block';
@@ -388,17 +395,23 @@ let selectedDayDiv = null;
                     }
 
                     const labName = document.getElementById('labNameInput').value;
+
                     $('.time-chkBox').on('change', function() {
                       var seatTimeID = $(this).data('id-toggler');
 
-                      isAnon
+
                       copySelectedToCheck(this, seatTimeID);
 
-                      const seatId = event.target.dataset.seatId;
+
+                      // const isAnon = $('#AnonTrigger').prop('checked')
+                      const seatID = event.target.dataset.seatId;
+
+                      idwithAnonVal = {seatID: seatID,
+                                       isAnon: isAnon}
                       if (event.target.checked) {
-                        checkedSeatIds.push(seatId);
+                        checkedSeatIds.push(idwithAnonVal);
                       } else {
-                        const index = checkedSeatIds.indexOf(seatId);
+                        const index = checkedSeatIds.indexOf(idwithAnonVal);
                         if (index !== -1) {
                           checkedSeatIds.splice(index, 1);
                         }
@@ -413,7 +426,7 @@ let selectedDayDiv = null;
                         copySelectSeatSlots($('.confirm-reservation-btn'))
                         $('#confirmModalBtn').on('click', function() {
                           postReservationData(checkedSeatIds);
-                          socket.emit("reserved", )
+                          // socket.emit("reserved", checkedSeatIds)
                         });
                     });
 

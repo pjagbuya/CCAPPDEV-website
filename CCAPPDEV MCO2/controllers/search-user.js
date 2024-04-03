@@ -61,14 +61,14 @@ searchUserRouter.post("/:id/search-user-results",  function(req, resp){
 searchUserRouter.get("/profile/:id",  async function(req, resp){
   allUniqueTimes = await initializeUniqueTimes();
   const reservations = await Reservation.find({ userID: req.params.id });
-
+  var userString = req.params.id;
   const dlsuID = req.params.id;
   const searchQuery = { dlsuID: dlsuID };
   //var userType =  getUserType(userString);
   var imageSource =  getImageSource(req.session.user.imageSource);
   var profile = await userModel.findOne(searchQuery);
   var imageSourceProfile =  getImageSource(profile.imageSource);
-  const seats = getReservationJSON(reservations);
+  const seats = await getReservationJSON(reservations);
 
 
    console.log("Json of seats: ", seats);
@@ -113,6 +113,9 @@ Handlebars.registerHelper('length', function (value) {
   } else {
     return 0; // Handle other data types (return 0 for non-strings or arrays)
   }
+});
+Handlebars.registerHelper('isNotAnon', function (isAnon, options) {
+    return isAnon === false ? options.fn(this) : options.inverse(this);
 });
 
 Handlebars.registerHelper('gte', function (value1, value2) {

@@ -64,17 +64,37 @@ userReserveRouter.post('/reserve/confirm', async function(req, resp){
   const { userID, labName, seatSlots } = req.body;
 
 
-  console.log("received this user "+ "userID");
+  console.log("received this user "+ userID);
   console.log("seat slots chosen");
   console.log(seatSlots)
 
   try {
+    const seatIDs = seatSlots.map(seatObject => seatObject.seatID);
+    const seats = await seatModel.find({ _id: { $in: seatIDs } });
+    console.log("All similar seats ", seats);
 
-    const seats = await seatModel.find({ _id: { $in: seatSlots } });
+
     const reservations = await Reservation.find({});
-    const occupiedSeats = seats.filter(seat => seat.studentUser !== null);
+    const occupiedSeats = seats.filter(seat => seat.studentUser != null);
     if (occupiedSeats.length > 0) {
       return res.status(400).json({ error: 'Some of your chosen seats are already reserved' });
+    }else{
+      for(let i = 0; i< seats.length; i++){
+        console.log("Finding seat number ", seats[i])
+        const foundSeat = await seats.find(seat => seat._id === seats[i]._id);
+        const updatedSeat = await seatModel.findOneAndUpdate(
+            { _id:  seats[i] }, // Filter by _id
+            { $set: { isAnon: seatSlots[i].isAnon } }, // Update isAnon to true
+            { new: true } // Return the updated document
+          );
+
+
+        if (updatedSeat) {
+          console.log(`Seat ${updatedSeat._id} isAnon value updated to true.`);
+        } else {
+          console.log(`Seat with ID ${seatId} not found.`);
+        }
+      }
     }
     const updatePromises = seats.map(seat => {
       seat.studentUser = userID;
@@ -87,7 +107,7 @@ userReserveRouter.post('/reserve/confirm', async function(req, resp){
     const reservation = new Reservation({
       reservationID: String( await generateRandomNumericId(reservations)),
       userID: userID,
-      reservationSeats: seatSlots,
+      reservationSeats: seatIDs,
       reservationStatus: "Upcoming"
     });
 
@@ -133,7 +153,13 @@ userReserveRouter.post('/reserve/:userID/:labRoom', async function(req, resp){
 });
 
 
+function isSeatAnon(studentUser, seatID, foundSeat){
 
+  if (foundSeat.isAnon){
+    return "X"
+  }
+  return studentUser
+}
 userReserveRouter.post('/reserve/seat', async function(req, resp){
 
   try {
@@ -164,7 +190,7 @@ userReserveRouter.post('/reserve/seat', async function(req, resp){
     const seatTimeIntervals = seats.map(seat => ({
       _id: seat._id,
       seatTimeID: seat.seatTimeID,
-      studentUser: seat.studentUser,
+      studentUser: isSeatAnon(seat.studentUser, seat._id, seat),
       timeInterval: getTimeInterval(timeIntervals, seat.seatTimeID)
     }));
 

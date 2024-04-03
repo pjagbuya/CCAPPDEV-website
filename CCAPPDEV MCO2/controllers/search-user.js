@@ -64,7 +64,7 @@ searchUserRouter.get("/profile/:id",  async function(req, resp){
 
   const dlsuID = req.params.id;
   const searchQuery = { dlsuID: dlsuID };
-  var userType =  getUserType(userString);
+  //var userType =  getUserType(userString);
   var imageSource =  getImageSource(req.session.user.imageSource);
   var profile = await userModel.findOne(searchQuery);
   var imageSourceProfile =  getImageSource(profile.imageSource);

@@ -54,7 +54,8 @@ reportFormRouter.post('/:id/send-form', async (req, resp) => {
       reportInstance.save().then(function()
       {
         console.log('Form sent');
-        resp.redirect('/form-sent');
+        alert("Form sent successfully!");
+        //resp.redirect('/:id');
   
       });
       console.log("Saved Form:", reportInstance.toObject()); // Log object after saving
@@ -64,6 +65,7 @@ reportFormRouter.post('/:id/send-form', async (req, resp) => {
     } catch (e) {
   
       console.log('Form not sent');
+      alert("Form was not sent, please try again");
       console.error(e);
       console.error("Error:" + e.stack);
       resp.redirect("/report-form");
@@ -74,6 +76,7 @@ reportFormRouter.post('/:id/send-form', async (req, resp) => {
   
   
   });
+
 
 
 Handlebars.registerHelper('eq', function (a, b, options) {

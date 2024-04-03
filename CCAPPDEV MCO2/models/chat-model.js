@@ -41,5 +41,5 @@ function sortChat(chats){
         throw error;
     }
 }
-module.exports.RoomModel = RoomModel;
-module.exports.ChatModel = ChatModel;
+module.exports.RoomModel = roomModel;
+module.exports.ChatModel = chatModel;

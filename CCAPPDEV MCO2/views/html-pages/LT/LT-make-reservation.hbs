@@ -4,7 +4,7 @@
 
       <div class="search-section">
         <h3>ID No. &nbsp;</h3>
-        <input class="reserve-user-input" type="text" name="" value="">
+        <input id="search-user-txt" class="reserve-user-input" type="text" name="" value="">
         <button class="custom-btn-1" type="button" name="button">Search</button>
 
       </div>
@@ -31,7 +31,7 @@
                 <th class="table-cell">Reserve</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="user-results-tbody">
               {{#each users}}
               <tr>
                 <td class="table-cell">{{dlsuID}}</td>
@@ -39,12 +39,7 @@
                 <td class="table-cell">{{firstName}}</td>
                 <td class="table-cell">{{middleInitial}}</td>
                 <td class="table-cell">
-
-
-                  <button data-tech-id="{{techID}}" class="reserve-student-button" type="button" name="reserve-btn">Reserve Student</button>
-
-
-
+                <button data-tech-id="{{techID}}" class="reserve-student-button" type="button" name="reserve-btn">Reserve Student</button>
 
               </tr>
               {{/each}}
@@ -91,7 +86,7 @@
 
             <h3 class="label-custom-1">Room Name: </h3>
             <div class="d-flex align-items-center mx-3">
-              <input type="text" name="roomNameInput" value="">
+              <input id="search-lab-msg-txt" type="text" name="roomNameInput" value="">
             </div>
 
           </div>
@@ -124,7 +119,7 @@
 
 
           <!-- {{search-lab-modal}} -->
-          <div class="d-flex flex-column filter-part-2" onclick="alert('Currently Unavailable')>
+          <div class="d-flex flex-column filter-part-2" onclick="alert('Currently Unavailable')">
             <button class="custom-button-6 mx-5" type="button" name="button">Filter</button>
           </div>
 

@@ -1,3 +1,5 @@
+
+const Handlebars = require('handlebars'); // Assuming Handlebars is included
 const express = require("express");
 const bcrypt = require('bcrypt');
 const viewEditRouter = express.Router();
@@ -61,7 +63,9 @@ viewEditRouter.get('/view/:resID', async function(req, resp){
      const labSeatsMap = await keyLabNamesToSeatIds(req.params.resID);
      console.log(labSeatsMap);
      var imageSource =  getImageSource(req.session.user.imageSource);
-
+     Handlebars.registerHelper('getNextURL', function (context, options) {
+        return "/lt-user/"+req.session.user.dlsuID+`/edit/${req.params.resID}`;
+     });
      resp.render('html-pages/LT/LT-reservation-data', {
        layout: 'LT/index-LT-view-reservations',
        title: 'Tech Reservations View',
@@ -70,7 +74,9 @@ viewEditRouter.get('/view/:resID', async function(req, resp){
        name: req.session.user.username,
        data: labSeatsMap,
        dlsuID: req.session.user.dlsuID,
+       reservationID: req.params.resID,
        redirectBase: "/lt-user/"+req.session.user.dlsuID+`/view/${req.params.resID}`,
+       redirectNext: "/lt-user/"+req.session.user.dlsuID+`/edit/${req.params.resID}`,
        helpers: {
          isOngoing: function (string) { return string === 'Ongoing'; }
        }
@@ -87,8 +93,13 @@ viewEditRouter.get('/view/:resID', async function(req, resp){
 
  });
 
+
+
+
+
 const searchUserRouter = require('../search-user');
 viewEditRouter.use("/", searchUserRouter);
 
-
+const reservationsEditRouter = require('../user-edit-reservations');
+viewEditRouter.use("/", reservationsEditRouter);
 module.exports.viewEditRouter = viewEditRouter;

@@ -81,7 +81,8 @@ function generateUniqueRandomNumber(min, max) {
  });
 
 
-
+const searchLabRouter = require('../search-lab');
+reserveRouter.use("/", searchLabRouter);
 const searchUserRouter = require('../search-user');
 reserveRouter.use("/", searchUserRouter);
 const userReserveRouter = require('../userReserve.js');

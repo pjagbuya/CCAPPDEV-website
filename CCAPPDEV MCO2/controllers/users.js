@@ -125,34 +125,65 @@ userRouter.get("/:id/reservations/view/:resID",  async function(req, resp){
     allUniqueTimes = await initializeUniqueTimes(); // Wait for initialization
     const labSeatsMap = await keyLabNamesToSeatIds(req.params.resID);
     console.log(labSeatsMap);
-
-
+    const userType = getUserType(req.session.user.dlsuID)
+    Handlebars.registerHelper('getNextURL', function (context, options) {
+       return  `/${userType}/`+req.session.user.dlsuID+`/reservations/edit/${req.params.resID}`;
+    });
     console.log(labSeatsMap);
-    var imageSource;
-    if(req.session.user.imageSource){
-      imageSource = req.session.user.imageSource
-    }else{
-      imageSource = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
-    }
-      resp.render('html-pages/user/user-reservation-data', {
-        layout: 'user/index-user-view-reservations',
-        title: 'Tech Reservations View',
-        name: req.session.user.username,
-        imageSource:imageSource,
-        data: labSeatsMap,
-        userType: 'user',
-        dlsuID: req.session.user.dlsuID,
-        redirectBase: "/user/"+req.session.user.dlsuID+`/view/${req.params.resID}`,
-        helpers: {
-          isOngoing: function (string) { return string === 'Ongoing'; }
-        }
-      });
+    var imageSource= getImageSource(req.session.user.imageSource);
+
+    resp.render('html-pages/user/user-reservation-data', {
+      layout: 'user/index-user-view-reservations',
+      title: 'Tech Reservations View',
+      name: req.session.user.username,
+      imageSource:imageSource,
+      data: labSeatsMap,
+      userType: userType,
+      dlsuID: req.session.user.dlsuID,
+      redirectBase:  `/${userType}/`+req.session.user.dlsuID+`/view/${req.params.resID}`,
+      helpers: {
+        isOngoing: function (string) { return string === 'Ongoing'; }
+      }
+    });
   } catch(error) {
     console.error("Error in route handler:", error);
 
   }
 });
 
+
+// userRouter.get('/:id/reservations/edit/:resID/:roomName', async function(req, resp){
+//    try {
+//      allUniqueTimes = await initializeUniqueTimes(); // Wait for initialization
+//      const labSeatsMap = await keyLabNamesToSeatIds(req.params.resID);
+//      const labName = req.params.roomName
+//      const userType = getUserType(req.session.user.dlsuID)
+//      console.log(labSeatsMap);
+//      var imageSource =  getImageSource(req.session.user.imageSource);
+//
+//      resp.render('html-pages/reservation-edit/reserve-edit', {
+//        layout: 'edit/index-reservation-edit',
+//        title: 'Tech Reservations Edit',
+//        imageSource: imageSource,
+//        userType: userType,
+//        name: req.session.user.username,
+//        labName: labName,
+//        data: labSeatsMap,
+//        dlsuID: req.session.user.dlsuID,
+//        redirectBase: `/${userType}/`+req.session.user.dlsuID+`/edit/${req.params.resID}`,
+//        helpers: {
+//          isOngoing: function (string) { return string === 'Ongoing'; }
+//        }
+//      });
+//
+//
+//    } catch(error) {
+//      console.error("Error in route handler:", error);
+//
+//    }
+//
+//
+//  });
 Handlebars.registerHelper('isNull', function (value) {
   return value === undefined || value === null; // Concise check for null or undefined
 });
@@ -182,6 +213,9 @@ Handlebars.registerHelper('limitEach', function (array, limit, options) {
   const subArray = array.slice(0, limit);
   return options.fn(subArray);
 });
+
+const reservationsEditRouter = require('./user-edit-reservations.js');
+userRouter.use("/:id/reservations", reservationsEditRouter );
 
 const userReserveRouter = require('./userReserve.js');
 userRouter.use("/", userReserveRouter );

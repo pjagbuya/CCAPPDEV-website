@@ -26,9 +26,9 @@
 
 
                   <tr>
-                    <td class="tc" rowspan="{{totalSeats}}">{{labName}}
-                      <a  onclick="alert('Currently Unavailable')">
-                        <button>View</button>
+                    <td class="tc" rowspan="{{totalSeats}}">{{labName}}<br>
+                      <a  href={{getNextURL}}/{{labName}}>
+                        <button>Edit</button>
                       </a>
                     </td>
                     <td class="tc">{{firstSeat.weekDay}}</td>

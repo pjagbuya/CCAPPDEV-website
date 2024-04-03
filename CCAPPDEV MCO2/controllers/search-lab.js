@@ -117,6 +117,78 @@ searchLabRouter.post("/:id/search-labs",  async function(req, resp){
     }
 });
 
+searchLabRouter.post("/search-labs",  async function(req, resp){
+
+    await updateLabInformation();
+    labs_array = [];
+    try{
+        const filter = {};
+        const labs = await labModel.find(filter);
+        const stringID = req.params.id+""
+        const userType = getUserType(stringID);
+
+        console.log("User type for search labs: ", userType);
+        console.log("String ID for search labs: ", stringID);
+        console.log(`/${userType}/${req.params.id}/reserve/${req.params.id}`);
+
+
+        console.log("labs are loaded");
+        console.log("req.body.search has: " + req.body.msg)
+
+        if (req.body.msg){
+            labs.forEach(function(lab){
+                if(lab.labName.includes(req.body.msg)){
+                    const response = {
+                        lab: lab
+                    }
+                    labs_array.push(response);
+                }
+            });
+            console.log("Selecting these particular arrays ");
+            console.log(labs_array)
+            const response = {
+                labs: JSON.parse(JSON.stringify(labs_array)),
+                userType:userType,
+                dlsuID: req.params.id,
+                redirectBaseURL: `/${userType}/${req.params.id}/reserve/${req.params.id}`,
+                helpers: {
+                  isAvailable: function (string) {  return string === 'AVAILABLE';}
+                }
+            }
+            console.log("Response sent to the server:")
+            console.log(response);
+            resp.send(response);
+        }
+        else{
+          console.log("Triggering seacrh body empty case")
+            // const labs = await labModel.find({});
+            labs.forEach(function(lab){
+
+                const response = {
+                    lab: lab
+                }
+                labs_array.push(response);
+            });
+            const response = {
+                labs: JSON.parse(JSON.stringify(labs_array)),
+                userType:userType,
+                dlsuID: req.params.id,
+                redirectBaseURL:`/${userType}/${req.params.id}/reserve/${req.params.id}`,
+                helpers: {
+                  isAvailable: function (string) {  return string === 'AVAILABLE';}
+                }
+            }
+            console.log("Response sent to the server:")
+            console.log(response);
+            resp.send(response);
+        }
+    }
+    catch (error) {
+        console.error("Error during getting labs:", error);
+        resp.status(500).send({ error: "Internal server error" });
+    }
+});
+
 
 //  Routing to next search result-page insert here, sample given below
 // const searchRouter = require('./search-Lab'); //file name

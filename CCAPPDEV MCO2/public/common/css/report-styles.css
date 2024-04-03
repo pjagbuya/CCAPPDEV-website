@@ -1,0 +1,57 @@
+.report-form-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.report-body{
+  width: 60%;
+  border: 15px ridge #236850;
+  padding: 15px;
+}
+
+label.form-proper{
+  font-weight: 500;
+  padding-bottom: 10px;
+}
+
+input.form-proper, textarea.form-proper{
+  outline: 0;
+  border: 1px solid #cacaca;
+  border-radius: 5px;
+  width: 60%;
+  padding: 10px;
+  resize: none;
+}
+
+select.form-proper{
+  outline: 0;
+  border: 1px solid #cacaca;
+  border-radius: 5px;
+  width: 60%;
+  height: 45px;
+  padding: 10px;
+  font-weight: 500;
+}
+
+input.form-proper[type=submit] {
+  width: 175px;
+  height: 50px;
+  background: #236850;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+input.form-proper[type=reset] {
+  width: 100px;
+  height: 50px;
+  background: white;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+textarea{
+  resize: none;
+}

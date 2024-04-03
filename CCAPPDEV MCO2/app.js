@@ -2,7 +2,7 @@
 //Github Repository link: https://github.com/pjagbuya/CCAPPDEV-website
 //boilerplate begins here
 //Global db
-
+const Reservation = require("./models/reserve-model");
 const express = require('express');
 const { createServer } = require('node:http');
 const { join } = require('node:path');
@@ -96,10 +96,15 @@ app.use("/", chatRouter);
 
 // const searchLabRouter = require('./controllers/search-lab');
 // app.use("/", searchLabRouter);
-
+let currReservations= []
 io.on('connection', (socket) => {
     console.log(`user connected ${socket.id}`);
-  
+    socket.emit("reserveUpdate", currReservations);
+    socket.on('reserved', (dlsuID)=>{
+      currReservations = Reservation.find({userID:dlsuID});
+      socket.emit("reserveUpdate", currReservations);
+      socket.broadcast.emit("reserveUpdate", currReservations);
+    })
     socket.on("send-message", function(data){
       if(data.roomID === ""){
         io.emit("recieve-message", data);
@@ -116,7 +121,7 @@ io.on('connection', (socket) => {
     socket.on("leave-room", function(roomID){
       socket.leave(roomID);
     });
-    
+
     socket.on('disconnect', function(){
       console.log(`user disconnected ${socket.id}`);
     });

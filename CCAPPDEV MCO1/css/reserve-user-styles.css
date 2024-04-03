@@ -613,6 +613,11 @@ input[type="checkbox"] {
   color: white;
   background-color: #12372A;
 }
+
+.taken-slot-text:hover{
+  cursor: pointer;
+  color:#FBFADA;
+}
 .is-anonymous-section{
   font-family: "Montserrat";
 }

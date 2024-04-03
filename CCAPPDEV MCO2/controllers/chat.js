@@ -6,16 +6,6 @@ const chatRouter = express.Router();
 
 const chatModel = require('../models/chat-model');
 
-chatRouter.get('chat-room',function(req, resp){
-    //enter room
-    //get chats
-    //sort chats
-    //load chats and room details
-    resp.render({
-
-    });
-});
-
 Handlebars.registerHelper('ifEquals', function(id1, id2, options) {
   return (id1 == id2) ? options.fn(this) : options.inverse(this);
 });
@@ -70,4 +60,29 @@ chatRouter.post('/chat-send', function(req, resp){
   });
 });
 
+chatRouter.post('/chat-connect', function(req, resp){
+
+  var imageSource;
+
+  if(req.session.user.imageSource){
+    imageSource = req.session.user.imageSource
+  }else{
+    imageSource = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
+  }
+
+  var searchQuery = {roomID : req.body.roomID};
+
+  chatModel.find(searchQuery).then(function(chats){
+
+    resp.send({
+        chatOrder : chatCount,
+        roomID: req.body.roomID,
+        dlsuID: req.session.user.dlsuID,
+        username: req.session.user.username,
+        imageSource: imageSource,
+        chats : chats,
+        terminal: 0
+    });
+  });
+});
 module.exports = chatRouter

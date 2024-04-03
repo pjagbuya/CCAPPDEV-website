@@ -101,7 +101,20 @@ io.on('connection', (socket) => {
     console.log(`user connected ${socket.id}`);
   
     socket.on("send-message", function(data){
-      io.emit("recieve-message", data);
+      if(data.roomID === ""){
+        io.emit("recieve-message", data);
+      }
+      else{
+        socket.to(data.roomID).emit("recieve-message", data);
+      }
+    });
+
+    socket.on("join-room", function(roomID){
+      socket.join(roomID);
+    });
+  
+    socket.on("leave-room", function(roomID){
+      socket.leave(roomID);
     });
     
     socket.on('disconnect', function(){

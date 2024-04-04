@@ -56,11 +56,7 @@ userRouter.get("/:id",  async function(req, resp){
         course: course,
         imageSource: imageSource,
         about: abtMe,
-        email: req.session.user['email'],
         seats: JSON.parse(JSON.stringify(seats)),
-        firstName: req.session.user['firstName'],
-        middleInitial: req.session.user['middleInitial'],
-        lastName: req.session.user['lastName'],
         name:  `${req.session.user.firstName} ${req.session.user.middleInitial} ${req.session.user.lastName}`,
         redirectReserve: `/user/${uid}/reservations/view`,
         id: req.session.user['dlsuID'],
@@ -114,6 +110,26 @@ userRouter.get("/:id/reservations/view",  async function(req, resp){
 
   } catch (e) {
      console.error("Error retrieving users:", e);
+  }
+
+});
+
+// Route for cancelling reservation
+userRouter.post("/:id/reservations/view/cancel",  async function(req, resp){
+
+  const toCancel = req.body.reservationID;
+  console.log("Loaded");
+  console.log("Attempting to cancel reservation " + toCancel);
+
+  try {
+
+    await reservationModel.deleteOne({reservationID : toCancel}).then(function(){
+      console.log("Reservation " + toCancel + " cancelled");
+      resp.status(200).send({reservationID: toCancel});
+    });
+
+  } catch (e) {
+     console.error("Error cancelling:", e);
   }
 
 });

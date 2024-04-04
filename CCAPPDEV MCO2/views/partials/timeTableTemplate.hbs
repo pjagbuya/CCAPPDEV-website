@@ -13,21 +13,22 @@
 
       <tbody>
         \{{#each dataM}}
-
-
-        <tr>
-          <td  class="time-slot-data ">\{{timeInterval}}</td>
-          \{{#isNull studentUser}}
-            <td class="checkbox-data" ><input data-seat-id="\{{_id}}" data-id-toggler="_time-\{{seatTimeID}}" class="time-chkBox"  type="checkbox"></td>
-          \{{else}}
-            <td class="checkbox-data" >
-              <a href="/{{userType}}/profile/\{{studentUser}}">
-                <u>\{{studentUser}}</u>
-              </a>
-            </td>
-          \{{/isNull}}
-          <td class="seat-num-data" id="_time-\{{seatTimeID}}">X</td>
-       </tr>
+        \{{#isNull timeInterval}}
+        \{{else}}
+          <tr>
+            <td  class="time-slot-data ">\{{timeInterval}}</td>
+            \{{#isNull studentUser}}
+              <td class="checkbox-data" ><input data-seat-id="\{{_id}}" data-id-toggler="_time-\{{seatTimeID}}" class="time-chkBox"  type="checkbox"></td>
+            \{{else}}
+              <td class="checkbox-data" >
+                <a href="/{{userType}}/profile/\{{studentUser}}">
+                  <u>\{{studentUser}}</u>
+                </a>
+              </td>
+            \{{/isNull}}
+            <td class="seat-num-data" id="_time-\{{seatTimeID}}">X</td>
+        </tr>
+        \{{/isNull}}
        \{{/each}}
 
 
@@ -45,19 +46,22 @@
       </thead>
       <tbody>
         \{{#each dataN}}
-        <tr>
-          <td  class="time-slot-data ">\{{timeInterval}}</td>
-          \{{#isNull studentUser}}
-            <td class="checkbox-data" ><input data-seat-id="\{{_id}}" data-id-toggler="_time-\{{seatTimeID}}" class="time-chkBox"  type="checkbox"></td>
-          \{{else}}
-            <td class="checkbox-data" >
-              <a href="/{{userType}}/profile/\{{studentUser}}">
-                <u>\{{studentUser}}</u>
-              </a>
-            </td>
-          \{{/isNull}}
-          <td class="seat-num-data" id="_time-\{{seatTimeID}}">X</td>
-       </tr>
+        \{{#isNull timeInterval}}
+        \{{else}}
+          <tr>
+            <td  class="time-slot-data ">\{{timeInterval}}</td>
+            \{{#isNull studentUser}}
+              <td class="checkbox-data" ><input data-seat-id="\{{_id}}" data-id-toggler="_time-\{{seatTimeID}}" class="time-chkBox"  type="checkbox"></td>
+            \{{else}}
+              <td class="checkbox-data" >
+                <a href="/{{userType}}/profile/\{{studentUser}}">
+                  <u>\{{studentUser}}</u>
+                </a>
+              </td>
+            \{{/isNull}}
+            <td class="seat-num-data" id="_time-\{{seatTimeID}}">X</td>
+        </tr>
+        \{{/isNull}}
        \{{/each}}
       </tbody>
     </table>

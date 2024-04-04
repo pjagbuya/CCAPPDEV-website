@@ -129,8 +129,32 @@ function convertTimeIdToInterval(timeId) {
   return weekdaysMap[shorthand] || shorthand;
 }
 
-function getTimeInterval(timeIntervals, seatTimeID) {
-  const time = timeIntervals.find(time => time.timeID === seatTimeID);
+function isTimePassed(timeInput, date){
+  var currentTime = new Date();
+  var passed; // if time input is passed the current datetime or not
+
+  var timeSplit = timeInput.split(":");
+  var hours = Number(timeSplit[0]);
+  var minutes = Number(timeSplit[1]);
+
+  //console.log("is date today or earlier? "+(date <= currentTime.getDate()));
+
+  if((hours == currentTime.getHours()) && (date <= currentTime.getDate())){ // hours is equal to current hour and date is today or earlier
+    if((minutes <= currentTime.getMinutes()) && (date <= currentTime.getDate())){passed = true} // minute is earlier or equal than current minute
+    else{passed = false} // minute is later than current minute
+  }
+  else if((hours < currentTime.getHours()) && (date <= currentTime.getDate())){passed = true} // hour is earlier than current hour
+  else{passed = false} // hour is later than current hour and date is of a later time
+    
+
+  console.log(passed);
+
+  return (passed);
+}
+
+function getTimeInterval(timeIntervals, seatTimeID, date) {
+   const time = timeIntervals.find(time => (time.timeID === seatTimeID) && !(isTimePassed(time.timeIN, date))); // HAS TIME VALIDATION
+  //const time = timeIntervals.find(time => time.timeID === seatTimeID); // for debugging
   return time ? `${time.timeIN} - ${time.timeOUT}` : '';
 }
 function isMorning(timeInterval) {
@@ -138,6 +162,7 @@ function isMorning(timeInterval) {
 
   return timeInterval.timeOUT < twelveThirty;
 }
+
 async function getOccupyingUserID(timeID, day, labName, seatNumber) {
   try {
     const occupiedSeat = await seatModel.findOne({
@@ -178,6 +203,7 @@ module.exports.convertToFullWeekday = convertToFullWeekday;
 module.exports.getTimeInterval = getTimeInterval;
 module.exports.isMorning = isMorning;
 module.exports.getOccupyingUserID = getOccupyingUserID;
+module.exports.isTimePassed = isTimePassed;
 module.exports.isUserNull = isUserNull;
 module.exports.isMorningInterval = isMorningInterval;
 module.exports.isAfternoonInterval = isAfternoonInterval;

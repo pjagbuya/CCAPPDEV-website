@@ -107,6 +107,9 @@ let selectedDayDiv = null;
 
         const formattedDateElement = document.createElement("div");
         formattedDateElement.className = "format-date";
+
+        formattedDateElement.id = "date-reserve"+day.getDate();// used for date validation later on
+
         formattedDateElement.textContent = formattedDate;
 
         dayDiv.appendChild(formattedDateElement);
@@ -158,6 +161,17 @@ let selectedDayDiv = null;
 
 
   }
+
+  // helper to get the date of the certain reservation day picked
+  var date;
+  $(document).ready(function(){
+    for(let i=0; i<100; i++){
+      $("#date-reserve"+i).click(function(){
+          date = i;
+      });//click
+    }
+  });
+
   // Function to post data
   function postSeatData(weekDay, seatNumber) {
     return new Promise((resolve, reject) => {
@@ -175,7 +189,8 @@ let selectedDayDiv = null;
         data: {
           weekDay: String(weekDay),
           labName: String(labName),
-          seatNumber: String(seatNumber)
+          seatNumber: String(seatNumber),
+          date: date
         },
         success: function (result, status) {
           console.log('Request successfully sent:', status);
@@ -191,6 +206,8 @@ let selectedDayDiv = null;
       });
     });
   }
+
+
   // Function to post data
   function postData(weekDay) {
     return new Promise((resolve, reject) => {

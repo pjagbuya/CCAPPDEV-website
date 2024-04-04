@@ -19,6 +19,7 @@ const getUserType = require('./functions/user-info-evaluate-functions.js').getUs
 const getImageSource = require('./functions/user-info-evaluate-functions.js').getImageSource;
 const convertToFullWeekday = require('./functions/time-functions.js').convertToFullWeekday;
 const getTimeInterval = require('./functions/time-functions.js').getTimeInterval;
+const isTimePassed = require('./functions/time-functions.js').isTimePassed;
 const isMorning =require('./functions/time-functions.js'). isMorning;
 const getOccupyingUserID = require('./functions/time-functions.js').getOccupyingUserID;
 const isUserNull = require('./functions/time-functions.js').isUserNull;
@@ -164,6 +165,7 @@ userReserveRouter.post('/reserve/seat', async function(req, resp){
 
   try {
     const { weekDay, labName, seatNumber } = req.body;
+    const date = req.body.date;
     console.log("Selected Day: " + weekDay);
     console.log("labName:", labName);
     console.log("seatNumber:", seatNumber);
@@ -179,24 +181,22 @@ userReserveRouter.post('/reserve/seat', async function(req, resp){
 
     const seatTimeIDs = seats.map(seat => seat.seatTimeID);
 
-
-
     const timeIntervals = await timeModel.find({
       timeID: { $in: seatTimeIDs }
     });
 
-    console.log("Seat Time IDs" + seatTimeIDs);
+    console.log("Seat Time IDs " + seatTimeIDs);
 
     const seatTimeIntervals = seats.map(seat => ({
       _id: seat._id,
       seatTimeID: seat.seatTimeID,
       studentUser: isSeatAnon(seat.studentUser, seat._id, seat),
-      timeInterval: getTimeInterval(timeIntervals, seat.seatTimeID)
+      timeInterval: getTimeInterval(timeIntervals, seat.seatTimeID, date)
     }));
 
 
-    const morningIntervals = seatTimeIntervals.filter(seat => isMorningInterval(seat.timeInterval));
-    const afternoonIntervals = seatTimeIntervals.filter(seat => isAfternoonInterval(seat.timeInterval));
+    const morningIntervals = seatTimeIntervals.filter(seat => isMorningInterval(seat.timeInterval) && (seat.timeInterval != ''));
+    const afternoonIntervals = seatTimeIntervals.filter(seat => isAfternoonInterval(seat.timeInterval) && (seat.timeInterval != ''));
 
     resp.send({ dataM: morningIntervals,
                 dataN: afternoonIntervals

@@ -82,6 +82,26 @@ userRouter.get("/:id",  async function(req, resp){
 
 });
 
+// Route for cancelling reservation
+userRouter.post("/:id/reservations/view/cancel",  async function(req, resp){
+
+  const toCancel = req.body.reservationID;
+  console.log("Loaded");
+  console.log("Attempting to cancel reservation " + toCancel);
+
+  try {
+
+    await reservationModel.deleteOne({reservationID : toCancel}).then(function(){
+      console.log("Reservation " + toCancel + " cancelled");
+      resp.status(200).send({reservationID: toCancel});
+    });
+
+  } catch (e) {
+     console.error("Error cancelling:", e);
+  }
+
+});
+
 
 // Route for the user to view reservation
 userRouter.get("/:id/reservations/view",  async function(req, resp){

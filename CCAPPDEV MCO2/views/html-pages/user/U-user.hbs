@@ -4,24 +4,31 @@
 
 
           <!--Hardcoded name2-->
-          <div class="profile-column-section d-flex flex-column align-items-center justify-content-center">
+           <div class="profile-column-section d-flex flex-column align-items-center justify-content-center">
 
             <div class="d-flex flex-column ">
-              <div  onclick="alert('Currently Unavailable')" class="btn btn-danger my-2">
+             <div id="deleteProfileBtn" class="btn btn-danger my-2">
                 Delete Profile
-              </div>
-              <div  onclick="alert('Currently Unavailable')" class="btn btn-warning my-2">
+            </div>
+
+              <div  id="edit-imageSource" class="btn btn-warning my-2">
                 Edit Picture
               </div>
 
             </div>
             <img class="profile-regular-pic" src={{imageSource}} alt="default-pic">
 
-            <p class="profile-name">
-              {{name}} <i  onclick="alert('Currently Unavailable')" class="fa-solid fa-pencil"></i>
-
+            <p class="profile-name" id="username">
+              {{title}}
+              <i class="fa-solid fa-pencil" id="edit-username"></i>
             </p>
-            <p class="profile-name">
+
+            <p class="profile-name" id="name">
+             <span id="firstName">{{firstName}}</span> <span id="middleInitial">{{middleInitial}}</span> <span id="lastName">{{lastName}}</span> 
+             <i id="edit-name" class="fa-solid fa-pencil"></i>
+            </p>
+
+            <p class="profile-name" id="userId" data-dlsu-id="{{dlsuID}}">
               ID : {{dlsuID}}
             </p>
 
@@ -33,14 +40,14 @@
         <hr>
         <div class="description-div">
           <div class="course-desc">
-            <h2 class= "custom-header1">Course <i  onclick="alert('Currently Unavailable')" class="fa-solid fa-pencil"></i></h2>
-            <p>{{course}}</p>
+            <h2 class= "custom-header1">Course <i id="edit-course"class="fa-solid fa-pencil"></i></h2>
+            <p id="course">{{course}}</p>
           </div>
 
 
           <div class="about-me">
-            <h2 class= "custom-header1">About Me <i   onclick="alert('Currently Unavailable')" class="fa-solid fa-pencil"></i></h2>
-            <p>{{about}}</p>
+            <h2 class= "custom-header1">About Me <i id="edit-about" class="fa-solid fa-pencil"></i></h2>
+            <p id="about">{{about}}</p>
 
           </div>
 
@@ -52,12 +59,12 @@
 
           <table class="contact-table" cellpadding="10">
             <tr class="text-decoration-underline">
-              <td>{{email}}</td>
-              <td><i  onclick="alert('Currently Unavailable')" class="fa-solid fa-pencil"></i></td>
+              <td id="email">{{email}}</td>
+              <td><i id="edit-email" class="fa-solid fa-pencil"></i></td>
             </tr>
             <tr class="text-decoration-underline">
-              <td>Add another contact detail</td>
-              <td><i onclick="alert('Currently Unavailable')" class="fa-solid fa-plus"></i></td>
+              <td id="contact">{{contact}}</td>
+              <td><i id="edit-contact" class="fa-solid fa-plus"></i></td>
             </tr>
 
           </table>

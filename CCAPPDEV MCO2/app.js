@@ -1,4 +1,3 @@
-
 //Github Repository link: https://github.com/pjagbuya/CCAPPDEV-website
 //boilerplate begins here
 //Global db
@@ -7,6 +6,7 @@ const express = require('express');
 const { createServer } = require('node:http');
 const { join } = require('node:path');
 const { Server } = require('socket.io');
+const mongoose = require('mongoose');
 
 const app = express();
 const server = createServer(app);
@@ -78,6 +78,88 @@ app.get('/', function(req, resp){
 
     });
 });
+
+// edit profile
+
+const userSchema = new mongoose.Schema({
+  dlsuID: Number,
+  username: String,
+  firstName: String,
+  middleInitial: String,
+  lastName: String,
+  name: String,
+  course: String,
+  about: String,
+  email: String,
+  imageSource: String
+});
+
+const User = mongoose.model('User', userSchema);
+
+app.post('/updateProfile', async (req, res) => {
+  const userId = req.body.userId;
+  const fieldName = req.body.fieldName;
+  const newValue = req.body.newValue;
+
+  console.log("Updating: ", fieldName, newValue, userId);
+
+  try {
+    // Try to find user by dlsuID
+    let updatedUser = await User.findOneAndUpdate(
+      { dlsuID: userId },
+      { [fieldName]: newValue },
+      { new: true }
+    );
+
+    // If user not found by dlsuID, try to find by email
+    if (!updatedUser) {
+      updatedUser = await User.findOneAndUpdate(
+        { email: userId },
+        { [fieldName]: newValue },
+        { new: true }
+      );
+    }
+
+    if (updatedUser) {
+      req.session.user = updatedUser;
+      req.session.touch();
+      console.log('Profile updated successfully:', updatedUser);
+      return res.json({ message: 'Profile updated successfully', user: updatedUser });
+    } else {
+      console.log('User not found with dlsuId or email:', userId);
+      return res.status(404).json({ error: 'User not found' });
+    }
+  } catch (error) {
+    console.error('Error updating profile:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.delete('/deleteProfile', async (req, res) => {
+  const userId = req.body.userId;
+
+  try {
+    
+    let deletedUser = await User.findOneAndDelete({ dlsuID: userId });
+
+    
+    if (!deletedUser) {
+      deletedUser = await User.findOneAndDelete({ email: userId });
+    }
+
+    if (deletedUser) {
+      console.log('Profile deleted successfully:', deletedUser);
+      return res.json({ message: 'Profile deleted successfully' });
+    } else {
+      console.log('User not found with dlsuId or email:', userId);
+      return res.status(404).json({ error: 'User not found sheesh!' });
+    }
+  } catch (error) {
+    console.error('Error deleting profile:', error);
+    return res.status(500).json({ error: 'Internal server error OMG!' });
+  }
+});
+
 
 const registerLoginRouter = require('./controllers/register')
 app.use("/", registerLoginRouter);

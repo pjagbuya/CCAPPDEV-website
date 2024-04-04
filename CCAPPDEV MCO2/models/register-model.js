@@ -15,6 +15,7 @@ mongoose.connect('mongodb://localhost:27017/AnimoDB');
    middleInitial: String,
    course: String,
    about: String,
+   contact: String,
  }, {versionKey: false});
 
 

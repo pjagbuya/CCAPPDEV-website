@@ -20,11 +20,12 @@
             </thead>
             <tbody>
               {{#each data}}
+              <form>
                 <tr>
-                  <td class="tc">{{firstSeat.weekDay}}<br><button class="change-btn-weekday">Change</button></td>
+                  <td class="tc">{{firstSeat.weekDay}}<br><input type="date" id="date"></td>
                   <td class="tc">
                     {{firstSeat.timeInterval}}<br>
-                    <select class="select-interval">
+                    <select class="select-interval" id="time-select{{@index}}">
                       <option>7:30 A.M. - 8:00 A.M.</option>
                       <option>8:00 A.M. - 8:30 A.M.</option>
                       <option>8:30 A.M. - 9:00 A.M.</option>
@@ -52,8 +53,11 @@
                     <br><button class="change-btn-seatnumber">Change</button>
                   </td>
                   <td class="tc"><br><button class="btn btn-danger cancel-btn-seatnumber">Cancel Seat</button></td>
+                  <td class="tc"><br><button>Save Changes</button></td>
                 </tr>
+                </form>
                 {{#each otherSeats}}
+                <form>
                   <tr>
                     <td class="tc">{{weekDay}}<br><button class="change-btn-weekday">Change</button></td>
                     <td class="tc">
@@ -85,6 +89,7 @@
                       {{seatNumber}}<br><button class="change-btn-seatnumber">Change</button></td>
                     <td class="tc"><br><button class="btn btn-danger cancel-btn-seatnumber">Cancel Seat</button></td>
                   </tr>
+                </form>
                 {{/each}}
               {{/each}}
 

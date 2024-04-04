@@ -15,7 +15,7 @@ reservationsEditRouter.get('/edit/:resID/:roomName', async function(req, resp){
    try {
      allUniqueTimes = await initializeUniqueTimes(); // Wait for initialization
      const labSeatsMap = await keyLabNamesToSeatIds(req.params.resID);
-     const labName = req.params.roomName
+     const labName = req.params.roomName;
      const userType = getUserType(req.session.user.dlsuID)
      console.log(labSeatsMap);
      var imageSource =  getImageSource(req.session.user.imageSource);

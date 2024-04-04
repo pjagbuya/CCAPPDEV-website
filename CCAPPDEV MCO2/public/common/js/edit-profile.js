@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function() {
     var pencilIcons = document.querySelectorAll(".fa-pencil");
 
@@ -12,6 +11,13 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
+
+    var plusIcon = document.getElementById("edit-contact");
+    if (plusIcon) {
+        plusIcon.addEventListener("click", function() {
+            enableEditContact();
+        });
+    }
 
     var editImageButton = document.querySelector(".btn.btn-warning.my-2");
     if (editImageButton) {
@@ -107,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-
     function enableEditName() {
         var firstNameElement = document.getElementById("firstName");
         var middleInitialElement = document.getElementById("middleInitial");
@@ -178,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (event.key === 'Enter') {
                 var newValue = input.value;
                 var profileName = document.getElementById("userId");
-                var userId = profileName.getAttribute("data-dlsu-id"); // Retrieve the dlsuID value
+                var userId = profileName.getAttribute("data-dlsu-id"); 
                 sendUpdateToServer(userId, fieldName, newValue);
                 inputField.textContent = newValue;
                 inputField.parentElement.querySelector(".fa-pencil").style.display = "inline-block";
@@ -187,6 +192,31 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    function enableEditContact() {
+        var contactTd = document.getElementById("contact");
+        if (contactTd) {
+            var plusIcon = document.getElementById("edit-contact");
+            plusIcon.style.display = "none"; // Hide the plus icon while editing
+
+            var textToEdit = contactTd.textContent.trim();
+            var input = document.createElement('input');
+            input.value = textToEdit;
+            contactTd.innerHTML = '';
+            contactTd.appendChild(input);
+            input.focus();
+            input.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    var newValue = input.value;
+                    var profileName = document.getElementById("userId");
+                    var userId = profileName.getAttribute("data-dlsu-id"); // Retrieve the dlsuID value
+                    sendUpdateToServer(userId, "contact", newValue);
+                    contactTd.textContent = newValue;
+                    plusIcon.style.display = "inline-block"; // Show the plus icon after editing
+
+                }
+            });
+        }
+    }
 
     function sendUpdateToServer(userId, fieldName, newValue) {
         fetch('/updateProfile', {
@@ -248,6 +278,5 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error('There was a problem with the fetch operation:', error);
         });
     }
-
-
 });
+

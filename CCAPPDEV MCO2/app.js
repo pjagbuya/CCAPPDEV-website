@@ -91,7 +91,8 @@ const userSchema = new mongoose.Schema({
   course: String,
   about: String,
   email: String,
-  imageSource: String
+  imageSource: String, 
+  contact: String
 });
 
 const User = mongoose.model('User', userSchema);

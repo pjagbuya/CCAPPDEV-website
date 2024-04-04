@@ -57,6 +57,7 @@ userRouter.get("/:id",  async function(req, resp){
         imageSource: imageSource,
         about: abtMe,
         email: req.session.user['email'],
+        contact: req.session.user['contact'], 
         seats: JSON.parse(JSON.stringify(seats)),
         firstName: req.session.user['firstName'],
         middleInitial: req.session.user['middleInitial'],

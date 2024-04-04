@@ -100,7 +100,62 @@ searchUserRouter.get("/profile/:id",  async function(req, resp){
 });
 
 
+searchUserRouter.post("/search-users", async function(req, resp){
 
+      users_array = [];
+      try{
+          const filter = {};
+          const users = await userModel.find(filter);
+
+
+          if (req.body.msg){
+              users.forEach(function(user){
+                let stringID =(user.dlsuID).toString()
+                  if(stringID.includes(req.body.msg)){
+                      const response = {
+                          user: user
+
+                      }
+                      users_array.push(response);
+                  }
+              });
+              console.log("Selecting these particular arrays ");
+              console.log(users_array)
+              const response = {
+                  users: JSON.parse(JSON.stringify(users_array)),
+                  techID: req.session.user.dlsuID
+
+
+              }
+              console.log("Response sent to the server:")
+              console.log(response);
+              resp.send(response);
+          }
+          else{
+            console.log("Triggering seacrh body empty case")
+
+              users.forEach(function(user){
+
+                  const response = {
+                      user: user
+                  }
+                  users_array.push(response);
+              });
+              const response = {
+                  users: JSON.parse(JSON.stringify(users_array)),
+                  techID: req.session.user.dlsuID
+
+              }
+              console.log("Response sent to the server:")
+              console.log(response);
+              resp.send(response);
+          }
+      }
+      catch (error) {
+          console.error("Error during getting users:", error);
+          resp.status(500).send({ error: "Internal server error" });
+      }
+});
 Handlebars.registerHelper('eq', function (a, b, options) {
   return a === b ? options.fn(this) : options.inverse(this);
 });

@@ -1,0 +1,257 @@
+.custom-color1
+{
+  color: #FBFADA;
+}
+
+.custom-color2
+{
+  color: #ADBC9F;
+}
+
+.custom-color3
+{
+  color: #CDFADB;
+}
+
+.text-centered{
+  text-align: center;
+}
+
+.no-decor{
+  text-decoration:none
+}
+
+.animo-icon
+{
+  margin-right: 20px;
+}
+
+.animo-text:hover
+{
+  animation: slightly-big 1s ease-in-out infinite alternate;
+
+}
+
+body{
+  background: url("/pics/home-bg-pic.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.header-custom1
+{
+    opacity: 1;
+    font-family: "Ubuntu";
+    color: #ADBC9F;
+    font-size: 5rem;
+    font-weight: 700;
+}
+
+.header-custom2
+{
+  font-size: 2.5rem;
+  font-family: "Pacifico";
+  font-weight: 400;
+}
+
+.index-navbar{
+  background-color: #12372A;
+}
+
+.text-custom1
+{
+  padding: 0 1rem;
+  border-right: 5px solid #FBFADA;
+  font-family: "Montserrat";
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.text-custom1:hover
+{
+  border-radius: 5px;
+  animation: nav-text-onhover 0.2s linear 0.1s 1 normal;
+  animation-fill-mode: forwards;
+}
+
+.main-welcome-section
+{
+  display: flex;
+  margin-top: 100px;
+  width: 100%;
+  height: 600px;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.welcome-div{
+  display: flex;
+  padding: 20%;
+  background-color: #436850;
+  opacity: 0.8;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 80%;
+  height: 80%;
+}
+
+.animolab-header{
+  font-size: 7rem;
+  color: #FBFADA;
+  opacity: 1;
+
+}
+
+.main-advertise-section{
+  margin-top: 50px;
+}
+
+.vid-slot{
+  position: relative;
+  right: 320px;
+  width:650px;
+  height: 450px;
+}
+
+/*call to action*/
+.call-to-action-section
+{
+  margin-top: 10%;
+  padding: 40px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.call-to-action-container
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.call-to-action-div
+{
+  display: flex;
+  padding: 30px;
+  text-align: center;
+  vertical-align: middle;
+  background-color:#436850;
+  border: 30px ridge #12372A;
+  font-family: "Montserrat";
+  font-size: 2rem;
+  height: 300px;
+  width: 80%;
+}
+
+.call-link:hover
+{
+  color:#74E291;
+}
+
+.video-showcase-section
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.showcase-body
+{
+  display: flex;
+  justify-content: center;
+}
+
+/*carousel*/
+.carousel-contianer
+{
+  height: 600px;
+  vertical-align: center;
+}
+
+.carousel-main{
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color:#12372A;
+}
+
+.carousel-item{
+  padding: 40px;
+  align-items: center;
+  justify-content: right;
+}
+
+.carousel-item-text{
+  color: black;
+  padding: 15px;
+  background-color: white;
+  transform: translate(-65%, 0%);
+  margin: 2% 13%;
+  border: 1px solid black;
+  border-radius: 15px;
+  font-family: "Montserrat";
+}
+
+.computers-title-section{
+  text-align: center;
+  background-color: #FBFADA;
+  width: 100%;
+  font-size: 4rem;
+  font-family:"Bree Serif";
+  color:#436850;
+  text-shadow: 2px 2px 4px rgba(173, 188, 159, 1);
+}
+
+.computer-word-text{
+  color:#12372A;
+  text-shadow: 2px 2px 4px rgba(18, 55, 42, 1);
+}
+
+.one-of-third{
+  width: 33%;
+  margin-left: 20px;
+}
+
+.vid-slot{
+  width: 650px;
+  height: 450px;
+}
+
+/*keyFrames*/
+@keyframes nav-text-onhover
+{
+  0%
+  {
+    background-color: #12372A;
+  }
+  100%
+  {
+    background-color: #ADBC9F;
+    color: black;
+  }
+
+}
+
+@keyframes slightly-big
+{
+  from
+  {
+    transform: scale(1);
+  }
+  to
+  {
+    transform: scale(1.2);
+  }
+}

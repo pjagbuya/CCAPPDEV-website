@@ -1,0 +1,29 @@
+<script id="lab-template" type="text/x-handlebars-template" >
+
+
+
+  \{{#each labs}}
+    <div class="lab-choice-section">
+      <img class="lab-choice-img" src="/pics/computerlab.jpg" alt="computer-lab">
+      <div class="lab-choice-details">
+        <h3>\{{lab.labName}}</h3>
+        \{{#if (isAvailable lab.labStatus)}}
+        <p class="status-text avail-text"><u>\{{lab.labStatus}}</u></p>
+        \{{else}}
+        <p class="status-text full-text"><u>\{{lab.labStatus}}</u></p>
+        \{{/if}}
+
+        <p>
+          <span>Total Seats: </span>
+          <span><strong>\{{lab.labAvailSlots}}/\{{lab.labTotalSlots}}</strong></span>
+        </p>
+        <a class="d-flex lab-choice-btn custom-default-font2" href="/{{userType}}/{{dlsuID}}/reserve/{{dlsuID}}/\{{lab.labName}}">
+          <div class="btn btn-success" id="view-btn-\{{lab.labName}}">
+            View
+          </div>
+        </a>
+      </div>
+    </div>
+  \{{/each}}
+
+</script>

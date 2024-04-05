@@ -1,0 +1,19 @@
+<script id="user-results-template" type="text/x-handlebars-template" >
+
+
+
+  \{{#each users}}
+  <tr>
+    <td class="table-cell">\{{user.dlsuID}}</td>
+    <td class="table-cell">\{{user.lastName}}</td>
+    <td class="table-cell">\{{user.firstName}}</td>
+    <td class="table-cell">\{{user.middleInitial}}</td>
+    <td class="table-cell">
+
+
+      <button data-tech-id="\{{techID}}" class="reserve-student-button" type="button" name="reserve-btn">Reserve Student</button>
+
+  </tr>
+  \{{/each}}
+
+</script>

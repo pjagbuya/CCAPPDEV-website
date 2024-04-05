@@ -1,0 +1,25 @@
+<div class="report-form-section">
+      <div class="report-body">
+        <div class="report-form-header">
+          <h1>Submit a report</h1>
+          <br>
+        </div>
+        <div class="form-proper">
+          <form action="send-report" method="POST">
+
+            <label class="form-proper">Type of Report</label><br>
+            <select name="type" id="type" class="form-proper">
+              <option value="Feedback">Feedback</option>
+              <option value="Technical">Technical Issue</option>
+              <option value="Account">Account Issue</option>
+              <option value="Reservation">Reservation Issue</option>
+            </select><br><br>
+            <label class="form-proper">Description</label><br>
+            <textarea name="description" id="description" rows="10" cols="80" class="form-proper" placeholder="Input text here"></textarea>
+            <br><br>
+            <input type="reset" value="Clear" class="form-proper"></input>  <!--Probably not needed since form is really short anyway -->
+            <input type="submit" value="Submit" class="form-proper"></input>
+          </form>
+        </div>
+      </div>
+    </div>

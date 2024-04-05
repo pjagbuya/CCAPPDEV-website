@@ -1,0 +1,201 @@
+
+    <div class="profile-body">
+      <section class= "profile-contact-section flex-column">
+        <div class="profile-pic-and-name text-center">
+
+          <div class="profile-column-section d-flex flex-column align-items-center justify-content-center">
+
+            <img class="profile-regular-pic" src={{imageSourceProfile}} alt="default-pic">
+
+            <p class="profile-name">
+              {{firstName}} {{lastName}}
+            </p>
+
+            <p class="profile-name">
+              ID : {{view_dlsuID}}
+            </p>
+
+
+          </div>
+
+
+        </div>
+        <hr>
+        <div class="description-div">
+          <div class="course-desc">
+            <h2 class= "custom-header1">Course</h2>
+            {{#if (isNull course)}}
+            <p>User has yet to put course description</p>
+            {{else}}
+            <p>{{course}}</p>
+            {{/if}}
+          </div>
+
+
+          <div class="about-me">
+            <h2 class= "custom-header1">About Me</h2>
+            {{#if (isNull about)}}
+            <p>User has yet to put about description</p>
+            {{else}}
+            <p>{{about}}</p>
+            {{/if}}
+
+          </div>
+
+        </div>
+        <div class="contact-info-div ">
+          <div class="contact-title">
+            <i class="fa-solid fa-phone"></i>&nbsp; CONTACT
+          </div>
+
+          <table class="contact-table" cellpadding="10">
+            <tr class="text-decoration-underline">
+              <td>{{email}}</td>
+
+            </tr>
+
+          </table>
+
+
+        </div>
+
+
+
+      </section>
+
+
+      <section class= "profile-main-section">
+
+
+
+
+        <div class="reservation-next-days">
+          <h2 class="custom-header2 custom-border-bottom1">Current Reservations</h2>
+          <div class="day-container" id="daysContainer">
+
+
+
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_0) 1)}}
+                {{#each seats.next_day_0 as |reservation|}}
+                {{#isNotAnon reservation.isAnon}}
+                  <div class="date-details">
+                    <p class="text-decoration-underline">{{reservation.labName}}</p>
+                    <p>(Seat {{reservation.seatNumber}})</p>
+                    <p>{{reservation.timeInterval}}</p>
+                  </div>
+                {{/isNotAnon}}
+                {{/each}}
+              {{/if}}
+
+            </div>
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_1) 1)}}
+                {{#each seats.next_day_1 as |reservation|}}
+
+                {{#isNotAnon reservation.isAnon}}
+                  <div class="date-details">
+                    <p class="text-decoration-underline">{{reservation.labName}}</p>
+                    <p>(Seat {{reservation.seatNumber}})</p>
+                    <p>{{reservation.timeInterval}}</p>
+                  </div>
+                {{/isNotAnon}}
+                {{/each}}
+              {{/if}}
+
+            </div>
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_2) 1)}}
+                {{#each seats.next_day_2 as |reservation|}}
+
+                {{#isNotAnon reservation.isAnon}}
+                  <div class="date-details">
+                    <p class="text-decoration-underline">{{reservation.labName}}</p>
+                    <p>(Seat {{reservation.seatNumber}})</p>
+                    <p>{{reservation.timeInterval}}</p>
+                  </div>
+                {{/isNotAnon}}
+                {{/each}}
+              {{/if}}
+
+            </div>
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_3) 1)}}
+                {{#each seats.next_day_3 as |reservation|}}
+
+                {{#isNotAnon reservation.isAnon}}
+                  <div class="date-details">
+                    <p class="text-decoration-underline">{{reservation.labName}}</p>
+                    <p>(Seat {{reservation.seatNumber}})</p>
+                    <p>{{reservation.timeInterval}}</p>
+                  </div>
+                {{/isNotAnon}}
+                {{/each}}
+              {{/if}}
+
+            </div>
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_4) 1)}}
+                {{#each seats.next_day_4 as |reservation|}}
+                {{#isNotAnon reservation.isAnon}}
+                  <div class="date-details">
+                    <p class="text-decoration-underline">{{reservation.labName}}</p>
+                    <p>(Seat {{reservation.seatNumber}})</p>
+                    <p>{{reservation.timeInterval}}</p>
+                  </div>
+                {{/isNotAnon}}
+                {{/each}}
+              {{/if}}
+
+            </div>
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_5) 1)}}
+                {{#each seats.next_day_5 as |reservation|}}
+
+                {{#isNotAnon reservation.isAnon}}
+                  <div class="date-details">
+                    <p class="text-decoration-underline">{{reservation.labName}}</p>
+                    <p>(Seat {{reservation.seatNumber}})</p>
+                    <p>{{reservation.timeInterval}}</p>
+                  </div>
+                {{/isNotAnon}}
+                {{/each}}
+              {{/if}}
+
+            </div>
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_6) 1)}}
+                {{#each seats.next_day_6 as |reservation|}}
+
+                {{#isNotAnon reservation.isAnon}}
+                  <div class="date-details">
+                    <p class="text-decoration-underline">{{reservation.labName}}</p>
+                    <p>(Seat {{reservation.seatNumber}})</p>
+                    <p>{{reservation.timeInterval}}</p>
+                  </div>
+                {{/isNotAnon}}
+                {{/each}}
+              {{/if}}
+            </div> <!-- day-->
+
+
+
+          </div><!-- day container -->
+
+
+          </div>
+
+
+
+
+
+      </section>
+
+    </div>

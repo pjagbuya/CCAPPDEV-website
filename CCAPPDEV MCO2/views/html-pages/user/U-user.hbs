@@ -1,0 +1,206 @@
+  <div class="profile-body">
+      <section class= "profile-contact-section flex-column">
+        <div class="profile-pic-and-name text-center">
+
+
+          <!--Hardcoded name2-->
+           <div class="profile-column-section d-flex flex-column align-items-center justify-content-center">
+
+            <div class="d-flex flex-column ">
+             <div id="deleteProfileBtn" class="btn btn-danger my-2">
+                Delete Profile
+            </div>
+
+              <div  id="edit-imageSource" class="btn btn-warning my-2">
+                Edit Picture
+              </div>
+
+            </div>
+            <img class="profile-regular-pic" src={{imageSource}} alt="default-pic">
+
+            <p class="profile-name" id="username">
+              {{title}}
+              <i class="fa-solid fa-pencil" id="edit-username"></i>
+            </p>
+
+            <p class="profile-name" id="name">
+             <span id="firstName">{{firstName}}</span> <span id="middleInitial">{{middleInitial}}</span> <span id="lastName">{{lastName}}</span> 
+             <i id="edit-name" class="fa-solid fa-pencil"></i>
+            </p>
+
+            <p class="profile-name" id="userId" data-dlsu-id="{{dlsuID}}">
+              ID : {{dlsuID}}
+            </p>
+
+
+          </div>
+
+
+        </div>
+        <hr>
+        <div class="description-div">
+          <div class="course-desc">
+            <h2 class= "custom-header1">Course <i id="edit-course"class="fa-solid fa-pencil"></i></h2>
+            <p id="course">{{course}}</p>
+          </div>
+
+
+          <div class="about-me">
+            <h2 class= "custom-header1">About Me <i id="edit-about" class="fa-solid fa-pencil"></i></h2>
+            <p id="about">{{about}}</p>
+
+          </div>
+
+        </div>
+        <div class="contact-info-div ">
+          <div class="contact-title">
+            <i class="fa-solid fa-phone"></i>&nbsp; CONTACT
+          </div>
+
+          <table class="contact-table" cellpadding="10">
+            <tr class="text-decoration-underline">
+              <td id="email">{{email}}</td>
+              <td><i id="edit-email" class="fa-solid fa-pencil"></i></td>
+            </tr>
+            <tr class="text-decoration-underline">
+              <td id="contact">{{contact}}</td>
+              <td><i id="edit-contact" class="fa-solid fa-plus"></i></td>
+            </tr>
+
+          </table>
+
+
+        </div>
+
+
+
+      </section>
+
+
+      <section class= "profile-main-section">
+
+
+
+
+        <div class="reservation-next-days">
+          <h2 class="custom-header2 custom-border-bottom1">Current Reservations</h2>
+          <div class="day-container" id="daysContainer">
+
+
+
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_0) 1)}}
+                {{#each seats.next_day_0 as |reservation|}}
+
+                <div class="date-details">
+                  <p class="text-decoration-underline">{{reservation.labName}}</p>
+                  <p>(Seat {{reservation.seatNumber}})</p>
+                  <p>{{reservation.timeInterval}}</p>
+                </div>
+                {{/each}}
+              {{/if}}
+
+            </div>
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_1) 1)}}
+                {{#each seats.next_day_1 as |reservation|}}
+
+                <div class="date-details">
+                  <p class="text-decoration-underline">{{reservation.labName}}</p>
+                  <p>(Seat {{reservation.seatNumber}})</p>
+                  <p>{{reservation.timeInterval}}</p>
+                </div>
+                {{/each}}
+              {{/if}}
+
+            </div>
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_2) 1)}}
+                {{#each seats.next_day_2 as |reservation|}}
+
+                <div class="date-details">
+                  <p class="text-decoration-underline">{{reservation.labName}}</p>
+                  <p>(Seat {{reservation.seatNumber}})</p>
+                  <p>{{reservation.timeInterval}}</p>
+                </div>
+                {{/each}}
+              {{/if}}
+
+            </div>
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_3) 1)}}
+                {{#each seats.next_day_3 as |reservation|}}
+
+                <div class="date-details">
+                  <p class="text-decoration-underline">{{reservation.labName}}</p>
+                  <p>(Seat {{reservation.seatNumber}})</p>
+                  <p>{{reservation.timeInterval}}</p>
+                </div>
+                {{/each}}
+              {{/if}}
+
+            </div>
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_4) 1)}}
+                {{#each seats.next_day_4 as |reservation|}}
+                <div class="date-details">
+                  <p class="text-decoration-underline">{{reservation.labName}}</p>
+                  <p>(Seat {{reservation.seatNumber}})</p>
+                  <p>{{reservation.timeInterval}}</p>
+                </div>
+                {{/each}}
+              {{/if}}
+
+            </div>
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_5) 1)}}
+                {{#each seats.next_day_5 as |reservation|}}
+
+                <div class="date-details">
+                  <p class="text-decoration-underline">{{reservation.labName}}</p>
+                  <p>(Seat {{reservation.seatNumber}})</p>
+                  <p>{{reservation.timeInterval}}</p>
+                </div>
+                {{/each}}
+              {{/if}}
+
+            </div>
+
+            <div class="day">
+              <div class="format-date">Today</div>
+              {{#if (gte (length seats.next_day_6) 1)}}
+                {{#each seats.next_day_6 as |reservation|}}
+
+                <div class="date-details">
+                  <p class="text-decoration-underline">{{reservation.labName}}</p>
+                  <p>(Seat {{reservation.seatNumber}})</p>
+                  <p>{{reservation.timeInterval}}</p>
+                </div>
+                {{/each}}
+              {{/if}}
+            </div>
+
+
+
+          </div>
+
+        </div>
+
+
+
+        <div class="reservations-btn-div">
+          <a href="{{redirectReserve}}">
+            <button class="custom-btn-3 btn-hover-custom-2" type="button" name="button">View/Edit Reservations</button>
+          </a>
+
+
+        </div>
+
+      </section>
+  </div>

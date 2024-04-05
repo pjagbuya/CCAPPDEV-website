@@ -1,0 +1,40 @@
+  <div class="search-results">
+        <div class="inner-box">
+            {{#each users}}
+            <div class="profiles">
+                <div class="profile-img" id="profile-user-pic{{@index}}" name="{{imageSource}}">
+                  <img src={{imageSource}}>
+                </div>
+                <div class="profile-texts">
+                    <div class="profile-name" id="profile-user-name{{@index}}" name="{{username}}">
+                        {{username}}
+                    </div>
+                    <div class="user-id" id="profile-user-id{{@index}}" name="{{dlsuID}}">
+                        {{dlsuID}}
+                    </div>
+                </div>
+                <div class="user-status">
+                  {{#if (startsWith101 dlsuID)}}
+                    <strong>Technician</strong>
+                  {{else}}
+                    <strong>Student</strong>
+                  {{/if}}
+
+                </div>
+
+                <div>
+                  <a href="../profile/{{dlsuID}}">
+                    <button class="view-button">View</button>
+                  </a>
+                </div>
+                <div class="chat-div">
+                    <button class="chat-button" id="profile-user-chat{{@index}}">Chat</button>
+                </div>
+            </div>
+            {{/each}}
+            
+
+        </div>
+
+
+    </div>

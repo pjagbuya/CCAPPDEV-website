@@ -1,0 +1,39 @@
+<div class="hidden-sidebar">
+  <div class="sidebar-section-container">
+    <input class="checkbox-section" type="checkbox" name="isRememberStatus" id="is-remember" {{#if rememberMe}}checked{{/if}}> Remember Me
+  </div>
+
+  <a href="/{{userType}}/{{dlsuID}}" target="_self">
+    <div class="sidebar-section-container">
+      <i class="icon-section fa-solid fa-user"></i> Profile
+    </div>
+  </a>
+
+  <a href="/{{userType}}/{{dlsuID}}/search-users" target="_self">
+    <div class="sidebar-section-container">
+      <i class="icon-section fa-solid fa-users"></i> Browse Users
+    </div>
+  </a>
+
+
+  <a href="/{{userType}}/{{dlsuID}}/search-labs" target="_self">
+    <div class="sidebar-section-container">
+      <i class="icon-section fa-solid fa-laptop"></i> Browse Labs
+    </div>
+  </a>
+
+
+  <a href="/{{userType}}/{{dlsuID}}/report-form" target="_self" >
+    <div class="sidebar-section-container">
+      <i class="icon-section fa-solid fa-flag"></i> Report a Problem
+    </div>
+  </a>
+
+  <a class="no-decor" href="/login" target="_self">
+    <div class="sidebar-section-container no-decor" >
+      <i class="icon-section fa-solid fa-right-from-bracket"></i> Logout
+    </div>
+  </a>
+
+
+</div>

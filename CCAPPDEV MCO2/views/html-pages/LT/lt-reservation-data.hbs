@@ -1,0 +1,56 @@
+
+    <div class="reserve-edit">
+
+        <div class="inner-box">
+
+          <div class="exit-section d-flex flex-start flex-row">
+            <a href="LT-user-reserve-edit.html">
+              <button class="btn btn-danger my-3" type="button" name="button">Exit Room Editor</button>
+            </a>
+
+          </div>
+
+          <h1>Room Editor for ID: <span>{{reservationID}}</span></h1>
+            <div class="inner-box-table">
+
+              <table>
+                <thead>
+                  <tr>
+                    <th class="header tc">Room<img src="https://www.svgrepo.com/show/42233/pencil-edit-button.svg" style="width: 20px"></th>
+                    <th class="header tc">Date<img src="https://www.svgrepo.com/show/42233/pencil-edit-button.svg" style="width: 20px"></th>
+                    <th class="header tc">Time Slot<img src="https://www.svgrepo.com/show/42233/pencil-edit-button.svg" style="width: 20px"></th>
+                    <th class="header tc">Seat No.<img src="https://www.svgrepo.com/show/42233/pencil-edit-button.svg" style="width: 20px"></th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  {{#each data as |reservation|}}
+
+
+                    <tr>
+                      <td class="tc" rowspan="{{reservation.totalSeats}}">{{reservation.labName}}
+                        <a  href="{{getNextURL}}/{{reservation.labName}}"><br>
+                          <button>Edit</button>
+                        </a>
+                      </td>
+                      <td class="tc">{{reservation.firstSeat.weekDay}}</td>
+                      <td class="tc">{{reservation.firstSeat.timeInterval}}</td>
+                      <td class="tc">{{reservation.firstSeat.seatNumber}}</td>
+                    </tr>
+                    {{#each reservation.otherSeats as |others|}}
+                      <tr>
+                        <td class="tc">{{others.weekDay}}</td>
+                        <td class="tc">{{others.timeInterval}}</td>
+                        <td class="tc">{{others.seatNumber}}</td>
+                      </tr>
+                    {{/each}}
+                  {{/each}}
+
+
+
+
+
+              </table>
+            </div>
+        </div>
+    </div>

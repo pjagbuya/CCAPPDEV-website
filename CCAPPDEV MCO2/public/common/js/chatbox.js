@@ -92,7 +92,6 @@ $(document).ready(function(){
   });//btn
 
   $('#direct-message-header-exit').click(function(){
-    //lagyan ng post
     $.post('chat-leave',
       {
         roomID: $('#direct-message').attr('name')
@@ -114,7 +113,7 @@ $(document).ready(function(){
   });//btn
 
   for(let i = 0; i < 20; i++){
-    $('#chatbox-container'+i).click(function(){
+    $('#chatbox-container' + i).click(function(){
 
       $.post('chat-connect',
         { 

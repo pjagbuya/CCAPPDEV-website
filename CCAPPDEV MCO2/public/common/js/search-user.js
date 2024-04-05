@@ -19,6 +19,34 @@ function reserveStudent(dlsuID, labRoom) {
 }
 $(document).ready(function () {
 
+  //chatroom create
+  //----------------------
+  setTimeout(function(){
+    for(let i = 0; i < 5; i++){
+      $('#profile-user-chat' + i).click(function(){
+        window.alert('button pressed');
+        $.post('create-room',
+          {
+            user_dlsuID: $('#profile-section').attr('name'),
+            user_imageSource: $('#profile-section-pic').attr('name'),
+            other_dlsuID: $('#profile-user-id' + i).attr('name'),
+            other_userName: $('#profile-user-name' + i).attr('name'),
+            other_imageSource: $('#profile-user-pic' + i).attr('name')
+          }, 
+          function(data, status)
+          {
+            if(status === 'success')
+            {
+              window.alert('room created, go press the bell');
+            }//status
+          }//fn
+        );//post
+      });//btn
+    }
+  }, 1000)
+  //----------------------
+  //chatroom create
+
 
     $("#search-user-txt").on('input',function(e){
 

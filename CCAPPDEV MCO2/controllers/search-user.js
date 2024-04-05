@@ -5,6 +5,7 @@ const express = require("express");
 const searchUserRouter = express.Router()
 const labModel = require("../models/lab-model").LabModel;
 const SeatModel = require("../models/lab-model").SeatModel;
+const roomModel = require('../models/chat-model').roomModel;
 const Reservation = require("../models/reserve-model");
 const segregateSeats = require("../models/lab-model").segregateSeats;
 const getUniqueSeatNumbers = require("../models/lab-model").getUniqueSeatNumbers
@@ -27,6 +28,61 @@ var allUniqueTimes;
 
 console.log("Connecteed to router search-user")
 
+//chatroom create
+//----------------------
+searchUserRouter.post('/:id/create-room', function(req, resp){
+
+  userModel.find().lean().then(function(users){
+
+    var user_userName = '';
+    for(let i = 0; i < users.length; i++)
+    {
+      if(users[i].dlsuID === Number(req.body.user_dlsuID))
+      {
+        user_userName = users[i].username;
+      }
+    }
+    
+    console.log("index:" + req.body.index);
+
+    roomModel.find().lean().then(function(rooms){
+
+      var new_roomID = rooms.length + 1001;
+
+      var new_room = new chatModel({
+        roomID : new_roomID,
+        roomDetails : [
+          {
+            dlsuID: req.body.user_dlsuID,
+            userName: user_userName,
+            imageSource: req.body.user_imageSource
+          },
+          {
+            dlsuID: req.body.other_dlsuID,
+            userName: req.body.other_userName,
+            imageSource: req.body.other_imageSource
+          }
+        ],
+        dlsuID : [req.body.user_dlsuID, req.body.other_dlsuID],
+      });
+  
+      new_room.save().then(function(){
+  
+        resp.send({
+          terminal: 0
+        });//resp send
+  
+      });//roommodel save
+  
+    });//roommodel find
+
+  });//usermodel find
+
+});//chatRouter
+//----------------------
+//chatroom create
+
+
 searchUserRouter.get("/:id/search-users",  function(req, resp){
     var userString = req.params.id;
     var userType =  getUserType(userString);
@@ -41,8 +97,20 @@ searchUserRouter.get("/:id/search-users",  function(req, resp){
     }); // render & page
 });
 
+searchUserRouter.post("/:id/search-users",  function(req, resp){
 
-searchUserRouter.post("/:id/search-user-results",  function(req, resp){
+  req.session.user.
+
+  resp.render('html-pages/search/search-user',{
+      layout: "user/index-user",
+      title: "Search User",
+      userType: userType,
+      dlsuID: req.params.id,
+      imageSource: imageSource
+  }); // render & page
+});
+
+searchUserRouter.get("/:id/search-user-results",  function(req, resp){
     const searchQuery =  buildSearchUserQuery(req.body.username, req.body.dlsuID, req.body.firstname, req.body.lastname);
     var imageSource =  getImageSource(req.session.user.imageSource);
 

@@ -33,7 +33,7 @@
     
 }
 
-.profiles > img {
+.profiles > .profile-img > img {
     width: 70px;
     margin: 20px 10px;
     border-radius: 50px;

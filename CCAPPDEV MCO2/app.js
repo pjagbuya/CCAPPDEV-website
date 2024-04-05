@@ -48,9 +48,9 @@ function successFn(res){
 
 // MongoDB setup
 // PRIMARY KEYS ARE AUTOMATIC
-const {MongoClient} = require('mongodb');
-const databaseURL = "mongodb://localhost:27017";
-const mongoClient = new MongoClient(databaseURL);
+// const {MongoClient} = require('mongodb');
+// const databaseURL = "mongodb://localhost:27017";
+// const mongoClient = new MongoClient(databaseURL);
 
 const databaseName = "AnimoDB";
 const collectionLogin = "User";
@@ -58,19 +58,27 @@ const collectionLogin = "User";
 //Helpersconst handlebars = require('handlebars');
 
 
-
-mongoClient.connect().then(function(con){
-
-  console.log("Attempt to create!");
-  const dbo = mongoClient.db(databaseName);
-  db = dbo;
-
-  dbo.createCollection(collectionLogin)
-    .then(successFn)
-    .catch(function (err){
-      console.log('Collection already exists');
-  });
-}).catch(errorFn);
+const port = process.env.PORT | 3000;
+connectToDb((err) => {
+  if(!err){
+    app.listen(port, () => {
+      console.log('app listening on port 3000')
+    })
+    db = getDb()
+  }
+})
+// mongoClient.connect().then(function(con){
+//
+//   console.log("Attempt to create!");
+//   const dbo = mongoClient.db(databaseName);
+//   db = dbo;
+//
+//   dbo.createCollection(collectionLogin)
+//     .then(successFn)
+//     .catch(function (err){
+//       console.log('Collection already exists');
+//   });
+// }).catch(errorFn);
 
 const remberModel = require('./models/chat-model').remberModel;
 
@@ -204,7 +212,7 @@ io.on('connection', (socket) => {
       socket.emit("reserveUpdate", currReservations);
       socket.broadcast.emit("reserveUpdate", currReservations);
     })
-    
+
 
     socket.on("join-room", function(roomID){
       socket.join(roomID);
@@ -241,12 +249,4 @@ io.on('connection', (socket) => {
   socket.on('disconnect', function(){
     console.log(`user disconnected ${socket.id}`);
   });
-});
-
-const port = process.env.PORT | 3000;
-server.listen(port, function(){
-
-    console.log('Listening at port '+port);
-
-
 });

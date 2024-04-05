@@ -10,16 +10,37 @@ const session = require('express-session')
 const collectionLogin = "User"
 const authRoute = require('./auth');
 const loginModel = require('../models/register-model');
-
+const remberModel = require('../models/chat-model').remberModel;
 
 loginRouter.get('/login', function(req, resp){
-    console.log("Session Data: " + JSON.stringify(req.session));
-    resp.render('html-pages/home/H-login',{
-        layout: 'home/index-home',
-        title: 'Login Page',
-        rememberMe: req.session.rememberMe,
-        loginDetails : req.session.loginDetails,
-        loginPassword : req.session.loginPassword
+
+    remberModel.find().lean().then(function(maalaalaMoKaya){
+        var pinakamalakingIndex = maalaalaMoKaya.length;
+
+        var rememberMe = '';
+        var loginDetails = '';
+        var loginPassword = '';
+
+        if(pinakamalakingIndex > 0){
+            console.log("relogin")
+            rememberMe = maalaalaMoKaya[pinakamalakingIndex-1].maalaalaMoKaya;
+            loginDetails = maalaalaMoKaya[pinakamalakingIndex-1].loginID;
+            loginPassword = maalaalaMoKaya[pinakamalakingIndex-1].loginPass;
+        }
+        else{
+            rememberMe = false;
+            loginDetails = '';
+            loginPassword = '';
+        }
+
+        console.log("Session Data for login: " + JSON.stringify(req.session));
+        resp.render('html-pages/home/H-login',{
+            layout: 'home/index-home',
+            title: 'Login Page',
+            rememberMe : rememberMe,
+            loginDetails : loginDetails,
+            loginPassword : loginPassword
+        });
     });
 });
 
@@ -86,6 +107,7 @@ const userRouter = require('./users');
 loginRouter.use("/user", userRouter);
 
 const ltRouter = require('./LT/LT-users');
+const { ConnectionClosedEvent } = require("mongodb");
 loginRouter.use("/lt-user", ltRouter);
 
 module.exports = loginRouter;

@@ -7,8 +7,22 @@ $(document).ready(function(){
     $('#chatbox-chat'+data.index).html(messageWhenTooLong(data.userName + ': ' + data.message));
   })
 
+  $('#logout-btn').click(function(){
+    $.post('logout', 
+      {
+        rememberMe: $('#is-remember').prop("checked")
+      },
+      function(data, status)
+      {
+        if(status === 'success')
+        {
+
+        }//if
+      }//fn
+    );//post
+  });//btn
+
   $('#is-remember').click(function(){
-    window.alert($('#is-remember').prop("checked"))
     $.post('remember-me', 
       {
         rememberMe: $('#is-remember').prop("checked")

@@ -7,6 +7,7 @@ const chatRouter = express.Router();
 const userModel = require("../models/register-model");
 const chatModel = require('../models/chat-model').chatModel;
 const roomModel = require('../models/chat-model').roomModel;
+const remberModel = require('../models/chat-model').remberModel;
 
 const getImageSource = require('./functions/user-info-evaluate-functions.js').getImageSource;
 
@@ -31,6 +32,20 @@ var url = [
 ]
 
 for(let h = 0; h < url.length; h++){
+
+  chatRouter.post(url[h] + '/logout', function(req, resp){
+
+    var panibagong_maalaalaMoKaya = new remberModel({
+      maalaalaMoKaya : req.body.rememberMe,
+      loginID: req.session.loginDetails,
+      loginPass: req.session.loginPassword
+    });
+
+    panibagong_maalaalaMoKaya.save().then(function(){
+      resp.redirect('//localhost:3000/login')
+    });//save
+    
+  });//chatRouter
 
   chatRouter.post(url[h] + '/remember-me', function(req, resp){
 

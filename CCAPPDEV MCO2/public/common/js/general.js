@@ -29,21 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-  $('.logout-div-btn').click(function(event) {
-    event.preventDefault(); // Prevent default behavior (likely a link or button)
-
-    $.post('/logout', function(data, status) {
-      if (status === 'success') {
-
-        window.location.href = '/login'; // Or your desired login page URL
-
-      } else {
-
-        console.error("Error:", data);
-        alert("An error occurred while logging out. Please try again.");
-      }
-    });
-  });
+  
 
 
 

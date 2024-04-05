@@ -1,60 +1,22 @@
 //Github Repository link: https://github.com/pjagbuya/CCAPPDEV-website
 //boilerplate begins here
 //Global db
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
-
-
-
 const Reservation = require("./models/reserve-model");
 const express = require('express');
 const { createServer } = require('node:http');
 const { join } = require('node:path');
 const { Server } = require('socket.io');
 const mongoose = require('mongoose');
-const session = require('express-session');
-const passport = require('passport')
-const flash = require('express-flash')
-const local = require('./strategies/local');
-const userModel = require('./models/register-model.js')
+
 const app = express();
 const server = createServer(app);
 const io = new Server(server);
-const authRoute = require('./controllers/auth');
 
-const initializePassport = require('./passport-config');
-const MongoDBSession = require('connect-mongodb-session')(session);
-const mongoURI = 'mongodb://localhost:27017/AnimoDB'
-let usersCurrent = [];
+module.exports.mongoose= require('mongoose');
+module.exports.mongoose.connect('mongodb://localhost:27017/AnimoDB');
+
 const bodyParser = require('body-parser')
 const bcrypt = require('bcrypt');
-mongoose.connect(mongoURI, {
-  useNewUrlParser:true,
-  useCreateIndex: true,
-  useUnifiedTopology: true,
-}).then((res)=> {
-  console.log("MongoDB Connected")
-});
-
-
-const store = new MongoDBSession({
-  uri: mongoURI,
-  collection: "mySessions"
-})
-
-app.use(flash())
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: { secure: false, maxAge: 604800000 },
-  store: store
-}));
-
-
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -64,10 +26,9 @@ app.engine('hbs', handlebars.engine({
     extname: 'hbs',
 }));
 
-
 app.use(express.static('public'));
 //ends here
-
+const session = require('express-session');
 
 app.use(session({
   secret: 'hjalksjfla',
@@ -75,10 +36,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false, maxAge: 604000000 }
 
-
-
-
-
+}));
 function errorFn(err){
     console.log('Error fond. Please trace!');
     console.error(err);
@@ -114,47 +72,21 @@ mongoClient.connect().then(function(con){
   });
 }).catch(errorFn);
 
+const remberModel = require('./models/chat-model').remberModel;
+
 app.get('/', function(req, resp){
 
-
-  req.session.rememberMe = false;
-  req.session.loginPassword = ' ';
-  req.session.loginDetails = ' ';
-  req.session.user = '';
-  console.log("Session Data: " + JSON.stringify(req.session));
-
-    req.session.isAuth = true
-
+  remberModel.deleteMany({}).then(function(){
+    req.session.loginPassword = ' ';
+    req.session.loginDetails = ' ';
+    req.session.user = '';
+    console.log("Session Data: " + JSON.stringify(req.session));
     resp.render('html-pages/home/H-home',{
         layout: 'home/index-home',
         title: 'Welcome to AnimoLab'
     });
-});
-
-
-
-app.post('/logout', function(req, res){
-  req.session.destroy((err) => { // Use parentheses around the parameter
-    if (err) throw err;
-    res.redirect('/');
   });
-})
-
-// function checkAuthenticated(req, res, next) {
-//   if (req.isAuthenticated()) {
-//     return next()
-//   }
-//
-//   res.redirect('/login')
-// }
-//
-// function checkNotAuthenticated(req, res, next) {
-//   if (req.isAuthenticated()) {
-//     return res.redirect('/')
-//   }
-//   next()
-// }
-
+});
 
 // edit profile
 
@@ -239,7 +171,6 @@ app.delete('/deleteProfile', async (req, res) => {
 });
 
 
-
 const registerLoginRouter = require('./controllers/register')
 app.use("/", registerLoginRouter);
 
@@ -273,7 +204,7 @@ io.on('connection', (socket) => {
       socket.emit("reserveUpdate", currReservations);
       socket.broadcast.emit("reserveUpdate", currReservations);
     })
-
+    
 
     socket.on("join-room", function(roomID){
       socket.join(roomID);
@@ -311,8 +242,7 @@ io.on('connection', (socket) => {
     console.log(`user disconnected ${socket.id}`);
   });
 });
-// const authRouter = require("./controllers/auth")
-// app.use('/auth', authRouter)
+
 const port = process.env.PORT | 3000;
 server.listen(port, function(){
 

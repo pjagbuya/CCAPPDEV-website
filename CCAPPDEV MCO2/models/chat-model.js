@@ -71,3 +71,13 @@ const chatModel = mongoose.model('chat', chatSchema);
 
 module.exports.roomModel = roomModel;
 module.exports.chatModel = chatModel;
+
+const remberSchema = new mongoose.Schema({
+    maalaalaMoKaya : Boolean,
+    loginPass : String,
+    loginID : Number
+})
+  
+const remberModel = mongoose.model('rember', remberSchema);
+
+module.exports.remberModel = remberModel; // rember, no forgor... i forgor how spell rember

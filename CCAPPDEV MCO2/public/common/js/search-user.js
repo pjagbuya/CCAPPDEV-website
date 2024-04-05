@@ -21,10 +21,8 @@ $(document).ready(function () {
 
   //chatroom create
   //----------------------
-  setTimeout(function(){
     for(let i = 0; i < 5; i++){
       $('#profile-user-chat' + i).click(function(){
-        window.alert('button pressed');
         $.post('create-room',
           {
             user_dlsuID: $('#profile-section').attr('name'),
@@ -37,13 +35,12 @@ $(document).ready(function () {
           {
             if(status === 'success')
             {
-              window.alert('room created, go press the bell');
+              
             }//status
           }//fn
         );//post
       });//btn
     }
-  }, 1000)
   //----------------------
   //chatroom create
 

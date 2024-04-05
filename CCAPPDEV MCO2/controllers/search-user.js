@@ -49,7 +49,7 @@ searchUserRouter.post('/:id/create-room', function(req, resp){
 
       var new_roomID = rooms.length + 1001;
 
-      var new_room = new chatModel({
+      var new_room = new roomModel({
         roomID : new_roomID,
         roomDetails : [
           {
@@ -97,19 +97,12 @@ searchUserRouter.get("/:id/search-users",  function(req, resp){
     }); // render & page
 });
 
-searchUserRouter.post("/:id/search-user-query",  function(req, resp){
 
-  const searchQuery =  buildSearchUserQuery(req.body.username, req.body.dlsuID, req.body.firstname, req.body.lastname);
-  req.session.searchQuery = searchQuery;
-  resp.redirect('/'+req.session.user.dlsuID+'/search-user-results');
-  
-});
-
-searchUserRouter.get("/:id/search-user-results",  function(req, resp){
-   
+searchUserRouter.post("/:id/search-user-results",  function(req, resp){
+    const searchQuery =  buildSearchUserQuery(req.body.username, req.body.dlsuID, req.body.firstname, req.body.lastname);
     var imageSource =  getImageSource(req.session.user.imageSource);
 
-    userModel.find(req.session.searchQuery).lean().then(function(users){
+    userModel.find(searchQuery).lean().then(function(users){
         resp.render('html-pages/search/search-user-results',{
             layout: "user/index-user",
             title: "User Search Results",

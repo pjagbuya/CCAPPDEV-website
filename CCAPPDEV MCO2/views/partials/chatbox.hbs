@@ -2,45 +2,46 @@
   <div id="chatlist">
     <h1 class="d-flex justify-content-center">Notifications</h1>
     
-    {{#each rooms as |room|}}
-      <div class="chatbox-container" id="chatbox-container{{@index}}" name="{{room.roomID}}">
-        <div class="chatbox-profilePic">
-          <img src="{{roomPic}}" class="profile-pic">
-        </div>
-        <div class="chatbox-chatContainer">
-          <div class="chatbox-chatname">
-            {{room.roomName}}
+    <div id="chatlist-container">
+      {{#repeat 20}}
+        <div class="chatbox-container" id="chatbox-container{{this}}" name="none">
+          <div class="chatbox-profilePic" id="chatbox-profilePic{{this}}" name="none">
+            <img src="" id="chatbox-profilePic-pic{{this}}" class="profile-pic">
           </div>
-          <div class="chatbox-chat">
-            message placeholder
+          <div class="chatbox-chatContainer" id="chatbox-chatContainer{{this}}" name="{{this}}">
+            <div class="chatbox-chatname" id="chatbox-chatname{{this}}" name="none">
+              
+            </div>
+            <div class="chatbox-chat" id="chatbox-chat{{this}}">
+              
+            </div>
           </div>
         </div>
-      </div>
-    {{/each}}
-  
+      {{/repeat}}
+    </div>  
+  </div>
 
-  <div id="direct-message">
-      <div class="direct-message-header">
-          <div class="direct-message-header-pic">
+  <div id="direct-message" name="none">
+      <div class="direct-message-header" id="direct-message-header" name="none">
+          <div class="direct-message-header-name" id="direct-message-header-name">
             
           </div>
-          <div class="direct-message-header-name">
+          <div class="direct-message-header-pic" id="direct-message-header-pic">
             
           </div>
-          <div class="direct-message-header-exit">
-            <img src="https://banner2.cleanpng.com/20180426/bae/kisspng-x-mark-computer-icons-check-mark-clip-art-5ae1aac8182a71.821442211524738760099.jpg" class="direct-message-item">
+          <div class="direct-message-header-exit" id="direct-message-header-exit">
+            <img src="https://silentblue.remywiki.com/images/thumb/b/b6/%28X%29.png/300px-%28X%29.png" class="direct-message-item">
           </div>
       </div>
 
-      <div class="direct-message-body">
+      <div class="direct-message-body" id="direct-message-body">
         
       </div>
 
-      <div class="direct-message-footer">
+      <div class="direct-message-footer" id="direct-message-footer">
           <input id="direct-message-type" type="type">
           <button id="direct-message-type-send">Send</button>
       </div>
 
-    </div>
   </div>
 </div>

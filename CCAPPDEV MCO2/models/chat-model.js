@@ -1,32 +1,31 @@
 const mongoose = require("mongoose")
-
-mongoose.connect('mongodb://localhost:27017/AnimoDB');
+const mongoURI = 'mongodb+srv://paulagbuya:1234@animolabmongodb.7rja3ru.mongodb.net/?retryWrites=true&w=majority&appName=AnimoLabMONGODB'
 
 const roomSchema = new mongoose.Schema({
-    roomID : 
-        { 
+    roomID :
+        {
             type: Number,
-            required: true 
+            required: true
         },
     roomDetails :
         [{
-            dlsuID: 
-                { 
+            dlsuID:
+                {
                     type: Number,
-                    required: true 
+                    required: true
                 },
-            userName: 
-                { 
+            userName:
+                {
                     type: String,
-                    required: true 
+                    required: true
                 },
-            imageSource: 
-                { 
+            imageSource:
+                {
                     type: String,
-                    required: true 
+                    required: true
                 }
         }],
-    dlsuID : 
+    dlsuID :
         [{
             type: Number,
             ref: 'User',
@@ -36,34 +35,34 @@ const roomSchema = new mongoose.Schema({
 const roomModel = mongoose.model('room', roomSchema);
 
 const chatSchema = new mongoose.Schema({
-    chatOrder : 
-    { 
-        type: Number,
-        required: true 
-    },
-    roomID : 
-    { 
+    chatOrder :
+    {
         type: Number,
         required: true
     },
-    dlsuID : 
-    { 
+    roomID :
+    {
         type: Number,
         required: true
     },
-    userName : 
-    { 
-        type: String,
-                 required: true 
+    dlsuID :
+    {
+        type: Number,
+        required: true
     },
-    imageSource : 
-    { 
+    userName :
+    {
         type: String,
-        required: true 
-    },            
-    message : 
-    { 
-        type: String 
+                 required: true
+    },
+    imageSource :
+    {
+        type: String,
+        required: true
+    },
+    message :
+    {
+        type: String
     }
 },{versionKey : false});
 
@@ -77,7 +76,7 @@ const remberSchema = new mongoose.Schema({
     loginPass : String,
     loginID : Number
 })
-  
+
 const remberModel = mongoose.model('rember', remberSchema);
 
 module.exports.remberModel = remberModel; // rember, no forgor... i forgor how spell rember

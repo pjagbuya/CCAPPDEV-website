@@ -7,13 +7,13 @@ const { createServer } = require('node:http');
 const { join } = require('node:path');
 const { Server } = require('socket.io');
 const mongoose = require('mongoose');
-
+const flash = require('express-flash')
 const app = express();
 const server = createServer(app);
 const io = new Server(server);
+const mongoURI = 'mongodb+srv://paulagbuya:1234@animolabmongodb.7rja3ru.mongodb.net/?retryWrites=true&w=majority&appName=AnimoLabMONGODB'
 
-module.exports.mongoose= require('mongoose');
-module.exports.mongoose.connect('mongodb://localhost:27017/AnimoDB');
+
 
 const bodyParser = require('body-parser')
 const bcrypt = require('bcrypt');
@@ -29,14 +29,24 @@ app.engine('hbs', handlebars.engine({
 app.use(express.static('public'));
 //ends here
 const session = require('express-session');
+const MongoDBSession = require('connect-mongodb-session')(session);
+mongoose.connect(mongoURI)
 
+const store = new MongoDBSession({
+  uri: mongoURI,
+  collection: "mySessions"
+})
+
+app.use(flash())
 app.use(session({
-  secret: 'hjalksjfla',
+  secret: 'adgoialjogj903',
   resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false, maxAge: 604000000 }
-
+  saveUninitialized: false,
+  cookie: { secure: false, maxAge: 604800000 },
+  store: store
 }));
+
+
 function errorFn(err){
     console.log('Error fond. Please trace!');
     console.error(err);
@@ -58,27 +68,7 @@ const collectionLogin = "User";
 //Helpersconst handlebars = require('handlebars');
 
 
-const port = process.env.PORT | 3000;
-connectToDb((err) => {
-  if(!err){
-    app.listen(port, () => {
-      console.log('app listening on port 3000')
-    })
-    db = getDb()
-  }
-})
-// mongoClient.connect().then(function(con){
-//
-//   console.log("Attempt to create!");
-//   const dbo = mongoClient.db(databaseName);
-//   db = dbo;
-//
-//   dbo.createCollection(collectionLogin)
-//     .then(successFn)
-//     .catch(function (err){
-//       console.log('Collection already exists');
-//   });
-// }).catch(errorFn);
+
 
 const remberModel = require('./models/chat-model').remberModel;
 
@@ -250,3 +240,9 @@ io.on('connection', (socket) => {
     console.log(`user disconnected ${socket.id}`);
   });
 });
+
+const port = process.env.PORT | 3000;
+
+app.listen(port, () => {
+  console.log('app listening on port 3000')
+})

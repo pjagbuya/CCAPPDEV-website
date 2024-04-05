@@ -1,7 +1,6 @@
 
 const mongoose = require("mongoose")
 
-mongoose.connect('mongodb://localhost:27017/AnimoDB');
 
 const timeSchema = new mongoose.Schema({
   timeID: {

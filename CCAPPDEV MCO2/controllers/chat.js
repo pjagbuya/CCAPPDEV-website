@@ -33,7 +33,12 @@ var url = [
 
 for(let h = 0; h < url.length; h++){
 
-  chatRouter.post(url[h] + '/logout', function(req, resp){
+
+
+  chatRouter.post(url[h] + '/remember-me', function(req, resp){
+
+    req.session.rememberMe = req.body.rememberMe;
+    console.log("Session Data: " + JSON.stringify(req.session));
 
     var panibagong_maalaalaMoKaya = new remberModel({
       maalaalaMoKaya : req.body.rememberMe,
@@ -42,15 +47,8 @@ for(let h = 0; h < url.length; h++){
     });
 
     panibagong_maalaalaMoKaya.save().then(function(){
-      resp.redirect('//localhost:3000/login')
+      
     });//save
-    
-  });//chatRouter
-
-  chatRouter.post(url[h] + '/remember-me', function(req, resp){
-
-    req.session.rememberMe = req.body.rememberMe;
-    console.log("Session Data: " + JSON.stringify(req.session));
   
   });//chatRouter
 

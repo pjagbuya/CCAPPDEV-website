@@ -7,13 +7,14 @@ const { createServer } = require('node:http');
 const { join } = require('node:path');
 const { Server } = require('socket.io');
 const mongoose = require('mongoose');
-
+const uri = 'mongodb+srv://paulagbuya:1234@animolabmongodb.7rja3ru.mongodb.net/?retryWrites=true&w=majority&appName=AnimoLabMONGODB'
 const app = express();
 const server = createServer(app);
 const io = new Server(server);
+const { getDb, connectToDb } = require('./db')
+let db
 
-module.exports.mongoose= require('mongoose');
-module.exports.mongoose.connect('mongodb://localhost:27017/AnimoDB');
+mongoose.connect(uri);
 
 const bodyParser = require('body-parser')
 const bcrypt = require('bcrypt');

@@ -35,7 +35,7 @@ $(document).ready(function () {
           {
             if(status === 'success')
             {
-              windows.alert(data.msg);
+              window.alert(data.msg);
             }//status
           }//fn
         );//post

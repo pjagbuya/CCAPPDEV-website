@@ -44,8 +44,6 @@ searchUserRouter.post('/:id/create-room', function(req, resp){
     }
 
     var other_userName = req.body.other_userName
-    
-    console.log("index:" + req.body.index);
 
     roomModel.find().lean().then(function(rooms){ // gets all the rooms
 

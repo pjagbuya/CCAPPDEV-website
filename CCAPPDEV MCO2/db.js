@@ -5,7 +5,7 @@ const uri = 'mongodb+srv://paulagbuya:1234@animolabmongodb.7rja3ru.mongodb.net/?
 
 module.exports = {
   connectToDb: (cb)=>{
-      MongClient.connect(uri)
+      MongoClient.connect(uri)
       .then((client)=>{
       dbConnection = client.db()
       return cb()

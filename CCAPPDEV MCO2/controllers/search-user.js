@@ -97,24 +97,19 @@ searchUserRouter.get("/:id/search-users",  function(req, resp){
     }); // render & page
 });
 
-searchUserRouter.post("/:id/search-users",  function(req, resp){
+searchUserRouter.post("/:id/search-user-query",  function(req, resp){
 
-  req.session.user.
-
-  resp.render('html-pages/search/search-user',{
-      layout: "user/index-user",
-      title: "Search User",
-      userType: userType,
-      dlsuID: req.params.id,
-      imageSource: imageSource
-  }); // render & page
+  const searchQuery =  buildSearchUserQuery(req.body.username, req.body.dlsuID, req.body.firstname, req.body.lastname);
+  req.session.searchQuery = searchQuery;
+  resp.redirect('/'+req.session.user.dlsuID+'/search-user-results');
+  
 });
 
 searchUserRouter.get("/:id/search-user-results",  function(req, resp){
-    const searchQuery =  buildSearchUserQuery(req.body.username, req.body.dlsuID, req.body.firstname, req.body.lastname);
+   
     var imageSource =  getImageSource(req.session.user.imageSource);
 
-    userModel.find(searchQuery).lean().then(function(users){
+    userModel.find(req.session.searchQuery).lean().then(function(users){
         resp.render('html-pages/search/search-user-results',{
             layout: "user/index-user",
             title: "User Search Results",

@@ -34,7 +34,7 @@ app.use(session({
   secret: 'hjalksjfla',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false, maxAge: 30000 }
+  cookie: { secure: false, maxAge: 604000000 }
 
 }));
 function errorFn(err){

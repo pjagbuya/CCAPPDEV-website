@@ -37,7 +37,8 @@ for(let h = 0; h < url.length; h++){
     roomModel.find({dlsuID : req.body.dlsuID}).lean().then(function(rooms){
   
       chatModel.find().lean().then(function(chats){
-  
+        
+        console.log("Session Data: " + JSON.stringify(req.session));
         resp.send({
           dlsuID : req.body.dlsuID,
           rooms : rooms,
@@ -81,6 +82,7 @@ for(let h = 0; h < url.length; h++){
     
         new_chat.save().then(function(){
     
+          console.log("Session Data: " + JSON.stringify(req.session));
           resp.send({
             chatOrder : chatCount,
             roomID: req.body.roomID,
@@ -104,6 +106,7 @@ for(let h = 0; h < url.length; h++){
   
     chatModel.find({roomID : req.body.roomID}).lean().then(function(chats){
   
+      console.log("Session Data: " + JSON.stringify(req.session));
       resp.send({
           chatOrder : chats.length,
           roomID: req.body.roomID,
@@ -121,6 +124,7 @@ for(let h = 0; h < url.length; h++){
   
   chatRouter.post(url[h] + '/chat-leave', function(req, resp){
   
+    console.log("Session Data: " + JSON.stringify(req.session));
     resp.send({
       roomID: req.body.roomID,
       terminal: 0

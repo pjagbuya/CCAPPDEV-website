@@ -49,7 +49,8 @@ loginRouter.post('/login', async (req, resp) => {
 
       if (await bcrypt.compare(req.body.password, user.password)) {
           req.session.user = user;
-
+          req.session.loginDetails = req.body.userID;
+          req.session.loginPassword = req.body.password;
           
           if (user.dlsuID.toString().slice(0, 3) === "101") {
               console.log("Success Lab technician");

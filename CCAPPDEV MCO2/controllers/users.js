@@ -30,11 +30,17 @@ var allUniqueTimes;
 
 
 
-
+const isAuth = (req, res, next) => {
+  if(req.session.isAuth){
+    next()
+  }else{
+    res.redirect('http://localhost:3000//login')
+  }
+}
 
 
 // Regular Student User Profile
-userRouter.get("/:id",  async function(req, resp){
+userRouter.get("/:id",  isAuth, async function(req, resp){
 
   var abtMe = getUserAbtMe(req.session.user.about);
   var course = getCourse(req.session.user.course);

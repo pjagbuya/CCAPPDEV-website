@@ -7,8 +7,14 @@ const getUserAbtMe = require('../functions/user-info-evaluate-functions.js').get
 const usersModel = require("../../models/register-model");
 const getCourse = require('../functions/user-info-evaluate-functions.js').getCourse
 
-
-ltRouter.get('/:id', function(req, resp){
+const isAuth = (req, res, next) => {
+  if(req.session.isAuth){
+    next()
+  }else{
+    res.redirect('http://localhost:3000//login')
+  }
+}
+ltRouter.get('/:id', isAuth, function(req, resp){
 
   var abtMe = getUserAbtMe(req.session.user.about);
   var course = getCourse(req.session.user.course);

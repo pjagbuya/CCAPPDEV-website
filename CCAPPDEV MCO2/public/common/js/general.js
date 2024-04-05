@@ -34,33 +34,3 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 });
-
-$(document).ready(function(){
-  $('#logout-btn').click(function(){
-    $.post('logout',
-      { 
-        rememberMe: $('#is-remember').prop('checked')
-      },
-      function(data, status)
-      {
-        if(status === 'success')
-        {
-          socket.emit("send-message", 
-            {
-              chatOrder: data.chatOrder,
-              message: data.message, 
-              roomID: data.roomID, 
-              dlsuID: data.dlsuID, 
-              imageSource: data.imageSource, 
-              userName: data.userName,
-              index: data.index
-            }
-          );
-          displaySentMessage(data);
-          $('#direct-message-type').val('');
-          $('#chatbox-chat'+data.index).html(messageWhenTooLong(data.userName + ': ' + data.message));
-        }//if
-      }//fn
-    );//post
-  });
-});

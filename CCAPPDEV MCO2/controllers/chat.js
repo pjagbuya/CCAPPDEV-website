@@ -32,6 +32,13 @@ var url = [
 
 for(let h = 0; h < url.length; h++){
 
+  chatRouter.post(url[h] + '/remember-me', function(req, resp){
+
+    req.session.rememberMe = req.body.rememberMe;
+    console.log("Session Data: " + JSON.stringify(req.session));
+  
+  });//chatRouter
+
   chatRouter.post(url[h] + '/chat-open', function(req, resp){
 
     roomModel.find({dlsuID : req.body.dlsuID}).lean().then(function(rooms){

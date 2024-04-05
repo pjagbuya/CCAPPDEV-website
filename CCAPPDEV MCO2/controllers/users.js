@@ -164,6 +164,7 @@ userRouter.get("/:id/reservations/view/:resID",  async function(req, resp){
       layout: 'user/index-user-view-reservations',
       title: 'Tech Reservations View',
       name: req.session.user.username,
+      rememberMe : req.session.rememberMe,
 
       imageSource:imageSource,
       data: labSeatsMap,

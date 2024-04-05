@@ -201,14 +201,7 @@ io.on('connection', (socket) => {
       socket.emit("reserveUpdate", currReservations);
       socket.broadcast.emit("reserveUpdate", currReservations);
     })
-    socket.on("send-message", function(data){
-      if(data.roomID === ""){
-        io.emit("recieve-message", data);
-      }
-      else{
-        socket.to(data.roomID).emit("recieve-message", data);
-      }
-    });
+    
 
     socket.on("join-room", function(roomID){
       socket.join(roomID);
@@ -225,6 +218,11 @@ io.on('connection', (socket) => {
     socket.broadcast.emit("reserveUpdate", currReservations);
 
 
+  });
+
+  socket.on("send-message", function(data){
+    console.log("message sent")
+    socket.to(data.roomID).emit("recieve-message", data);
   });
 
   socket.on("join-room", function(roomID){

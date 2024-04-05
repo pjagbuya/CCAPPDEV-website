@@ -34,7 +34,8 @@ app.use(session({
   secret: 'hjalksjfla',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false }
+  cookie: { secure: false, maxAge: 30000 }
+
 }));
 function errorFn(err){
     console.log('Error fond. Please trace!');
@@ -91,7 +92,7 @@ const userSchema = new mongoose.Schema({
   course: String,
   about: String,
   email: String,
-  imageSource: String, 
+  imageSource: String,
   contact: String
 });
 
@@ -140,10 +141,10 @@ app.delete('/deleteProfile', async (req, res) => {
   const userId = req.body.userId;
 
   try {
-    
+
     let deletedUser = await User.findOneAndDelete({ dlsuID: userId });
 
-    
+
     if (!deletedUser) {
       deletedUser = await User.findOneAndDelete({ email: userId });
     }
@@ -189,16 +190,36 @@ io.on('connection', (socket) => {
   socket.on('reserved', (dlsuID)=>{
     currReservations = Reservation.find({userID:dlsuID});
     socket.emit("reserveUpdate", currReservations);
+
+    socket.on('reserved', (dlsuID)=>{
+      currReservations = Reservation.find({userID:dlsuID});
+      socket.emit("reserveUpdate", currReservations);
+      socket.broadcast.emit("reserveUpdate", currReservations);
+    })
+    socket.on("send-message", function(data){
+      if(data.roomID === ""){
+        io.emit("recieve-message", data);
+      }
+      else{
+        socket.to(data.roomID).emit("recieve-message", data);
+      }
+    });
+
+    socket.on("join-room", function(roomID){
+      socket.join(roomID);
+    });
+
+    socket.on("leave-room", function(roomID){
+      socket.leave(roomID);
+    });
+
+    socket.on('disconnect', function(){
+      console.log(`user disconnected ${socket.id}`);
+    });
+
     socket.broadcast.emit("reserveUpdate", currReservations);
-  })
-  socket.on("send-message", function(data){
-    console.log("send to"+ data.roomID)
-    if(data.roomID === ""){
-      io.emit("recieve-message", data);
-    }
-    else{
-      socket.to(data.roomID).emit("recieve-message", data);
-    }
+
+
   });
 
   socket.on("join-room", function(roomID){
@@ -218,5 +239,8 @@ io.on('connection', (socket) => {
 
 const port = process.env.PORT | 3000;
 server.listen(port, function(){
-  console.log('Listening at port '+port);
+
+    console.log('Listening at port '+port);
+
+
 });

@@ -57,7 +57,7 @@ userRouter.get("/:id",  async function(req, resp){
         imageSource: imageSource,
         about: abtMe,
         email: req.session.user['email'],
-        contact: req.session.user['contact'], 
+        contact: req.session.user['contact'],
         seats: JSON.parse(JSON.stringify(seats)),
         firstName: req.session.user['firstName'],
         middleInitial: req.session.user['middleInitial'],
@@ -146,7 +146,7 @@ userRouter.get("/:id/reservations/view/:resID",  async function(req, resp){
 
   try {
 
-
+    const reservationID = req.params.resID
     allUniqueTimes = await initializeUniqueTimes(); // Wait for initialization
     const labSeatsMap = await keyLabNamesToSeatIds(req.params.resID);
     console.log(labSeatsMap);
@@ -161,6 +161,7 @@ userRouter.get("/:id/reservations/view/:resID",  async function(req, resp){
       layout: 'user/index-user-view-reservations',
       title: 'Tech Reservations View',
       name: req.session.user.username,
+
       imageSource:imageSource,
       data: labSeatsMap,
       userType: userType,
@@ -177,38 +178,7 @@ userRouter.get("/:id/reservations/view/:resID",  async function(req, resp){
 });
 
 
-// userRouter.get('/:id/reservations/edit/:resID/:roomName', async function(req, resp){
-//    try {
-//      allUniqueTimes = await initializeUniqueTimes(); // Wait for initialization
-//      const labSeatsMap = await keyLabNamesToSeatIds(req.params.resID);
-//      const labName = req.params.roomName
-//      const userType = getUserType(req.session.user.dlsuID)
-//      console.log(labSeatsMap);
-//      var imageSource =  getImageSource(req.session.user.imageSource);
-//
-//      resp.render('html-pages/reservation-edit/reserve-edit', {
-//        layout: 'edit/index-reservation-edit',
-//        title: 'Tech Reservations Edit',
-//        imageSource: imageSource,
-//        userType: userType,
-//        name: req.session.user.username,
-//        labName: labName,
-//        data: labSeatsMap,
-//        dlsuID: req.session.user.dlsuID,
-//        redirectBase: `/${userType}/`+req.session.user.dlsuID+`/edit/${req.params.resID}`,
-//        helpers: {
-//          isOngoing: function (string) { return string === 'Ongoing'; }
-//        }
-//      });
-//
-//
-//    } catch(error) {
-//      console.error("Error in route handler:", error);
-//
-//    }
-//
-//
-//  });
+
 Handlebars.registerHelper('isNull', function (value) {
   return value === undefined || value === null; // Concise check for null or undefined
 });

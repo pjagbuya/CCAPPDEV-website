@@ -104,7 +104,53 @@ function convertTimeIdToInterval(timeId) {
    }
  }
 
+ async function keyLabNamesToSeatIds_withNoFirstSeats(reservationIdValue, reservationIdField = 'reservationID') {
+   try {
+     const query = {};
+     query[reservationIdField] = reservationIdValue;
 
+     const reservation = await reservationModel.findOne(query)
+       .populate('reservationSeats');
+
+     const result = [];
+
+     const seatsByLabName = {};
+     const sortedSeats = reservation.reservationSeats.sort((seat1, seat2) => seat1.seatTimeID - seat2.seatTimeID);
+
+     const labNamesToSeats = sortedSeats.reduce((acc, seat) => {
+       const labName = seat.labName;
+
+       if (!acc[labName]) {
+         acc[labName] = {
+           labName,
+           seats: [],
+           totalSeats: 0
+         };
+       }
+
+       const seatData = {
+         seatId: seat._id,
+         seatNumber: seat.seatNumber,
+         weekDay: formatWeekdayDate(seat.weekDay),
+         timeInterval: convertTimeIdToInterval(seat.seatTimeID),
+         timeID: seat.seatTimeID,
+         specificWeekDay: seat.weekDay
+       }
+
+
+       acc[labName].seats.push(seatData);
+
+
+       acc[labName].totalSeats++;
+       return acc;
+     }, {});
+
+     return Object.values(labNamesToSeats);
+   } catch(error) {
+     console.error("Error grouping seats:", error);
+     throw error;
+   }
+ }
  async function getSeatDate(weekday) {
    const today = new Date();
 
@@ -145,7 +191,7 @@ function isTimePassed(timeInput, date){
   }
   else if((hours < currentTime.getHours()) && (date <= currentTime.getDate())){passed = true} // hour is earlier than current hour
   else{passed = false} // hour is later than current hour and date is of a later time
-    
+
 
   console.log(passed);
 
@@ -195,6 +241,7 @@ function isAfternoonInterval(timeInterval) {
 }
 
 module.exports.keyLabNamesToSeatIds = keyLabNamesToSeatIds
+module.exports.keyLabNamesToSeatIds_withNoFirstSeats = keyLabNamesToSeatIds_withNoFirstSeats
 module.exports.convertTimeIdToInterval = convertTimeIdToInterval
 module.exports.formatWeekdayDate = formatWeekdayDate
 module.exports.initializeUniqueTimes = initializeUniqueTimes

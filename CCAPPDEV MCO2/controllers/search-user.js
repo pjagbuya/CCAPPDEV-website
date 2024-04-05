@@ -93,6 +93,7 @@ searchUserRouter.get("/:id/search-users",  function(req, resp){
         title: "Search User",
         userType: userType,
         dlsuID: req.params.id,
+        name:  `${req.session.user.firstName} ${req.session.user.middleInitial} ${req.session.user.lastName}`,
         imageSource: imageSource
     }); // render & page
 });
@@ -108,6 +109,7 @@ searchUserRouter.post("/:id/search-user-results",  function(req, resp){
             title: "User Search Results",
             users: users,
             dlsuID: req.session.user.dlsuID,
+            name:  `${req.session.user.firstName} ${req.session.user.middleInitial} ${req.session.user.lastName}`,
             userType: "user",
             imageSource:imageSource
         }); // render & page
@@ -148,6 +150,7 @@ searchUserRouter.get("/profile/:id",  async function(req, resp){
         imageSource:imageSource,
         userType: "user",
         dlsuID: req.session.user.dlsuID,
+        name:  `${req.session.user.firstName} ${req.session.user.middleInitial} ${req.session.user.lastName}`,
         email: profile.email
 
     });

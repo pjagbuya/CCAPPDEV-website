@@ -3,7 +3,7 @@
             {{#each users}}
             <div class="profiles">
                 <div class="profile-img" id="profile-user-pic{{@index}}" name="{{imageSource}}">
-                  <img src={{imageSource}}/>
+                  <img src={{imageSource}}>
                 </div>
                 <div class="profile-texts">
                     <div class="profile-name" id="profile-user-name{{@index}}" name="{{username}}">
@@ -32,9 +32,6 @@
                 </div>
             </div>
             {{/each}}
-            <div class="footer">
-                <button class="arrow-button" onclick="alert('Currently Unavailable')">&larr;</button>  Page 1<button class="arrow-button right-arrow" onclick="alert('Currently Unavailable')">&rarr;</button>
-            </div>
             
 
         </div>

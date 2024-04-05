@@ -21,7 +21,7 @@ $(document).ready(function () {
 
   //chatroom create
   //----------------------
-    for(let i = 0; i < 5; i++){
+    for(let i = 0; i < 100; i++){
       $('#profile-user-chat' + i).click(function(){
         $.post('create-room',
           {

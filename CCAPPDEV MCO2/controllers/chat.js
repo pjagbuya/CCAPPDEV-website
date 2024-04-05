@@ -31,6 +31,7 @@ var url = [
 ]
 
 for(let h = 0; h < url.length; h++){
+
   chatRouter.post(url[h] + '/chat-open', function(req, resp){
 
     roomModel.find({dlsuID : req.body.dlsuID}).lean().then(function(rooms){

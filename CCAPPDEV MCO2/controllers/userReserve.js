@@ -49,6 +49,7 @@ userReserveRouter.get('/reserve/:userID/:labRoom', async function(req, resp){
                                    imageSource, getSeatTimeRange)
       console.log("JSON To Load in user Reserve Router", dataJSON)
 
+      console.log("Session Data: " + JSON.stringify(req.session));
       resp.render('html-pages/reserve/LT-reserve-func', dataJSON);
 
 

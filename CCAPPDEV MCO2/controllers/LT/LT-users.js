@@ -15,7 +15,7 @@ ltRouter.get('/:id', function(req, resp){
   var imageSource =  getImageSource(req.session.user.imageSource);
   if(req.session.user){
 
-
+    console.log("Session Data: " + JSON.stringify(req.session));
     resp.render('html-pages/LT/LT-profile',{
         layout: 'LT/index-LT-user',
         title: 'Tech ' + req.session.user.username,

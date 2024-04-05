@@ -21,6 +21,7 @@ reservationsEditRouter.get('/edit/:resID/:roomName', async function(req, resp){
      var imageSource =  getImageSource(req.session.user.imageSource);
      const reservationID = req.params.resID
 
+     console.log("Session Data: " + JSON.stringify(req.session));
      resp.render('html-pages/reservation-edit/reserve-edit', {
        layout: 'edit/index-reservation-edit',
        title: 'Tech Reservations Edit',

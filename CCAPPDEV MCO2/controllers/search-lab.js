@@ -33,7 +33,8 @@ searchLabRouter.get("/:id/search-labs",  async function(req, resp){
     }else{
       imageSource = "https://t4.ftcdn.net/jpg/00/64/67/27/360_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg";
     }
-
+    
+    console.log("Session Data: " + JSON.stringify(req.session));
     resp.render('html-pages/search/search-lab',{
         layout: "search/index-search-lab",
         title: "Search Lab",

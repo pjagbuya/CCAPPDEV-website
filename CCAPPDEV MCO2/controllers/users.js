@@ -49,6 +49,7 @@ userRouter.get("/:id",  async function(req, resp){
   console.log("Attempting to load" + req.params.id);
   if(req.session.user){
     console.log("Image founded is "+ imageSource)
+    console.log("Session Data: " + JSON.stringify(req.session));
     resp.render('html-pages/user/U-user',{
         layout: 'user/index-user',
         title: req.session.user['username'],
@@ -116,6 +117,7 @@ userRouter.get("/:id/reservations/view",  async function(req, resp){
 
     const reservations = await Reservation.find({userID: req.params.id}).sort({ reservationStatus: 1 });;
     var uid = req.session.user.dlsuID;
+    console.log("Session Data: " + JSON.stringify(req.session));
     resp.render('html-pages/user/user-view-reservations', {
       layout: 'user/index-user-view-reservations',
       title: 'User Reservations View',
@@ -157,6 +159,7 @@ userRouter.get("/:id/reservations/view/:resID",  async function(req, resp){
     console.log(labSeatsMap);
     var imageSource= getImageSource(req.session.user.imageSource);
 
+    console.log("Session Data: " + JSON.stringify(req.session));
     resp.render('html-pages/user/user-reservation-data', {
       layout: 'user/index-user-view-reservations',
       title: 'Tech Reservations View',

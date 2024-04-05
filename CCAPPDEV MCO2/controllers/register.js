@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 
 
 registerLoginRouter.get('/register', function(req, resp){
+  console.log("Session Data: " + JSON.stringify(req.session));
     resp.render('html-pages/login-reg/register',{
         layout: 'home/index-home',
         title: 'Register Page'

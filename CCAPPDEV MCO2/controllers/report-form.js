@@ -27,12 +27,16 @@ var allUniqueTimes;
 console.log("Connecteed to router report-form")
 
 reportFormRouter.get("/:id/report-form",  function(req, resp){
+  console.log("Session Data: " + JSON.stringify(req.session));
     var userString = req.params.id;
     var userType =  getUserType(userString);
 
     resp.render('html-pages/report/report-form',{
         layout: "report/index-user-report",
         title: "Report an issue",
+        dlsuID: req.session.user.dlsuID,
+        name:  `${req.session.user.firstName} ${req.session.user.middleInitial} ${req.session.user.lastName}`,
+        imageSource: getImageSource(req.session.user.imageSource),
         userType: userType
     }); // render & page
 });

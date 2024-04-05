@@ -7,9 +7,13 @@ const collectionLogin = "User"
 const loginModel = require('../models/register-model');
 
 loginRouter.get('/login', function(req, resp){
+    console.log("Session Data: " + JSON.stringify(req.session));
     resp.render('html-pages/home/H-login',{
         layout: 'home/index-home',
-        title: 'Login Page'
+        title: 'Login Page',
+        rememberMe: req.session.rememberMe,
+        loginDetails : req.session.loginDetails,
+        loginPassword : req.session.loginPassword
     });
 });
 

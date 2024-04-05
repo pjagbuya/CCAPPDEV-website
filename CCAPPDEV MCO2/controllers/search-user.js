@@ -88,6 +88,7 @@ searchUserRouter.get("/:id/search-users",  function(req, resp){
     var userType =  getUserType(userString);
     var imageSource =  getImageSource(req.session.user.imageSource);
 
+    console.log("Session Data: " + JSON.stringify(req.session));
     resp.render('html-pages/search/search-user',{
         layout: "user/index-user",
         title: "Search User",
@@ -137,7 +138,7 @@ searchUserRouter.get("/profile/:id",  async function(req, resp){
     console.log(profile)
 
 
-
+    console.log("Session Data: " + JSON.stringify(req.session));
     resp.render('html-pages/search/search-user-view',{
         layout: "user/index-user",
         title: "User Search Results",

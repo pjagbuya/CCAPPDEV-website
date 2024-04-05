@@ -73,10 +73,14 @@ mongoClient.connect().then(function(con){
 }).catch(errorFn);
 
 app.get('/', function(req, resp){
+
+  req.session.rememberMe = false;
+  req.session.loginPassword = ' ';
+  req.session.loginDetails = ' ';
+  console.log("Session Data: " + JSON.stringify(req.session));
     resp.render('html-pages/home/H-home',{
         layout: 'home/index-home',
         title: 'Welcome to AnimoLab'
-
     });
 });
 

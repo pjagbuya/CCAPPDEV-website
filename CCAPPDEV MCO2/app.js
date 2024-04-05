@@ -184,36 +184,39 @@ app.use("/user", reportFormRouter);
 // app.use("/", searchLabRouter);
 let currReservations= []
 io.on('connection', (socket) => {
-    console.log(`user connected ${socket.id}`);
+  console.log(`user connected ${socket.id}`);
+  socket.emit("reserveUpdate", currReservations);
+  socket.on('reserved', (dlsuID)=>{
+    currReservations = Reservation.find({userID:dlsuID});
     socket.emit("reserveUpdate", currReservations);
-    socket.on('reserved', (dlsuID)=>{
-      currReservations = Reservation.find({userID:dlsuID});
-      socket.emit("reserveUpdate", currReservations);
-      socket.broadcast.emit("reserveUpdate", currReservations);
-    })
-    socket.on("send-message", function(data){
-      if(data.roomID === ""){
-        io.emit("recieve-message", data);
-      }
-      else{
-        socket.to(data.roomID).emit("recieve-message", data);
-      }
-    });
-
-    socket.on("join-room", function(roomID){
-      socket.join(roomID);
-    });
-  
-    socket.on("leave-room", function(roomID){
-      socket.leave(roomID);
-    });
-
-    socket.on('disconnect', function(){
-      console.log(`user disconnected ${socket.id}`);
-    });
+    socket.broadcast.emit("reserveUpdate", currReservations);
+  })
+  socket.on("send-message", function(data){
+    console.log("send to"+ data.roomID)
+    if(data.roomID === ""){
+      io.emit("recieve-message", data);
+    }
+    else{
+      socket.to(data.roomID).emit("recieve-message", data);
+    }
   });
+
+  socket.on("join-room", function(roomID){
+    console.log("user joined "+ roomID)
+    socket.join(roomID);
+  });
+
+  socket.on("leave-room", function(roomID){
+    console.log("user left "+ roomID)
+    socket.leave(roomID);
+  });
+
+  socket.on('disconnect', function(){
+    console.log(`user disconnected ${socket.id}`);
+  });
+});
 
 const port = process.env.PORT | 3000;
 server.listen(port, function(){
-    console.log('Listening at port '+port);
+  console.log('Listening at port '+port);
 });

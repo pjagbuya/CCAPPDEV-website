@@ -34,7 +34,8 @@ app.use(session({
   secret: 'hjalksjfla',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false }
+  cookie: { secure: false, maxAge: 30000 }
+
 }));
 function errorFn(err){
     console.log('Error fond. Please trace!');
@@ -91,7 +92,7 @@ const userSchema = new mongoose.Schema({
   course: String,
   about: String,
   email: String,
-  imageSource: String, 
+  imageSource: String,
   contact: String
 });
 
@@ -140,10 +141,10 @@ app.delete('/deleteProfile', async (req, res) => {
   const userId = req.body.userId;
 
   try {
-    
+
     let deletedUser = await User.findOneAndDelete({ dlsuID: userId });
 
-    
+
     if (!deletedUser) {
       deletedUser = await User.findOneAndDelete({ email: userId });
     }
@@ -203,7 +204,7 @@ io.on('connection', (socket) => {
     socket.on("join-room", function(roomID){
       socket.join(roomID);
     });
-  
+
     socket.on("leave-room", function(roomID){
       socket.leave(roomID);
     });

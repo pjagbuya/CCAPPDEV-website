@@ -6,9 +6,19 @@
         </a>
 
       </div>
+      <input id="currentReservationID" type="hidden" name="" value="{{reservationID}}">
+      <input id="currentLabName" type="hidden" name="" value="{{labName}}">
       <h1>Seat Editor</h1>
-      Room No.: <span id="room-name-ID">{{labName}}</span>
-      <button>Change</button><br>
+      Room No.: <span id="room-name-ID">{{labName}}</span> <br>
+      <select class="room-select">
+        <option>GK301</option>
+        <option>GK402</option>
+        <option>GK206</option>
+        <option>GK307.</option>
+        <option>GK208</option>
+      </select>
+       <br>
+       <br>
         <div class="inner-box-table">
           <table>
             <thead>
@@ -18,76 +28,48 @@
                 <th class="header tc">Seat No.<img src="https://www.svgrepo.com/show/42233/pencil-edit-button.svg" style="width: 20px"></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id ="changeReservation-tbody">
               {{#each data}}
-              <form>
-                <tr>
-                  <td class="tc">{{firstSeat.weekDay}}<br><input type="date" id="date"></td>
-                  <td class="tc">
-                    {{firstSeat.timeInterval}}<br>
-                    <select class="select-interval" id="time-select{{@index}}">
-                      <option>7:30 A.M. - 8:00 A.M.</option>
-                      <option>8:00 A.M. - 8:30 A.M.</option>
-                      <option>8:30 A.M. - 9:00 A.M.</option>
-                      <option>9:00 A.M. - 9:30 A.M.</option>
-                      <option>9:30 A.M. - 10:00 A.M.</option>
-                      <option>10:00 A.M. - 10:30 A.M.</option>
-                      <option>10:30 A.M. - 11:00 A.M.</option>
-                      <option>11:00 A.M. - 11:30 A.M.</option>
-                      <option>11:30 A.M. - 12:00 P.M.</option>
-                      <option>12:00 P.M. - 12:30 P.M.</option>
-                      <option>12:30 P.M. - 1:00 P.M.</option>
-                      <option>1:00 P.M. - 1:30 P.M.</option>
-                      <option>1:30 P.M. - 2:00 P.M.</option>
-                      <option>2:00 P.M. - 2:30 P.M.</option>
-                      <option>2:30 P.M. - 3:00 P.M.</option>
-                      <option>3:00 P.M. - 3:30 P.M.</option>
-                      <option>3:30 P.M. - 4:00 P.M.</option>
-                      <option>4:00 P.M. - 4:30 P.M.</option>
-                      <option>4:30 P.M. - 5:00 P.M.</option>
-                      <option>5:00 P.M. - 5:30 P.M.</option>
-                    </select>
-                  </td>
-                  <td class="tc">
-                    {{firstSeat.seatNumber}}
-                    <br><button class="change-btn-seatnumber">Change</button>
-                  </td>
-                  <td class="tc"><br><button class="btn btn-danger cancel-btn-seatnumber">Cancel Seat</button></td>
-                  <td class="tc"><br><button>Save Changes</button></td>
-                </tr>
-                </form>
-                {{#each otherSeats}}
+
+                {{#each seats}}
                 <form>
                   <tr>
-                    <td class="tc">{{weekDay}}<br><button class="change-btn-weekday">Change</button></td>
-                    <td class="tc">
-                      {{timeInterval}}<br>
-                      <select class="select-interval">
-                        <option>7:30 A.M. - 8:00 A.M.</option>
-                        <option>8:00 A.M. - 8:30 A.M.</option>
-                        <option>8:30 A.M. - 9:00 A.M.</option>
-                        <option>9:00 A.M. - 9:30 A.M.</option>
-                        <option>9:30 A.M. - 10:00 A.M.</option>
-                        <option>10:00 A.M. - 10:30 A.M.</option>
-                        <option>10:30 A.M. - 11:00 A.M.</option>
-                        <option>11:00 A.M. - 11:30 A.M.</option>
-                        <option>11:30 A.M. - 12:00 P.M.</option>
-                        <option>12:00 P.M. - 12:30 P.M.</option>
-                        <option>12:30 P.M. - 1:00 P.M.</option>
-                        <option>1:00 P.M. - 1:30 P.M.</option>
-                        <option>1:30 P.M. - 2:00 P.M.</option>
-                        <option>2:00 P.M. - 2:30 P.M.</option>
-                        <option>2:30 P.M. - 3:00 P.M.</option>
-                        <option>3:00 P.M. - 3:30 P.M.</option>
-                        <option>3:30 P.M. - 4:00 P.M.</option>
-                        <option>4:00 P.M. - 4:30 P.M.</option>
-                        <option>4:30 P.M. - 5:00 P.M.</option>
-                        <option>5:00 P.M. - 5:30 P.M.</option>
+                    <td class="tc" >
+                      <span data-weekDay="{{specificWeekDay}}" class="weekday-span">{{weekDay}}</span><br>
+                      <select class="inputWeekDay">
                       </select>
                     </td>
                     <td class="tc">
-                      {{seatNumber}}<br><button class="change-btn-seatnumber">Change</button></td>
+                      <span data-timeID="{{timeID}}" class="time-interval-span">{{timeInterval}}</span><br>
+                      <select class="select-interval">
+                        <option data-timeID="1">7:00 A.M. - 7:30 A.M.</option>
+                        <option data-timeID="2">7:30 A.M. - 8:00 A.M.</option>
+                        <option data-timeID="3">8:00 A.M. - 8:30 A.M.</option>
+                        <option data-timeID="4">8:30 A.M. - 9:00 A.M.</option>
+                        <option data-timeID="5">9:00 A.M. - 9:30 A.M.</option>
+                        <option data-timeID="6">9:30 A.M. - 10:00 A.M.</option>
+                        <option data-timeID="7">10:00 A.M. - 10:30 A.M.</option>
+                        <option data-timeID="8">10:30 A.M. - 11:00 A.M.</option>
+                        <option data-timeID="9">11:00 A.M. - 11:30 A.M.</option>
+                        <option data-timeID="10">11:30 A.M. - 12:00 P.M.</option>
+                        <option data-timeID="11">12:00 P.M. - 12:30 P.M.</option>
+                        <option data-timeID="12">12:30 P.M. - 1:00 P.M.</option>
+                        <option data-timeID="13">1:00 P.M. - 1:30 P.M.</option>
+                        <option data-timeID="14">1:30 P.M. - 2:00 P.M.</option>
+                        <option data-timeID="15">2:00 P.M. - 2:30 P.M.</option>
+                        <option data-timeID="16">2:30 P.M. - 3:00 P.M.</option>
+                        <option data-timeID="17">3:00 P.M. - 3:30 P.M.</option>
+                        <option data-timeID="18">3:30 P.M. - 4:00 P.M.</option>
+                        <option data-timeID="19">4:00 P.M. - 4:30 P.M.</option>
+                        <option data-timeID="20">4:30 P.M. - 5:00 P.M.</option>
+
+                      </select>
+                    </td>
+                    <td class="tc">
+                      <span class="editable-seat-number-span">{{seatNumber}}</span><br><button class="change-btn-seatnumber">Change</button></td>
                     <td class="tc"><br><button class="btn btn-danger cancel-btn-seatnumber">Cancel Seat</button></td>
+                    <td class="tc"><br><button class="btn btn-success success-btn-seatnumber">Save Changes</button></td>
+
                   </tr>
                 </form>
                 {{/each}}
@@ -95,6 +77,9 @@
 
             </tbody>
           </table>
-        </div>
+
+
+        </div>          <br><br>
+                  <button class="btn btn-success success-btn-all">Save All</button>
     </div>
 </div>

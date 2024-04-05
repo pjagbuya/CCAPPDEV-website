@@ -41,6 +41,37 @@ loginRouter.get('/login', function(req, resp){
             loginDetails : loginDetails,
             loginPassword : loginPassword
         });
+        resp.redirect
+    });
+});
+
+loginRouter.post('/load-login', function(req, resp){
+
+    remberModel.find().lean().then(function(maalaalaMoKaya){
+        var pinakamalakingIndex = maalaalaMoKaya.length;
+
+        var rememberMe = '';
+        var loginDetails = '';
+        var loginPassword = '';
+
+        if(pinakamalakingIndex > 0){
+            console.log("relogin")
+            rememberMe = maalaalaMoKaya[pinakamalakingIndex-1].maalaalaMoKaya;
+            loginDetails = maalaalaMoKaya[pinakamalakingIndex-1].loginID;
+            loginPassword = maalaalaMoKaya[pinakamalakingIndex-1].loginPass;
+        }
+        else{
+            rememberMe = false;
+            loginDetails = '';
+            loginPassword = '';
+        }
+
+        console.log("Session Data for login: " + JSON.stringify(req.session));
+        resp.send({
+            rememberMe : rememberMe,
+            loginDetails : loginDetails,
+            loginPassword : loginPassword
+        });
     });
 });
 

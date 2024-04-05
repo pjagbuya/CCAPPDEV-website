@@ -34,45 +34,63 @@ searchUserRouter.post('/:id/create-room', function(req, resp){
 
   userModel.find().lean().then(function(users){
 
-    var user_userName = '';
+    var user_userName = ''; // my username
     for(let i = 0; i < users.length; i++)
     {
       if(users[i].dlsuID === Number(req.body.user_dlsuID))
       {
-        user_userName = users[i].username;
+        user_userName = users[i].username; // my username
       }
     }
+
+    var other_userName = req.body.other_userName
     
     console.log("index:" + req.body.index);
 
-    roomModel.find().lean().then(function(rooms){
+    roomModel.find().lean().then(function(rooms){ // gets all the rooms
 
-      var new_roomID = rooms.length + 1001;
-
-      var new_room = new roomModel({
-        roomID : new_roomID,
-        roomDetails : [
-          {
-            dlsuID: req.body.user_dlsuID,
-            userName: user_userName,
-            imageSource: req.body.user_imageSource
-          },
-          {
-            dlsuID: req.body.other_dlsuID,
-            userName: req.body.other_userName,
-            imageSource: req.body.other_imageSource
+      var existingRoom = false;
+      for(let i = 0; i<rooms.length; i++){
+        if(((rooms[i].roomDetails[0].userName == user_userName) && (rooms[i].roomDetails[1].userName == other_userName)) ||
+           ((rooms[i].roomDetails[0].userName == other_userName) && (rooms[i].roomDetails[1].userName == user_userName))){ // room exists
+            existingRoom = true;
           }
-        ],
-        dlsuID : [req.body.user_dlsuID, req.body.other_dlsuID],
-      });
-  
-      new_room.save().then(function(){
-  
+      }
+
+      if(!existingRoom && (other_userName != user_userName)){ // if nothing found/other user is not self, creates a room
+        var new_roomID = rooms.length + 1001;
+
+        var new_room = new roomModel({
+          roomID : new_roomID,
+          roomDetails : [
+            {
+              dlsuID: req.body.user_dlsuID,
+              userName: user_userName,
+              imageSource: req.body.user_imageSource
+            },
+            {
+              dlsuID: req.body.other_dlsuID,
+              userName: req.body.other_userName,
+              imageSource: req.body.other_imageSource
+            }
+          ],
+          dlsuID : [req.body.user_dlsuID, req.body.other_dlsuID],
+        });
+    
+        new_room.save().then(function(){
+    
+          resp.send({
+            msg: "room created with " + req.body.other_userName 
+          });//resp send
+    
+        });//roommodel save
+      }// if
+      else{ // existing room or creating room with self
         resp.send({
-          terminal: 0
+          msg: "room exists or trying to create a room with self"
         });//resp send
-  
-      });//roommodel save
+      }
+      
   
     });//roommodel find
 
@@ -252,3 +270,5 @@ Handlebars.registerHelper('startsWith101', function (string) {
 });
 
 module.exports = searchUserRouter
+
+

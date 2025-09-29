@@ -28,8 +28,8 @@
             },
             "visible": true,
             "shape": "trust-boundary-box",
-            "id": "2678ad64-1015-4a70-b205-c1c3b9224205",
             "zIndex": -1,
+            "id": "2678ad64-1015-4a70-b205-c1c3b9224205",
             "data": {
               "type": "tm.BoundaryBox",
               "name": "Trust Boundary",
@@ -340,6 +340,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 6,
             "ports": {
               "groups": {
                 "top": {
@@ -483,8 +484,7 @@
                 "informationDisclosure": 0,
                 "denialOfService": 1
               }
-            },
-            "zIndex": 6
+            }
           },
           {
             "shape": "flow",
@@ -1241,6 +1241,7 @@
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 11,
             "ports": {
               "groups": {
                 "top": {
@@ -1324,7 +1325,6 @@
               ]
             },
             "id": "27e95a7a-1401-45be-9f16-bdff19edfc7f",
-            "zIndex": 11,
             "data": {
               "type": "tm.Actor",
               "name": "Browser Client",
@@ -1363,6 +1363,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 12,
             "ports": {
               "groups": {
                 "top": {
@@ -1446,7 +1447,6 @@
               ]
             },
             "id": "9d3b966d-a3ec-44aa-a585-5f18d33ade6a",
-            "zIndex": 12,
             "data": {
               "type": "tm.Store",
               "name": "LDAP",
